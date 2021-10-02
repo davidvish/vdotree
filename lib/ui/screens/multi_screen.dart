@@ -351,12 +351,14 @@ class _MultiScreenState extends State<MultiScreen> {
                                             SizedBox(
                                               height: 10.0,
                                             ),
-                                            Text(
-                                              "${screenList[index].screenName}",
-                                              style: TextStyle(
-                                                  fontSize: 14.0,
-                                                  color: primaryBlue,
-                                                  fontWeight: FontWeight.w600),
+                                            FittedBox(
+                                              child: Text(
+                                                "${screenList[index].screenName}",
+                                                style: TextStyle(
+                                                    fontSize: 14.0,
+                                                    color: primaryBlue,
+                                                    fontWeight: FontWeight.w600),
+                                              ),
                                             ),
                                           ],
                                         ),

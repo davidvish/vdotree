@@ -1,42 +1,49 @@
 {
   "project_info": {
-    "project_number": "558411067615",
-    "project_id": "fluttersocial-8d8e5",
-    "storage_bucket": "fluttersocial-8d8e5.appspot.com"
+    "project_number": "46181757790",
+    "project_id": "vdotree-app",
+    "storage_bucket": "vdotree-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:558411067615:android:8ca576fc0c7f4093c7796a",
+        "mobilesdk_app_id": "1:46181757790:android:ee3749e7ca4f2dbf6795cf",
         "android_client_info": {
-          "package_name": "com.codestreax.vdotree"
+          "package_name": "com.vdotree.vdotree"
         }
       },
       "oauth_client": [
         {
-          "client_id": "558411067615-enep49du6h1rq4ss6lvlra8trfehoegj.apps.googleusercontent.com",
+          "client_id": "46181757790-72qog94a0l2bo7k7b7afqutqse0iq53f.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.codestreax.vdotree",
-            "certificate_hash": "0772b1eb8d3b745a5c4e8bf6a76b470bdb26c84c"
+            "package_name": "com.vdotree.vdotree",
+            "certificate_hash": "76abfb5b9c8e1700d6ad8610abef6d26a74f05ae"
           }
         },
         {
-          "client_id": "558411067615-ookca5vtafat4npp1iqavqo61pocg12t.apps.googleusercontent.com",
+          "client_id": "46181757790-e3ln6lu24bg097fuad7sv0lvjbpqmgjg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA47Km-9JNxA0Tt20cP7X5xR6U3t6AYnuc"
+          "current_key": "AIzaSyD_Lqf5sjDZRWgHOtRYzvk01kx4S0qRP1U"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "558411067615-ookca5vtafat4npp1iqavqo61pocg12t.apps.googleusercontent.com",
+              "client_id": "46181757790-e3ln6lu24bg097fuad7sv0lvjbpqmgjg.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "46181757790-7d6oal45t18lkpg6mrkdr1vp4pili11t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vdotree.vdotree"
+              }
             }
           ]
         }

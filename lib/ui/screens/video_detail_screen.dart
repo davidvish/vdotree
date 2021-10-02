@@ -218,10 +218,10 @@ return  Container(
               moreLikeThis == null ? 0 : moreLikeThis.length, (int index) {
             return Padding(
               padding: EdgeInsets.only(right: 2.5, left: 2.5, bottom: 5.0),
-              child: moreLikeThis[index] == null
+              child: moreLikeThis == null
                   ? Container(
                     color: Colors.red,
-                    child: Icon(Icons.check_box_outline_blank_outlined),
+                    
                   )
                   : cusPlaceHolder(moreLikeThis, index),
             );
@@ -591,18 +591,32 @@ return  Container(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(
-                      flex: 2,
-                      child: Text(
-                        'Description:',
-                        style: TextStyle(color: Colors.grey, fontSize: 12.5),
+                    Stack(children: <Widget> [
+                    Container(
+                      child: Expanded(
+                        flex: 2,
+                        child:
+                         Text(
+                          'Description:',
+                          style: TextStyle(color: Colors.grey, fontSize: 12.5),
+                        ),
                       ),
                     ),
                     Container(
+// color: Colors.red,
                       width: MediaQuery.of(context).size.width * .70,
                       child: widget.videoDetail.description == null ||
                               widget.videoDetail.description == ""
-                          ? SizedBox.shrink()
+                          ? Expanded(
+
+                            child: Container(
+                              // color:Colors.red,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left:33 ,right: 50),
+                                child: Align(alignment: Alignment.center,child: Text('N/A')),
+                              ),
+                            ),
+                          )
                           : Padding(
                               padding: const EdgeInsets.only(top: 0.0, left: 25),
                               child: GestureDetector(
@@ -616,7 +630,9 @@ return  Container(
                             ),
                     )
                   ],
+                  
                 ),
+                ],)
               ),
             ),
           ],
