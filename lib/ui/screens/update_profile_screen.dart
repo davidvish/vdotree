@@ -338,6 +338,7 @@ var previousDate;
 //  Name TextField to update name
   Widget buildNameTextField(String hintText) {
     return TextFormField(
+      maxLength: 24,
       
       controller: _editNameController,
       keyboardType: TextInputType.text,

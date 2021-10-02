@@ -1682,7 +1682,7 @@ class _SelectPaymentScreenState extends State<SelectPaymentScreen>
             length: 2,
             child: Scaffold(
               
-              // backgroundColor: Colors.green,
+              backgroundColor: Colors.black,
               key: _scaffoldKey,
               body: loading == true
                   ? Center(
