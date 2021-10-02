@@ -280,7 +280,7 @@ class _LoginScreenState extends State<LoginScreen> {
     //       content: Text(
     //         'Something went wrong',
     //         style: TextStyle(
-    //           color: Colors.black.withOpacity(0.6),
+    //           color: Colors.blacdk.withOpacity(0.6),
     //         ),
     //       ),
     //       actions: <Widget>[
