@@ -80,7 +80,7 @@ class APIData {
   static const String movieImageUri = domainLink + "images/movies/thumbnails/";
   static const String movieImageUriPosterMovie =
       domainLink + "images/movies/posters/";
-     
+
   static const String tvImageUriPosterTv =
       domainLink + "images/tvseries/posters/";
   static const String tvImageUriTv = domainLink + "images/tvseries/thumbnails/";
@@ -99,8 +99,8 @@ class APIData {
 *           Replace IOS app ID with your IOS app ID.
 */
 
-  static const String appName = 'IQRA';
-  static const String androidAppId = 'com.codestreax.vdotree';
+  static const String appName = 'Vdotree';
+  static const String androidAppId = 'com.vdotree.vdotree';
   static const String iosAppId = '';
   static const String shareAndroidAppUrl =
       'https://play.google.com/store/apps/details?id=' + '$androidAppId';

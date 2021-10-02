@@ -22,55 +22,57 @@ class _IntroScreenState extends State<IntroScreen> {
   @override
   void initState() {
     super.initState();
- final blocks = context.read<AppConfig>().slides;
- List.generate(1, (i) {
-    slides.add(
-      new Slide(
-        title: "Welcome! Join VDOTREE",
-        description:
-            "Join VDOTREE to watch the most recent motion picture , elite TV appears and grant winning VDOTREE membership at simply least cost.",
-        styleTitle: TextStyle(
-          color: Color(0xff3da4ab),
-          fontSize: 30.0,
-          fontWeight: FontWeight.bold,
-          // fontFamily: 'RobotoMono'
+    final blocks = context.read<AppConfig>().slides;
+    List.generate(1, (i) {
+      slides.add(
+        new Slide(
+          title: "Welcome! Join VDOTREE",
+          description:
+              "Join VDOTREE to watch the most recent motion picture , elite TV appears and grant winning VDOTREE membership at simply least cost.",
+          styleTitle: TextStyle(
+            color: Color(0xff3da4ab),
+            fontSize: 30.0,
+            fontWeight: FontWeight.bold,
+            // fontFamily: 'RobotoMono'
+          ),
+          pathImage: "${APIData.landingPageImageUri}${blocks[i].image}",
         ),
-        pathImage: "${APIData.landingPageImageUri}${blocks[i].image}",
-      ),
-    );});
-     List.generate(1, (int i) {
-    slides.add(
-      new Slide(
-        title: "Dont't Miss TvShows",
-        description:
-            "With your VDOTREE membership,you app approch select US and all TV shows,grant winning VDOTREE  Original Series and Kids and children shows.",
-        styleTitle: TextStyle(
-          color: Color(0xff3da4ab),
-          fontSize: 30.0,
-          fontWeight: FontWeight.bold,
-          // fontFamily: 'RobotoMono'
+      );
+    });
+    List.generate(1, (int i) {
+      slides.add(
+        new Slide(
+          title: "Dont't Miss TvShows",
+          description:
+              "With your VDOTREE membership,you app approch select US and all TV shows,grant winning VDOTREE  Original Series and Kids and children shows.",
+          styleTitle: TextStyle(
+            color: Color(0xff3da4ab),
+            fontSize: 30.0,
+            fontWeight: FontWeight.bold,
+            // fontFamily: 'RobotoMono'
+          ),
+          pathImage: "${APIData.landingPageImageUri}${blocks[i].image}",
         ),
-        pathImage:  "${APIData.landingPageImageUri}${blocks[2].image}",
-      ),
+      );
+    });
+    List.generate(1, (i) {
+      slides.add(
+        new Slide(
+          title: "Membership for Movies & TV shows",
+          description:
+              "Notwithstanding boundless gushing,your VDOTREE membership incorporates elite Bollywood,Hollywood films,US and all TV shows,grant winning VDOTREE Series and Kids......",
+          styleTitle: TextStyle(
+            color: Color(0xff3da4ab),
+            fontSize: 30.0,
+            fontWeight: FontWeight.bold,
+            // fontFamily: 'RobotoMono'
+          ),
+          // backgroundImage: "assets/images/intro3.jpg",
 
-    );});
-       List.generate(1, (i) {
-    slides.add(
-      new Slide(
-        title: "Membership for Movies & TV shows",
-        description:
-            "Notwithstanding boundless gushing,your VDOTREE membership incorporates elite Bollywood,Hollywood films,US and all TV shows,grant winning VDOTREE Series and Kids......",
-        styleTitle: TextStyle(
-          color: Color(0xff3da4ab),
-          fontSize: 30.0,
-          fontWeight: FontWeight.bold,
-          // fontFamily: 'RobotoMono'
+          pathImage: "${APIData.landingPageImageUri}${blocks[i].image}",
         ),
-        // backgroundImage: "assets/images/intro3.jpg",
-
-        pathImage:  "${APIData.landingPageImageUri}${blocks[1].image}",
-      ),
-    );});
+      );
+    });
     //  slides.add(
     //   new Slide(
     //     title: "COFFEE SHOP",
@@ -231,13 +233,9 @@ class _IntroScreenState extends State<IntroScreen> {
                         offset: new Offset(0.0, 5.0),
                       ),
                     ],
-                  
-
                     image: new DecorationImage(
-                      
                       // image: AssetImage(
                       //   currentSlide.pathImage,
-                        
 
                       //   // width: MediaQuery.of(context).size.width * 1,
                       //   //                 height: MediaQuery.of(context).size.height * 1,
@@ -246,12 +244,18 @@ class _IntroScreenState extends State<IntroScreen> {
                       fit: BoxFit.cover,
                       colorFilter: new ColorFilter.mode(
                           Colors.black.withOpacity(0.8), BlendMode.dstATop),
-                      image: currentSlide.pathImage == null ? AssetImage('ewq')  :new NetworkImage(currentSlide.pathImage),
+                      image: currentSlide.pathImage == null
+                          ? AssetImage('ewq')
+                          : new NetworkImage(currentSlide.pathImage),
                     ),
                   ),
                 ),
-                Container(decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.black,Colors.transparent])),),
-                                Container(
+                Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          colors: [Colors.black, Colors.transparent])),
+                ),
+                Container(
                   alignment: Alignment.center,
                   child: new Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -298,7 +302,8 @@ class _IntroScreenState extends State<IntroScreen> {
     }
     return tabs;
   }
-Image asset = Image.asset('');
+
+  Image asset = Image.asset('');
 // Intro slider
   Widget introSlider() {
     return IntroSlider(
