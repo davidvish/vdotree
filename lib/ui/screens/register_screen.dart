@@ -60,7 +60,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           name: _nameController.text,
           email: _emailController.text,
           password: _passController.text,
-          
         );
       }));
       print(_passController.text);
@@ -331,7 +330,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       padding: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
       child: TextFormField(
         maxLength: 10,
-      
         controller: _mobileController,
         validator: (value) {
           if (value.length == 0) {
@@ -354,7 +352,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
           ),
-          // hintText: '91',
+          hintText: '91',
           // counterText: ,
           labelText: 'Phone Number',
           labelStyle: TextStyle(color: Colors.white),
@@ -397,7 +395,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   Widget passwordField() {
     return Padding(
-      padding: EdgeInsets.only(left: 15, right: 15,  bottom: 5),
+      padding: EdgeInsets.only(left: 15, right: 15, bottom: 5),
       child: TextFormField(
         controller: _passController,
         obscureText: !this._showPassword,
