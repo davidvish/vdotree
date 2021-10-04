@@ -238,13 +238,20 @@ class _LoginHomeState extends State<LoginHome> {
                 "Sign in",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: primaryBlue,
+                  //color: primaryBlue,
+                  color: Colors.white,
+                  fontSize: 17
                 ),
               ),
               Text(
                 "  to continue",
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey),
+                //style: TextStyle(color: Colors.grey),
+                style: TextStyle(
+                    //color:primaryBlue,
+                    color: Colors.white,
+                    fontSize: 17
+                ),
               ),
             ],
           ),

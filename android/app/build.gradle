@@ -98,7 +98,8 @@ android {
             // For release APK or Bundle
 //             signingConfig signingConfigs.release
 
-            signingConfig signingConfigs.release
+           // signingConfig signingConfigs.release
+            signingConfig signingConfigs.debug
 
             minifyEnabled true
             useProguard true
