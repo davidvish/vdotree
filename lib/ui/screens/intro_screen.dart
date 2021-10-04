@@ -16,7 +16,8 @@ class IntroScreen extends StatefulWidget {
 }
 
 class _IntroScreenState extends State<IntroScreen> {
-  List<Slide> slides = new List();
+  //List<Slide> slides = new List();
+  List slides=List();
   Function goToTab;
   bool isLoading = false;
   @override
@@ -39,40 +40,40 @@ class _IntroScreenState extends State<IntroScreen> {
         ),
       );
     });
-    List.generate(1, (int i) {
-      slides.add(
-        new Slide(
-          title: "Dont't Miss TvShows",
-          description:
-              "With your VDOTREE membership,you app approch select US and all TV shows,grant winning VDOTREE  Original Series and Kids and children shows.",
-          styleTitle: TextStyle(
-            color: Color(0xff3da4ab),
-            fontSize: 30.0,
-            fontWeight: FontWeight.bold,
-            // fontFamily: 'RobotoMono'
-          ),
-          pathImage: "${APIData.landingPageImageUri}${blocks[i].image}",
-        ),
-      );
-    });
-    List.generate(1, (i) {
-      slides.add(
-        new Slide(
-          title: "Membership for Movies & TV shows",
-          description:
-              "Notwithstanding boundless gushing,your VDOTREE membership incorporates elite Bollywood,Hollywood films,US and all TV shows,grant winning VDOTREE Series and Kids......",
-          styleTitle: TextStyle(
-            color: Color(0xff3da4ab),
-            fontSize: 30.0,
-            fontWeight: FontWeight.bold,
-            // fontFamily: 'RobotoMono'
-          ),
-          // backgroundImage: "assets/images/intro3.jpg",
-
-          pathImage: "${APIData.landingPageImageUri}${blocks[i].image}",
-        ),
-      );
-    });
+    // List.generate(1, ( i) {
+    //   slides.add(
+    //     new Slide(
+    //       title: "Dont't Miss TvShows",
+    //       description:
+    //           "With your VDOTREE membership,you app approch select US and all TV shows,grant winning VDOTREE  Original Series and Kids and children shows.",
+    //       styleTitle: TextStyle(
+    //         color: Color(0xff3da4ab),
+    //         fontSize: 30.0,
+    //         fontWeight: FontWeight.bold,
+    //         // fontFamily: 'RobotoMono'
+    //       ),
+    //       pathImage: "${APIData.landingPageImageUri}${blocks[i].image}",
+    //     ),
+    //   );
+    // });
+    // List.generate(1, (i) {
+    //   slides.add(
+    //     new Slide(
+    //       title: "Membership for Movies & TV shows",
+    //       description:
+    //           "Notwithstanding boundless gushing,your VDOTREE membership incorporates elite Bollywood,Hollywood films,US and all TV shows,grant winning VDOTREE Series and Kids......",
+    //       styleTitle: TextStyle(
+    //         color: Color(0xff3da4ab),
+    //         fontSize: 30.0,
+    //         fontWeight: FontWeight.bold,
+    //         // fontFamily: 'RobotoMono'
+    //       ),
+    //       // backgroundImage: "assets/images/intro3.jpg",
+    //
+    //       pathImage: "${APIData.landingPageImageUri}${blocks[i].image}",
+    //     ),
+    //   );
+    // });
     //  slides.add(
     //   new Slide(
     //     title: "COFFEE SHOP",
@@ -208,7 +209,8 @@ class _IntroScreenState extends State<IntroScreen> {
     List<Widget> tabs = new List();
     for (int i = 0; i < slides.length; i++) {
       Slide currentSlide = slides[i];
-      tabs.add(Container(
+      tabs.add(
+          Container(
         width: double.infinity,
         height: double.infinity,
         child: Container(
@@ -308,7 +310,7 @@ class _IntroScreenState extends State<IntroScreen> {
   Widget introSlider() {
     return IntroSlider(
       // List slides
-      slides: this.slides,
+      //slides: this.slides,
       // Skip button
       renderSkipBtn: this.renderSkipBtn(),
       colorSkipBtn: Color.fromRGBO(72, 163, 198, 0.3),

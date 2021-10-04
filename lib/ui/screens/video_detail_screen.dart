@@ -695,8 +695,9 @@ return  Container(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Stack(children: <Widget> [
-     Container(
+            Stack(
+              children: <Widget> [
+             Container(
       //  color: Colors.blue,
               child: Expanded(
                 // flex: 2,
@@ -716,11 +717,12 @@ return  Container(
                     // alignment:Alignment.center,
                     // color: Colors.red,
                     width:400,
-                    child: Text(
-          
-                      "$genres",
-                    // maxLines: ,
-                      style: TextStyle(color: Colors.white, fontSize: 13.0),
+                    child: Expanded(
+                      child: Text(
+                        "$genres",
+                      // maxLines: ,
+                        style: TextStyle(color: Colors.white, fontSize: 13.0),
+                      ),
                     ),
                   ),
                 ),
@@ -768,6 +770,7 @@ return  Container(
   //  Genre details text
   Widget genreDetailsText(videoDetail) {
     return Expanded(
+
       flex: 5,
       child: GestureDetector(
         onTap: () {},

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:IQRA/common/styles.dart';
 import 'package:flutter/services.dart';
@@ -242,7 +243,37 @@ class _OtpLoginState extends State<OtpLogin> {
                             // color: Colors.red,
                             width:
                              MediaQuery.of(context).size.width * 0.77,
-                            child: TextFormField(
+
+                            // child: Platform.isIOS ? CupertinoTextField(
+                            //   controller: otp,
+                            //   showCursor: false,
+                            //   textAlign: TextAlign.start,
+                            //
+                            //   cursorColor: Colors.transparent,
+                            //   style: TextStyle(letterSpacing: 60),
+                            //   keyboardType: TextInputType.number,
+                            //   obscureText: true,
+                            //   maxLength:4,
+                            //   decoration: BoxDecoration(
+                            //     //Padding: EdgeInsets.symmetric(horizontal: 19),
+                            //     color: Colors.transparent,
+                            //     //focusColor: Colors.transparent,
+                            //     //hoverColor: Colors.transparent,
+                            //     //enabledBorder: OutlineInputBorder(
+                            //       borderRadius: BorderRadius.circular(60),
+                            //     //   border:
+                            //     //   BorderSide(color: Colors.white),
+                            //     // ),
+                            //     // focusedBorder: OutlineInputBorder(
+                            //     //   borderRadius: BorderRadius.circular(60),
+                            //     //
+                            //     //   borderSide:
+                            //     //   BorderSide(color: Colors.yellow),
+                            //     // ),
+                            //
+                            //   ),
+                            // )
+                             child:    TextFormField(
                               // maxLength: 1,
                               controller: otp,
                               showCursor: false,
@@ -252,9 +283,11 @@ class _OtpLoginState extends State<OtpLogin> {
                               style: TextStyle(letterSpacing: 60),
                               keyboardType: TextInputType.number,
                               obscureText: true,
+
+
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.symmetric(horizontal: 19),
-                                fillColor: Colors.transparent,
+                               fillColor: Colors.transparent,
                                 focusColor: Colors.transparent,
                                 hoverColor: Colors.transparent,
                                 enabledBorder: OutlineInputBorder(
