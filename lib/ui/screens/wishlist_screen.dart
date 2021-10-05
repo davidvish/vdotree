@@ -862,12 +862,13 @@ class _MoviesWishListState extends State<MoviesWishList> {
                     color: Colors.white,
                   ),
                   onPressed: () {
+                     removeWishList(movies.type, movies.id);
                     Scaffold.of(context).showSnackBar(SnackBar(
                       // backgroundColor: Colors.grey,
                       content: Text('Deleted from wishlist',),
                     duration: Duration(seconds: 1),
                     ));
-                    removeWishList(movies.type, movies.id);
+                   
                   })
             ],
           )
@@ -1035,7 +1036,7 @@ class _TVSeriesWishListState extends State<TVSeriesWishList> {
                       fontSize: 10.0,
                       fontWeight: FontWeight.bold))
               : Text(
-                  'SEASONS: 4 ',
+                  " SEASONS: ${ tvSeries.seasons.toList().length.toString()}",
                   style: TextStyle(
                     color: Colors.white70,
                     fontSize: 10.0,
@@ -1148,6 +1149,11 @@ class _TVSeriesWishListState extends State<TVSeriesWishList> {
                   ),
                   onPressed: () {
                     removeWishList(tvSeries.type, tvSeries.id);
+                     Scaffold.of(context).showSnackBar(SnackBar(
+                      // backgroundColor: Colors.grey,
+                      content: Text('Deleted from wishlist',),
+                    duration: Duration(seconds: 1),
+                    ));
                   })
             ],
           )
@@ -1194,6 +1200,8 @@ class _TVSeriesWishListState extends State<TVSeriesWishList> {
         ),
       ),
     );
+    
+    
   }
 
   @override
@@ -1222,6 +1230,8 @@ class _TVSeriesWishListState extends State<TVSeriesWishList> {
                       genres = genres.replaceAll("[", "").replaceAll("]", "");
                       return watchlistItemContainer(tvWishList[index], genres);
                     }),
+                    
               );
+              
   }
 }

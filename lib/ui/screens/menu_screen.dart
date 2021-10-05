@@ -40,12 +40,13 @@ class _MenuScreenState extends State<MenuScreen> {
                     fontSize: 14.0,
                     fontWeight: FontWeight.w400)),
           ),
-          Container(
-            margin: EdgeInsets.only(left: 20),
-            child: Text(
-              userDetails.user.email,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 13),
+          FittedBox(
+            child: Container(
+              margin: EdgeInsets.only(left: 20),
+              child: Text(
+                userDetails.user.email,
+                style: TextStyle(fontSize: 13),
+              ),
             ),
           ),
         ],
@@ -517,7 +518,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 20.0,
+                    fontSize: 19.0,
                     fontWeight: FontWeight.w400),
               ),
             ],
@@ -540,7 +541,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 width: 20.0,
               ),
               Text(
-                "FAQ",
+                "Faq",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.white,
