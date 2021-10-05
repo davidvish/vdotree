@@ -27,7 +27,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   TextEditingController _editDOBController;
   // new TextEditingController(text: "saad");
   TextEditingController _editMobileController = new TextEditingController();
-  DateTime _dateTime;
+  DateTime _dateTime = new DateTime.now();
   String pickedDate = '';
   var sEmail;
   var sPass;
@@ -74,7 +74,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                       Text(
                         'Your profile updated.',
                         style:
-                            TextStyle(color: Color.fromRGBO(34, 34, 34, 1.0)),
+                        TextStyle(color: Color.fromRGBO(34, 34, 34, 1.0)),
                       ),
                     ],
                   ),
@@ -104,7 +104,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
 
 //  This future process the profile update and save details to the server.
   Future<String> updateProfile() async {
-    newDob =  DateFormat("y-MM-dd").format(_dateTime);
+    newDob = DateFormat("y-MM-dd").format(_dateTime);
     newMobile = _editMobileController.text;
     newName = _editNameController.text;
     String imagefileName = tmpFile != null ? tmpFile.path.split('/').last : '';
@@ -138,16 +138,16 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
 
       await dio
           .post(APIData.userProfileUpdate,
-              data: formdata,
-              options: Options(
-                  method: 'POST',
-                  headers: {
-                    HttpHeaders.authorizationHeader: "Bearer $authToken",
-                  },
-                  followRedirects: false,
-                  validateStatus: (status) {
-                    return status < 500;
-                  }))
+          data: formdata,
+          options: Options(
+              method: 'POST',
+              headers: {
+                HttpHeaders.authorizationHeader: "Bearer $authToken",
+              },
+              followRedirects: false,
+              validateStatus: (status) {
+                return status < 500;
+              }))
           .then((response) {
         print(Image);
 
@@ -185,7 +185,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
       files = ImagePicker.pickImage(source: ImageSource.gallery);
     });
   }
-var previousDate;
+
 //  This Future picks date using material date picker
   Future<Null> _selectDate() async {
     final DateTime picked = await showDatePicker(
@@ -201,21 +201,19 @@ var previousDate;
         // _editDOBController.text = pickedDate;
         print(_editDOBController);
         _dateTime = picked;
-        // previousDate = picked;
       });
       // ignore: unrelated_type_equality_checks
 
       setState(() {
         print("saad bhati");
         String formattedDate =
-            _dateTime != null ? DateFormat.yMMMd().format(_dateTime) : previousDate;
+        _dateTime != null ? DateFormat.yMMMd().format(_dateTime) : "";
         print("saad bhati1");
         pickedDate = formattedDate;
         _editDOBController = (pickedDate != null)
             ? TextEditingController(text: pickedDate)
             : TextEditingController(text: "Date of Birth");
         print(pickedDate);
-        print('DATE PREVIOUS $previousDate');
       });
     }
   }
@@ -243,7 +241,7 @@ var previousDate;
       newDob = _editDOBController.text;
       newMobile = _editMobileController.text;
       _editNameController.text =
-          "${userDetails.user.name}" == null ? '' : "${userDetails.user.name}";
+      "${userDetails.user.name}" == null ? '' : "${userDetails.user.name}";
       userDetails.user.dob == null
           ? 'Date of Birth'
           : "${userDetails.user.dob}";
@@ -267,16 +265,16 @@ var previousDate;
   Widget scaffoldBody() {
     return SingleChildScrollView(
         child: Column(
-      children: <Widget>[
-        Stack(
           children: <Widget>[
-            showImage(),
-            browseImageButton(),
+            Stack(
+              children: <Widget>[
+                showImage(),
+                browseImageButton(),
+              ],
+            ),
+            form(),
           ],
-        ),
-        form(),
-      ],
-    ));
+        ));
   }
 
 //  Browse button container
@@ -303,7 +301,7 @@ var previousDate;
   Widget form() {
     return Container(
       padding:
-          EdgeInsets.only(top: 10.0, right: 20.0, left: 20.0, bottom: 20.0),
+      EdgeInsets.only(top: 10.0, right: 20.0, left: 20.0, bottom: 20.0),
       child: Form(
         key: formKey,
         child: Column(
@@ -339,7 +337,6 @@ var previousDate;
   Widget buildNameTextField(String hintText) {
     return TextFormField(
       maxLength: 24,
-      
       controller: _editNameController,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
@@ -371,7 +368,7 @@ var previousDate;
 
 //  TextField Date of birth field
   Widget buildDOBTextField(String hintText) {
-    return TextFormField(
+    return TextField(
       controller: _editDOBController,
       focusNode: AlwaysDisabledFocusNode(),
       onTap: _selectDate,
@@ -387,7 +384,6 @@ var previousDate;
         ),
         prefixIcon: Icon(Icons.calendar_today),
       ),
-     onSaved: (val) => previousDate = val,
     );
   }
 
@@ -444,28 +440,25 @@ var previousDate;
           ],
         ),
         child: Center(
-          
           child: isShowIndicator == true
               ? CircularProgressIndicator(
-                  backgroundColor: Colors.black,
-                )
+            backgroundColor: Colors.black,
+          )
               : Text(
-                  "Update Profile",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18.0,
-                  ),
-                ),
+            "Update Profile",
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w600,
+              fontSize: 18.0,
+            ),
+          ),
         ),
       ),
       onTap: () {
-        _dateTime == null ? 
-    Fluttertoast.showToast(msg: 'Please select a Date',toastLength: Toast.LENGTH_SHORT,gravity: ToastGravity.BOTTOM)  :
 //     To remove keypad on tapping button
         FocusScope.of(context).requestFocus(FocusNode());
         setState(() {
-          isShowIndicator = false;
+          isShowIndicator = true;
         });
         final form = formKey.currentState;
         form.save();
@@ -511,7 +504,7 @@ var previousDate;
                       child: Card(
                         shape: RoundedRectangleBorder(
                           borderRadius:
-                              new BorderRadius.all(Radius.circular(150.0)),
+                          new BorderRadius.all(Radius.circular(150.0)),
                         ),
                         margin: EdgeInsets.all(0.0),
                         // shape: RoundedRectangleBorder(
@@ -521,26 +514,26 @@ var previousDate;
                         // ),
                         child: ClipRRect(
                           borderRadius:
-                              new BorderRadius.all(Radius.circular(150)),
+                          new BorderRadius.all(Radius.circular(150)),
                           child: tmpFile == null
                               ? "${userDetails.user.image}" == null ||
-                                      "${userDetails.user.image}" == "null"
-                                  ? Image.asset(
-                                      "assets/avatar.png",
-                                      fit: BoxFit.cover,
-                                      scale: 1.7,
-                                    )
-                                  : Image.network(
-                                      "${APIData.profileImageUri}" +
-                                          "${userDetails.user.image}",
-                                      fit: BoxFit.cover,
-                                      scale: 1.7,
-                                    )
+                              "${userDetails.user.image}" == "null"
+                              ? Image.asset(
+                            "assets/avatar.png",
+                            fit: BoxFit.cover,
+                            scale: 1.7,
+                          )
+                              : Image.network(
+                            "${APIData.profileImageUri}" +
+                                "${userDetails.user.image}",
+                            fit: BoxFit.cover,
+                            scale: 1.7,
+                          )
                               : Image.file(
-                                  tmpFile,
-                                  fit: BoxFit.cover,
-                                  scale: 1.7,
-                                ),
+                            tmpFile,
+                            fit: BoxFit.cover,
+                            scale: 1.7,
+                          ),
                         ),
                       ))));
         } else if (null != snapshot.error) {
@@ -553,11 +546,11 @@ var previousDate;
               height: 210.0,
               width: 210.0,
               child: Row(
-                  // shape: RoundedRectangleBorder(
-                  //   borderRadius: new BorderRadius.only(
-                  //       bottomLeft: Radius.circular(25.0),
-                  //       bottomRight: Radius.circular(25.0)),
-                  // ),
+                // shape: RoundedRectangleBorder(
+                //   borderRadius: new BorderRadius.only(
+                //       bottomLeft: Radius.circular(25.0),
+                //       bottomRight: Radius.circular(25.0)),
+                // ),
                   children: [
                     Container(
                         margin: EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
@@ -567,30 +560,30 @@ var previousDate;
                           margin: EdgeInsets.all(5.0),
                           shape: RoundedRectangleBorder(
                             borderRadius:
-                                new BorderRadius.all(Radius.circular(150.0)),
+                            new BorderRadius.all(Radius.circular(150.0)),
                           ),
                           child: ClipRRect(
                             borderRadius:
-                                new BorderRadius.all(Radius.circular(150.0)),
+                            new BorderRadius.all(Radius.circular(150.0)),
                             child: tmpFile == null
                                 ? "${userDetails.user.image}" == null ||
-                                        "${userDetails.user.image}" == "null"
-                                    ? Image.asset(
-                                        "assets/avatar.png",
-                                        fit: BoxFit.cover,
-                                        scale: 1.7,
-                                      )
-                                    : Image.network(
-                                        "${APIData.profileImageUri}" +
-                                            "${userDetails.user.image}",
-                                        fit: BoxFit.cover,
-                                        scale: 1.7,
-                                      )
+                                "${userDetails.user.image}" == "null"
+                                ? Image.asset(
+                              "assets/avatar.png",
+                              fit: BoxFit.cover,
+                              scale: 1.7,
+                            )
+                                : Image.network(
+                              "${APIData.profileImageUri}" +
+                                  "${userDetails.user.image}",
+                              fit: BoxFit.cover,
+                              scale: 1.7,
+                            )
                                 : Image.file(
-                                    tmpFile,
-                                    fit: BoxFit.cover,
-                                    scale: 1.7,
-                                  ),
+                              tmpFile,
+                              fit: BoxFit.cover,
+                              scale: 1.7,
+                            ),
                           ),
                         ))
                   ]));
@@ -626,12 +619,12 @@ var previousDate;
                         title: Text(
                           'Camera',
                           style:
-                              TextStyle(color: Color.fromRGBO(20, 20, 20, 1.0)),
+                          TextStyle(color: Color.fromRGBO(20, 20, 20, 1.0)),
                         ),
                         subtitle: Text(
                           "Click profile picture from camera.",
                           style:
-                              TextStyle(color: Color.fromRGBO(20, 20, 20, 1.0)),
+                          TextStyle(color: Color.fromRGBO(20, 20, 20, 1.0)),
                         ),
                       ),
                     )
@@ -660,12 +653,12 @@ var previousDate;
                         title: Text(
                           'Gallery',
                           style:
-                              TextStyle(color: Color.fromRGBO(20, 20, 20, 1.0)),
+                          TextStyle(color: Color.fromRGBO(20, 20, 20, 1.0)),
                         ),
                         subtitle: Text(
                           "Choose profile picture from gallery.",
                           style:
-                              TextStyle(color: Color.fromRGBO(20, 20, 20, 1.0)),
+                          TextStyle(color: Color.fromRGBO(20, 20, 20, 1.0)),
                         ),
                       ),
                     )

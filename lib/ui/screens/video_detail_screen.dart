@@ -546,7 +546,7 @@ return  Container(
                 ],
               ),
             ),
-
+// for generes
             Container(
               width: 200,
               // color: Colors.blue,
@@ -578,48 +578,47 @@ return  Container(
             //     : SizedBox(
             //         width: 0.0,
             //       ),
+
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
               child: audioLangRow(widget.videoDetail),
             ),
+
             Container(
-              width: 593,
+             // width: 593,
               // color: Colors.deepOrange,
               child: Padding(
-                padding: EdgeInsets.only(top: 10.0),
+                //padding: EdgeInsets.only(top: 10.0),
+                padding: EdgeInsets.only(top: 5.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Stack(children: <Widget> [
                     Container(
-                      child: Expanded(
-                        flex: 2,
-                        child:
-                         Text(
-                          'Description:',
-                          style: TextStyle(color: Colors.grey, fontSize: 12.5),
+                      child: Text(
+                       'Description:',
+                      // "detail",
+                       style: TextStyle(color: Colors.grey, fontSize: 12.5),
                         ),
-                      ),
                     ),
                     Container(
                       margin:EdgeInsets.only(left:75),
 // color: Colors.red,
-                      width: MediaQuery.of(context).size.width * .70,
+                      width: MediaQuery.of(context).size.width * .80,
                       child: widget.videoDetail.description == null ||
                               widget.videoDetail.description == ""
                           ? Expanded(
-
                             child: Container(
                               // color:Colors.red,
                               child: Padding(
-                                padding: const EdgeInsets.only(left:33 ,right: 50),
+                                padding: const EdgeInsets.only(left:40 ,right: 50),
                                 child: Align(alignment: Alignment.center,child: Text('N/A')),
                               ),
                             ),
                           )
                           : Padding(
-                              padding: const EdgeInsets.only(top: 0.0, left: 25),
+                              padding: const EdgeInsets.only(top: 0.0, left: 96),
                               child: GestureDetector(
                                 onTap:(){},
                                 child: Text(
@@ -717,7 +716,7 @@ return  Container(
                     margin: EdgeInsets.only(left: 100),
                     // alignment:Alignment.center,
                     // color: Colors.red,
-                    width:400,
+                    width:100,
                     child: Expanded(
                       child: Text(
                         "$genres",
@@ -738,7 +737,7 @@ return  Container(
 
   Widget genreNameRow(videoDetail) {
     return Container(
-      width: 350,
+      //width: 350,
       // color: Colors.indigoAccent,
       child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 2.0),
@@ -754,7 +753,7 @@ return  Container(
                 ),
               ),
               Expanded(
-                flex: 5,
+                flex: 4,
                 child: GestureDetector(
                   onTap: () {},
                   child: Text(
