@@ -603,6 +603,7 @@ return  Container(
                       ),
                     ),
                     Container(
+                      margin:EdgeInsets.only(left:75),
 // color: Colors.red,
                       width: MediaQuery.of(context).size.width * .70,
                       child: widget.videoDetail.description == null ||
