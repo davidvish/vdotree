@@ -152,23 +152,23 @@ class _VideosPageState extends State<VideosPage> {
                             ? SizedBox.shrink()
                             : Heading1("Specials & Latest Movies", "Mov"),
                         MoviesList(),
-                        SizedBox(
-                          height: 15.0,
-                        ),
+                        // SizedBox(
+                        //   height: 15.0,
+                        // ),
                         recentDataList.length == 0
                             ? SizedBox.shrink()
                             : Heading1("Recently Added Movies", "ReMov"),
                         RecentMoviesList(true),
-                        SizedBox(
-                          height: 15.0,
-                        ),
+                        // SizedBox(
+                        //   height: 15.0,
+                        // ),
                         recentAddedSeriesData.length == 0
                             ? SizedBox.shrink()
                             : Heading1("Recently Added TV Series", "ReTvSe"),
                         RecentSeriesList(true),
-                        SizedBox(
-                          height: 15.0,
-                        ),
+                        // SizedBox(
+                        //   height: 15.0,
+                        // ),
                         featuredDataList.length == 0
                             ? SizedBox.shrink()
                             : Heading1("Featured Movies", "FeMov"),

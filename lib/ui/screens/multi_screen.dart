@@ -312,7 +312,7 @@ class _MultiScreenState extends State<MultiScreen> {
                                   decoration: BoxDecoration(
                                       color: Colors.black,
                                       border: Border.all(
-                                        color: Colors.blue,
+                                        //color: Colors.blue,
                                       ),
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(5))),
@@ -325,7 +325,7 @@ class _MultiScreenState extends State<MultiScreen> {
                                         decoration: BoxDecoration(
                                             color: Colors.black,
                                             border: Border.all(
-                                              color: Colors.blue,
+                                             // color: Colors.blue,
                                             ),
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(5))),
@@ -338,7 +338,7 @@ class _MultiScreenState extends State<MultiScreen> {
                                             FittedBox(
                                               child: Container(
                                                 child: Image.asset(
-                                                  'assets/ava1.png',
+                                                  'assets/1.png',
                                                   width: MediaQuery.of(context)
                                                           .size
                                                           .width *
@@ -364,7 +364,7 @@ class _MultiScreenState extends State<MultiScreen> {
                                         ),
                                       ),
                                       onTap: () {
-                                        print("saad");
+                                        print("ok");
                                         print(screenList[index].screenStatus);
                                         if ("${screenList[index].screenStatus}" ==
                                             "YES") {
@@ -376,7 +376,7 @@ class _MultiScreenState extends State<MultiScreen> {
                                                 screenList[index].screenName;
                                             screenCount = index + 1;
                                           });
-                                          print("fuke");
+                                          print("ok");
                                           updateScreens(myActiveScreen,
                                               screenCount, index);
                                         }

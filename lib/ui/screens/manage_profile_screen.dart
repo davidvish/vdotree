@@ -44,47 +44,47 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
   Widget _selectPopup(isAdmin) {
     return isAdmin == "1"
         ? PopupMenuButton<int>(
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                value: 1,
-                child: Text("Change Password"),
-              ),
-            ],
-            onCanceled: () {
-              print("You have canceled the menu.");
-            },
-            onSelected: (value) {
-              if (value == 1) {
-                Navigator.pushNamed(context, RoutePaths.changePassword);
-              }
-            },
-            icon: Icon(Icons.more_vert),
-          )
+      itemBuilder: (context) => [
+        PopupMenuItem(
+          value: 1,
+          child: Text("Change Password"),
+        ),
+      ],
+      onCanceled: () {
+        print("You have canceled the menu.");
+      },
+      onSelected: (value) {
+        if (value == 1) {
+          Navigator.pushNamed(context, RoutePaths.changePassword);
+        }
+      },
+      icon: Icon(Icons.more_vert),
+    )
         : PopupMenuButton<int>(
-            color: Theme.of(context).primaryColorLight,
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                value: 1,
-                child: Text("Edit Profile"),
-              ),
-              PopupMenuItem(
-                value: 2,
-                child: Text("Change Password"),
-              ),
-            ],
-            onCanceled: () {
-              print("You have canceled the menu.");
-            },
-            onSelected: (value) {
-              if (value == 1) {
-                print("value:$value");
-                Navigator.pushNamed(context, RoutePaths.updateProfile);
-              } else if (value == 2) {
-                Navigator.pushNamed(context, RoutePaths.changePassword);
-              }
-            },
-            icon: Icon(Icons.more_vert),
-          );
+      color: Theme.of(context).primaryColorLight,
+      itemBuilder: (context) => [
+        PopupMenuItem(
+          value: 1,
+          child: Text("Edit Profile"),
+        ),
+        PopupMenuItem(
+          value: 2,
+          child: Text("Change Password"),
+        ),
+      ],
+      onCanceled: () {
+        print("You have canceled the menu.");
+      },
+      onSelected: (value) {
+        if (value == 1) {
+          print("value:$value");
+          Navigator.pushNamed(context, RoutePaths.updateProfile);
+        } else if (value == 2) {
+          Navigator.pushNamed(context, RoutePaths.changePassword);
+        }
+      },
+      icon: Icon(Icons.more_vert),
+    );
   }
 
   // Changed designing
@@ -104,22 +104,22 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
             borderRadius: new BorderRadius.all(Radius.circular(80.0)),
             child: userDetails.user.image != null
                 ? Image.network(
-                    "${APIData.profileImageUri}" + "${userDetails.user.image}",
-                    scale: 1.7,
-                    fit: BoxFit.cover,
-                  )
+              "${APIData.profileImageUri}" + "${userDetails.user.image}",
+              scale: 1.7,
+              fit: BoxFit.cover,
+            )
                 : Image.asset(
-                    "assets/avatar.png",
-                    scale: 1.7,
-                    fit: BoxFit.cover,
-                  ),
+              "assets/avatar.png",
+              scale: 1.7,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
       ],
     );
   }
 
- 
+
   Widget userName() {
     var userDetails =
         Provider.of<UserProfileProvider>(context).userProfileModel;
@@ -300,19 +300,19 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
             margin: EdgeInsets.only(right: 20, bottom: 5),
             child: userDetails.active == "1"
                 ? Text(
-                    "${userDetails.end}" == ''
-                        ? sw
-                        : '${DateFormat.yMMMd().format(_date)}',
-                    textAlign: TextAlign.end,
-                  )
+              "${userDetails.end}" == ''
+                  ? sw
+                  : '${DateFormat.yMMMd().format(_date)}',
+              textAlign: TextAlign.end,
+            )
                 : Text(
-                    sw,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.right,
-                  ),
+              sw,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 15.0,
+              ),
+              textAlign: TextAlign.right,
+            ),
           ),
           Divider(
             color: Colors.white,
@@ -350,130 +350,133 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
     );
   }
 
-  
-Widget editProfile() {
+
+  Widget editProfile() {
     return
-    
-    LayoutBuilder(
-      
-       builder: (context,constraint) {
-         if(constraint.maxWidth < 720){
- return Container(
-          
-          margin: EdgeInsets.only(top: 510, right: 220, left: 20),
-          // margin:EdgeInsets.only(top:510,left: 10, right:430),
-          height: 100,
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: 
-                RaisedButton(
-                  child: Text(
-                    "Edit Profile",
-                    style: TextStyle(
-                      color: Colors.black,
+
+      LayoutBuilder(
+
+          builder: (context,constraint) {
+            if(constraint.maxWidth < 720){
+              return Container(
+
+                margin: EdgeInsets.only(top: 510, right: 220, left: 20),
+                // margin:EdgeInsets.only(top:510,left: 10, right:430),
+                height: 100,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child:
+                      RaisedButton(
+                        child: Text(
+                          "Edit Profile",
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.black,
+                          ),
+                        ),
+                        color: Color.fromRGBO(255, 255, 0, 1.0),
+                        onPressed: () {
+                          Navigator.pushNamed(context, RoutePaths.updateProfile);
+                        },
+                      ),
                     ),
-                  ),
-                  color: Color.fromRGBO(255, 255, 0, 1.0),
-                  onPressed: () {
-                    Navigator.pushNamed(context, RoutePaths.updateProfile);
-                  },
+                  ],
                 ),
-              ),
-            ],
-          ),
-         );
-         }
-         else{
- return Container(
-          
-          // margin: EdgeInsets.only(top: 510, right: 220, left: 20),
-          margin:EdgeInsets.only(top:510,left: 10, right:430),
-          height: 100,
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: 
-                RaisedButton(
-                  child: Text(
-                    "Edit Profile",
-                    style: TextStyle(
-                      color: Colors.black,
+              );
+            }
+            else{
+              return Container(
+
+                // margin: EdgeInsets.only(top: 510, right: 220, left: 20),
+                margin:EdgeInsets.only(top:510,left: 10, right:430),
+                height: 100,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child:
+                      RaisedButton(
+                        child: Text(
+                          "Edit Profile",
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
+                        color: Color.fromRGBO(255, 255, 0, 1.0),
+                        onPressed: () {
+                          Navigator.pushNamed(context, RoutePaths.updateProfile);
+                        },
+                      ),
                     ),
-                  ),
-                  color: Color.fromRGBO(255, 255, 0, 1.0),
-                  onPressed: () {
-                    Navigator.pushNamed(context, RoutePaths.updateProfile);
-                  },
+                  ],
                 ),
-              ),
-            ],
-          ),
-         );
-         }
-        
-       }
-     );
+              );
+            }
+
+          }
+      );
   }
 
- 
+
 
   Widget resetPassword() {
     return LayoutBuilder(
-     
-      builder: (context, constraint) {
 
-        if(constraint.maxWidth > 720){
- return Container(
-          
-            // margin: EdgeInsets.only(top: 510, right: 20, left: 220),
-            margin: EdgeInsets.only(top:510,right:10,left: 420),
-            height: 100,
-    
-            // width:200,
-            child: Row(children: <Widget>[
-              Expanded(
-                  child: RaisedButton(
-                onPressed: () {
-                  pass();
-                  // Navigator.pushNamed(context, RoutePaths.changePassword);
-                },
-                color: Color.fromRGBO(255, 255, 0, 1.0),
-                child: Text(
-                  "Reset Password",
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-              )),
-            ]));
-        } else{
-          return Container(
-          
-            margin: EdgeInsets.only(top: 510, right: 20, left: 220),
-            // margin: EdgeInsets.only(top:510,right:10,left: 420),
-            height: 100,
-    
-            // width:200,
-            child: Row(children: <Widget>[
-              Expanded(
-                  child: RaisedButton(
-                onPressed: () {
-                  // pass();
-                  Navigator.pushNamed(context, RoutePaths.changePassword);
-                },
-                color: Color.fromRGBO(255, 255, 0, 1.0),
-                child: Text(
-                  "Reset Password",
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-              )),
-            ]));
+        builder: (context, constraint) {
+
+          if(constraint.maxWidth > 720){
+            return Container(
+
+              // margin: EdgeInsets.only(top: 510, right: 20, left: 220),
+                margin: EdgeInsets.only(top:510,right:10,left: 420),
+                height: 100,
+
+                // width:200,
+                child: Row(children: <Widget>[
+                  Expanded(
+                      child: RaisedButton(
+                        onPressed: () {
+                          pass();
+                          // Navigator.pushNamed(context, RoutePaths.changePassword);
+                        },
+                        color: Color.fromRGBO(255, 255, 0, 1.0),
+                        child: Text(
+                          "Reset Password",
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
+                      )),
+                ]));
+          } else{
+            return Container(
+
+                margin: EdgeInsets.only(top: 510, right: 20, left: 220),
+                // margin: EdgeInsets.only(top:510,right:10,left: 420),
+                height: 100,
+
+                // width:200,
+                child: Row(children: <Widget>[
+                  Expanded(
+                      child: RaisedButton(
+                        onPressed: () {
+                          // pass();
+                          Navigator.pushNamed(context, RoutePaths.changePassword);
+                        },
+                        color: Color.fromRGBO(255, 255, 0, 1.0),
+                        child: FittedBox(
+                          child: Text(
+                            "Reset Password",
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      )),
+                ]));
+          }
+
         }
-       
-      }
     );
   }
   //End
@@ -499,15 +502,15 @@ Widget editProfile() {
               bottomRight: Radius.circular(8.0)),
           child: userDetails.user.image != null
               ? Image.network(
-                  "${APIData.profileImageUri}" + "${userDetails.user.image}",
-                  scale: 1.7,
-                  fit: BoxFit.cover,
-                )
+            "${APIData.profileImageUri}" + "${userDetails.user.image}",
+            scale: 1.7,
+            fit: BoxFit.cover,
+          )
               : Image.asset(
-                  "assets/avatar.jpg",
-                  scale: 1.7,
-                  fit: BoxFit.cover,
-                ),
+            "assets/avatar.jpg",
+            scale: 1.7,
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
@@ -520,7 +523,7 @@ Widget editProfile() {
       trackColor: Color.fromRGBO(20, 20, 20, 1.0),
       trackWidth: 8.0,
       progressColor:
-          difference == null ? Colors.red : Color.fromRGBO(72, 163, 198, 1.0),
+      difference == null ? Colors.red : Color.fromRGBO(72, 163, 198, 1.0),
       progressWidth: 8.0,
       progress: difference == null ? 1.0 : progressWidth,
       centerContent: Column(
@@ -610,7 +613,7 @@ Widget editProfile() {
                     width: 12.0,
                     height: 12.0,
                     decoration: new BoxDecoration(
-                        //                    color: Colors.orange,
+                      //                    color: Colors.orange,
                         shape: BoxShape.circle,
                         border: Border.all(
                             color: Color.fromRGBO(125, 183, 91, 1.0),
@@ -645,7 +648,7 @@ Widget editProfile() {
               width: 20.0,
               height: 20.0,
               decoration: new BoxDecoration(
-                  //                    color: Colors.orange,
+                //                    color: Colors.orange,
                   shape: BoxShape.circle,
                   border: Border.all(color: Colors.red, width: 1.0)),
               child: Column(
@@ -726,23 +729,23 @@ Widget editProfile() {
               margin: EdgeInsets.only(top: 2.0, right: 100.0),
               child: userDetails.active == "1"
                   ? Text(
-                      "${userDetails.end}" == ''
-                          ? sw
-                          : '${DateFormat.yMMMd().format(_date)}',
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 12.0,
-                      ),
-                      textAlign: TextAlign.left,
-                    )
+                "${userDetails.end}" == ''
+                    ? sw
+                    : '${DateFormat.yMMMd().format(_date)}',
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 12.0,
+                ),
+                textAlign: TextAlign.left,
+              )
                   : Text(
-                      sw,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12.0,
-                      ),
-                      textAlign: TextAlign.right,
-                    ),
+                sw,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 12.0,
+                ),
+                textAlign: TextAlign.right,
+              ),
             )
           ],
         )
@@ -929,7 +932,7 @@ Widget editProfile() {
                           Text(
                             'Username' + ' - ',
                             style:
-                                TextStyle(color: Colors.white, fontSize: 18.0),
+                            TextStyle(color: Colors.white, fontSize: 18.0),
                             textAlign: TextAlign.left,
                           ),
                           Text(
@@ -1049,7 +1052,7 @@ Widget editProfile() {
   Widget scaffoldBody() {
 
     return SingleChildScrollView(
-      
+
       child: Container(
         height: 600,
         color: Colors.black,
@@ -1082,8 +1085,8 @@ Widget editProfile() {
       ),
     );
   }
-Widget buildPotrait() => scaffoldBody();
-Widget buildLandscape()=>Container(height: 900,child: SingleChildScrollView(child: scaffoldBody()));
+  Widget buildPotrait() => scaffoldBody();
+  Widget buildLandscape()=>Container(height: 900,child: SingleChildScrollView(child: scaffoldBody()));
 
 // Widget orientationAnalyze(){
 // OrientationBuilder(builder: (_,orientation) => orientation == Orientation.portrait ? buildpotraitButton():buildLandscapeButton() );
@@ -1114,15 +1117,15 @@ Widget buildLandscape()=>Container(height: 900,child: SingleChildScrollView(chil
       progressWidth = difference / planDays;
     }
     return SafeArea(
-      
+
       child: Container(
         color: Colors.red,
         child: Scaffold(
-        backgroundColor: Colors.black,
-          appBar: customAppBar(context, "Manage Profile"),
-          body: Container(
-            height: size.height,
-            child: OrientationBuilder(builder: (context,orientation) => orientation == Orientation.portrait ? buildPotrait()  : buildLandscape()  ))
+            backgroundColor: Colors.black,
+            appBar: customAppBar(context, "Manage Profile"),
+            body: Container(
+                height: size.height,
+                child: OrientationBuilder(builder: (context,orientation) => orientation == Orientation.portrait ? buildPotrait()  : buildLandscape()  ))
         ),
       ),
     );

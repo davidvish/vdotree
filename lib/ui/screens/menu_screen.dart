@@ -44,6 +44,7 @@ class _MenuScreenState extends State<MenuScreen> {
             margin: EdgeInsets.only(left: 20),
             child: Text(
               userDetails.user.email,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 13),
             ),
           ),

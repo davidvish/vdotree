@@ -42,13 +42,10 @@ class RatingInformation extends StatelessWidget {
           );
         }
       }
-
       stars.add(star);
     }
-
     return new Flex(direction: Axis.horizontal, children: stars);
   }
-
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
