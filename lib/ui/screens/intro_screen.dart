@@ -29,7 +29,7 @@ class _IntroScreenState extends State<IntroScreen> {
         new Slide(
           title: "Welcome! Join VDOTREE",
           description:
-              "Join VDOTREE to watch the most recent motion picture , elite TV appears and grant winning VDOTREE membership at simply least cost.",
+          "1500+ movies in all languages, Premier movies, 12000 hours of music, Web series, Short stories, Daily Bollywood news, Cooking shows, Yoga, And much more..",
           styleTitle: TextStyle(
             color: Color(0xff3da4ab),
             fontSize: 30.0,
