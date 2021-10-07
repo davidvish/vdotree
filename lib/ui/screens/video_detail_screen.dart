@@ -603,8 +603,9 @@ return  Container(
                         ),
                     ),
                     Container(
-                      margin:EdgeInsets.only(left:75),
-// color: Colors.red,
+                      margin:EdgeInsets.only(left:7),
+// // color: Colors.red,
+
                       width: MediaQuery.of(context).size.width * .80,
                       child: widget.videoDetail.description == null ||
                               widget.videoDetail.description == ""
@@ -693,44 +694,25 @@ return  Container(
         padding: const EdgeInsets.symmetric(vertical: 2.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Stack(
-              children: <Widget> [
-             Container(
-      //  color: Colors.blue,
-              child: Expanded(
-                // flex: 2,
-                child: Text(
-                  'Genres:',
-                  style: TextStyle(color: Colors.grey, fontSize: 13.0),
-                ),
+            Text(
+                'Genres:',
+                style: TextStyle(color: Colors.grey, fontSize: 13.0),
               ),
-            ),
-             Container(
-              // child: Expanded(
-              //   flex: 5,
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    margin: EdgeInsets.only(left: 100),
-                    // alignment:Alignment.center,
-                    // color: Colors.red,
-                    width:100,
-                    child: Expanded(
-                      child: Text(
-                        "$genres",
-                      // maxLines: ,
-                        style: TextStyle(color: Colors.white, fontSize: 13.0),
-                      ),
-                    ),
+            
+            SizedBox(width: 58,),
+            GestureDetector(
+                onTap: () {},
+                child: Container(
+                  // color:Colors.red,
+                  child: Text(
+                    "$genres",
+                    style: TextStyle(color: Colors.white, fontSize: 13.0),
                   ),
                 ),
-              // ),
-            ),
-            ],),
-       
-           
+              ),
+            
           ],
         ));
   }
@@ -745,23 +727,19 @@ return  Container(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Expanded(
-                flex: 2,
-                child: Text(
+            Text(
                   'Name:',
                   style: TextStyle(color: Colors.grey, fontSize: 13.0),
                 ),
-              ),
-              Expanded(
-                flex: 4,
-                child: GestureDetector(
+              SizedBox(width: 65,),
+             GestureDetector(
                   onTap: () {},
                   child: Text(
                     "${videoDetail.title}",
                     style: TextStyle(color: Colors.white, fontSize: 13.0),
                   ),
                 ),
-              ),
+              
             ],
           )),
     );
