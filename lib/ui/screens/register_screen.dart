@@ -1,6 +1,9 @@
 import 'dart:convert';
 
 import 'package:IQRA/ui/screens/RegisterOtp.dart';
+//import 'package:IQRA/ui/screens/country_code.dart';
+import 'package:country_code_picker/country_code_picker.dart';
+import 'package:country_code_picker/country_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -12,6 +15,7 @@ import 'package:IQRA/providers/user_profile_provider.dart';
 import 'package:IQRA/ui/shared/appbar.dart';
 import 'package:IQRA/ui/shared/logo.dart';
 import 'package:IQRA/ui/widgets/register_here.dart';
+import 'package:intl/locale.dart';
 import 'package:provider/provider.dart';
 import 'package:IQRA/common/apipath.dart';
 import 'package:http/http.dart' as http;
@@ -26,6 +30,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController _emailController = new TextEditingController();
   TextEditingController _passController = new TextEditingController();
   TextEditingController _mobileController = new TextEditingController();
+  TextEditingController _countryController =new TextEditingController();
   final scaffoldKey = new GlobalKey<ScaffoldState>();
   final _formKey = new GlobalKey<FormState>();
   bool _showPassword = false;
@@ -292,6 +297,37 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
+  Widget nameField() {
+    return Padding(
+      padding: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
+      child: TextFormField(
+        controller: _nameController,
+        validator: (value) {
+          if (value.length < 2) {
+            if (value.length == 0) {
+              return 'Enter name';
+            } else {
+              return 'Enter minimum 2 characters';
+            }
+          } else {
+            return null;
+          }
+        },
+        keyboardType: TextInputType.name,
+        decoration: InputDecoration(
+          prefixIcon: Icon(
+            Icons.person,
+            color: Colors.white,
+          ),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.white),
+          ),
+          labelText: 'Name',
+          labelStyle: TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+  }
 
   Widget emailField() {
     return Padding(
@@ -325,73 +361,93 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
+  Widget country() {
+    return Padding(
+        padding: EdgeInsets.only(left: 0, right: 10, top: 0, bottom: 0),
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width * 0.25,
+          //child: TextField(
+            //controller: _countryController,
+          //  decoration: InputDecoration(
+            // prefix:
+        //Container(
+    child:CountryCodePicker(
+    //  backgroundColor: Colors.yellowAccent,
+                  dialogBackgroundColor: Colors.black,
+                  onChanged: print,
+                  initialSelection: "IN",
+                   showCountryOnly: true,
+                  // showOnlyCountryWhenClosed: true,
+                   favorite: ["+91" "IN"],
+                  // comparator: (a, b) => b.name.compareTo(a.name),
+                  // //Get the country information relevant to the initial selection
+                  // onInit: (code) =>
+                  //     print("on init ${code.name} ${code.dialCode} ${code.name}"),
+                   enabled: true,
+                  // hideMainText: false,
+                  //
+                  // flagWidth: 25,
+                   showFlagMain: true,
+                   showFlag: true,
+                  //
+                   hideSearch: false,
+                  showFlagDialog: true,
+                  //
+                  // alignLeft: true,
+                ),
+             // ),
+             //  enabledBorder: UnderlineInputBorder(
+             //    borderSide: BorderSide(color: Colors.white),
+              ),);
+              //hintText: '91',
+              // counterText: ,
+              // labelText: 'Phone Number',
+        //       //  labelStyle: TextStyle(color: Colors.white),
+        //     ),
+        //   ),
+        // );
+    //);
+  }
   Widget mobileField() {
     return Padding(
-      padding: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
-      child: TextFormField(
-        maxLength: 10,
-        controller: _mobileController,
-        validator: (value) {
-          if (value.length == 0) {
-            return 'Mobile can not be empty';
-          } else {
-            if (value.length != 10) {
-              return 'Invalid Mobile Number';
+      padding: EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width * 0.70,
+        child: TextFormField(
+          maxLength: 10,
+          controller: _mobileController,
+          validator: (value) {
+            if (value.length == 0) {
+              return 'Mobile can not be empty';
             } else {
-              return null;
+              if (value.length != 10) {
+                return 'Invalid Mobile Number';
+              } else {
+                return null;
+              }
             }
-          }
-        },
-        keyboardType: TextInputType.number,
-        decoration: InputDecoration(
-          prefix: Text('+91   '),
-          prefixIcon: Icon(
-            Icons.phone,
-            color: Colors.white,
+          },
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(
+            //prefix: Text('+91   '),
+            prefixIcon: Icon(
+              Icons.phone,
+              color: Colors.white,
+            ),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.white),
+            ),
+            //hintText: '91',
+            // counterText: ,
+            labelText: 'Phone Number',
+            labelStyle: TextStyle(color: Colors.white),
           ),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
-          ),
-          hintText: '91',
-          // counterText: ,
-          labelText: 'Phone Number',
-          labelStyle: TextStyle(color: Colors.white),
         ),
       ),
     );
   }
 
-  Widget nameField() {
-    return Padding(
-      padding: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
-      child: TextFormField(
-        controller: _nameController,
-        validator: (value) {
-          if (value.length < 2) {
-            if (value.length == 0) {
-              return 'Enter name';
-            } else {
-              return 'Enter minimum 2 characters';
-            }
-          } else {
-            return null;
-          }
-        },
-        keyboardType: TextInputType.name,
-        decoration: InputDecoration(
-          prefixIcon: Icon(
-            Icons.person,
-            color: Colors.white,
-          ),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
-          ),
-          labelText: 'Name',
-          labelStyle: TextStyle(color: Colors.white),
-        ),
-      ),
-    );
-  }
+
 
   Widget passwordField() {
     return Padding(
@@ -438,75 +494,103 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     final myModel = Provider.of<AppConfig>(context, listen: false);
     return SafeArea(
-      child: Scaffold(
-        appBar: customAppBar(context, "Sign Up"),
-        key: scaffoldKey,
-        body: Container(
-          color: Colors.black,
-          child: ListView(
-            children: [
-              Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20.0),
-                      child: Container(
-                        height: 90,
-                        width: 90,
-                        child: Image.asset("assets/logo.png"),
+
+     // child: MaterialApp(
+     //   debugShowCheckedModeBanner: false,
+     //    // supportedLocales: [
+     //    //   Locale('en','US'),
+     //    // ],
+     //    localizationsDelegates:
+     //    [
+     //      CountryLocalizations.delegate
+     //    ],
+     //    home: Scaffold(
+        child: Scaffold(
+          appBar: customAppBar(context, "Sign Up"),
+          key: scaffoldKey,
+          body: Container(
+            color: Colors.black,
+            child: ListView(
+              children: [
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: Container(
+                          height: 90,
+                          width: 90,
+                          child: Image.asset("assets/logo.png"),
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    // logoImage(context, myModel, 0.9, 63.0, 200.0),
-                    msgTitle(),
-                    nameField(),
-                    emailField(),
-                    mobileField(),
-                    passwordField(),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            // height: 50.0,
-                            width: MediaQuery.of(context).size.width * .60,
-                            child: RaisedButton(
-                              padding: EdgeInsets.symmetric(vertical: 15.0),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0)),
-                              color: primaryBlue,
-                              child: _isLoading == true
-                                  ? CircularProgressIndicator(
-                                      // color: primaryBlue,
-                                      backgroundColor: Colors.black,
-                                    )
-                                  : Text(
-                                      'SIGN UP',
-                                      style: TextStyle(
-                                          fontSize: 18, color: Colors.black),
-                                    ),
-                              // onPressed: (){},
-                              onPressed: () {
-                                if (_nameController.text.isNotEmpty) {
-                                  if (_emailController.text.isNotEmpty) {
-                                    if (_emailController.text.contains("@")) {
-                                      if (_mobileController.text.isNotEmpty) {
-                                        if (_mobileController.text.length ==
-                                            10) {
-                                          if (_passController.text.isNotEmpty) {
-                                            FocusScope.of(context)
-                                                .requestFocus(new FocusNode());
-                                            _signUp();
+                      SizedBox(
+                        height: 10,
+                      ),
+                      // logoImage(context, myModel, 0.9, 63.0, 200.0),
+                      msgTitle(),
+                      nameField(),
+                      emailField(),
+                      // SizedBox(
+                      //   width: 0,
+                      // ),
+                      Row(
+                          children: [
+                        country(),
+
+                        mobileField(),
+                      ]),
+                      passwordField(),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 15.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              // height: 50.0,
+                              width: MediaQuery.of(context).size.width * .60,
+                              child: RaisedButton(
+                                padding: EdgeInsets.symmetric(vertical: 15.0),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(5.0)),
+                                color: primaryBlue,
+                                child: _isLoading == true
+                                    ? CircularProgressIndicator(
+                                        // color: primaryBlue,
+                                        backgroundColor: Colors.black,
+                                      )
+                                    : Text(
+                                        'SIGN UP',
+                                        style: TextStyle(
+                                            fontSize: 18, color: Colors.black),
+                                      ),
+                                // onPressed: (){},
+                                onPressed: () {
+                                  if (_nameController.text.isNotEmpty) {
+                                    if (_emailController.text.isNotEmpty) {
+                                      if (_emailController.text.contains("@")) {
+                                        if (_mobileController.text.isNotEmpty) {
+                                          if (_mobileController.text.length ==
+                                              10) {
+                                            if (_passController.text.isNotEmpty) {
+                                              FocusScope.of(context)
+                                                  .requestFocus(new FocusNode());
+                                              _signUp();
+                                            } else {
+                                              Fluttertoast.showToast(
+                                                msg: "Please Enter Your Password",
+                                                backgroundColor: Colors.red,
+                                                textColor: Colors.white,
+                                                gravity: ToastGravity.BOTTOM,
+                                              );
+                                            }
                                           } else {
                                             Fluttertoast.showToast(
-                                              msg: "Please Enter Your Password",
+                                              msg:
+                                                  "Please Enter a Valid Mobile Number",
                                               backgroundColor: Colors.red,
                                               textColor: Colors.white,
                                               gravity: ToastGravity.BOTTOM,
@@ -515,7 +599,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         } else {
                                           Fluttertoast.showToast(
                                             msg:
-                                                "Please Enter a Valid Mobile Number",
+                                                "Please Enter Your Mobile Number",
                                             backgroundColor: Colors.red,
                                             textColor: Colors.white,
                                             gravity: ToastGravity.BOTTOM,
@@ -523,8 +607,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         }
                                       } else {
                                         Fluttertoast.showToast(
-                                          msg:
-                                              "Please Enter Your Mobile Number",
+                                          msg: "Please Enter a Valid Email",
                                           backgroundColor: Colors.red,
                                           textColor: Colors.white,
                                           gravity: ToastGravity.BOTTOM,
@@ -532,7 +615,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       }
                                     } else {
                                       Fluttertoast.showToast(
-                                        msg: "Please Enter a Valid Email",
+                                        msg: "Please Enter Your Email",
                                         backgroundColor: Colors.red,
                                         textColor: Colors.white,
                                         gravity: ToastGravity.BOTTOM,
@@ -540,40 +623,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     }
                                   } else {
                                     Fluttertoast.showToast(
-                                      msg: "Please Enter Your Email",
+                                      msg: "Please Enter Your Name",
                                       backgroundColor: Colors.red,
                                       textColor: Colors.white,
                                       gravity: ToastGravity.BOTTOM,
                                     );
                                   }
-                                } else {
-                                  Fluttertoast.showToast(
-                                    msg: "Please Enter Your Name",
-                                    backgroundColor: Colors.red,
-                                    textColor: Colors.white,
-                                    gravity: ToastGravity.BOTTOM,
-                                  );
-                                }
-                              },
+                                },
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 80,
-              ),
-              loginHereText(context),
-              SizedBox(
-                height: 20,
-              ),
-            ],
+                SizedBox(
+                  height: 80,
+                ),
+                loginHereText(context),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
           ),
         ),
-      ),
+     // ),
     );
   }
 }

@@ -296,7 +296,7 @@ class _OtpLoginState extends State<OtpLogin> {
                                       BorderSide(color: Colors.white),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                                                    borderRadius: BorderRadius.circular(60),
+                                  borderRadius: BorderRadius.circular(60),
 
                                   borderSide:
                                       BorderSide(color: Colors.yellow),
@@ -325,6 +325,7 @@ class _OtpLoginState extends State<OtpLogin> {
                           ),
                           InkWell(
                             onTap: () {
+
                               resendotp();
                             },
                             child: Text(
@@ -347,6 +348,7 @@ class _OtpLoginState extends State<OtpLogin> {
                           children: [
                             InkWell(
                               onTap: () {
+
                                 otpenter();
                                 // Navigator.push(context, MaterialPageRoute(
                                 //     builder: (BuildContext context) {
@@ -399,6 +401,7 @@ class _OtpLoginState extends State<OtpLogin> {
                           height: 100.0,
                           width: 120.0,
                           child: SpinKitRing(
+                            duration :const Duration(milliseconds: 200),
                               color: primaryBlue,
                               size: _spincontorller ? 40 : 0),
                         )
@@ -419,7 +422,8 @@ class _OtpLoginState extends State<OtpLogin> {
       "email": widget.email,
       "otp": otp.text,
       "password": widget.pass
-    }, headers: {
+    },
+        headers: {
       HttpHeaders.authorizationHeader: "Bearer $authToken",
       "Accept": "application/json",
       // "Content-Type": "application/json"
@@ -434,6 +438,7 @@ class _OtpLoginState extends State<OtpLogin> {
       setState(() {
         _spincontorller = !_spincontorller;
       });
+
       final loginProvider = Provider.of<LoginProvider>(context, listen: false);
       try {
         print(widget.email);

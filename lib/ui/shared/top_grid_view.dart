@@ -38,7 +38,7 @@ class _TopGridViewState extends State<TopGridView> {
                           : "${APIData.movieImageUri}${topVideosList[index].thumbnail}",
                       placeholder: "assets/placeholder_box.jpg",
                       imageScale: 1.0,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                     ),
             ),
             onTap: () {

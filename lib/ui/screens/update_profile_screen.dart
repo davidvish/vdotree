@@ -190,25 +190,25 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   Future<Null> _selectDate() async {
     final DateTime picked = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
+      initialDate: DateTime(1970),
       firstDate: new DateTime(1970),
       lastDate: new DateTime.now(),
     );
     if (picked != null) {
       setState(() {
-        print("saad");
+        print("ok");
         print(picked);
-        // _editDOBController.text = pickedDate;
+         _editDOBController.text = pickedDate;
         print(_editDOBController);
         _dateTime = picked;
       });
       // ignore: unrelated_type_equality_checks
 
       setState(() {
-        print("saad bhati");
+        print("ok");
         String formattedDate =
         _dateTime != null ? DateFormat.yMMMd().format(_dateTime) : "";
-        print("saad bhati1");
+        print("ok");
         pickedDate = formattedDate;
         _editDOBController = (pickedDate != null)
             ? TextEditingController(text: pickedDate)
