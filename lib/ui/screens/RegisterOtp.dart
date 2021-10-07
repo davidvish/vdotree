@@ -19,10 +19,11 @@ import 'package:IQRA/providers/user_profile_provider.dart';
 class RegisterOtp extends StatefulWidget {
   final mobile;
   final email;
+  final code;
   final name;
   final password;
   const RegisterOtp(
-      {Key key, this.mobile, this.email, this.name, this.password})
+      {Key key, this.mobile, this.email, this.name, this.password, this. code})
       : super(key: key);
   @override
   _RegisterOtpState createState() => _RegisterOtpState();
@@ -316,7 +317,7 @@ class _RegisterOtpState extends State<RegisterOtp> {
                                 fontWeight: FontWeight.bold),
                           ),
                           InkWell(
-                            onTap: () {
+                            onTap: ()async {
                               resendotp();
                             },
                             child: Text(
@@ -337,8 +338,8 @@ class _RegisterOtpState extends State<RegisterOtp> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            InkWell(
-                              onTap: () {
+                           InkWell (
+                              onTap: () async{
                                 otpenter();
                                 // Navigator.push(context, MaterialPageRoute(
                                 //     builder: (BuildContext context) {
@@ -383,7 +384,7 @@ class _RegisterOtpState extends State<RegisterOtp> {
             ),
             Container(
               height: MediaQuery.of(context).size.height,
-              child: Center(
+              child: Center (
                   child: (_spincontorller == true)
                       ? Container(
                           margin: const EdgeInsets.only(
@@ -404,7 +405,7 @@ class _RegisterOtpState extends State<RegisterOtp> {
 
   bool _spincontorller = false;
 
-  otpenter() async {
+  Future otpenter() async {
     print("saad");
     setState(() {
       _spincontorller = !_spincontorller;

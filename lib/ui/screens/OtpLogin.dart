@@ -20,20 +20,18 @@ import 'package:IQRA/providers/login_provider.dart';
 class OtpLogin extends StatefulWidget {
   final email;
   final pass;
+
   const OtpLogin({Key key, this.email, this.pass}) : super(key: key);
+
   @override
   _OtpLoginState createState() => _OtpLoginState();
 }
 
 class _OtpLoginState extends State<OtpLogin> {
-  
-
-
   TextEditingController otp = TextEditingController();
   bool _spincontorller = false;
 
-
-@override
+  @override
   void initState() {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
@@ -42,9 +40,9 @@ class _OtpLoginState extends State<OtpLogin> {
     super.initState();
   }
 
-@override
+  @override
   void dispose() {
-     SystemChrome.setPreferredOrientations([
+    SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
       DeviceOrientation.landscapeLeft,
@@ -214,7 +212,7 @@ class _OtpLoginState extends State<OtpLogin> {
                                 Container(
                                   width: 30,
                                   height: 30,
-                                  margin: EdgeInsets.only(right:13),
+                                  margin: EdgeInsets.only(right: 13),
                                   alignment: Alignment.bottomCenter,
                                   // color: Colors.amber,
                                   // child: Text(
@@ -241,8 +239,7 @@ class _OtpLoginState extends State<OtpLogin> {
                             // color: Colors.red,
                             // alignment: Alignment.center,
                             // color: Colors.red,
-                            width:
-                             MediaQuery.of(context).size.width * 0.77,
+                            width: MediaQuery.of(context).size.width * 0.77,
 
                             // child: Platform.isIOS ? CupertinoTextField(
                             //   controller: otp,
@@ -273,35 +270,31 @@ class _OtpLoginState extends State<OtpLogin> {
                             //
                             //   ),
                             // )
-                             child:    TextFormField(
+                            child: TextFormField(
                               // maxLength: 1,
                               controller: otp,
                               showCursor: false,
                               textAlign: TextAlign.start,
-                              
+
                               cursorColor: Colors.transparent,
                               style: TextStyle(letterSpacing: 60),
                               keyboardType: TextInputType.number,
                               obscureText: true,
 
-
                               decoration: InputDecoration(
-                                contentPadding: EdgeInsets.symmetric(horizontal: 19),
-                               fillColor: Colors.transparent,
+                                contentPadding:
+                                    EdgeInsets.symmetric(horizontal: 19),
+                                fillColor: Colors.transparent,
                                 focusColor: Colors.transparent,
                                 hoverColor: Colors.transparent,
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(60),
-                                  borderSide:
-                                      BorderSide(color: Colors.white),
+                                  borderSide: BorderSide(color: Colors.white),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(60),
-
-                                  borderSide:
-                                      BorderSide(color: Colors.yellow),
+                                  borderSide: BorderSide(color: Colors.yellow),
                                 ),
-
                               ),
                               inputFormatters: [
                                 LengthLimitingTextInputFormatter(4)
@@ -325,7 +318,6 @@ class _OtpLoginState extends State<OtpLogin> {
                           ),
                           InkWell(
                             onTap: () {
-
                               resendotp();
                             },
                             child: Text(
@@ -348,7 +340,6 @@ class _OtpLoginState extends State<OtpLogin> {
                           children: [
                             InkWell(
                               onTap: () {
-
                                 otpenter();
                                 // Navigator.push(context, MaterialPageRoute(
                                 //     builder: (BuildContext context) {
@@ -401,8 +392,9 @@ class _OtpLoginState extends State<OtpLogin> {
                           height: 100.0,
                           width: 120.0,
                           child: SpinKitRing(
-                            duration :const Duration(milliseconds: 200),
+                              // duration :const Duration(milliseconds: 200),
                               color: primaryBlue,
+                              // lineWidth: 70,
                               size: _spincontorller ? 40 : 0),
                         )
                       : null),
@@ -422,8 +414,7 @@ class _OtpLoginState extends State<OtpLogin> {
       "email": widget.email,
       "otp": otp.text,
       "password": widget.pass
-    },
-        headers: {
+    }, headers: {
       HttpHeaders.authorizationHeader: "Bearer $authToken",
       "Accept": "application/json",
       // "Content-Type": "application/json"
@@ -542,14 +533,14 @@ class _OtpLoginState extends State<OtpLogin> {
     if (response["type"] == "success") {
       otp.clear();
       Fluttertoast.showToast(
-        msg: "OTP Resend Succesfully",
+        msg: "OTP Resend Successfully",
         backgroundColor: Colors.red,
         textColor: Colors.white,
         gravity: ToastGravity.BOTTOM,
       );
     } else {
       Fluttertoast.showToast(
-        msg: "Getting Some Errror",
+        msg: "Getting Some Error",
         backgroundColor: Colors.red,
         textColor: Colors.white,
         gravity: ToastGravity.BOTTOM,

@@ -26,6 +26,8 @@ class APIData {
   static const String watchHistory = domainApiLink + "watchhistory";
   static const String addWatchHistory = domainApiLink + "addwatchhistory";
   static const String change = domainApiLink + "password/email";
+  //for otp me
+  //static const String  countryCode = domainApiLink+"countrycode";
   static const String registerotpresend =
       domainApiLink + "before/register/otp/resent";
   static const String registerotpsend =
