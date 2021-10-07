@@ -36,7 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = new GlobalKey<FormState>();
   bool _showPassword = false;
   bool _isLoading = false;
-
+  String sigtssd;
 // Sign up button
   otpsignup() async {
     setState(() {
@@ -46,7 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       "name": _nameController.text,
       "email": _emailController.text,
       //otp
-      "code": _countryController.text,
+      "code": sigtssd,
       "mobile": _mobileController.text,
       "password": _passController.text,
       "confirm_password": _passController.text
@@ -65,7 +65,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           MaterialPageRoute(builder: (BuildContext context) {
         return RegisterOtp(
           mobile: _mobileController.text,
-          code: _countryController.text,
+          code: sigtssd,
           name: _nameController.text,
           email: _emailController.text,
           password: _passController.text,
@@ -380,15 +380,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: CountryCodePicker(
           //  backgroundColor: Colors.yellowAccent,
           dialogBackgroundColor: Colors.black,
-          onChanged: print,
+          onChanged: (code){
+setState(() {
+  sigtssd=code.dialCode;
+});
+
+          },
           initialSelection: "IN",
           showCountryOnly: true,
           // showOnlyCountryWhenClosed: true,
           favorite: ["+91" "IN"],
           // comparator: (a, b) => b.name.compareTo(a.name),
           // //Get the country information relevant to the initial selection
-          // onInit: (code) =>
-          //     print("on init ${code.name} ${code.dialCode} ${code.name}"),
+          onInit: (code) {
+
+              sigtssd=code.dialCode;
+          },
           enabled: true,
           // hideMainText: false,
           //
@@ -578,7 +585,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       if (_mobileController.text.isNotEmpty) {
                                         if (_mobileController.text.length ==
                                             10) {
-                                          if (_countryController.text.isEmpty) {
+                                          // if (_countryController.text.isEmpty) {
                                             if (_passController
                                                 .text.isNotEmpty) {
                                               FocusScope.of(context)
@@ -594,15 +601,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                                 gravity: ToastGravity.BOTTOM,
                                               );
                                             }
-                                          } else {
-                                            Fluttertoast.showToast(
-                                              msg:
-                                                  "Please Select your country code",
-                                              backgroundColor: Colors.red,
-                                              textColor: Colors.white,
-                                              gravity: ToastGravity.BOTTOM,
-                                            );
-                                          }
+                                          // }
+                                          // else {
+                                          //   Fluttertoast.showToast(
+                                          //     msg:
+                                          //         "Please Select your country code",
+                                          //     backgroundColor: Colors.red,
+                                          //     textColor: Colors.white,
+                                          //     gravity: ToastGravity.BOTTOM,
+                                          //   );
+                                          // }
                                         } else {
                                           Fluttertoast.showToast(
                                             msg:

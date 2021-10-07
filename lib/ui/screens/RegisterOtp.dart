@@ -412,6 +412,7 @@ class _RegisterOtpState extends State<RegisterOtp> {
     });
     var response1 = await http.post(APIData.registerverify, body: {
       "email": widget.email,
+      "code":widget.code,
       "otp": otp.text,
       "password": widget.password,
       "mobile": widget.mobile,
