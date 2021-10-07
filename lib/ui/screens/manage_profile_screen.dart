@@ -352,7 +352,7 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
 
   Widget editProfile() {
     return LayoutBuilder(builder: (context, constraint) {
-      if (constraint.maxWidth < 720) {
+      if (constraint.maxWidth < 600) {
         return Container(
           margin: EdgeInsets.only(top: 510, right: 220, left: 20),
           // margin:EdgeInsets.only(top:510,left: 10, right:430),
@@ -407,7 +407,7 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
 
   Widget resetPassword() {
     return LayoutBuilder(builder: (context, constraint) {
-      if (constraint.maxWidth > 720) {
+      if (constraint.maxWidth > 600) {
         return Container(
 
             // margin: EdgeInsets.only(top: 510, right: 20, left: 220),
