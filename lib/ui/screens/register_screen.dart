@@ -350,7 +350,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             }
           }
         },
-        
+
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
           prefixIcon: Icon(
