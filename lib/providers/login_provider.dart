@@ -73,7 +73,7 @@ class LoginProvider extends ChangeNotifier {
   }
 
   Future<void> register(String name, String email, String password,
-      String mobile, BuildContext ctx) async {
+      String mobile,String code, BuildContext ctx) async {
     MenuProvider menuProvider = Provider.of<MenuProvider>(ctx, listen: false);
     UserProfileProvider userProfileProvider =
         Provider.of<UserProfileProvider>(ctx, listen: false);
@@ -91,7 +91,8 @@ class LoginProvider extends ChangeNotifier {
           'email': email,
           'password': password,
           'name': name,
-          "mobile": mobile
+          "mobile": mobile,
+          "code":code
         },
       );
       debugPrint(response.body.toString());
