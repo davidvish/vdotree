@@ -541,11 +541,12 @@ class _MenuScreenState extends State<MenuScreen> {
                 width: 20.0,
               ),
               Text(
-                "Faq",
+                // "Faq",
+                "FAQ",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18.0,
+                    fontSize: 17.0,
                     fontWeight: FontWeight.w400),
               ),
             ],
@@ -936,15 +937,16 @@ class _MenuScreenState extends State<MenuScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            backgroundColor: Colors.white,
-            contentTextStyle: TextStyle(color: Colors.black, fontSize: 17),
+            backgroundColor: Colors.black87,
+            contentTextStyle: TextStyle(color: Colors.yellow, fontSize: 17),
             titleTextStyle: TextStyle(
-                color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+                color: Colors.yellow, fontSize: 20, fontWeight: FontWeight.bold),
             title: Text(
               'Sign Out?',
               textAlign: TextAlign.center,
             ),
-            content: Text('Are you sure that you want to logout?'),
+            content: Text('Are you sure that you want to logout?',textAlign: TextAlign.center,),
+
             actions: <Widget>[
               SizedBox(
                 width: 20,
@@ -963,7 +965,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     },
                     child: Text(
                       'Cancel',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.yellow),
                     ),
                   ),
                   SizedBox(
@@ -976,18 +978,20 @@ class _MenuScreenState extends State<MenuScreen> {
                     },
                     
                     child: Container(
+
                       alignment: Alignment.center,
                       padding: EdgeInsets.only(top: 5),
                       height: 40,
                       width: 80,
                       decoration: BoxDecoration(
+
                           color: Colors.black87,
                           borderRadius: BorderRadius.circular(5)),
                       
                         child: Text(
                           'Confirm',
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+                          style: TextStyle(color: Colors.red, fontSize: 20),
                         ),
                       ),
                     ),
