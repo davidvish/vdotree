@@ -23,7 +23,7 @@ class RegisterOtp extends StatefulWidget {
   final name;
   final password;
   const RegisterOtp(
-      {Key key, this.mobile, this.email, this.name, this.password, this. code})
+      {Key key, this.mobile, this.email, this.name, this.password, this.code})
       : super(key: key);
   @override
   _RegisterOtpState createState() => _RegisterOtpState();
@@ -438,7 +438,7 @@ class _RegisterOtpState extends State<RegisterOtp> {
       // final form = _formKey.currentState;
 
       await loginProvider.register(
-          widget.name, widget.email, widget.password,widget.mobile, context);
+          widget.name, widget.email, widget.password,widget.mobile,widget.code, context);
       setState(() {
         _spincontorller = !_spincontorller;
       });

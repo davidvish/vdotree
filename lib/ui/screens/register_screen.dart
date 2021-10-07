@@ -36,7 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = new GlobalKey<FormState>();
   bool _showPassword = false;
   bool _isLoading = false;
-  String sigtssd;
+  String sigtssd='91';
 // Sign up button
   otpsignup() async {
     setState(() {
