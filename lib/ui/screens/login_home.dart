@@ -244,7 +244,7 @@ class _LoginHomeState extends State<LoginHome> {
                 ),
               ),
               Text(
-                "  to continue",
+                " to continue",
                 textAlign: TextAlign.center,
                 //style: TextStyle(color: Colors.grey),
                 style: TextStyle(

@@ -609,15 +609,13 @@ return  Container(
                       width: MediaQuery.of(context).size.width * .80,
                       child: widget.videoDetail.description == null ||
                               widget.videoDetail.description == ""
-                          ? Expanded(
-                            child: Container(
-                              // color:Colors.red,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left:40 ,right: 50),
-                                child: Align(alignment: Alignment.center,child: Text('N/A')),
+                          ? Padding(
+                              padding: const EdgeInsets.only(top: 0.0, left: 96),
+                              child: GestureDetector(
+                                onTap:(){},
+                                child:  Text('N/A')
                               ),
-                            ),
-                          )
+                            )
                           : Padding(
                               padding: const EdgeInsets.only(top: 0.0, left: 96),
                               child: GestureDetector(
@@ -672,7 +670,7 @@ return  Container(
                     // color:Colors.red,
                     // color: Colors.red,
                     child: 
-                     widget.videoDetail.audios == null ? Container(color: Colors.red,) :
+                     widget.videoDetail.audios == null ? Text('N/A') :
                     Text(
                       "$s",
                       style: TextStyle(color: Colors.white, fontSize: 13.0),
