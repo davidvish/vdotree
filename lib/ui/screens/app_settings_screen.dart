@@ -199,9 +199,9 @@ class _AppSettingsScreenState extends State<AppSettingsScreen> {
           _connectionStatus = 'Mobile';
         });
       } else if (result == ConnectivityResult.none) {
-//        var router = new MaterialPageRoute(
+//        var routersj = new MaterialPageRoute(
 //            builder: (BuildContext context) => new NoNetwork());
-//        Navigator.of(context).push(router);
+//        Navigator.of(context).push(routersj);
       }
     });
   }
