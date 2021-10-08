@@ -1248,8 +1248,8 @@ return  Container(
     // set up the button
     Widget cancelButton = FlatButton(
       child: Text(
-        "Cancel",
-        style: TextStyle(color: primaryBlue, fontSize: 16.0),
+        "Cancel  ",
+        style: TextStyle(color: Colors.red, fontSize: 16.0),
       ),
       onPressed: () {
         Navigator.pop(context);
@@ -1258,8 +1258,8 @@ return  Container(
 
     Widget subscribeButton = FlatButton(
       child: Text(
-        "Subscribe",
-        style: TextStyle(color: primaryBlue, fontSize: 16.0),
+        "Subscribe             ",
+        style: TextStyle(color: activeDotColor, fontSize: 16.0),
       ),
       onPressed: () {
         Navigator.pop(context);
@@ -1270,10 +1270,12 @@ return  Container(
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       backgroundColor: Colors.black,
+      elevation: 30,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
           side: BorderSide(
-              color: Colors.blue, width: 1, style: BorderStyle.solid)),
+              color: Colors.blue, width: 1, style: BorderStyle.solid)
+      ),
       contentPadding:
           EdgeInsets.only(top: 10.0, left: 16.0, right: 16.0, bottom: 0.0),
       title: Row(
@@ -1281,7 +1283,7 @@ return  Container(
         children: <Widget>[
           Text(
             "Subscribe Plans",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.yellow),
           ),
         ],
       ),
@@ -1293,7 +1295,8 @@ return  Container(
             child: Text(
               "$dMsg",
               style: TextStyle(
-                color: Colors.white70,
+                fontSize: 14,
+                color: Colors.yellow,
               ),
             ),
           )

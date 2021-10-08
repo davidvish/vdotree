@@ -1062,7 +1062,7 @@ class _DownloadEpisodePageState extends State<DownloadEpisodePage>
     Widget cancelButton = FlatButton(
       child: Text(
         "Cancel",
-        style: TextStyle(color: activeDotColor, fontSize: 16.0),
+        style: TextStyle(color: Colors.red, fontSize: 16.0),
       ),
       onPressed: () {
         Navigator.pop(context);
@@ -1071,7 +1071,9 @@ class _DownloadEpisodePageState extends State<DownloadEpisodePage>
 
     Widget subscribeButton = FlatButton(
       child: Text(
-        "Subscribe",
+
+        "Subscribe             ",
+        //style: TextStyle(color: activeDotColor, fontSize: 16.0),
         style: TextStyle(color: activeDotColor, fontSize: 16.0),
       ),
       onPressed: () {
@@ -1082,16 +1084,20 @@ class _DownloadEpisodePageState extends State<DownloadEpisodePage>
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      backgroundColor: Colors.black,
+      elevation: 30,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          side: BorderSide(
+              color: Colors.blue, width: 1, style: BorderStyle.solid)),
       contentPadding:
-          EdgeInsets.only(top: 10.0, left: 16.0, right: 16.0, bottom: 0.0),
+      EdgeInsets.only(top: 10.0, left: 16.0, right: 16.0, bottom: 0.0),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
             "Subscribe Plans",
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.yellow),
           ),
         ],
       ),
@@ -1103,7 +1109,8 @@ class _DownloadEpisodePageState extends State<DownloadEpisodePage>
             child: Text(
               "$dMsg",
               style: TextStyle(
-                color: Colors.black,
+                fontSize: 14,
+                color: Colors.yellow,
               ),
             ),
           )
@@ -1114,6 +1121,43 @@ class _DownloadEpisodePageState extends State<DownloadEpisodePage>
         cancelButton,
       ],
     );
+    // AlertDialog alert = AlertDialog(
+    //   backgroundColor: Colors.black,
+    //   shape: RoundedRectangleBorder(
+    //       borderRadius: BorderRadius.circular(10.0),
+    //       side: BorderSide(
+    //           color: Colors.blue, width: 1, style: BorderStyle.solid)),
+    //   contentPadding:
+    //       EdgeInsets.only(top: 10.0, left: 16.0, right: 16.0, bottom: 0.0),
+    //   title: Row(
+    //     mainAxisAlignment: MainAxisAlignment.center,
+    //     children: <Widget>[
+    //       Text(
+    //         "Subscribe Plans",
+    //         style: TextStyle(color: Colors.yellow),
+    //       ),
+    //     ],
+    //   ),
+    //   content: Row(
+    //     children: <Widget>[
+    //       Flexible(
+    //         flex: 1,
+    //         fit: FlexFit.loose,
+    //         child: Text(
+    //           "$dMsg",
+    //           style: TextStyle(
+    //             color: Colors.yellow,
+    //           ),
+    //         ),
+    //       )
+    //     ],
+    //   ),
+    //   actions: [
+    //
+    //     subscribeButton,
+    //     cancelButton,
+    //   ],
+    // );
 
     // show the dialog
     showDialog(

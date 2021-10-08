@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:IQRA/common/styles.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -51,13 +52,21 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
             child: Container(
               decoration: BoxDecoration(),
               child: AlertDialog(
-                backgroundColor: Colors.white,
+                backgroundColor: Colors.black,
                 contentPadding: const EdgeInsets.all(5.0),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                    borderRadius: BorderRadius.all(Radius.circular(25.0)
+                    ),
+                    side: BorderSide(
+                        color: Colors.blue, width: 1, style: BorderStyle.solid)
+                ),
+
                 title: Text(
                   'Profile Saved!',
-                  style: TextStyle(color: Color.fromRGBO(34, 34, 34, 1.0)),
+                 // 'Your profile updated.',
+                 textAlign: TextAlign.center,
+                 // style: TextStyle(color: Color.fromRGBO(34, 34, 34, 1.0)),
+                  style: TextStyle(color: Colors.yellow),
                 ),
                 content: Container(
                   height: 70.0,
@@ -74,7 +83,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                       Text(
                         'Your profile updated.',
                         style:
-                        TextStyle(color: Color.fromRGBO(34, 34, 34, 1.0)),
+                        //TextStyle(color: Color.fromRGBO(34, 34, 34, 1.0)),
+                        TextStyle(color: Colors.yellow),
                       ),
                     ],
                   ),
