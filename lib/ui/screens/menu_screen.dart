@@ -937,6 +937,10 @@ class _MenuScreenState extends State<MenuScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
+             shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+          side: BorderSide(
+              color: Colors.blue, width: 1, style: BorderStyle.solid)),
             backgroundColor: Colors.black87,
             contentTextStyle: TextStyle(color: Colors.yellow, fontSize: 17),
             titleTextStyle: TextStyle(

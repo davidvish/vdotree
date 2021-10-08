@@ -660,18 +660,15 @@ return  Container(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Expanded(
-                flex: 2,
-                child: Text(
+              Text(
                   'Language:',
                   style: TextStyle(color: Colors.grey, fontSize: 13.0),
                 ),
-              ),
-              Expanded(
-                // flex: 5,
-                child: GestureDetector(
+              SizedBox(width:42),
+             GestureDetector(
                   onTap: () {},
                   child: Container(
+                    
                     // color:Colors.red,
                     // color: Colors.red,
                     child: 
@@ -682,7 +679,7 @@ return  Container(
                     ),
                   ),
                 ),
-              ),
+              
               SizedBox(width: 48,)
             ],
           )),
@@ -731,7 +728,7 @@ return  Container(
                   'Name:',
                   style: TextStyle(color: Colors.grey, fontSize: 13.0),
                 ),
-              SizedBox(width: 65,),
+              SizedBox(width: 62,),
              GestureDetector(
                   onTap: () {},
                   child: Text(
