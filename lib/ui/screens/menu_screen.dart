@@ -10,6 +10,7 @@ import 'package:IQRA/common/global.dart';
 import 'package:IQRA/common/route_paths.dart';
 import 'package:IQRA/providers/user_profile_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:rate_my_app/rate_my_app.dart';
 import 'package:share/share.dart';
 import 'package:IQRA/providers/app_config.dart';
 import 'package:http/http.dart' as http;
@@ -607,7 +608,9 @@ class _MenuScreenState extends State<MenuScreen> {
 //  Rate Us
   Widget rateUs() {
     return InkWell(
-        onTap: () {},
+        onTap: () {
+
+        },
         child: Padding(
           padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
           child: Row(

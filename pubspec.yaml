@@ -43,6 +43,7 @@ dependencies:
   flutter_swiper: ^1.1.6
   intl: ^0.16.1
   share: ^2.0.4
+  rate_my_app: ^1.1.1
   launch_review: ^3.0.1
   page_transition: ^2.0.2
   flutter_downloader: ^1.5.2

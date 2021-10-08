@@ -1421,9 +1421,11 @@ class _SelectPaymentScreenState extends State<SelectPaymentScreen>
                       height: 10.0,
                     ),
                     FloatingActionButton(
-                      backgroundColor: Colors.white,
+                      backgroundColor: Colors.yellow,
                       child: Icon(
+
                         Icons.clear,
+
                         color: Colors.black,
                       ),
                       onPressed: () {
