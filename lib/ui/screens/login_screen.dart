@@ -577,7 +577,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Navigator.push(context, MaterialPageRoute(
                                     builder: (BuildContext context) {
                                   return ForgotPassword();
-                                }));
+                                })
+                                );
                               },
                               child: Text(
                                 'Forgot Password ?',
@@ -627,7 +628,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   if (_emailController.text.isNotEmpty) {
                                     if (_emailController.text.contains("@")) {
                                       if (_passwordController.text.isNotEmpty) {
-                                        print("saad");
+                                        print("ok");
                                         FocusScope.of(context)
                                             .requestFocus(new FocusNode());
                                         _saveForm();
@@ -674,8 +675,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Container(
                                       // flex: 1,
                                       height: 50.0,
-                                      width: MediaQuery.of(context).size.width *
-                                          .60,
+                                      width: MediaQuery.of(context).size.width *0.60,
                                       child: ButtonTheme(
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
@@ -687,10 +687,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                               height: 30,
                                               width: 30,
                                             ),
+
                                             label: Text(
-                                              "Google Sign In",
+                                             // "Google Sign In",
+                                              "Google",
                                               style: TextStyle(
-                                                  fontSize: 18.0,
+                                                  fontSize: 22.0,
                                                   fontWeight: FontWeight.w800,
                                                   color: Colors.black),
                                             ),
@@ -707,7 +709,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   var code = result.uid;
                                                   var name = result.displayName;
                                                   goToDialog();
-                                                  print("anam");
+                                                  print("ok");
 
                                                   socialLogin(
                                                       APIData.googleLoginApi,
@@ -745,15 +747,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                       height: 50.0,
                                       child: RaisedButton.icon(
                                           icon: Icon(
+
                                             FontAwesomeIcons.facebook,
                                             color: Colors.black,
-                                            size: 28,
+                                            size: 30,
                                           ),
                                           label: Text(
-                                            "Facebook Sign In",
+                                            "Facebook",
                                             style: TextStyle(
                                                 color: Colors.black,
-                                                fontSize: 16.0),
+                                                fontSize: 22.0),
                                           ),
                                           color: primaryBlue,
                                           onPressed: () {

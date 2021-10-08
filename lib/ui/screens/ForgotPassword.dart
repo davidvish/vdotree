@@ -32,6 +32,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         child: TextFormField(
           style: TextStyle(
               fontSize: 16.0, color: Colors.black, fontWeight: FontWeight.bold),
+
           controller: _emailController,
           validator: (value) {
             if (value.length == 0) {
@@ -55,6 +56,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             ),
             labelText: 'E-mail Address',
             labelStyle: TextStyle(color: Colors.black),
+
           ),
         ),
       ),
@@ -103,7 +105,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Text(
-                      "Enter your email address and your password will be reset and email to you.",
+                     // "Enter your email address and your password will be reset and email to you.",
+                      "Enter Your Email Address",
                       style: TextStyle(
                           // color: Color.fromRGBO(255, 255, 0, 1.0),
                           fontSize: 16),
@@ -216,7 +219,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                       Container(
                                         child: Center(
                                             child: Text(
-                                          "Send me password reset link",
+                                          "Reset Password",
                                           style: TextStyle(
                                               fontSize: 20,
                                               color: Colors.black,

@@ -19,6 +19,8 @@ import 'package:provider/provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import 'ForgotPassword.dart';
+
 var sw = '';
 var acct;
 
@@ -442,8 +444,14 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
               Expanded(
                   child: RaisedButton(
                 onPressed: () {
-                  // pass();
-                  Navigator.pushNamed(context, RoutePaths.changePassword);
+                  // Navigator.push(context, MaterialPageRoute(
+                  //     builder: (BuildContext context) {
+                  //       return ForgotPassword();
+                  //     })
+                  // );
+                   pass();
+                //  Navigator.pushNamed(context, RoutePaths.changePassword);
+
                 },
                 color: Color.fromRGBO(255, 255, 0, 1.0),
                 child: FittedBox(
@@ -1145,7 +1153,7 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
       // }));
     } else {
       Fluttertoast.showToast(
-          msg: "Geting Some Error Please Try After Some Time Later .");
+          msg: "Getting Some Error Please Try After Some Time Later .");
     }
   }
 }
