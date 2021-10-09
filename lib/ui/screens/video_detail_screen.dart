@@ -672,7 +672,7 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
                     ),
                   ),
                 ),
-              ),
+              
               SizedBox(
                 width: 48,
               )
