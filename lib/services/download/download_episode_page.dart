@@ -1117,8 +1117,13 @@ class _DownloadEpisodePageState extends State<DownloadEpisodePage>
         ],
       ),
       actions: [
-        subscribeButton,
-        cancelButton,
+        Row(
+          mainAxisAlignment:MainAxisAlignment.spaceAround,
+          children: [
+            subscribeButton,
+            cancelButton,
+          ],
+        ),
       ],
     );
     // AlertDialog alert = AlertDialog(

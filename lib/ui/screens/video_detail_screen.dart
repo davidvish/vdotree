@@ -589,7 +589,7 @@ return  Container(
               // color: Colors.deepOrange,
               child: Padding(
                 //padding: EdgeInsets.only(top: 10.0),
-                padding: EdgeInsets.only(top: 5.0),
+                padding: EdgeInsets.only(top: 12.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -646,10 +646,14 @@ return  Container(
         "${widget.videoDetail.audios}" != "null") {
       widget.videoDetail.audios.removeWhere((element) => element == null);
     }
+    print('AUDIO LANGUAGE${videoDetail.audios}');
+   
     var audioLang = widget.videoDetail.audios.toString();
     var w = audioLang.replaceAll("[", "");
     var s = w.replaceAll("]", "");
-    return Container(
+    return
+    
+     Container(
       width: 200,
       // color: Colors.green,
       child: Padding(
@@ -670,7 +674,7 @@ return  Container(
                     // color:Colors.red,
                     // color: Colors.red,
                     child: 
-                     widget.videoDetail.audios == null ? Text('N/A') :
+                    videoDetail.audios == null ? Text('N/A') :
                     Text(
                       "$s",
                       style: TextStyle(color: Colors.white, fontSize: 13.0),
@@ -1303,8 +1307,13 @@ return  Container(
         ],
       ),
       actions: [
-        subscribeButton,
-        cancelButton,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            subscribeButton,
+            cancelButton,
+          ],
+        ),
       ],
     );
 

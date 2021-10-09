@@ -1116,8 +1116,13 @@ print('LOCALPATH: $dLocalPath');
         ],
       ),
       actions: [
-        subscribeButton,
-        cancelButton,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            subscribeButton,
+            cancelButton,
+          ],
+        ),
       ],
     );
 
