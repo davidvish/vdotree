@@ -48,7 +48,9 @@ int cSeasonIndex = 0;
 
 class VideoDetailScreen extends StatefulWidget {
   final Datum videoDetail;
+
   VideoDetailScreen(this.videoDetail);
+
   @override
   _VideoDetailScreenState createState() => _VideoDetailScreenState();
 }
@@ -144,7 +146,9 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
               VideoDetailHeader(widget.videoDetail),
               widget.videoDetail.description == null ||
                       widget.videoDetail.description == ""
-                  ? SizedBox(height: 10,)
+                  ? SizedBox(
+                      height: 10,
+                    )
                   : Padding(
                       padding: const EdgeInsets.only(top: 10.0),
                       child: DescriptionText(widget.videoDetail.description),
@@ -187,77 +191,67 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
       Container(
         height: MediaQuery.of(context).size.height,
         child:
-          // physics: const NeverScrollableScrollPhysics(),
-          // shrinkWrap: true,
-          // physics: ClampingScrollPhysics(),
-         
+            // physics: const NeverScrollableScrollPhysics(),
+            // shrinkWrap: true,
+            // physics: ClampingScrollPhysics(),
+
             tapOnMoreLikeThis(moreLikeThis),
-          
-        
       ),
       moreDetails()
     ]);
   }
 
   Widget tapOnMoreLikeThis(moreLikeThis) {
-    return
-   LayoutBuilder(builder: (_,constraints) {
-      if(constraints.maxWidth < 700){
-return  Container(
-      height:300,
-      //  MediaQuery.of(context).size.height * 2,
-      color: Colors.black,
-      
-        child: GridView.count(
-          physics: ClampingScrollPhysics(),
-          shrinkWrap: true,
-          crossAxisCount: 4,
-          childAspectRatio: 0.7,
-          scrollDirection: Axis.vertical,
-          children: List<Padding>.generate(
-              moreLikeThis == null ? 0 : moreLikeThis.length, (int index) {
-            return Padding(
-              padding: EdgeInsets.only(right: 2.5, left: 2.5, bottom: 5.0),
-              child: moreLikeThis == null
-                  ? Container(
-                    color: Colors.red,
-                    
-                  )
-                  : cusPlaceHolder(moreLikeThis, index),
-            );
-          }),
-        
-      ),
-    ); 
-     }else{
-       return
- Container(
-      height:300,
-      //  MediaQuery.of(context).size.height * 2,
-      color: Colors.black,
-      child: GridView.count(
-        physics: ClampingScrollPhysics(),
-        shrinkWrap: true,
-        crossAxisCount: 6,
-        childAspectRatio: 0.7,
-        scrollDirection: Axis.vertical,
-        children: List<Padding>.generate(
-            moreLikeThis == null ? 0 : moreLikeThis.length, (int index) {
-          return Padding(
-            padding: EdgeInsets.only(right: 2.5, left: 2.5, bottom: 5.0),
-            child: moreLikeThis[index] == null
-                ? Container()
-                : cusPlaceHolder(moreLikeThis, index),
-          );
-        }),
-      ),
- );
-    
-     }
+    return LayoutBuilder(builder: (_, constraints) {
+      if (constraints.maxWidth < 700) {
+        return Container(
+          height: 300,
+          //  MediaQuery.of(context).size.height * 2,
+          color: Colors.black,
 
-   }
-     );
-    
+          child: GridView.count(
+            physics: ClampingScrollPhysics(),
+            shrinkWrap: true,
+            crossAxisCount: 4,
+            childAspectRatio: 0.7,
+            scrollDirection: Axis.vertical,
+            children: List<Padding>.generate(
+                moreLikeThis == null ? 0 : moreLikeThis.length, (int index) {
+              return Padding(
+                padding: EdgeInsets.only(right: 2.5, left: 2.5, bottom: 5.0),
+                child: moreLikeThis == null
+                    ? Container(
+                        color: Colors.red,
+                      )
+                    : cusPlaceHolder(moreLikeThis, index),
+              );
+            }),
+          ),
+        );
+      } else {
+        return Container(
+          height: 300,
+          //  MediaQuery.of(context).size.height * 2,
+          color: Colors.black,
+          child: GridView.count(
+            physics: ClampingScrollPhysics(),
+            shrinkWrap: true,
+            crossAxisCount: 6,
+            childAspectRatio: 0.7,
+            scrollDirection: Axis.vertical,
+            children: List<Padding>.generate(
+                moreLikeThis == null ? 0 : moreLikeThis.length, (int index) {
+              return Padding(
+                padding: EdgeInsets.only(right: 2.5, left: 2.5, bottom: 5.0),
+                child: moreLikeThis[index] == null
+                    ? Container()
+                    : cusPlaceHolder(moreLikeThis, index),
+              );
+            }),
+          ),
+        );
+      }
+    });
   }
 
   Widget moreDetails() {
@@ -528,7 +522,6 @@ return  Container(
                   Padding(
                     padding: const EdgeInsets.only(left: 53.0),
                     child: Container(
-                      
                       width: MediaQuery.of(context).size.width * .5,
                       child: Flex(
                         direction: Axis.horizontal,
@@ -552,9 +545,7 @@ return  Container(
               // color: Colors.blue,
               child: Padding(
                 padding: const EdgeInsets.only(top: 5),
-                child: Container(
-                  
-                  child: genresRow(genres)),
+                child: Container(child: genresRow(genres)),
               ),
             ),
             // videoDetail.type == DatumType.T
@@ -585,7 +576,7 @@ return  Container(
             ),
 
             Container(
-             // width: 593,
+              // width: 593,
               // color: Colors.deepOrange,
               child: Padding(
                 //padding: EdgeInsets.only(top: 10.0),
@@ -606,33 +597,33 @@ return  Container(
                       margin:EdgeInsets.only(left:7),
 // // color: Colors.red,
 
-                      width: MediaQuery.of(context).size.width * .80,
-                      child: widget.videoDetail.description == null ||
-                              widget.videoDetail.description == ""
-                          ? Padding(
-                              padding: const EdgeInsets.only(top: 0.0, left: 96),
-                              child: GestureDetector(
-                                onTap:(){},
-                                child:  Text('N/A')
-                              ),
-                            )
-                          : Padding(
-                              padding: const EdgeInsets.only(top: 0.0, left: 96),
-                              child: GestureDetector(
-                                onTap:(){},
-                                child: Text(
-                                  widget.videoDetail.description,
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 13.0),
-                                ),
-                              ),
-                            ),
-                    )
-                  ],
-                  
-                ),
-                ],)
-              ),
+                            width: MediaQuery.of(context).size.width * .80,
+                            child: widget.videoDetail.description == null ||
+                                    widget.videoDetail.description == ""
+                                ? Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 0.0, left: 96),
+                                    child: GestureDetector(
+                                        onTap: () {}, child: Text('N/A')),
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 0.0, left: 96),
+                                    child: GestureDetector(
+                                      onTap: () {},
+                                      child: Text(
+                                        widget.videoDetail.description,
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 13.0),
+                                      ),
+                                    ),
+                                  ),
+                          )
+                        ],
+                      ),
+                    ],
+                  )),
             ),
           ],
         ),
@@ -681,8 +672,10 @@ return  Container(
                     ),
                   ),
                 ),
-              
-              SizedBox(width: 48,)
+              ),
+              SizedBox(
+                width: 48,
+              )
             ],
           )),
     );
@@ -696,22 +689,22 @@ return  Container(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text(
-                'Genres:',
-                style: TextStyle(color: Colors.grey, fontSize: 13.0),
-              ),
-            
-            SizedBox(width: 58,),
+              'Genres:',
+              style: TextStyle(color: Colors.grey, fontSize: 13.0),
+            ),
+            SizedBox(
+              width: 58,
+            ),
             GestureDetector(
-                onTap: () {},
-                child: Container(
-                  // color:Colors.red,
-                  child: Text(
-                    "$genres",
-                    style: TextStyle(color: Colors.white, fontSize: 13.0),
-                  ),
+              onTap: () {},
+              child: Container(
+                // color:Colors.red,
+                child: Text(
+                  "$genres",
+                  style: TextStyle(color: Colors.white, fontSize: 13.0),
                 ),
               ),
-            
+            ),
           ],
         ));
   }
@@ -726,19 +719,20 @@ return  Container(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-            Text(
-                  'Name:',
-                  style: TextStyle(color: Colors.grey, fontSize: 13.0),
+              Text(
+                'Name:',
+                style: TextStyle(color: Colors.grey, fontSize: 13.0),
+              ),
+              SizedBox(
+                width: 62,
+              ),
+              GestureDetector(
+                onTap: () {},
+                child: Text(
+                  "${videoDetail.title}",
+                  style: TextStyle(color: Colors.white, fontSize: 13.0),
                 ),
-              SizedBox(width: 62,),
-             GestureDetector(
-                  onTap: () {},
-                  child: Text(
-                    "${videoDetail.title}",
-                    style: TextStyle(color: Colors.white, fontSize: 13.0),
-                  ),
-                ),
-              
+              ),
             ],
           )),
     );
@@ -747,7 +741,6 @@ return  Container(
   //  Genre details text
   Widget genreDetailsText(videoDetail) {
     return Expanded(
-
       flex: 5,
       child: GestureDetector(
         onTap: () {},
@@ -778,7 +771,7 @@ return  Container(
               fit: BoxFit.cover,
             ),
       onTap: () {
-        print("saad");
+        print("ok");
         Navigator.pushNamed(context, RoutePaths.videoDetail,
             arguments: VideoDetailScreen(moreLikeThis[index]));
       },
@@ -882,17 +875,14 @@ return  Container(
                         // seasonEpisodeData == null
                         //     ? SizedBox.shrink()
                         //     :
-                            // widget.videoDetail.seasons[0].actorList.length == 0
-                            //     ? SizedBox.shrink()
-                            //     : SeasonsArtistList(widget.videoDetail),
-                            _currentIndex2 == 0
-                                ? allEpisodes()
-                                : moreDetails(),
+                        // widget.videoDetail.seasons[0].actorList.length == 0
+                        //     ? SizedBox.shrink()
+                        //     : SeasonsArtistList(widget.videoDetail),
+                        _currentIndex2 == 0 ? allEpisodes() : moreDetails(),
                       ],
                     ),
                   ),
-                )
-                ),
+                )),
           ),
         ],
       ),
@@ -909,13 +899,12 @@ return  Container(
     // print(tvSeriesList);
     if (seasonEpisodeData == null) {
       return Container(
-        height: 200.0,
-        alignment: Alignment.center,
-        child:SpinKitCubeGrid	(
-  color: Colors.white,
-  size: 40.0,
-)
-      );
+          height: 200.0,
+          alignment: Alignment.center,
+          child: SpinKitCubeGrid(
+            color: Colors.white,
+            size: 40.0,
+          ));
     } else {
       List moreLikeThis = new List<Datum>.generate(
           tvSeriesList == null ? 0 : tvSeriesList.length, (int index) {
@@ -983,109 +972,114 @@ return  Container(
 
   //  More like this video for seasons
   Widget moreLikeThisSeasons(moreLikeThis) {
-    final isPotrait = MediaQuery.of(context).orientation == Orientation.portrait;
+    final isPotrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
     // print(moreLikeThis.toString());
-    return 
-    isPotrait ?
-    ListView(
-      shrinkWrap: true,
-      physics: ClampingScrollPhysics(),
-
-      // physics: ClampingScrollPhysics(),
-      children: <Widget>[
-        Container(
-          color: Colors.black,
-          height: MediaQuery.of(context).size.height,
-          child: GridView.count(
+    return isPotrait
+        ? ListView(
             shrinkWrap: true,
-
-            crossAxisCount: 4, 
             physics: ClampingScrollPhysics(),
-            childAspectRatio: 0.8,
-            scrollDirection: Axis.vertical,
-            children: List<Padding>.generate(
-                moreLikeThis == null ? 0 : moreLikeThis.length, (int index) {
-              return new Padding(
-                padding: EdgeInsets.only(right: 2.5, left: 2.5, bottom: 5.0),
-                child: moreLikeThis[index] == null
-                    ? Container()
-                    : InkWell(
-                        child: moreLikeThis[index].thumbnail == null
-                            ? Image.asset(
-                                'assets/placeholder_box.jpg',
-                                height: 150.0,
-                                fit: BoxFit.cover,
-                              )
-                            : FadeInImage.assetNetwork(
-                                image:
-                                    "${APIData.tvImageUriTv}${moreLikeThis[index].thumbnail}",
-                                placeholder: 'assets/placeholder_box.jpg',
-                                height: 150.0,
-                                fit: BoxFit.cover,
-                              ),
-                        // onTap: () {},
-                        onTap: () {
-                          print("mohd");
-                          // print(moreLikeThis[index].id);
-                          Navigator.pushNamed(context, RoutePaths.videoDetail,
-                              arguments:
-                                  VideoDetailScreen(moreLikeThis[index]));
-                        }),
-              );
-            }),
-          ),
-        )
-      ],
-    ) :  ListView(
-      shrinkWrap: true,
-      physics: ClampingScrollPhysics(),
 
-      // physics: ClampingScrollPhysics(),
-      children: <Widget>[
-        Container(
-          color: Colors.black,
-          height: MediaQuery.of(context).size.height,
-          child: GridView.count(
+            // physics: ClampingScrollPhysics(),
+            children: <Widget>[
+              Container(
+                color: Colors.black,
+                height: MediaQuery.of(context).size.height,
+                child: GridView.count(
+                  shrinkWrap: true,
+                  crossAxisCount: 4,
+                  physics: ClampingScrollPhysics(),
+                  childAspectRatio: 0.8,
+                  scrollDirection: Axis.vertical,
+                  children: List<Padding>.generate(
+                      moreLikeThis == null ? 0 : moreLikeThis.length,
+                      (int index) {
+                    return new Padding(
+                      padding:
+                          EdgeInsets.only(right: 2.5, left: 2.5, bottom: 5.0),
+                      child: moreLikeThis[index] == null
+                          ? Container()
+                          : InkWell(
+                              child: moreLikeThis[index].thumbnail == null
+                                  ? Image.asset(
+                                      'assets/placeholder_box.jpg',
+                                      height: 150.0,
+                                      fit: BoxFit.cover,
+                                    )
+                                  : FadeInImage.assetNetwork(
+                                      image:
+                                          "${APIData.tvImageUriTv}${moreLikeThis[index].thumbnail}",
+                                      placeholder: 'assets/placeholder_box.jpg',
+                                      height: 150.0,
+                                      fit: BoxFit.cover,
+                                    ),
+                              // onTap: () {},
+                              onTap: () {
+                                print("mohd");
+                                // print(moreLikeThis[index].id);
+                                Navigator.pushNamed(
+                                    context, RoutePaths.videoDetail,
+                                    arguments:
+                                        VideoDetailScreen(moreLikeThis[index]));
+                              }),
+                    );
+                  }),
+                ),
+              )
+            ],
+          )
+        : ListView(
             shrinkWrap: true,
-
-            crossAxisCount: 6, 
             physics: ClampingScrollPhysics(),
-            childAspectRatio: 0.8,
-            scrollDirection: Axis.vertical,
-            children: List<Padding>.generate(
-                moreLikeThis == null ? 0 : moreLikeThis.length, (int index) {
-              return new Padding(
-                padding: EdgeInsets.only(right: 2.5, left: 2.5, bottom: 5.0),
-                child: moreLikeThis[index] == null
-                    ? Container()
-                    : InkWell(
-                        child: moreLikeThis[index].thumbnail == null
-                            ? Image.asset(
-                                'assets/placeholder_box.jpg',
-                                height: 150.0,
-                                fit: BoxFit.cover,
-                              )
-                            : FadeInImage.assetNetwork(
-                                image:
-                                    "${APIData.tvImageUriTv}${moreLikeThis[index].thumbnail}",
-                                placeholder: 'assets/placeholder_box.jpg',
-                                height: 150.0,
-                                fit: BoxFit.cover,
-                              ),
-                        // onTap: () {},
-                        onTap: () {
-                          print("mohd");
-                          // print(moreLikeThis[index].id);
-                          Navigator.pushNamed(context, RoutePaths.videoDetail,
-                              arguments:
-                                  VideoDetailScreen(moreLikeThis[index]));
-                        }),
-              );
-            }),
-          ),
-        )
-      ],
-    );
+
+            // physics: ClampingScrollPhysics(),
+            children: <Widget>[
+              Container(
+                color: Colors.black,
+                height: MediaQuery.of(context).size.height,
+                child: GridView.count(
+                  shrinkWrap: true,
+                  crossAxisCount: 6,
+                  physics: ClampingScrollPhysics(),
+                  childAspectRatio: 0.8,
+                  scrollDirection: Axis.vertical,
+                  children: List<Padding>.generate(
+                      moreLikeThis == null ? 0 : moreLikeThis.length,
+                      (int index) {
+                    return new Padding(
+                      padding:
+                          EdgeInsets.only(right: 2.5, left: 2.5, bottom: 5.0),
+                      child: moreLikeThis[index] == null
+                          ? Container()
+                          : InkWell(
+                              child: moreLikeThis[index].thumbnail == null
+                                  ? Image.asset(
+                                      'assets/placeholder_box.jpg',
+                                      height: 150.0,
+                                      fit: BoxFit.cover,
+                                    )
+                                  : FadeInImage.assetNetwork(
+                                      image:
+                                          "${APIData.tvImageUriTv}${moreLikeThis[index].thumbnail}",
+                                      placeholder: 'assets/placeholder_box.jpg',
+                                      height: 150.0,
+                                      fit: BoxFit.cover,
+                                    ),
+                              // onTap: () {},
+                              onTap: () {
+                                print("mohd");
+                                // print(moreLikeThis[index].id);
+                                Navigator.pushNamed(
+                                    context, RoutePaths.videoDetail,
+                                    arguments:
+                                        VideoDetailScreen(moreLikeThis[index]));
+                              }),
+                    );
+                  }),
+                ),
+              )
+            ],
+          );
   }
 
   //  Episode title
@@ -1243,16 +1237,16 @@ return  Container(
     if (userDetails.paypal.length == 0 ||
         userDetails.user.subscriptions == null ||
         userDetails.user.subscriptions.length == 0) {
-      dMsg = "Watch unlimited movies, TV shows and videos in HD or SD quality."
-          " You don't have subscribe.";
+      dMsg = "Watch unlimited movies, TV shows, and videos in HD or SD quality."
+          " You don't have  subscribed.";
     } else {
-      dMsg = "Watch unlimited movies, TV shows and videos in HD or SD quality."
-          " You don't have any active subscription plan.";
+      dMsg =  "Watch unlimited movies, TV shows, and videos in HD or SD quality."
+          " You don't have any active subscriptions plan.";
     }
     // set up the button
     Widget cancelButton = FlatButton(
       child: Text(
-        "Cancel  ",
+        "Cancel",
         style: TextStyle(color: Colors.red, fontSize: 16.0),
       ),
       onPressed: () {
@@ -1262,7 +1256,7 @@ return  Container(
 
     Widget subscribeButton = FlatButton(
       child: Text(
-        "Subscribe             ",
+        "Subscribe",
         style: TextStyle(color: activeDotColor, fontSize: 16.0),
       ),
       onPressed: () {
@@ -1278,8 +1272,7 @@ return  Container(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
           side: BorderSide(
-              color: Colors.blue, width: 1, style: BorderStyle.solid)
-      ),
+              color: Colors.blue, width: 1, style: BorderStyle.solid)),
       contentPadding:
           EdgeInsets.only(top: 10.0, left: 16.0, right: 16.0, bottom: 0.0),
       title: Row(
@@ -1559,7 +1552,10 @@ return  Container(
                 link720: "${seasonEpisodeData[i]['video_link']['url_720']}",
                 link1080: "${seasonEpisodeData[i]['video_link']['url_1080']}"),
           );
-          dItems.add(ItemHolder(name: dTasks[0].name, task: dTasks[0],thumbnail: dTasks[0].thumbnail));
+          dItems.add(ItemHolder(
+              name: dTasks[0].name,
+              task: dTasks[0],
+              thumbnail: dTasks[0].thumbnail));
           return Container(
             child: Column(
               children: <Widget>[
@@ -1607,7 +1603,7 @@ return  Container(
                         TaskInfo(
                             eIndex: i,
                             name: "${seasonEpisodeData[i]['title']}",
-                            thumbnail:"${seasonEpisodeData[i]['thumbnail']}",
+                            thumbnail: "${seasonEpisodeData[i]['thumbnail']}",
                             ifLink:
                                 "${seasonEpisodeData[i]['video_link']['iframeurl']}",
                             hdLink:

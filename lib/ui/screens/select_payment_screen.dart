@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:IQRA/common/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -1362,11 +1364,18 @@ class _SelectPaymentScreenState extends State<SelectPaymentScreen>
           builder: (context) => WillPopScope(
               child: AlertDialog(
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(25.0))),
-                backgroundColor: Colors.white,
+                    borderRadius: BorderRadius.circular(10.0),
+                    side: BorderSide(
+                        color: Colors.blue, width: 1, style: BorderStyle.solid)),
+                // shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                backgroundColor: Colors.black,
                 title: Text(
+
                   "Saving Payment Info",
-                  style: TextStyle(color: Theme.of(context).backgroundColor),
+                textAlign: TextAlign.center,
+                //  style: TextStyle(color: Theme.of(context).backgroundColor),
+                  style: TextStyle(color: Colors.yellow),
                 ),
                 content: Container(
                   height: 70.0,

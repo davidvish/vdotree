@@ -1,3 +1,4 @@
+import 'package:IQRA/ui/widgets/video_rating.dart';
 import 'package:flutter/material.dart';
 import 'package:IQRA/common/apipath.dart';
 import 'package:IQRA/common/route_paths.dart';
@@ -171,7 +172,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: new Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        new RatingInformationSearch(movieTvList[index])
+                       // starRating,
+                        new RatingInformation(movieTvList[index])
                       ]),
                 )),
             new Container(

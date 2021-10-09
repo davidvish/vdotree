@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
 import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -1052,11 +1053,11 @@ class _DownloadEpisodePageState extends State<DownloadEpisodePage>
     if (userDetails.paypal.length == 0 ||
         userDetails.user.subscriptions.length == 0 ||
         userDetails.user.subscriptions == null) {
-      dMsg = "Watch unlimited movies, TV shows and videos in HD or SD quality."
-          " You don't have subscribe.";
+      dMsg = "Watch unlimited movies, TV shows, and videos in HD or SD quality."
+          " You don't have  subscribed.";
     } else {
-      dMsg = "Watch unlimited movies, TV shows and videos in HD or SD quality."
-          " You don't have any active subscription plan.";
+      dMsg =  "Watch unlimited movies, TV shows, and videos in HD or SD quality."
+          " You don't have any active subscriptions plan.";
     }
     // set up the button
     Widget cancelButton = FlatButton(
@@ -1072,7 +1073,7 @@ class _DownloadEpisodePageState extends State<DownloadEpisodePage>
     Widget subscribeButton = FlatButton(
       child: Text(
 
-        "Subscribe             ",
+        "Subscribe",
         //style: TextStyle(color: activeDotColor, fontSize: 16.0),
         style: TextStyle(color: activeDotColor, fontSize: 16.0),
       ),
