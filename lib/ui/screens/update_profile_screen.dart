@@ -69,19 +69,19 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   style: TextStyle(color: Colors.yellow),
                 ),
                 content: Container(
-                  height: 70.0,
+                  height: 100.0,
                   child: Column(
                     children: <Widget>[
                       SizedBox(
                         height: 2.0,
                       ),
                       Icon(FontAwesomeIcons.checkCircle,
-                          size: 40.0, color: activeDotColor),
+                          size: 60.0, color: activeDotColor),
                       SizedBox(
-                        height: 8.0,
+                        height: 10.0,
                       ),
                       Text(
-                        'Your profile updated.',
+                        'Profile has been updated.',
                         style:
                         //TextStyle(color: Color.fromRGBO(34, 34, 34, 1.0)),
                         TextStyle(color: Colors.yellow),
