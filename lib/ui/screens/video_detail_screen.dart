@@ -579,24 +579,22 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
               // width: 593,
               // color: Colors.deepOrange,
               child: Padding(
-                  //padding: EdgeInsets.only(top: 10.0),
-                  padding: EdgeInsets.only(top: 5.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Stack(
-                        children: <Widget>[
-                          Container(
-                            child: Text(
-                              'Description:',
-                              // "detail",
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 12.5),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 7),
+                //padding: EdgeInsets.only(top: 10.0),
+                padding: EdgeInsets.only(top: 12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Stack(children: <Widget> [
+                    Container(
+                      child: Text(
+                       'Description:',
+                      // "detail",
+                       style: TextStyle(color: Colors.grey, fontSize: 12.5),
+                        ),
+                    ),
+                    Container(
+                      margin:EdgeInsets.only(left:7),
 // // color: Colors.red,
 
                             width: MediaQuery.of(context).size.width * .80,
@@ -639,10 +637,14 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
         "${widget.videoDetail.audios}" != "null") {
       widget.videoDetail.audios.removeWhere((element) => element == null);
     }
+    print('AUDIO LANGUAGE${videoDetail.audios}');
+   
     var audioLang = widget.videoDetail.audios.toString();
     var w = audioLang.replaceAll("[", "");
     var s = w.replaceAll("]", "");
-    return Container(
+    return
+    
+     Container(
       width: 200,
       // color: Colors.green,
       child: Padding(
@@ -652,24 +654,23 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Language:',
-                style: TextStyle(color: Colors.grey, fontSize: 13.0),
-              ),
-              SizedBox(width: 42),
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                  // color:Colors.red,
-                  // color: Colors.red,
-                  child: widget.videoDetail.audios == null
-                      ? Text(
-                          "N\A",
-                          //style: TextStyle(color:Colors.red),
-                        )
-                      : Text(
-                          "$s",
-                          style: TextStyle(color: Colors.white, fontSize: 13.0),
-                        ),
+                  'Language:',
+                  style: TextStyle(color: Colors.grey, fontSize: 13.0),
+                ),
+              SizedBox(width:42),
+             GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    
+                    // color:Colors.red,
+                    // color: Colors.red,
+                    child: 
+                    videoDetail.audios == null ? Text('N/A') :
+                    Text(
+                      "$s",
+                      style: TextStyle(color: Colors.white, fontSize: 13.0),
+                    ),
+                  ),
                 ),
               ),
               SizedBox(
@@ -1300,12 +1301,12 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
       ),
       actions: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             subscribeButton,
             cancelButton,
           ],
-        )
+        ),
       ],
     );
 

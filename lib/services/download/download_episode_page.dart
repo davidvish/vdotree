@@ -1119,7 +1119,7 @@ class _DownloadEpisodePageState extends State<DownloadEpisodePage>
       ),
       actions: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment:MainAxisAlignment.spaceAround,
           children: [
             subscribeButton,
             cancelButton,
