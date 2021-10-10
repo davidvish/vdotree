@@ -9,6 +9,7 @@ class APIData {
   static const String loginApi = domainApiLink + "login";
   static const String fbLoginApi = domainApiLink + "fblogin";
   static const String googleLoginApi = domainApiLink + "googlelogin";
+  static const String userPassApi = domainApiLink + "userPassApi";
   static const String userProfileApi = domainApiLink + "userProfile";
   static const String userPassApi = domainApiLink + "userPassApi";
   static const String profileApi = domainApiLink + "profile";
@@ -107,7 +108,6 @@ class APIData {
   static const String iosAppId = '';
   static const String shareAndroidAppUrl =
       'https://play.google.com/store/apps/details?id=' + '$androidAppId';
-     
 
 // For notifications
   static const String onSignalAppId = "4fe1e977-b5e1-4462-ba6f-0e32d1f57463";
