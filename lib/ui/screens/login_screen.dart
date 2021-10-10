@@ -45,6 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isLoading = false;
   bool isLoggedIn = false;
   var profileData;
+  var newpass;
   var facebookLogin = FacebookLogin();
   bool isShowing = false;
   LoginModel loginModel;
@@ -107,9 +108,13 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<String> socialLogin(url, email, password, code, name, uid) async {
+    final accessTokenResponsenew = await http.post(APIData.userPassApi, body: {
+      "email": email,
+    });
+    print(json.decode(accessTokenResponsenew.body));
     final accessTokenResponse = await http.post(url, body: {
       "email": email,
-      "password": password,
+      "password": json.decode(accessTokenResponsenew.body),
       "$uid": code,
       "name": name,
     });
@@ -135,6 +140,36 @@ class _LoginScreenState extends State<LoginScreen> {
     }
     return null;
   }
+
+  // Future<void> getUserPass(url, email) async {
+  //   final accessTokenResponse = await http.post(url, body: {
+  //     "email": email,
+  //   });
+  //   // print(accessTokenResponse.statusCode);
+  //   // print(accessTokenResponse.body);
+  //   // if (accessTokenResponse.statusCode == 200) {
+  //   //   loginModel = LoginModel.fromJson(json.decode(accessTokenResponse.body));
+  //   //   var refreshToken = loginModel.refreshToken;
+  //   //   var mToken = loginModel.accessToken;
+  //   //   await storage.write(key: "login", value: "true");
+  //   //   await storage.write(key: "authToken", value: mToken);
+  //   //   await storage.write(key: "refreshToken", value: refreshToken);
+  //   //   setState(() {
+  //   //     authToken = mToken;
+  //   //   });
+  //   //   fetchAppData(context);
+  //   // } else {
+  //   //   setState(() {
+  //   //     isShowing = false;
+  //   //   });
+  //   //   Navigator.pop(context);
+  //   //   Fluttertoast.showToast(msg: "Error in login");
+  //   // }
+  //   setState(() {
+  //     newpass = accessTokenResponse.body;
+  //   });
+  //   // return accessTokenResponse.body;
+  // }
 
   Future<void> fetchAppData(ctx) async {
     MenuProvider menuProvider = Provider.of<MenuProvider>(ctx, listen: false);
@@ -577,8 +612,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Navigator.push(context, MaterialPageRoute(
                                     builder: (BuildContext context) {
                                   return ForgotPassword();
-                                })
-                                );
+                                }));
                               },
                               child: Text(
                                 'Forgot Password ?',
@@ -675,7 +709,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Container(
                                       // flex: 1,
                                       height: 50.0,
-                                      width: MediaQuery.of(context).size.width *0.60,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.60,
                                       child: ButtonTheme(
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
@@ -687,9 +722,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                               height: 30,
                                               width: 30,
                                             ),
-
                                             label: Text(
-                                             // "Google Sign In",
+                                              // "Google Sign In",
                                               "Google",
                                               style: TextStyle(
                                                   fontSize: 22.0,
@@ -705,16 +739,18 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     isShowing = true;
                                                   });
                                                   var email = result.email;
-                                                  var password = "password";
+                                                  // var password = getUserPass(
+                                                  //     APIData.userPassApi,
+                                                  //     email);
                                                   var code = result.uid;
                                                   var name = result.displayName;
                                                   goToDialog();
-                                                  print("ok");
+                                                  // print(password);
 
                                                   socialLogin(
                                                       APIData.googleLoginApi,
                                                       email,
-                                                      password,
+                                                      newpass,
                                                       code,
                                                       name,
                                                       "uid");
@@ -747,7 +783,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                       height: 50.0,
                                       child: RaisedButton.icon(
                                           icon: Icon(
-
                                             FontAwesomeIcons.facebook,
                                             color: Colors.black,
                                             size: 30,
