@@ -108,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<String> socialLogin(url, email, password, code, name, uid) async {
-    final accessTokenResponsenew = await http.post(APIData.userPassApi, body: {
+  final accessTokenResponsenew = await http.post(APIData.userPassApi, body: {
       "email": email,
     });
     print(json.decode(accessTokenResponsenew.body));
@@ -118,8 +118,6 @@ class _LoginScreenState extends State<LoginScreen> {
       "$uid": code,
       "name": name,
     });
-    print(accessTokenResponse.statusCode);
-    print(accessTokenResponse.body);
     if (accessTokenResponse.statusCode == 200) {
       loginModel = LoginModel.fromJson(json.decode(accessTokenResponse.body));
       var refreshToken = loginModel.refreshToken;

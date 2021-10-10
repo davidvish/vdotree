@@ -11,6 +11,7 @@ class APIData {
   static const String googleLoginApi = domainApiLink + "googlelogin";
   static const String userPassApi = domainApiLink + "userPassApi";
   static const String userProfileApi = domainApiLink + "userProfile";
+  static const String userPassApi = domainApiLink + "userPassApi";
   static const String profileApi = domainApiLink + "profile";
   static const String registerApi = domainApiLink + "register";
   static const String allMovies = domainApiLink + "movie";
@@ -26,7 +27,7 @@ class APIData {
   static const String watchListApi = domainApiLink + "showwishlist";
   static const String watchHistory = domainApiLink + "watchhistory";
   static const String addWatchHistory = domainApiLink + "addwatchhistory";
-  static const String change = domainApiLink + "password/email";
+  static const String change = domainApiLink + "forgotPassword";
   //for otp me
   //static const String  countryCode = domainApiLink+"countrycode";
   static const String registerotpresend =

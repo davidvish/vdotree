@@ -7,6 +7,7 @@ import 'package:IQRA/common/styles.dart';
 import 'package:IQRA/ui/screens/download_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:IQRA/common/apipath.dart';
@@ -1053,11 +1054,11 @@ print('LOCALPATH: $dLocalPath');
     if (userDetails.paypal.length == 0 ||
         userDetails.user.subscriptions == null ||
         userDetails.user.subscriptions.length == 0) {
-      dMsg = "Watch unlimited movies, TV shows and videos in HD or SD quality."
-          " You don't have subscribe.";
+      dMsg = "Watch unlimited movies, TV shows, and videos in HD or SD quality."
+          " You don't have  subscribed.";
     } else {
-      dMsg = "Watch unlimited movies, TV shows and videos in HD or SD quality."
-          " You don't have any active subscription plan.";
+      dMsg =  "Watch unlimited movies, TV shows, and videos in HD or SD quality."
+          " You don't have any active subscriptions plan.";
     }
     // set up the button
     Widget cancelButton = FlatButton(
@@ -1072,7 +1073,7 @@ print('LOCALPATH: $dLocalPath');
 
     Widget subscribeButton = FlatButton(
       child: Text(
-        "Subscribe             ",
+        "Subscribe",
         style: TextStyle(color: activeDotColor, fontSize: 16.0),
       ),
       onPressed: () {
@@ -1116,8 +1117,13 @@ print('LOCALPATH: $dLocalPath');
         ],
       ),
       actions: [
-        subscribeButton,
-        cancelButton,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            subscribeButton,
+            cancelButton,
+          ],
+        ),
       ],
     );
 

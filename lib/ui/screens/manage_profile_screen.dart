@@ -166,7 +166,7 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
               Container(
                   margin: EdgeInsets.only(left: 20, bottom: 5),
                   child: Text(
-                    'Useremail',
+                    'User Email',
                     textAlign: TextAlign.start,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )),

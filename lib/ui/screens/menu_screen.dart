@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:IQRA/providers/app_config.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 class MenuScreen extends StatefulWidget {
   @override
@@ -324,7 +325,7 @@ class _MenuScreenState extends State<MenuScreen> {
             padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
             child: Row(
               children: <Widget>[
-                Icon(Icons.notifications, size: 20, color: Colors.white),
+                Icon(Icons.notifications_active, size: 20, color: Colors.white),
                 SizedBox(
                   width: 20.0,
                 ),
@@ -459,11 +460,11 @@ class _MenuScreenState extends State<MenuScreen> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
           title: new Text(
-            "Subcription Alert",
+            "Subscription Alert",
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
           ),
           content: new Text(
-            "You already have Scription",
+            "You already have Subscription",
             style: TextStyle(
                 color: Colors.black.withOpacity(0.7),
                 fontWeight: FontWeight.w600,
@@ -510,7 +511,7 @@ class _MenuScreenState extends State<MenuScreen> {
           padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
           child: Row(
             children: <Widget>[
-              Icon(Icons.payment, size: 20, color: Colors.white),
+              Icon(Icons.subscriptions, size: 20, color: Colors.white),
               SizedBox(
                 width: 20.0,
               ),
@@ -519,7 +520,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 19.0,
+                    fontSize: 18.0,
                     fontWeight: FontWeight.w400),
               ),
             ],
@@ -597,7 +598,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 14.0,
+                    fontSize: 18.0,
                     fontWeight: FontWeight.w400),
               ),
             ],
@@ -605,12 +606,15 @@ class _MenuScreenState extends State<MenuScreen> {
         ));
   }
 
+
 //  Rate Us
   Widget rateUs() {
     return InkWell(
-        onTap: () {
 
-        },
+         // child: new Text('Open Browser'),
+          onTap: () => launch('https://play.google.com/store/apps/details?id=com.vdotree.vdotree'),
+
+
         child: Padding(
           padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
           child: Row(
