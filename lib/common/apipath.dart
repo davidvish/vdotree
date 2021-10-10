@@ -11,7 +11,6 @@ class APIData {
   static const String googleLoginApi = domainApiLink + "googlelogin";
   static const String userPassApi = domainApiLink + "userPassApi";
   static const String userProfileApi = domainApiLink + "userProfile";
-  static const String userPassApi = domainApiLink + "userPassApi";
   static const String profileApi = domainApiLink + "profile";
   static const String registerApi = domainApiLink + "register";
   static const String allMovies = domainApiLink + "movie";
