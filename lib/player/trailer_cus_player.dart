@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:IQRA/common/global.dart';
+import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 import 'package:wakelock/wakelock.dart';
 import '../custom_player/src/chewie_player.dart';
@@ -97,6 +98,9 @@ class _TrailerCustomPlayerState extends State<TrailerCustomPlayer>
     _videoPlayerController1.dispose();
     _videoPlayerController2.dispose();
     _chewieController.dispose();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     super.dispose();
   }
 

@@ -32,11 +32,14 @@ class _PlayerMovieTrailerState extends State<PlayerMovieTrailer>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.portraitUp,
+    //   DeviceOrientation.portraitDown,
+    //   DeviceOrientation.landscapeLeft,
+    //   DeviceOrientation.landscapeRight
+    // ]);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight
     ]);
     super.dispose();
   }

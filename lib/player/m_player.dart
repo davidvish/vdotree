@@ -4,6 +4,7 @@ import 'package:IQRA/common/apipath.dart';
 import 'package:IQRA/common/global.dart';
 import 'package:IQRA/custom_player/chewie.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 import 'package:wakelock/wakelock.dart';
 import 'package:http/http.dart' as http;
@@ -110,6 +111,9 @@ class _MyCustomPlayerState extends State<MyCustomPlayer>
     _videoPlayerController1.dispose();
     _videoPlayerController2.dispose();
     _chewieController.dispose();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
     super.dispose();
   }
 
