@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:IQRA/common/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -454,16 +452,7 @@ class _SelectPaymentScreenState extends State<SelectPaymentScreen>
               Container(
                   //saad bhati
                   margin: EdgeInsets.only(right: 10, bottom: 10),
-                  child:
-                  planDetails[widget.planIndex].downloadlimit == null ?
-                   Text(
-                    "N/A",
-                    textAlign: TextAlign.end,
-                    style: TextStyle(
-                        fontSize: 16, color: Color.fromRGBO(255, 255, 0, 1.0)),
-                  )
-                  :
-                   Text(
+                  child: Text(
                     "${planDetails[widget.planIndex].downloadlimit}",
                     textAlign: TextAlign.end,
                     style: TextStyle(
@@ -1364,18 +1353,11 @@ class _SelectPaymentScreenState extends State<SelectPaymentScreen>
           builder: (context) => WillPopScope(
               child: AlertDialog(
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    side: BorderSide(
-                        color: Colors.blue, width: 1, style: BorderStyle.solid)),
-                // shape: RoundedRectangleBorder(
-                //     borderRadius: BorderRadius.all(Radius.circular(25.0))),
-                backgroundColor: Colors.black,
+                    borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                backgroundColor: Colors.white,
                 title: Text(
-
                   "Saving Payment Info",
-                textAlign: TextAlign.center,
-                //  style: TextStyle(color: Theme.of(context).backgroundColor),
-                  style: TextStyle(color: Colors.yellow),
+                  style: TextStyle(color: Theme.of(context).backgroundColor),
                 ),
                 content: Container(
                   height: 70.0,
@@ -1430,11 +1412,9 @@ class _SelectPaymentScreenState extends State<SelectPaymentScreen>
                       height: 10.0,
                     ),
                     FloatingActionButton(
-                      backgroundColor: Colors.yellow,
+                      backgroundColor: Colors.white,
                       child: Icon(
-
                         Icons.clear,
-
                         color: Colors.black,
                       ),
                       onPressed: () {
@@ -1693,7 +1673,7 @@ class _SelectPaymentScreenState extends State<SelectPaymentScreen>
             length: 2,
             child: Scaffold(
               
-              backgroundColor: Colors.black,
+              // backgroundColor: Colors.green,
               key: _scaffoldKey,
               body: loading == true
                   ? Center(

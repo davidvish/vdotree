@@ -27,8 +27,8 @@ class _WishListViewState extends State<WishListView> {
     if (vType == DatumType.M) {
       final response = await http.get("${APIData.checkWatchlistMovie}$id",
           headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
-      print(response.statusCode);
-      print(response.body);
+      // print(response.statusCode);
+      // print(response.body);
       if (response.statusCode == 200) {
         res = json.decode(response.body);
         if (res['wishlist'] == 1 || res['wishlist'] == "1") {
@@ -51,7 +51,7 @@ class _WishListViewState extends State<WishListView> {
       setState(() {
         print("bhati");
         res = json.decode(response.body);
-        print(res);
+        // print(res);
       });
       if (response.statusCode == 200) {
         if (res['wishlist'] == 1 || res['wishlist'] == "1") {
@@ -89,6 +89,7 @@ class _WishListViewState extends State<WishListView> {
         setState(() {
           checkWishlist = false;
         });
+        print(response.body);
       } else {
         throw "Can't remove from wishlist";
       }
@@ -100,7 +101,7 @@ class _WishListViewState extends State<WishListView> {
     final response = await http.post("${APIData.addWatchlist}",
         body: {"type": type, "id": '$id', "value": '1'},
         headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
-    print(response.statusCode);
+    // print(response.statusCode);
     print(response.body);
     if (response.statusCode == 200) {
       setState(() {

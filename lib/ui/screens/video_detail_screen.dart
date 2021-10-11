@@ -1100,7 +1100,7 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
 
   //  Episodes details like released date and description
   Widget episodeDetails(i) {
-    print(seasonEpisodeData[i]['detail']);
+    // print(seasonEpisodeData[i]['detail']);
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Column(
@@ -1465,7 +1465,7 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
     var type = vType == DatumType.M ? "M" : "S";
     final response = await http.post("${APIData.addWatchHistory}/$type/$id",
         headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
-    print(response.statusCode);
+    // print(response.statusCode);
     if (response.statusCode == 200) {
     } else {
       throw "can't added to history";
