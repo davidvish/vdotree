@@ -17,6 +17,7 @@ import 'package:IQRA/providers/slider_provider.dart';
 import 'package:IQRA/providers/user_profile_provider.dart';
 import 'package:IQRA/ui/screens/multi_screen.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -39,10 +40,23 @@ class SplashScreenState extends State<SplashScreen> {
   // ignore: unused_field
   bool _enableConsentButton = false;
   bool _requireConsent = true;
+  TargetPlatform platform;
 
   Future<Null> setLocalPath() async {
+    // setState(() {
+    //   localPath = APIData.localPath;
+    // });
+    if (platform == TargetPlatform.android) {
+
+      setState(() {
+        localPath = APIData.localPath;
+      });
+    }
+    final directory =
+    await getApplicationDocumentsDirectory();
+    print("path!!!!!!!!        " + directory.path);
     setState(() {
-      localPath = APIData.localPath;
+      localPath = directory.path + "/Download";
     });
   }
 

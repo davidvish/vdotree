@@ -100,15 +100,15 @@ class _IFramePlayerPageState extends State<IFramePlayerPage> {
                 initialUrl: Uri.dataFromString('''
                     <html>
                     <body style="width:100%;height:100%;display:block;background:black;">
-                    <iframe width="100%" height="100%" 
+                    <iframe width="100%" height="100%"
                     style="width:100%;height:100%;display:block;background:black;"
-                    src="${widget.url}" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                    src="${widget.url}"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                      allowfullscreen="allowfullscreen"
-                      mozallowfullscreen="mozallowfullscreen" 
-                      msallowfullscreen="msallowfullscreen" 
-                      oallowfullscreen="oallowfullscreen" 
+                      mozallowfullscreen="mozallowfullscreen"
+                      msallowfullscreen="msallowfullscreen"
+                      oallowfullscreen="oallowfullscreen"
                       webkitallowfullscreen="webkitallowfullscreen"
                      >
                     </iframe>
