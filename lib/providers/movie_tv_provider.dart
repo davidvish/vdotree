@@ -847,8 +847,8 @@ class MovieTVProvider with ChangeNotifier {
 
   fetchTVSeriesList(
       movieTvList, genreList, actorList, directorList, audioList) {
-    print("bhati");
-    // print(movieTvList.data);
+    // print("bhati");
+    print(movieTvList.length);
     for (int i = 0; i < movieTvList.length; i++) {
       var genreData = movieTvList[i].genreId == null
           ? null
