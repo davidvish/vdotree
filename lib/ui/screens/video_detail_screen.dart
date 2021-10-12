@@ -672,16 +672,8 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
                     ),
                   ),
                 ),
-              
-              SizedBox(
-                width: 48,
-              )
-            ],
           )),
-    );
-  }
 
-  Widget genresRow(genres) {
     return Padding(
         padding: const EdgeInsets.symmetric(vertical: 2.0),
         child: Row(

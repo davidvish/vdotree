@@ -105,7 +105,7 @@ class _LoginHomeState extends State<LoginHome> {
               // height: 50.0,
               textColor: Colors.white,
               child: new Text(
-                "Login",
+                "Log In",
                 style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.w800,
@@ -244,7 +244,7 @@ class _LoginHomeState extends State<LoginHome> {
                 ),
               ),
               Text(
-                " to continue",
+                " to continue...",
                 textAlign: TextAlign.center,
                 //style: TextStyle(color: Colors.grey),
                 style: TextStyle(

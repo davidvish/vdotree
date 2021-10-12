@@ -16,6 +16,7 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     systemNavigationBarColor: kDarkBgLight,
     statusBarColor: kDarkBgLight,
+    //statusBarColor: Colors.black45,
   ));
   authToken = await storage.read(key: "token");
   WidgetsFlutterBinding.ensureInitialized();

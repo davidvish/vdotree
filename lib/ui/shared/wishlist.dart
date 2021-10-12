@@ -49,7 +49,7 @@ class _WishListViewState extends State<WishListView> {
       final response = await http.get("${APIData.checkWatchlistSeason}$id",
           headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
       setState(() {
-        print("bhati");
+        print("ok");
         res = json.decode(response.body);
         // print(res);
       });

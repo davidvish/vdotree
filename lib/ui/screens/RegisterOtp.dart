@@ -71,7 +71,7 @@ SystemChrome.setPreferredOrientations([
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: customAppBar(context, "VERIFICATION CODE"),
+        appBar: customAppBar(context, "Verification Code"),
 
         // backgroundColor: kWhiteColor,
         body: Stack(
@@ -324,7 +324,7 @@ SystemChrome.setPreferredOrientations([
                                       BorderSide(color: Colors.white),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                                                    borderRadius: BorderRadius.circular(60),
+                                  borderRadius: BorderRadius.circular(60),
 
                                   borderSide:
                                       BorderSide(color: Colors.yellow),
@@ -455,7 +455,7 @@ SystemChrome.setPreferredOrientations([
   bool _spincontorller = false;
 
   Future otpenter() async {
-    print("saad");
+    print("ok");
     setState(() {
       _spincontorller = !_spincontorller;
     });
@@ -464,8 +464,8 @@ SystemChrome.setPreferredOrientations([
       "code":widget.code,
       "otp": otp.text,
       "password": widget.password,
-      "mobile": widget.mobile,
-      // "name": widget.name
+      "name": widget.name,
+      "mobile": widget.mobile
     }, headers: {
       HttpHeaders.authorizationHeader: "Bearer $authToken",
       "Accept": "application/json",
@@ -528,6 +528,8 @@ SystemChrome.setPreferredOrientations([
     print(authToken);
     var response1 = await http.post(APIData.registerotpresend, body: {
       "email": widget.email,
+      "code":widget.code,
+      "otp": otp.text,
       "password": widget.password,
       "name": widget.name,
       "mobile": widget.mobile

@@ -168,10 +168,10 @@ class _HomeScreenState extends State<HomeScreen>
             ),
           ),
              Expanded(
-                             flex: type == true ? 4 : 5,
+               flex: type == true ? 4 : 5,
 
                child: Align(
-                                 alignment: Alignment.centerLeft,
+                 alignment: Alignment.centerLeft,
              
                  child: TabBar(
                   
