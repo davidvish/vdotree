@@ -127,6 +127,7 @@ class _DownloadPageState extends State<DownloadPage>
 
     permissionReady = await _checkPermission();
     dLocalPath = (await _findLocalPath()) + Platform.pathSeparator + 'Download';
+    print("dLocalpath !!!!!!!!!!     " + dLocalPath);
     final savedDir = Directory(dLocalPath);
     bool hasExisted = await savedDir.exists();
     if (!hasExisted) {
@@ -139,10 +140,16 @@ class _DownloadPageState extends State<DownloadPage>
   }
 
   Future<String> _findLocalPath() async {
+
+    if (platform == TargetPlatform.android) {
+      final directory =
+      await getExternalStorageDirectory();
+
+      return directory.path;
+    }
     final directory =
-        //  platform == TargetPlatform.android ?
-        await getExternalStorageDirectory();
-    //  : await getApplicationDocumentsDirectory();
+    await getApplicationDocumentsDirectory();
+    print("path!!!!!!!!        " + directory.path);
     return directory.path;
   }
 
@@ -886,15 +893,16 @@ class _DownloadPageState extends State<DownloadPage>
 
   void _requestDownload(TaskInfo task) async {
     Wakelock.enable();
+    print('dFileName first !!!!!!!!!!!!!!!     $dFileName');
     setState(() {
       dFileName = task.hdLink.split('/').last;
     });
     saveNewFileName(dFileName);
+    print('dFileName:!!!!!!!!!!!!!!!     $dFileName');
     task.taskId = await FlutterDownloader.enqueue(
         url: task.hdLink,
         headers: {"auth": "test_for_sql_encoding"},
         savedDir: dLocalPath,
-        
         showNotification: true,
         openFileFromNotification: true);
 print('LOCALPATH: $dLocalPath');
@@ -1260,7 +1268,7 @@ print('LOCALPATH: $dLocalPath');
                                                       children: [
                                                         Container(
                                                           // color:Colors.green,
-                                                          width: 40),
+                                                          width: 33),
                                                         Container(
                                                           // color: Colors.yellow,
                                                           child: downloadText(item.task)),

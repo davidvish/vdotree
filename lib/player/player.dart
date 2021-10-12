@@ -130,6 +130,8 @@ class _PlayerMovieState extends State<PlayerMovie> with WidgetsBindingObserver {
           });
     }
 
+    
+
     return WillPopScope(
         child: Scaffold(
           key: sc,
