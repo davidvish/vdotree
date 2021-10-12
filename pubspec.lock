@@ -508,6 +508,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.3"
+  koukicons:
+    dependency: "direct main"
+    description:
+      name: koukicons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3"
   launch_review:
     dependency: "direct main"
     description:

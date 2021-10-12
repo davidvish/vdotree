@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
     print(facebookLoginResult2);
     if (facebookLoginResult2 == true) {
       facebookLoginResult = await facebookLogin.currentAccessToken;
-      print("saad");
+      print("ok");
       print(facebookLogin);
       var graphResponse = await http.get(
           'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.height(200)&access_token=${facebookLoginResult.token}');
@@ -476,7 +476,7 @@ class _LoginScreenState extends State<LoginScreen> {
             borderSide: BorderSide(color: Colors.white),
           ),
           labelText: 'Email',
-          labelStyle: TextStyle(color: Colors.white),
+          labelStyle: TextStyle(color: Colors.white,fontSize: 15),
         ),
       ),
     );
@@ -530,7 +530,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: Colors.white,
                     )),
           labelText: 'Password',
-          labelStyle: TextStyle(color: Colors.white),
+          labelStyle: TextStyle(color: Colors.white, fontSize: 15),
         ),
       ),
     );
@@ -543,7 +543,7 @@ class _LoginScreenState extends State<LoginScreen> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.yellow, accentColor: Colors.yellow),
       home: Scaffold(
-          appBar: customAppBar(context, "Login"),
+          appBar: customAppBar(context, "Log In"),
           body: Container(
             color: Colors.black,
             child: ListView(
@@ -618,7 +618,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         ),
                                       )
                                     : Text(
-                                        'SIGN IN',
+                                        'Sign In',
                                         style: TextStyle(
                                             fontSize: 18.0,
                                             fontWeight: FontWeight.w800,
@@ -682,17 +682,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 BorderRadius.circular(5)),
                                         height: 50.0,
                                         child: RaisedButton.icon(
-                                            icon: Image.asset(
-                                              "assets/google_logo.png",
-                                              height: 30,
-                                              width: 30,
-                                            ),
+                                            // icon: Image.asset(
+                                            //   "assets/google_logo.png",
+                                            //   height: 30,
+                                            //   width: 30,
+                                            // ),
+                                          icon:Icon(FontAwesomeIcons.google,
+                                            color: Colors.black,
+                                            size: 30,),
 
                                             label: Text(
                                              // "Google Sign In",
                                               "Google",
                                               style: TextStyle(
-                                                  fontSize: 22.0,
+                                                  fontSize: 18.0,
                                                   fontWeight: FontWeight.w800,
                                                   color: Colors.black),
                                             ),
@@ -756,7 +759,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                             "Facebook",
                                             style: TextStyle(
                                                 color: Colors.black,
-                                                fontSize: 22.0),
+                                                fontWeight: FontWeight.w800,
+                                                fontSize: 18.0),
                                           ),
                                           color: primaryBlue,
                                           onPressed: () {
