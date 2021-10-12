@@ -697,7 +697,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         height: 20.0,
                       ),
-                      myModel.config.googleLogin == 1 ||
+                     myModel.config.googleLogin == 1 ||
                               "${myModel.config.googleLogin}" == "1"
                           ? Padding(
                               padding: EdgeInsets.symmetric(horizontal: 15.0),
@@ -708,22 +708,55 @@ class _LoginScreenState extends State<LoginScreen> {
                                       // flex: 1,
                                       height: 50.0,
                                       width: MediaQuery.of(context).size.width *
-                                          0.60,
+                                          .60,
                                       child: ButtonTheme(
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(5)),
                                         height: 50.0,
                                         child: RaisedButton.icon(
-                                          icon:Icon(FontAwesomeIcons.google,
-                                            color: Colors.black,
-                                            size: 30,),
-
+                                            icon: Image.asset(
+                                              "assets/google_logo.png",
+                                              height: 30,
+                                              width: 30,
+                                            ),
                                             label: Text(
+                                              "Google Sign In",
+                                              style: TextStyle(
+                                                  fontSize: 18.0,
+                                                  fontWeight: FontWeight.w800,
+                                                  color: Colors.black),
+                                            ),
                                             color: primaryBlue,
+                                            onPressed: () {
+                                              print(myModel.config.googleLogin);
+                                              signInWithGoogle().then((result) {
+                                                if (result != null) {
+                                                  setState(() {
+                                                    isShowing = true;
+                                                  });
                                                   var email = result.email;
+                                                  var password = "password";
+                                                  var code = result.uid;
+                                                  var name = result.displayName;
+                                                  goToDialog();
+                                                  print("anam");
 
+                                                  socialLogin(
+                                                      APIData.googleLoginApi,
+                                                      email,
+                                                      password,
+                                                      code,
+                                                      name,
+                                                      "uid");
                                                 }
+                                              });
+                                            }),
+                                      )),
+                                ],
+                              ))
+                          : SizedBox.shrink(),
+                      SizedBox(
                         height: 20.0,
                       ),
                       myModel.config.fbLogin == 1 ||
@@ -747,14 +780,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                           icon: Icon(
                                             FontAwesomeIcons.facebook,
                                             color: Colors.black,
-                                            size: 30,
+                                            size: 28,
                                           ),
                                           label: Text(
-                                            "Facebook",
+                                            "Facebook Sign In",
                                             style: TextStyle(
                                                 color: Colors.black,
-                                                fontWeight: FontWeight.w800,
-                                                fontSize: 18.0),
+                                                fontSize: 16.0),
                                           ),
                                           color: primaryBlue,
                                           onPressed: () {
