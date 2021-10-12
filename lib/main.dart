@@ -23,6 +23,7 @@ void main() async {
   // runApp(MyApp());
   OneSignal.shared.setAppId("07ef6c88-0305-4f67-b1af-471aa9cdbdf7");
   // OneSignal.shared
+  
   //     .setInFocusDisplayType(OSNotificationDisplayType.notification);
 
   OneSignal.shared.promptUserForPushNotificationPermission();
