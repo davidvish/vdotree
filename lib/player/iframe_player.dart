@@ -29,11 +29,14 @@ class _IFramePlayerPageState extends State<IFramePlayerPage> {
 
   @override
   void dispose() {
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.portraitUp,
+    //   DeviceOrientation.portraitDown,
+    //   DeviceOrientation.landscapeLeft,
+    //   DeviceOrientation.landscapeRight
+    // ]);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight
     ]);
     super.dispose();
   }

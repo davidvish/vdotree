@@ -956,13 +956,16 @@ class TVSeriesWishList extends StatefulWidget {
 }
 
 class _TVSeriesWishListState extends State<TVSeriesWishList> {
-  Future<String> removeWishList(vType, id) async {
+   removeWishList(vType, id) async {
     final response = await http.get("${APIData.removeWatchlistSeason}$id",
         headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
+        print(' RFCTFCFC $id');
+        print(response.body);
     if (response.statusCode == 200) {
       tvWishList
           .removeWhere((element) => element.type == vType && element.id == id);
       setState(() {});
+      print('ID SOLVE $id');
     }
     return null;
   }

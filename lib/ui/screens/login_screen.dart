@@ -45,6 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isLoading = false;
   bool isLoggedIn = false;
   var profileData;
+  var newpass;
   var facebookLogin = FacebookLogin();
   bool isShowing = false;
   LoginModel loginModel;
@@ -107,14 +108,16 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<String> socialLogin(url, email, password, code, name, uid) async {
+  final accessTokenResponsenew = await http.post(APIData.userPassApi, body: {
+      "email": email,
+    });
+    print(json.decode(accessTokenResponsenew.body));
     final accessTokenResponse = await http.post(url, body: {
       "email": email,
-      "password": password,
+      "password": json.decode(accessTokenResponsenew.body),
       "$uid": code,
       "name": name,
     });
-    print(accessTokenResponse.statusCode);
-    print(accessTokenResponse.body);
     if (accessTokenResponse.statusCode == 200) {
       loginModel = LoginModel.fromJson(json.decode(accessTokenResponse.body));
       var refreshToken = loginModel.refreshToken;
@@ -135,6 +138,36 @@ class _LoginScreenState extends State<LoginScreen> {
     }
     return null;
   }
+
+  // Future<void> getUserPass(url, email) async {
+  //   final accessTokenResponse = await http.post(url, body: {
+  //     "email": email,
+  //   });
+  //   // print(accessTokenResponse.statusCode);
+  //   // print(accessTokenResponse.body);
+  //   // if (accessTokenResponse.statusCode == 200) {
+  //   //   loginModel = LoginModel.fromJson(json.decode(accessTokenResponse.body));
+  //   //   var refreshToken = loginModel.refreshToken;
+  //   //   var mToken = loginModel.accessToken;
+  //   //   await storage.write(key: "login", value: "true");
+  //   //   await storage.write(key: "authToken", value: mToken);
+  //   //   await storage.write(key: "refreshToken", value: refreshToken);
+  //   //   setState(() {
+  //   //     authToken = mToken;
+  //   //   });
+  //   //   fetchAppData(context);
+  //   // } else {
+  //   //   setState(() {
+  //   //     isShowing = false;
+  //   //   });
+  //   //   Navigator.pop(context);
+  //   //   Fluttertoast.showToast(msg: "Error in login");
+  //   // }
+  //   setState(() {
+  //     newpass = accessTokenResponse.body;
+  //   });
+  //   // return accessTokenResponse.body;
+  // }
 
   Future<void> fetchAppData(ctx) async {
     MenuProvider menuProvider = Provider.of<MenuProvider>(ctx, listen: false);
@@ -577,8 +610,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Navigator.push(context, MaterialPageRoute(
                                     builder: (BuildContext context) {
                                   return ForgotPassword();
-                                })
-                                );
+                                }));
                               },
                               child: Text(
                                 'Forgot Password ?',
@@ -675,60 +707,23 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Container(
                                       // flex: 1,
                                       height: 50.0,
-                                      width: MediaQuery.of(context).size.width *0.60,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.60,
                                       child: ButtonTheme(
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(5)),
                                         height: 50.0,
                                         child: RaisedButton.icon(
-                                            // icon: Image.asset(
-                                            //   "assets/google_logo.png",
-                                            //   height: 30,
-                                            //   width: 30,
-                                            // ),
                                           icon:Icon(FontAwesomeIcons.google,
                                             color: Colors.black,
                                             size: 30,),
 
                                             label: Text(
-                                             // "Google Sign In",
-                                              "Google",
-                                              style: TextStyle(
-                                                  fontSize: 18.0,
-                                                  fontWeight: FontWeight.w800,
-                                                  color: Colors.black),
-                                            ),
                                             color: primaryBlue,
-                                            onPressed: () {
-                                              print(myModel.config.googleLogin);
-                                              signInWithGoogle().then((result) {
-                                                if (result != null) {
-                                                  setState(() {
-                                                    isShowing = true;
-                                                  });
                                                   var email = result.email;
-                                                  var password = "password";
-                                                  var code = result.uid;
-                                                  var name = result.displayName;
-                                                  goToDialog();
-                                                  print("ok");
 
-                                                  socialLogin(
-                                                      APIData.googleLoginApi,
-                                                      email,
-                                                      password,
-                                                      code,
-                                                      name,
-                                                      "uid");
                                                 }
-                                              });
-                                            }),
-                                      )),
-                                ],
-                              ))
-                          : SizedBox.shrink(),
-                      SizedBox(
                         height: 20.0,
                       ),
                       myModel.config.fbLogin == 1 ||
@@ -750,7 +745,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                       height: 50.0,
                                       child: RaisedButton.icon(
                                           icon: Icon(
-
                                             FontAwesomeIcons.facebook,
                                             color: Colors.black,
                                             size: 30,
