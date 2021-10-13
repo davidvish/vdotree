@@ -25,7 +25,7 @@ class _TvSeriesListState extends State<TvSeriesList> {
                 physics: ClampingScrollPhysics(),
                 padding: EdgeInsets.only(left: 15.0),
                 scrollDirection: Axis.horizontal,
-                itemCount: menuByCat.length,
+                itemCount: menuByCat.length ,
                 itemBuilder: (BuildContext context, int index) {
                   return InkWell(
                     borderRadius: BorderRadius.circular(5.0),

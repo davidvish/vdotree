@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
@@ -38,6 +39,17 @@ class _OtpLoginState extends State<OtpLogin> {
       DeviceOrientation.portraitDown,
     ]);
     super.initState();
+     timer = Timer.periodic(Duration(seconds: 1), (_) {
+      if (secondsRemaining != 0) {
+        setState(() {
+          secondsRemaining--;
+        });
+      } else {
+        setState(() {
+          enableResend = true;
+        });
+      }
+    });
   }
 
   @override
@@ -48,8 +60,13 @@ class _OtpLoginState extends State<OtpLogin> {
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight
     ]);
+    timer.cancel();
     super.dispose();
   }
+   int secondsRemaining = 30;
+  bool enableResend = false;
+  Timer timer;
+
 
   @override
   Widget build(BuildContext context) {
@@ -316,10 +333,12 @@ class _OtpLoginState extends State<OtpLogin> {
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold),
                           ),
+enableResend ?
+                         
+                                  
+                        
                           InkWell(
-                            onTap: () {
-                              resendotp();
-                            },
+                            onTap:enableResend ? resendotp : null,
                             child: Text(
                               " RESEND",
                               style: TextStyle(
@@ -327,7 +346,19 @@ class _OtpLoginState extends State<OtpLogin> {
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600),
                             ),
-                          ),
+                          )
+
+                          :
+                           Padding(
+                             padding: const EdgeInsets.only(left:5),
+                             child: TweenAnimationBuilder(
+                                tween: Tween(begin: 30.0, end: 0),
+                                duration: Duration(seconds: 30),
+                                builder: (context, value, child) => Text(
+                                      '00:${value.toInt()}',
+                                      style: TextStyle(color: primaryBlue,fontSize: 16),
+                                    )),
+                           )
                         ],
                       ),
                       SizedBox(
@@ -520,6 +551,7 @@ class _OtpLoginState extends State<OtpLogin> {
 
   resendotp() async {
     print(authToken);
+    
     var response1 = await http.post(APIData.loginotpresend, body: {
       "email": widget.email,
       "password": widget.pass
@@ -538,6 +570,10 @@ class _OtpLoginState extends State<OtpLogin> {
         textColor: Colors.white,
         gravity: ToastGravity.BOTTOM,
       );
+       setState((){
+      secondsRemaining = 30;
+      enableResend = false;
+    });
     } else {
       Fluttertoast.showToast(
         msg: "Getting Some Error",
@@ -547,4 +583,5 @@ class _OtpLoginState extends State<OtpLogin> {
       );
     }
   }
+  
 }

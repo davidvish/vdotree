@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:IQRA/common/styles.dart';
@@ -32,6 +33,40 @@ class RegisterOtp extends StatefulWidget {
 class _RegisterOtpState extends State<RegisterOtp> {
   TextEditingController otp = TextEditingController();
 
+
+  @override
+  void initState() {
+SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    super.initState();
+     timer = Timer.periodic(Duration(seconds: 1), (_) {
+      if (secondsRemaining != 0) {
+        setState(() {
+          secondsRemaining--;
+        });
+      } else {
+        setState(() {
+          enableResend = true;
+        });
+      }
+    });  }
+
+@override
+  void dispose() {
+ SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight
+    ]);
+    timer.cancel();
+    super.dispose();  }
+
+    int secondsRemaining = 30;
+  bool enableResend = false;
+  Timer timer;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -316,10 +351,12 @@ class _RegisterOtpState extends State<RegisterOtp> {
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold),
                           ),
+                        enableResend ?
+                         
+                                  
+                        
                           InkWell(
-                            onTap: ()async {
-                              resendotp();
-                            },
+                            onTap:enableResend ? resendotp : null,
                             child: Text(
                               " RESEND",
                               style: TextStyle(
@@ -327,7 +364,19 @@ class _RegisterOtpState extends State<RegisterOtp> {
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600),
                             ),
-                          ),
+                          )
+
+                          :
+                           Padding(
+                             padding: const EdgeInsets.only(left:5),
+                             child: TweenAnimationBuilder(
+                                tween: Tween(begin: 30.0, end: 0),
+                                duration: Duration(seconds: 30),
+                                builder: (context, value, child) => Text(
+                                      '00:${value.toInt()}',
+                                      style: TextStyle(color: primaryBlue,fontSize: 16),
+                                    )),
+                           )
                         ],
                       ),
                       SizedBox(
@@ -497,6 +546,10 @@ class _RegisterOtpState extends State<RegisterOtp> {
         textColor: Colors.white,
         gravity: ToastGravity.BOTTOM,
       );
+        setState((){
+      secondsRemaining = 30;
+      enableResend = false;
+    });
     } else {
       Fluttertoast.showToast(
         msg: "Getting Some Errror",

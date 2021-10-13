@@ -37,7 +37,7 @@ class _RecentSeriesListState extends State<RecentSeriesList> {
       }
     }
 
-    // print(newarr.length);
+    print( 'WSDKMJNBJD ${newarr.length}');
 
     return newarr.length == 0
         ? SizedBox.shrink()
