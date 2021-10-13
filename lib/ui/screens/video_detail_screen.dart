@@ -672,7 +672,10 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
                     ),
                   ),
                 ),
-          )),
+            ]
+          )),);
+  }
+  Widget genresRow(genres) {
 
     return Padding(
         padding: const EdgeInsets.symmetric(vertical: 2.0),
