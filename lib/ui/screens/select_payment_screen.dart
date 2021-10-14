@@ -1672,7 +1672,7 @@ class _SelectPaymentScreenState extends State<SelectPaymentScreen>
           child: DefaultTabController(
             length: 2,
             child: Scaffold(
-              
+              backgroundColor: Colors.black,
               // backgroundColor: Colors.green,
               key: _scaffoldKey,
               body: loading == true

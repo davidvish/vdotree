@@ -221,9 +221,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                             child: Text(
                                           "Reset Password",
                                           style: TextStyle(
-                                              fontSize: 20,
+                                              fontSize: 18,
                                               color: Colors.black,
-                                              fontWeight: FontWeight.w800),
+                                              fontWeight: FontWeight.bold),
                                         )),
                                       ),
                                     ],

@@ -364,6 +364,8 @@ enableResend ?
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.1,
                       ),
+
+                       (_spincontorller == false)?
                       Container(
                         width: MediaQuery.of(context).size.width * 0.75,
                         child: Row(
@@ -376,6 +378,9 @@ enableResend ?
                                 //     builder: (BuildContext context) {
                                 //   return ResetPassword();
                                 // }));
+                                setState(() {
+                                  _spincontorller = true;
+                                });
                               },
                               child: Container(
                                 height: 50,
@@ -404,7 +409,9 @@ enableResend ?
                             ),
                           ],
                         ),
-                      ),
+                      )
+                      :
+                      Container(color: Colors.red,)
                     ],
                   )
                       // ],

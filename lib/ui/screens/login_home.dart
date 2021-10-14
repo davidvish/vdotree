@@ -79,7 +79,7 @@ class _LoginHomeState extends State<LoginHome> {
                 "Register",
                 style: TextStyle(
                     fontSize: 18.0,
-                    fontWeight: FontWeight.w800,
+                    fontWeight: FontWeight.bold,
                     color: Colors.black),
               ),
               // onPressed: () {},
@@ -108,7 +108,7 @@ class _LoginHomeState extends State<LoginHome> {
                 "Log In",
                 style: TextStyle(
                     fontSize: 18.0,
-                    fontWeight: FontWeight.w800,
+                    fontWeight: FontWeight.bold,
                     color: Colors.black),
               ),
               onPressed: () => Navigator.pushNamed(context, RoutePaths.login)),
