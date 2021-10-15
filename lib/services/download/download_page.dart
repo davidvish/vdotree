@@ -1268,7 +1268,7 @@ print('LOCALPATH: $dLocalPath');
                                                       children: [
                                                         Container(
                                                           // color:Colors.green,
-                                                          width: 33),
+                                                          width: 40),
                                                         Container(
                                                           // color: Colors.yellow,
                                                           child: downloadText(item.task)),

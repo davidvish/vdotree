@@ -575,7 +575,7 @@ setState(() {
                                   : Text(
                                       'Sign Up',
                                       style: TextStyle(
-                                          fontSize: 20, color: Colors.black),
+                                          fontSize: 18, color: Colors.black,fontWeight: FontWeight.bold),
                                     ),
                               // onPressed: (){},
                               onPressed: () {

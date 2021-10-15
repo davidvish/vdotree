@@ -1,3 +1,4 @@
+import 'package:IQRA/common/global.dart';
 import 'package:flutter/material.dart';
 import 'package:IQRA/common/route_paths.dart';
 import 'package:IQRA/providers/menu_data_provider.dart';
@@ -13,7 +14,9 @@ class TvSeriesList extends StatefulWidget {
 class _TvSeriesListState extends State<TvSeriesList> {
   @override
   Widget build(BuildContext context) {
+    
     var menuByCat = Provider.of<MenuDataProvider>(context).menuCatTvSeriesList;
+    
     return menuByCat.length == 0
         ? SizedBox.shrink()
         : Container(

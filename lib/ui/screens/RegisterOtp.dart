@@ -432,14 +432,16 @@ SystemChrome.setPreferredOrientations([
               ],
             ),
             Container(
+              
               height: MediaQuery.of(context).size.height,
               child: Center (
                   child: (_spincontorller == true)
                       ? Container(
+                        // color: Colors.red,
                           margin: const EdgeInsets.only(
                               bottom: 6.0), //Same as `blurRadius` i guess
-                          height: 100.0,
-                          width: 120.0,
+                          height: MediaQuery.of(context).size.height,
+                          width: MediaQuery.of(context).size.width,
                           child: SpinKitRing(
                               color: primaryBlue,
                               size: _spincontorller ? 40 : 0),

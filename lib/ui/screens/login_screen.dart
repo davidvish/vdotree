@@ -653,7 +653,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         'Sign In',
                                         style: TextStyle(
                                             fontSize: 18.0,
-                                            fontWeight: FontWeight.w800,
+                                            fontWeight: FontWeight.bold,
                                             color: Colors.black),
                                       ),
                                 onPressed: () {
@@ -724,7 +724,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                               "Google Sign In",
                                               style: TextStyle(
                                                   fontSize: 18.0,
-                                                  fontWeight: FontWeight.w800,
+                                                  fontWeight: FontWeight.bold,
                                                   color: Colors.black),
                                             ),
                                             color: primaryBlue,
@@ -786,7 +786,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             "Facebook Sign In",
                                             style: TextStyle(
                                                 color: Colors.black,
-                                                fontSize: 16.0),
+                                                fontSize: 18.0,fontWeight: FontWeight.bold),
                                           ),
                                           color: primaryBlue,
                                           onPressed: () {
