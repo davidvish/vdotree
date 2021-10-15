@@ -20,6 +20,7 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="VDOTREE"
         android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
         tools:replace="android:label"
         android:icon="@mipmap/ic_launcher">
         <activity

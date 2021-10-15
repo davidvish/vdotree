@@ -118,13 +118,10 @@ class _DownloadEpisodePageState extends State<DownloadEpisodePage>
 
   Future<bool> _checkPermission() async {
     if (platform == TargetPlatform.android) {
-      PermissionStatus permission = await PermissionHandler()
-          .checkPermissionStatus(PermissionGroup.storage);
+      PermissionStatus permission = await Permission.storage.status;
       if (permission != PermissionStatus.granted) {
-        Map<PermissionGroup, PermissionStatus> permissions =
-            await PermissionHandler()
-                .requestPermissions([PermissionGroup.storage]);
-        if (permissions[PermissionGroup.storage] == PermissionStatus.granted) {
+        await Permission.storage.request();
+        if (await Permission.storage.status == PermissionStatus.granted) {
           return true;
         }
       } else {
@@ -1176,8 +1173,7 @@ class _DownloadEpisodePageState extends State<DownloadEpisodePage>
 
   @override
   void initState() {
-    PermissionHandler()
-                .requestPermissions([PermissionGroup.storage]);
+    Permission.storage.request();
     // TODO: implement initState
     _bindBackgroundIsolate();
     FlutterDownloader.registerCallback(downloadCallback);

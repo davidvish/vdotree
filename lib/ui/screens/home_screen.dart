@@ -28,14 +28,10 @@ class _HomeScreenState extends State<HomeScreen>
 
   Future<bool> _checkPermission() async {
     if (platform == TargetPlatform.android) {
-      PermissionStatus permission = await PermissionHandler()
-          .checkPermissionStatus(PermissionGroup.notification);
+      PermissionStatus permission = await Permission.notification.status;
       if (permission != PermissionStatus.granted) {
-        Map<PermissionGroup, PermissionStatus> permissions =
-            await PermissionHandler()
-                .requestPermissions([PermissionGroup.notification]);
-        if (permissions[PermissionGroup.notification] ==
-            PermissionStatus.granted) {
+        Permission.notification.request();
+        if (await Permission.notification.status == PermissionStatus.granted) {
           return true;
         }
       } else {

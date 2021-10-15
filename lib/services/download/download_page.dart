@@ -142,26 +142,22 @@ class _DownloadPageState extends State<DownloadPage>
   Future<String> _findLocalPath() async {
 
     if (Platform.isAndroid) {
-      final directory = await getApplicationDocumentsDirectory();
-      //await getExternalStorageDirectory();
-      print("path!!!!!!!!     android   " + directory.path);
+      final directory = await getExternalStorageDirectory();
+      print("path!!!!!!!!     android  download page  " + directory.path);
       return directory.path;
     }else {
       final directory = await getApplicationDocumentsDirectory();
-      print("path!!!!!!!!     ios   " + directory.path);
+      print("path!!!!!!!!     ios  download page  " + directory.path);
       return directory.path;
     }
   }
 
   Future<bool> _checkPermission() async {
     if (platform == TargetPlatform.android) {
-      PermissionStatus permission = await PermissionHandler()
-          .checkPermissionStatus(PermissionGroup.storage);
+      PermissionStatus permission = await Permission.storage.status;
       if (permission != PermissionStatus.granted) {
-        Map<PermissionGroup, PermissionStatus> permissions =
-            await PermissionHandler()
-                .requestPermissions([PermissionGroup.storage]);
-        if (permissions[PermissionGroup.storage] == PermissionStatus.granted) {
+        await Permission.storage.request();
+        if (await Permission.storage.status == PermissionStatus.granted) {
           return true;
         }
       } else {
@@ -898,8 +894,8 @@ class _DownloadPageState extends State<DownloadPage>
       dFileName = task.hdLink.split('/').last;
     });
     saveNewFileName(dFileName);
-    print('dFileName:!!!!!!!!!!!!!!!     $dFileName');
-    print('LOCALPATH:!!!!!!!!!!!!!!!     $dLocalPath');
+    print('dFileName: download page !!!!!!!!!!!!!!!     $dFileName');
+    print('LOCALPATH: download page !!!!!!!!!!!!!!!     $dLocalPath');
     task.taskId = await FlutterDownloader.enqueue(
         url: task.hdLink,
         headers: {"auth": "test_for_sql_encoding"},
@@ -1395,8 +1391,7 @@ class _DownloadPageState extends State<DownloadPage>
   @override
   void initState() {
     _checkPermission();
-     PermissionHandler()
-                .requestPermissions([PermissionGroup.storage]);
+     Permission.storage.request();
     // TODO: implement initState
     _bindBackgroundIsolate();
     FlutterDownloader.registerCallback(downloadCallback);
