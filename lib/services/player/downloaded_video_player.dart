@@ -23,6 +23,9 @@ class _DownloadedVideoPlayerState extends State<DownloadedVideoPlayer>
   VideoPlayerController _videoPlayerController1;
   ChewieController _chewieController;
   var vFileName;
+  var _initializeVideoPlayerFuture;
+
+
 
   @override
   void initState() {
@@ -32,25 +35,31 @@ class _DownloadedVideoPlayerState extends State<DownloadedVideoPlayer>
       vFileName = widget.fileName;
     });
 
+    print('local path1: ${localPath}');
+    print('local path2: $localPath/${widget.fileName}');
+
     WidgetsBinding.instance.addObserver(this);
+    print("path!!!!!!!!!!!!!!!!!!!!!  video player   "+"$localPath/$vFileName");
     _videoPlayerController1 =
         VideoPlayerController.file(File("$localPath/$vFileName"));
-    _chewieController = ChewieController(
-      videoPlayerController: _videoPlayerController1,
-      aspectRatio: 3 / 2,
-      autoPlay: true,
-      looping: true,
-      materialProgressColors: ChewieProgressColors(
-        playedColor: Colors.red,
-        handleColor: Colors.red,
-        backgroundColor: Colors.white.withOpacity(0.6),
-        bufferedColor: Colors.white,
-      ),
-      placeholder: Container(
-        color: Colors.black,
-      ),
+    _initializeVideoPlayerFuture =
+        _videoPlayerController1.initialize().then((_) {
+          _chewieController = ChewieController(
+            videoPlayerController: _videoPlayerController1,
+            aspectRatio: _videoPlayerController1.value.aspectRatio,
+            autoPlay: true,
+            looping: false,
+            materialProgressColors: ChewieProgressColors(
+              playedColor: Colors.red,
+              handleColor: Colors.red,
+              backgroundColor: Colors.white.withOpacity(0.6),
+              bufferedColor: Colors.white,
+            ),
+            placeholder: Container(
+              color: Colors.black,
+            )
       // autoInitialize: true,
-    );
+    );});
 
     var r = _videoPlayerController1.value.aspectRatio;
     String os = Platform.operatingSystem;
@@ -73,21 +82,30 @@ class _DownloadedVideoPlayerState extends State<DownloadedVideoPlayer>
     super.dispose();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
-        children: <Widget>[
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
           Expanded(
-            child: Center(
-              child: Chewie(
-                controller: _chewieController,
-                title: playerTitle,
-                downloadStatus: widget.downloadStatus,
-              ),
-            ),
-          ),
+              child: FutureBuilder(
+                future: _initializeVideoPlayerFuture,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return Chewie(
+                      controller: _chewieController,
+                      title: playerTitle,
+                      downloadStatus: widget.downloadStatus,
+                    );
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                },
+              ))
         ],
       ),
     );
