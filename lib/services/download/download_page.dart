@@ -141,16 +141,16 @@ class _DownloadPageState extends State<DownloadPage>
 
   Future<String> _findLocalPath() async {
 
-    if (platform == TargetPlatform.android) {
-      final directory =
-      await getExternalStorageDirectory();
-
+    if (Platform.isAndroid) {
+      final directory = await getApplicationDocumentsDirectory();
+      //await getExternalStorageDirectory();
+      print("path!!!!!!!!     android   " + directory.path);
+      return directory.path;
+    }else {
+      final directory = await getApplicationDocumentsDirectory();
+      print("path!!!!!!!!     ios   " + directory.path);
       return directory.path;
     }
-    final directory =
-    await getApplicationDocumentsDirectory();
-    print("path!!!!!!!!        " + directory.path);
-    return directory.path;
   }
 
   Future<bool> _checkPermission() async {
@@ -899,13 +899,14 @@ class _DownloadPageState extends State<DownloadPage>
     });
     saveNewFileName(dFileName);
     print('dFileName:!!!!!!!!!!!!!!!     $dFileName');
+    print('LOCALPATH:!!!!!!!!!!!!!!!     $dLocalPath');
     task.taskId = await FlutterDownloader.enqueue(
         url: task.hdLink,
         headers: {"auth": "test_for_sql_encoding"},
         savedDir: dLocalPath,
         showNotification: true,
         openFileFromNotification: true);
-print('LOCALPATH: $dLocalPath');
+      print('LOCALPATH: $dLocalPath');
     int progress = 0;
     var mVType = widget.videoDetail.type == DatumType.T ? "T" : "M";
     createTodo(task, task.name, dFileName, mVType, widget.videoDetail.id,

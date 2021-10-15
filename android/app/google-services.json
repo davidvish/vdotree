@@ -22,11 +22,27 @@
           }
         },
         {
+          "client_id": "46181757790-9ak4vq2iqpi7n0af5rnt1aj903e8vft2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vdotree.vdotree",
+            "certificate_hash": "2952a4b6aabbc6053f3506debd316b3fbdaa711d"
+          }
+        },
+        {
           "client_id": "46181757790-af24o398t5pi9gt20rq23n5lkv93652b.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.vdotree.vdotree",
             "certificate_hash": "0772b1eb8d3b745a5c4e8bf6a76b470bdb26c84c"
+          }
+        },
+        {
+          "client_id": "46181757790-flm270pn28cvv79lp2n230btuje7mrr1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vdotree.vdotree",
+            "certificate_hash": "2ba665f5f25e395e4fccb7b0a7e9e9df18546692"
           }
         },
         {

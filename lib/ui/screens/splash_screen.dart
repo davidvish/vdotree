@@ -42,22 +42,45 @@ class SplashScreenState extends State<SplashScreen> {
   bool _requireConsent = true;
   TargetPlatform platform;
 
-  Future<Null> setLocalPath() async {
-    // setState(() {
-    //   localPath = APIData.localPath;
-    // });
-    if (platform == TargetPlatform.android) {
+  // Future<Null> setLocalPath() async {
+  //   // setState(() {
+  //   //   localPath = APIData.localPath;
+  //   // });
+  //   if (Platform.isAndroid) {
+  //     // print("path!!!!!!!!    android    " + APIData.localPath);
+  //     // setState(() {
+  //     //   localPath = APIData.localPath;
+  //     // });
+  //     final directory = //await getApplicationDocumentsDirectory();
+  //     await getExternalStorageDirectory();
+  //     print("path!!!!!!!!     android   " + directory.path);
+  //     setState(() {
+  //       localPath = directory.path + "/Download";
+  //     });
+  //   }else {
+  //     final directory =
+  //     await getApplicationDocumentsDirectory();
+  //     print("path!!!!!!!!    ios    " + directory.path);
+  //     setState(() {
+  //       localPath = directory.path + "/Download";
+  //     });
+  //   }
+  // }
 
-      setState(() {
-        localPath = APIData.localPath;
-      });
-    }
-    final directory =
-    await getApplicationDocumentsDirectory();
-    print("path!!!!!!!!        " + directory.path);
+  Future<Null> setLocalPath() async {
+    print('sms');
+    var deviceLocalPath =
+        (await _findLocalPath()) + Platform.pathSeparator + 'Download';
+    print('local path: $deviceLocalPath');
     setState(() {
-      localPath = directory.path + "/Download";
+      localPath = deviceLocalPath;
+      dLocalPath = deviceLocalPath;
     });
+  }
+
+  Future<String> _findLocalPath() async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
   }
 
   Future<void> checkForUpdate() async {
