@@ -70,15 +70,16 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                 ),
                 content: Container(
                   height: 100.0,
+                  // color: Colors.red,
                   child: Column(
                     children: <Widget>[
                       SizedBox(
-                        height: 2.0,
+                        height: 10.0,
                       ),
                       Icon(FontAwesomeIcons.checkCircle,
                           size: 60.0, color: activeDotColor),
                       SizedBox(
-                        height: 10.0,
+                        height: 25.0,
                       ),
                       Text(
                         'Profile has been updated.',
