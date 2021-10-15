@@ -139,7 +139,7 @@ PODS:
     - Flutter
   - paytm (0.0.1):
     - Flutter
-  - "permission_handler (4.4.0+hotfix.4)":
+  - "permission_handler (5.1.0+2)":
     - Flutter
   - PromisesObjC (1.2.12)
   - rate_my_app (1.1.1):
@@ -321,7 +321,7 @@ SPEC CHECKSUMS:
   OneSignalXCFramework: c97e3012322b9cf3ef0d716d54a18a8e9b77f220
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   paytm: 776e5d03fbe319a3c5ace1ffacd4718946c440a3
-  permission_handler: 8278954f2382902f63f00dd8828769c0bd6d511b
+  permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   rate_my_app: 8e49687f3520c56352f974f0cb401afea07cd496
   razorpay-pod: f1763f8ee8f83152837abe7de1cdfbcd4eb035b9

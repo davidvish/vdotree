@@ -102,8 +102,7 @@ moviesDownload.add(Datum(thumbnail:moviesTvList[index].thumbnail ));
 
   @override
   void initState() {
-     PermissionHandler()
-                .requestPermissions([PermissionGroup.storage]);
+     Permission.storage.request();
     super.initState();
 _checkPermission().then((value) => _permissionReady == value);
     getApplicationDocumentsDirectory().then((Directory directory) {
@@ -227,8 +226,7 @@ _checkPermission().then((value) => _permissionReady == value);
 //                 .requestPermissions([PermissionGroup.storage]);
 //         }
 // }
-  Future<PermissionStatus> permissionStatus =  PermissionHandler()
-          .checkPermissionStatus(PermissionGroup.storage);
+  Future<PermissionStatus> permissionStatus =  Permission.storage.request();
          
 //Future<Map<PermissionGroup, PermissionStatus>> permissions =
 //              PermissionHandler()
@@ -253,9 +251,7 @@ _checkPermission().then((value) => _permissionReady == value);
               ),
               FlatButton(
                   onPressed: () {
- PermissionHandler()
-                .requestPermissions([PermissionGroup.storage]);
-
+ Permission.storage.request();
                     // _checkPermission().then((hasGranted) {
                     //   setState(() {
                     //     _permissionReady = hasGranted;
@@ -274,15 +270,12 @@ _checkPermission().then((value) => _permissionReady == value);
         ),
       );
       TargetPlatform platform;
-       Future<bool> _checkPermission() async {
+  Future<bool> _checkPermission() async {
     if (platform == TargetPlatform.android) {
-      PermissionStatus permission = await PermissionHandler()
-          .checkPermissionStatus(PermissionGroup.storage);
+      PermissionStatus permission = await Permission.storage.status;
       if (permission != PermissionStatus.granted) {
-        Map<PermissionGroup, PermissionStatus> permissions =
-            await PermissionHandler()
-                .requestPermissions([PermissionGroup.storage]);
-        if (permissions[PermissionGroup.storage] == PermissionStatus.granted) {
+        await Permission.storage.request();
+        if (await Permission.storage.status == PermissionStatus.granted) {
           return true;
         }
       } else {
@@ -294,8 +287,7 @@ _checkPermission().then((value) => _permissionReady == value);
     return false;
   }
 
-   Future<PermissionStatus> permissionStatus1 =  PermissionHandler()
-          .checkPermissionStatus(PermissionGroup.storage);
+   Future<PermissionStatus> permissionStatus1 =  Permission.storage.status;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   
@@ -724,7 +716,7 @@ Future<void> deleteFile(File file) async {
 
   Future<String> _findLocalPath() async {
     // final platform = Theme.of(context).platform;
-    final directory = 
+    final directory =
     //  platform == TargetPlatform.android ?
          await getExternalStorageDirectory() ;
         // : await getApplicationDocumentsDirectory();

@@ -71,7 +71,7 @@ class SplashScreenState extends State<SplashScreen> {
     print('sms');
     var deviceLocalPath =
         (await _findLocalPath()) + Platform.pathSeparator + 'Download';
-    print('local path: $deviceLocalPath');
+    print('local path: splash screen!!!!!!!!!!!!!!!    $deviceLocalPath');
     setState(() {
       localPath = deviceLocalPath;
       dLocalPath = deviceLocalPath;
@@ -79,7 +79,14 @@ class SplashScreenState extends State<SplashScreen> {
   }
 
   Future<String> _findLocalPath() async {
+    if(Platform.isAndroid)
+      {
+        final directory = await getExternalStorageDirectory();
+        print("Android Path splash!!!!!!!!! " + directory.path);
+        return directory.path;
+      }
     final directory = await getApplicationDocumentsDirectory();
+    print("ios Path splash!!!!!!!!! " + directory.path);
     return directory.path;
   }
 
