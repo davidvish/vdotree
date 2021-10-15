@@ -62,6 +62,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       ),
     );
   }
+  final LinearGradient gradient = LinearGradient(colors: [primaryBlue,Colors.deepOrange,Colors.purple]);
 
   @override
   Widget build(BuildContext context) {
@@ -97,9 +98,18 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0),
                     child: Container(
+                      alignment: Alignment.center,
                       height: 90,
-                      width: 90,
-                      child: Image.asset("assets/logo.png"),
+                      width: 150,
+                      child:ShaderMask(
+                  shaderCallback: (Rect rect) {
+                    return gradient.createShader(rect);
+                  },
+                  child: Text(
+                    'VDOTREE',
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  )),
+                      //  Image.asset("assets/logo.png"),
                     ),
                   ),
                   Padding(

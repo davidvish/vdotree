@@ -588,6 +588,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+  final LinearGradient gradient = LinearGradient(colors: [primaryBlue,Colors.deepOrange,Colors.purple]);
 
   @override
   Widget build(BuildContext context) {
@@ -608,9 +609,18 @@ class _LoginScreenState extends State<LoginScreen> {
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0),
                         child: Container(
+                          alignment: Alignment.center,
+                          // color:Colors.red,
                           height: 90,
-                          width: 90,
-                          child: Image.asset("assets/logo.png"),
+                          width: 150,
+                          child: ShaderMask(
+                  shaderCallback: (Rect rect) {
+                    return gradient.createShader(rect);
+                  },
+                  child: Text(
+                    'VDOTREE',
+                    style: TextStyle(color: Colors.white,fontSize: 30, fontWeight: FontWeight.bold),
+                  ))
                         ),
                       ),
                       SizedBox(

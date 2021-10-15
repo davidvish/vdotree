@@ -155,13 +155,12 @@ class _LoginHomeState extends State<LoginHome> {
     });
   }
 
+  final LinearGradient gradient =
+      LinearGradient(colors: [primaryBlue, Colors.deepOrange, Colors.purple]);
+
 // Copyright text
   Widget copyRightTextContainer(myModel) {
-    return 
-    
-    
-    Container(
-     
+    return Container(
       margin: EdgeInsets.only(bottom: 5.0),
       child: new Align(
           alignment: FractionalOffset.bottomCenter,
@@ -217,13 +216,21 @@ class _LoginHomeState extends State<LoginHome> {
         // ),
         // co
         Padding(
-          padding: const EdgeInsets.only(bottom: 20),
-          child: Container(
-            height: 100.0,
-            width: 100,
-            child: Image.asset("assets/logo.png"),
-          ),
-        ),
+            padding: const EdgeInsets.only(bottom: 20),
+            child: Container(
+              alignment: Alignment.center,
+              height: 100.0,
+              width: 100,
+              child: ShaderMask(
+                  shaderCallback: (Rect rect) {
+                    return gradient.createShader(rect);
+                  },
+                  child: Text(
+                    'VDOTREE',
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  )),
+            )),
+
         welcomeTitle(),
         SizedBox(
           height: 5.0,
@@ -238,10 +245,9 @@ class _LoginHomeState extends State<LoginHome> {
                 "Sign in",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  //color: primaryBlue,
-                  color: Colors.white,
-                  fontSize: 17
-                ),
+                    //color: primaryBlue,
+                    color: Colors.white,
+                    fontSize: 17),
               ),
               Text(
                 " to continue...",
@@ -250,8 +256,7 @@ class _LoginHomeState extends State<LoginHome> {
                 style: TextStyle(
                     //color:primaryBlue,
                     color: Colors.white,
-                    fontSize: 17
-                ),
+                    fontSize: 17),
               ),
             ],
           ),
@@ -274,15 +279,21 @@ class _LoginHomeState extends State<LoginHome> {
     return Stack(
       children: <Widget>[
         Container(
-         
-          decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/login.jpg'),fit: BoxFit.cover,)),
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage('assets/login.jpg'),
+            fit: BoxFit.cover,
+          )),
           height: MediaQuery.of(context).size.height * 1,
           width: MediaQuery.of(context).size.width * 1,
           // color: Colors.black,
         ),
         BackdropFilter(
-          filter: ImageFilter.blur(sigmaX:1,sigmaY: 1,),
-         child: Container(color: Colors.black26)),
+            filter: ImageFilter.blur(
+              sigmaX: 1,
+              sigmaY: 1,
+            ),
+            child: Container(color: Colors.black26)),
 //         Container(
 //           decoration: BoxDecoration(
 // //   For setting background color of loading screen.
@@ -312,14 +323,17 @@ class _LoginHomeState extends State<LoginHome> {
 // WillPopScope to handle app exit
   Widget willPopScope(myModel) {
     return WillPopScope(
-        child: Stack(          
-          children: <Widget> [
-            Container(decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/login.jpg'))),),
-           Container(
-             
-              child: Center(
-            child: stack(myModel),
-          )),
+        child: Stack(
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+                  image:
+                      DecorationImage(image: AssetImage('assets/login.jpg'))),
+            ),
+            Container(
+                child: Center(
+              child: stack(myModel),
+            )),
           ],
         ),
         onWillPop: onWillPopS);

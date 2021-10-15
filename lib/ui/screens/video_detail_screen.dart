@@ -785,7 +785,8 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
           // ignore: deprecated_member_use
           HttpHeaders.authorizationHeader: "Bearer $authToken"
         });
-        print( ' ${widget.videoDetail.seasons[currentIndex].id}');
+        print('EPISODE RESPONSE ${episodesResponse.body}');
+        print( 'SEASON ID ${widget.videoDetail.seasons[currentIndex].id}');
     var episodesData = json.decode(episodesResponse.body);
     if (this.mounted) {
       setState(() {
