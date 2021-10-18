@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 import 'package:IQRA/common/styles.dart';
+import 'package:IQRA/ui/screens/multi_menu_screen.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -338,6 +339,13 @@ class SplashScreenState extends State<SplashScreen> {
           ScreenProfile(2, screen3, screenUsed3),
           ScreenProfile(3, screen4, screenUsed4),
         ];
+         screenListMenu = [
+          ScreenProfileMenu(0, screen1, screenUsed1),
+          ScreenProfileMenu(1, screen2, screenUsed2),
+          ScreenProfileMenu(2, screen3, screenUsed3),
+          ScreenProfileMenu(3, screen4, screenUsed4),
+        ];
+        
       });
     } else if (getAllScreensResponse.statusCode == 401) {
       storage.deleteAll();

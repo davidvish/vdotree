@@ -37,7 +37,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _emailController = new TextEditingController();
+  final TextEditingController _mobileController = new TextEditingController();
   final TextEditingController _passwordController = new TextEditingController();
   bool _isHidden = true;
   String msg = '';
@@ -65,6 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
           'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.height(200)&access_token=${facebookLoginResult.token}');
 
       var profile = json.decode(graphResponse.body);
+       print(profile);
       setState(() {
         isShowing = true;
       });
@@ -79,6 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
     } else {
       final LoginResult facebookLoginResult = await FacebookAuth.instance.login();
       //await facebookLogin.logIn(['email']);
+      print(facebookLoginResult.status);
       if (facebookLoginResult.status == LoginStatus.success) {
         var graphResponse = await http.get(
             'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.height(200)&access_token=${facebookLoginResult.accessToken.token}');
@@ -138,6 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
       "$uid": code,
       "name": name,
     });
+    
     if (accessTokenResponse.statusCode == 200) {
       loginModel = LoginModel.fromJson(json.decode(accessTokenResponse.body));
       var refreshToken = loginModel.refreshToken;
@@ -219,7 +222,7 @@ class _LoginScreenState extends State<LoginScreen> {
       _isLoading = true;
     });
     var response1 = await http.post(APIData.loginotpsend, body: {
-      "email": _emailController.text,
+      "mobile": _mobileController.text,
       // "otp": otp.text,
       "password": _passwordController.text
     }, headers: {
@@ -253,7 +256,7 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.push(context,
           MaterialPageRoute(builder: (BuildContext context) {
         return OtpLogin(
-          email: _emailController.text,
+          mobile: _mobileController.text,
           pass: _passwordController.text,
         );
       }));
@@ -502,33 +505,34 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget emailField() {
+  Widget mobileField() {
     return Padding(
       padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 20.0),
       child: TextFormField(
+        maxLength: 10,
         style: TextStyle(fontSize: 16.0, color: Colors.white),
-        controller: _emailController,
+        controller: _mobileController,
         validator: (value) {
           if (value.length == 0) {
-            return 'Email can not be empty';
-          } else {
-            if (!value.contains('@')) {
-              return 'Invalid Email';
+              return 'Mobile can not be empty';
             } else {
-              return null;
+              if (value.length != 10) {
+                return 'Invalid Mobile Number';
+              } else {
+                return null;
+              }
             }
-          }
         },
-        keyboardType: TextInputType.emailAddress,
+        keyboardType: TextInputType.number,
         decoration: InputDecoration(
           prefixIcon: Icon(
-            Icons.mail_outline,
+            Icons.phone,
             color: Colors.white,
           ),
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
           ),
-          labelText: 'Email',
+          labelText: 'Mobile',
           labelStyle: TextStyle(color: Colors.white,fontSize: 15),
         ),
       ),
@@ -628,7 +632,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       // logoImage(context, myModel, 0.9, 63.0, 200.0),
                       msgTitle(),
-                      emailField(),
+                      mobileField(),
                       passwordField(),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -687,8 +691,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                             color: Colors.black),
                                       ),
                                 onPressed: () {
-                                  if (_emailController.text.isNotEmpty) {
-                                    if (_emailController.text.contains("@")) {
+                                  if (_mobileController.text.isNotEmpty) {
+                                    if (_mobileController.text.length == 10) {
                                       if (_passwordController.text.isNotEmpty) {
                                         print("ok");
                                         FocusScope.of(context)
@@ -704,7 +708,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       }
                                     } else {
                                       Fluttertoast.showToast(
-                                        msg: "Please Enter a Valid Email",
+                                        msg: "Please Enter a Valid Mobile Number",
                                         backgroundColor: Colors.red,
                                         textColor: Colors.white,
                                         gravity: ToastGravity.BOTTOM,
@@ -712,7 +716,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     }
                                   } else {
                                     Fluttertoast.showToast(
-                                      msg: "Please Enter your Email",
+                                      msg: "Please Enter your Mobile Number",
                                       backgroundColor: Colors.red,
                                       textColor: Colors.white,
                                       gravity: ToastGravity.BOTTOM,
