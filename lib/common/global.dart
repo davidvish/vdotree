@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:IQRA/ui/screens/multi_menu_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:IQRA/models/task_info.dart';
@@ -14,6 +15,8 @@ final storage = FlutterSecureStorage();
 var menuId;
 List<Todo> todos = List();
 List<ScreenProfile> screenList = [];
+List<ScreenProfileMenu> screenListMenu = [];
+
 Database database;
 List<TaskInfo> dTasks;
 List<ItemHolder> dItems;

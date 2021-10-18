@@ -19,10 +19,10 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:IQRA/providers/login_provider.dart';
 
 class OtpLogin extends StatefulWidget {
-  final email;
+  final mobile;
   final pass;
 
-  const OtpLogin({Key key, this.email, this.pass}) : super(key: key);
+  const OtpLogin({Key key, this.mobile, this.pass}) : super(key: key);
 
   @override
   _OtpLoginState createState() => _OtpLoginState();
@@ -452,7 +452,7 @@ enableResend ?
       _spincontorller = !_spincontorller;
     });
     var response1 = await http.post(APIData.otpverifyon, body: {
-      "email": widget.email,
+      "mobile": widget.mobile,
       "otp": otp.text,
       "password": widget.pass
     }, headers: {
@@ -473,9 +473,9 @@ enableResend ?
 
       final loginProvider = Provider.of<LoginProvider>(context, listen: false);
       try {
-        print(widget.email);
+        print(widget.mobile);
         print(widget.pass);
-        await loginProvider.login(widget.email, widget.pass, context);
+        await loginProvider.login(widget.mobile, widget.pass, context);
         print(loginProvider.loginStatus);
         setState(() {
           _spincontorller = !_spincontorller;
@@ -563,7 +563,7 @@ enableResend ?
     print(authToken);
     
     var response1 = await http.post(APIData.loginotpresend, body: {
-      "email": widget.email,
+      "email": widget.mobile,
       "password": widget.pass
     }, headers: {
       HttpHeaders.authorizationHeader: "Bearer $authToken",

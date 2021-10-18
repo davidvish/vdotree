@@ -20,7 +20,7 @@ class LoginProvider extends ChangeNotifier {
   bool loginStatus, loading1, loading2, emailVerify, loadData;
   String emailVerifyMsg = '';
 
-  Future<void> login(String email, String password, BuildContext ctx) async {
+  Future<void> login(String mobile, String password, BuildContext ctx) async {
     MenuProvider menuProvider = Provider.of<MenuProvider>(ctx, listen: false);
     UserProfileProvider userProfileProvider =
         Provider.of<UserProfileProvider>(ctx, listen: false);
@@ -35,11 +35,12 @@ class LoginProvider extends ChangeNotifier {
         APIData.loginApi,
         headers: {HttpHeaders.contentTypeHeader: "application/json"},
         body: json.encode({
-          'email': email,
+          'mobile': mobile,
           'password': password,
+          'email': 'mkm'
         }),
       );
-      print(response.body);
+      print('LOGIN RESPONSE ${response.body}');
       if (response.statusCode == 200) {
         loginModel = LoginModel.fromJson(json.decode(response.body));
         loginStatus = true;

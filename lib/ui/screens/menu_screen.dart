@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:IQRA/common/styles.dart';
+import 'package:IQRA/ui/screens/multi_menu_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -331,6 +332,41 @@ class _MenuScreenState extends State<MenuScreen> {
                 ),
                 Text(
                   "Notifications",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          )),
+      // decoration: BoxDecoration(
+      //     border: Border(
+      //   bottom: BorderSide(
+      //     color: Colors.black,
+      //     width: 3.0,
+      //   ),
+      // )),
+    );
+  }
+  Widget multiScrenMenu() {
+    return Container(
+      // color: Colors.black,
+      child: InkWell(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => MultiMenuScreen()));
+          },
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.splitscreen_rounded, size: 20, color: Colors.white),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Text(
+                  "Update Profile",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.white,
@@ -796,6 +832,14 @@ class _MenuScreenState extends State<MenuScreen> {
             child: Column(
               children: [
                 notification(),
+                Padding(
+                  padding: const EdgeInsets.only(left: 60),
+                  child: Divider(
+                    color: Colors.white,
+                    height: 2.0,
+                  ),
+                ),
+                multiScrenMenu(),
                 Padding(
                   padding: const EdgeInsets.only(left: 60),
                   child: Divider(
