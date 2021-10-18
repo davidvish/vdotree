@@ -79,7 +79,7 @@ class _MenuScreenState extends State<MenuScreen> {
         ],
       ),
     );
-    ;
+    
   }
 
   Widget profileImage() {
@@ -316,7 +316,10 @@ class _MenuScreenState extends State<MenuScreen> {
 
 //  Notification
   Widget notification() {
-    return Container(
+    return  
+    LayoutBuilder(builder: (context,constraint){
+      if(constraint.maxWidth <= 768){
+        return   Container(
       // color: Colors.black,
       child: InkWell(
           onTap: () {
@@ -349,19 +352,56 @@ class _MenuScreenState extends State<MenuScreen> {
       //   ),
       // )),
     );
-  }
-  Widget multiScrenMenu() {
-    return Container(
-      // color: Colors.black,
+      } else {
+        return Container(
       child: InkWell(
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (_) => MultiMenuScreen()));
+            Navigator.pushNamed(context, RoutePaths.notifications);
           },
           child: Padding(
             padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
             child: Row(
               children: <Widget>[
-                Icon(Icons.splitscreen_rounded, size: 20, color: Colors.white),
+                Icon(Icons.notifications_active, size: 29, color: Colors.white),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Text(
+                  "Notifications",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          )),
+      // decoration: BoxDecoration(
+      //     border: Border(
+      //   bottom: BorderSide(
+      //     color: Colors.black,
+      //     width: 3.0,
+      //   ),
+      // )),
+    );
+      }
+    });
+     
+  }
+  Widget multiScrenMenu() {
+    return  LayoutBuilder(builder: (context,constraint){
+      if(constraint.maxWidth <= 768){
+        return   Container(
+      // color: Colors.black,
+      child: InkWell(
+          onTap: () {
+Navigator.of(context).push(MaterialPageRoute(builder: (_) => MultiMenuScreen()))   ;       },
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.splitscreen, size: 20, color: Colors.white),
                 SizedBox(
                   width: 20.0,
                 ),
@@ -384,11 +424,49 @@ class _MenuScreenState extends State<MenuScreen> {
       //   ),
       // )),
     );
+      } else {
+        return Container(
+      child: InkWell(
+          onTap: () {
+Navigator.of(context).push(MaterialPageRoute(builder: (_) => MultiMenuScreen()))   ;       
+          },
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.splitscreen, size: 29, color: Colors.white),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Text(
+                  "Update Profile",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          )),
+      // decoration: BoxDecoration(
+      //     border: Border(
+      //   bottom: BorderSide(
+      //     color: Colors.black,
+      //     width: 3.0,
+      //   ),
+      // )),
+    );
+      }
+    });
   }
 
 //  App settings
   Widget appSettings() {
-    return Container(
+    return  LayoutBuilder(builder: (context,constraint){
+      if(constraint.maxWidth <= 768){
+        return   Container(
+      // color: Colors.black,
       child: InkWell(
           onTap: () {
             Navigator.pushNamed(context, RoutePaths.appSettings);
@@ -415,16 +493,54 @@ class _MenuScreenState extends State<MenuScreen> {
       // decoration: BoxDecoration(
       //     border: Border(
       //   bottom: BorderSide(
-      //     color: Colors.white,
-      //     width: 1.5,
+      //     color: Colors.black,
+      //     width: 3.0,
       //   ),
       // )),
     );
+      } else {
+        return Container(
+      child: InkWell(
+          onTap: () {
+            Navigator.pushNamed(context, RoutePaths.appSettings);
+          },
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.settings, size: 29, color: Colors.white),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Text(
+                  "App Setting",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          )),
+      // decoration: BoxDecoration(
+      //     border: Border(
+      //   bottom: BorderSide(
+      //     color: Colors.black,
+      //     width: 3.0,
+      //   ),
+      // )),
+    );
+      }
+    });
   }
 
   //  watch  history
   Widget watchHistory() {
-    return Container(
+    return  LayoutBuilder(builder: (context,constraint){
+      if(constraint.maxWidth <= 768){
+        return   Container(
+      // color: Colors.black,
       child: InkWell(
           onTap: () {
             Navigator.pushNamed(context, RoutePaths.watchHistory);
@@ -433,8 +549,7 @@ class _MenuScreenState extends State<MenuScreen> {
             padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
             child: Row(
               children: <Widget>[
-                Icon(FontAwesomeIcons.solidPlayCircle,
-                    size: 20, color: Colors.white),
+                Icon(FontAwesomeIcons.solidPlayCircle, size: 20, color: Colors.white),
                 SizedBox(
                   width: 20.0,
                 ),
@@ -452,38 +567,120 @@ class _MenuScreenState extends State<MenuScreen> {
       // decoration: BoxDecoration(
       //     border: Border(
       //   bottom: BorderSide(
-      //     color: Colors.white,
-      //     width: 1.5,
+      //     color: Colors.black,
+      //     width: 3.0,
       //   ),
       // )),
     );
+      } else {
+        return Container(
+      child: InkWell(
+          onTap: () {
+            Navigator.pushNamed(context, RoutePaths.watchHistory);
+          },
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
+            child: Row(
+              children: <Widget>[
+                Icon(FontAwesomeIcons.solidPlayCircle, size: 29, color: Colors.white),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Text(
+                  "Watch History",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          )),
+      // decoration: BoxDecoration(
+      //     border: Border(
+      //   bottom: BorderSide(
+      //     color: Colors.black,
+      //     width: 3.0,
+      //   ),
+      // )),
+    );
+      }
+    });
   }
 
 //  Account
   Widget account() {
-    return InkWell(
-        onTap: () {
+    return LayoutBuilder(builder: (context,constraint){
+      if(constraint.maxWidth <= 768){
+        return   Container(
+      // color: Colors.black,
+      child: InkWell(
+          onTap: () {
           _onButtonPressed();
-        },
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
-          child: Row(
-            children: <Widget>[
-              Icon(Icons.account_box, size: 20, color: Colors.white),
-              SizedBox(
-                width: 20.0,
-              ),
-              Text(
-                "Account",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w400),
-              ),
-            ],
-          ),
-        ));
+          },
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.account_box, size: 20, color: Colors.white),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Text(
+                  "Account",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          )),
+      // decoration: BoxDecoration(
+      //     border: Border(
+      //   bottom: BorderSide(
+      //     color: Colors.black,
+      //     width: 3.0,
+      //   ),
+      // )),
+    );
+      } else {
+        return Container(
+      child: InkWell(
+          onTap: () {
+          _onButtonPressed();
+          },
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.account_box, size: 29, color: Colors.white),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Text(
+                  "Account",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          )),
+      // decoration: BoxDecoration(
+      //     border: Border(
+      //   bottom: BorderSide(
+      //     color: Colors.black,
+      //     width: 3.0,
+      //   ),
+      // )),
+    );
+      }
+    });
   }
  void _showDialog3() {
     // flutter defined function
@@ -535,61 +732,151 @@ class _MenuScreenState extends State<MenuScreen> {
 
 //  Subscribe
   Widget subscribe() {
-    return InkWell(
-        onTap: () {
-        //    var userDetails =
-        // Provider.of<UserProfileProvider>(context).userProfileModel;
-        //  userDetails.active == "1"  ? _showDialog3() :
-          
+    return  LayoutBuilder(builder: (context,constraint){
+      if(constraint.maxWidth <= 768){
+        return   Container(
+      // color: Colors.black,
+      child: InkWell(
+          onTap: () {
           Navigator.pushNamed(context, RoutePaths.subscriptionPlans);
-        },
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
-          child: Row(
-            children: <Widget>[
-              Icon(Icons.subscriptions, size: 20, color: Colors.white),
-              SizedBox(
-                width: 20.0,
-              ),
-              Text(
-                "Subscribe",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w400),
-              ),
-            ],
-          ),
-        ));
+          },
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.subscriptions, size: 20, color: Colors.white),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Text(
+                  "Subscribe",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          )),
+      // decoration: BoxDecoration(
+      //     border: Border(
+      //   bottom: BorderSide(
+      //     color: Colors.black,
+      //     width: 3.0,
+      //   ),
+      // )),
+    );
+      } else {
+        return Container(
+      child: InkWell(
+          onTap: () {
+          Navigator.pushNamed(context, RoutePaths.subscriptionPlans);
+          },
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.subscriptions, size: 29, color: Colors.white),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Text(
+                  "Subscribe",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          )),
+      // decoration: BoxDecoration(
+      //     border: Border(
+      //   bottom: BorderSide(
+      //     color: Colors.black,
+      //     width: 3.0,
+      //   ),
+      // )),
+    );
+      }
+    });
   }
 
 //  Help
   Widget help() {
-    return InkWell(
-        onTap: () {
+    return  LayoutBuilder(builder: (context,constraint){
+      if(constraint.maxWidth <= 768){
+        return   Container(
+      // color: Colors.black,
+  
+      child: InkWell(
+          onTap: () {
           Navigator.pushNamed(context, RoutePaths.faq);
-        },
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
-          child: Row(
-            children: <Widget>[
-              Icon(Icons.message, size: 20, color: Colors.white),
-              SizedBox(
-                width: 20.0,
-              ),
-              Text(
-                // "Faq",
-                "FAQ",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 17.0,
-                    fontWeight: FontWeight.w400),
-              ),
-            ],
-          ),
-        ));
+          },
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.message, size: 20, color: Colors.white),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Text(
+                  "FAQ",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          )),
+      // decoration: BoxDecoration(
+      //     border: Border(
+      //   bottom: BorderSide(
+      //     color: Colors.black,
+      //     width: 3.0,
+      //   ),
+      // )),
+    );
+      } else {
+        return Container(
+      child: InkWell(
+          onTap: () {
+          Navigator.pushNamed(context, RoutePaths.faq);
+          },
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.message, size: 29, color: Colors.white),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Text(
+                  "FAQ",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          )),
+      // decoration: BoxDecoration(
+      //     border: Border(
+      //   bottom: BorderSide(
+      //     color: Colors.black,
+      //     width: 3.0,
+      //   ),
+      // )),
+    );
+      }
+    });
   }
 
   // Blog
@@ -645,37 +932,84 @@ class _MenuScreenState extends State<MenuScreen> {
 
 //  Rate Us
   Widget rateUs() {
-    return InkWell(
+    return  LayoutBuilder(builder: (context,constraint){
+      if(constraint.maxWidth <= 768){
+        return   Container(
+      // color: Colors.black,
+      child: InkWell(
+                   onTap: () => launch('https://play.google.com/store/apps/details?id=com.vdotree.vdotree'),
 
-         // child: new Text('Open Browser'),
-          onTap: () => launch('https://play.google.com/store/apps/details?id=com.vdotree.vdotree'),
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.star, size: 20, color: Colors.white),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Text(
+                  "Rate Us",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          )),
+      // decoration: BoxDecoration(
+      //     border: Border(
+      //   bottom: BorderSide(
+      //     color: Colors.black,
+      //     width: 3.0,
+      //   ),
+      // )),
+    );
+      } else {
+        return Container(
+      child: InkWell(
+                   onTap: () => launch('https://play.google.com/store/apps/details?id=com.vdotree.vdotree'),
 
-
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
-          child: Row(
-            children: <Widget>[
-              Icon(Icons.star, size: 20, color: Colors.white),
-              SizedBox(
-                width: 20.0,
-              ),
-              Text(
-                "Rate Us",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w400),
-              ),
-            ],
-          ),
-        ));
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.star, size: 29, color: Colors.white),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Text(
+                  "Rate Us",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          )),
+      // decoration: BoxDecoration(
+      //     border: Border(
+      //   bottom: BorderSide(
+      //     color: Colors.black,
+      //     width: 3.0,
+      //   ),
+      // )),
+    );
+      }
+    });
   }
 
 //  Share app
   Widget shareApp() {
-    return InkWell(
-        onTap: () {
+    return LayoutBuilder(builder: (context,constraint){
+      if(constraint.maxWidth <= 768){
+        return   Container(
+      // color: Colors.black,
+      child: InkWell(
+         onTap: () {
           String os = Platform.operatingSystem; //in your code
           if (os == 'android') {
             if (APIData.androidAppId != '') {
@@ -691,60 +1025,155 @@ class _MenuScreenState extends State<MenuScreen> {
             }
           }
         },
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
-          child: Row(
-            children: <Widget>[
-              Icon(Icons.share, size: 20, color: Colors.white),
-              SizedBox(
-                width: 20.0,
-              ),
-              Text(
-                "Share app",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w400),
-              ),
-            ],
-          ),
-        ));
-  }
-
-//  Sign Out
-  Widget signOut() {
-    return InkWell(
-        onTap: () {
-          _signOutDialog();
-        },
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
-          child: Row(
-            children: <Widget>[
-              Icon(Icons.settings_power, size: 20, color: Colors.white),
-              SizedBox(
-                width: 20.0,
-              ),
-              Expanded(
-                flex: 8,
-                child: Text(
-                  "Sign Out",
-                  textAlign: TextAlign.left,
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.share, size: 20, color: Colors.white),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Text(
+                  "Share app",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 18.0,
                       fontWeight: FontWeight.w400),
                 ),
-              ),
-              // Expanded(
-              //   flex: 1,
-              //   child:
-              //       Icon(Icons.settings_power, size: 15, color: Colors.white),
-              // )
-            ],
-          ),
-        ));
+              ],
+            ),
+          )),
+      // decoration: BoxDecoration(
+      //     border: Border(
+      //   bottom: BorderSide(
+      //     color: Colors.black,
+      //     width: 3.0,
+      //   ),
+      // )),
+    );
+      } else {
+        return Container(
+      child: InkWell(
+          onTap: () {
+          String os = Platform.operatingSystem; //in your code
+          if (os == 'android') {
+            if (APIData.androidAppId != '') {
+              Share.share(APIData.shareAndroidAppUrl);
+            } else {
+              Fluttertoast.showToast(msg: 'PlayStore id not available');
+            }
+          } else {
+            if (APIData.iosAppId != '') {
+              Share.share(APIData.iosAppId);
+            } else {
+              Fluttertoast.showToast(msg: 'AppStore id not available');
+            }
+          }
+        },
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.share, size: 29, color: Colors.white),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Text(
+                  "Share app",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          )),
+      // decoration: BoxDecoration(
+      //     border: Border(
+      //   bottom: BorderSide(
+      //     color: Colors.black,
+      //     width: 3.0,
+      //   ),
+      // )),
+    );
+      }
+    });
+  }
+
+//  Sign Out
+  Widget signOut() {
+    return  LayoutBuilder(builder: (context,constraint){
+      if(constraint.maxWidth <= 768){
+        return   Container(
+      // color: Colors.black,
+      child: InkWell(
+          onTap: () {
+          _signOutDialog();
+        },
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.settings_power, size: 20, color: Colors.white),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Text(
+                  "Sign Out",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          )),
+      // decoration: BoxDecoration(
+      //     border: Border(
+      //   bottom: BorderSide(
+      //     color: Colors.black,
+      //     width: 3.0,
+      //   ),
+      // )),
+    );
+      } else {
+        return Container(
+      child: InkWell(
+          onTap: () {
+          _signOutDialog();
+        },
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.settings_power, size: 29, color: Colors.white),
+                SizedBox(
+                  width: 20.0,
+                ),
+                Text(
+                  "Sign Out",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
+            ),
+          )),
+      // decoration: BoxDecoration(
+      //     border: Border(
+      //   bottom: BorderSide(
+      //     color: Colors.black,
+      //     width: 3.0,
+      //   ),
+      // )),
+    );
+      }
+    });
   }
 
   // Bottom Sheet after on tapping account
@@ -932,6 +1361,8 @@ class _MenuScreenState extends State<MenuScreen> {
   Widget drawer(width, ) {
     return Drawer(
       child: Container(
+        color: Colors.black,
+        height: MediaQuery.of(context).size.height,
         // height: 760,
         child: ListView(
           children: <Widget>[

@@ -130,13 +130,9 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<String> socialLogin(url, email, password, code, name, uid) async {
-  final accessTokenResponsenew = await http.post(APIData.userPassApi, body: {
-      "email": email,
-    });
-    print("token!!!!!       " + url);
     final accessTokenResponse = await http.post(url, body: {
       "email": email,
-      "password": json.decode(accessTokenResponsenew.body),
+      "password": "password",
       "$uid": code,
       "name": name,
     });
@@ -224,7 +220,7 @@ class _LoginScreenState extends State<LoginScreen> {
     var response1 = await http.post(APIData.loginotpsend, body: {
       "mobile": _mobileController.text,
       // "otp": otp.text,
-      "password": _passwordController.text
+      "password": 'password'
     }, headers: {
       // HttpHeaders.authorizationHeader: "Bearer $authToken",
       "Accept": "application/json",
@@ -539,59 +535,59 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget passwordField() {
-    return Padding(
-      padding:
-          EdgeInsets.only(left: 15.0, right: 15.0, bottom: 10.0, top: 20.0),
-      child: TextFormField(
-        style: TextStyle(
-            fontSize: 15.0, color: Colors.white, fontWeight: FontWeight.w400),
-        controller: _passwordController,
-        validator: (value) {
-          if (value.length < 6) {
-            if (value.length == 0) {
-              return 'Password can not be empty';
-            } else {
-              return 'Password too short';
-            }
-          } else {
-            return null;
-          }
-        },
-        keyboardType: TextInputType.text,
-        obscureText: _isHidden == true ? true : false,
-        decoration: InputDecoration(
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
-          ),
-          prefixIcon: Icon(
-            Icons.lock_outline,
-            color: Colors.white,
-          ),
-          suffixIcon: IconButton(
-              onPressed: _toggleVisibility,
-              icon: _isHidden
-                  ? Container(
-                      height: 17,
-                      // color: Colors.red,
-                      child: FittedBox(
-                          child: Icon(
-                        Icons.visibility_off_rounded,
-                        color: Colors.white,
-                        // color: primaryBlue,
-                      )),
-                    )
-                  : Icon(
-                      Icons.remove_red_eye,
-                      size: 17,
-                      color: Colors.white,
-                    )),
-          labelText: 'Password',
-          labelStyle: TextStyle(color: Colors.white, fontSize: 15),
-        ),
-      ),
-    );
-  }
+  // Widget passwordField() {
+  //   return Padding(
+  //     padding:
+  //         EdgeInsets.only(left: 15.0, right: 15.0, bottom: 10.0, top: 20.0),
+  //     child: TextFormField(
+  //       style: TextStyle(
+  //           fontSize: 15.0, color: Colors.white, fontWeight: FontWeight.w400),
+  //       controller: _passwordController,
+  //       validator: (value) {
+  //         if (value.length < 6) {
+  //           if (value.length == 0) {
+  //             return 'Password can not be empty';
+  //           } else {
+  //             return 'Password too short';
+  //           }
+  //         } else {
+  //           return null;
+  //         }
+  //       },
+  //       keyboardType: TextInputType.text,
+  //       obscureText: _isHidden == true ? true : false,
+  //       decoration: InputDecoration(
+  //         enabledBorder: UnderlineInputBorder(
+  //           borderSide: BorderSide(color: Colors.white),
+  //         ),
+  //         prefixIcon: Icon(
+  //           Icons.lock_outline,
+  //           color: Colors.white,
+  //         ),
+  //         suffixIcon: IconButton(
+  //             onPressed: _toggleVisibility,
+  //             icon: _isHidden
+  //                 ? Container(
+  //                     height: 17,
+  //                     // color: Colors.red,
+  //                     child: FittedBox(
+  //                         child: Icon(
+  //                       Icons.visibility_off_rounded,
+  //                       color: Colors.white,
+  //                       // color: primaryBlue,
+  //                     )),
+  //                   )
+  //                 : Icon(
+  //                     Icons.remove_red_eye,
+  //                     size: 17,
+  //                     color: Colors.white,
+  //                   )),
+  //         labelText: 'Password',
+  //         labelStyle: TextStyle(color: Colors.white, fontSize: 15),
+  //       ),
+  //     ),
+  //   );
+  // }
   final LinearGradient gradient = LinearGradient(colors: [primaryBlue,Colors.deepOrange,Colors.purple]);
 
   @override
@@ -633,7 +629,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       // logoImage(context, myModel, 0.9, 63.0, 200.0),
                       msgTitle(),
                       mobileField(),
-                      passwordField(),
+                      // passwordField(),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10.0),
                         child: Row(
@@ -693,19 +689,19 @@ class _LoginScreenState extends State<LoginScreen> {
                                 onPressed: () {
                                   if (_mobileController.text.isNotEmpty) {
                                     if (_mobileController.text.length == 10) {
-                                      if (_passwordController.text.isNotEmpty) {
+                                      // if (_passwordController.text.isNotEmpty) {
                                         print("ok");
                                         FocusScope.of(context)
                                             .requestFocus(new FocusNode());
                                         _saveForm();
-                                      } else {
-                                        Fluttertoast.showToast(
-                                          msg: "Please Enter a Password",
-                                          backgroundColor: Colors.red,
-                                          textColor: Colors.white,
-                                          gravity: ToastGravity.BOTTOM,
-                                        );
-                                      }
+                                      // } else {
+                                      //   Fluttertoast.showToast(
+                                      //     msg: "Please Enter a Password",
+                                      //     backgroundColor: Colors.red,
+                                      //     textColor: Colors.white,
+                                      //     gravity: ToastGravity.BOTTOM,
+                                      //   );
+                                      // }
                                     } else {
                                       Fluttertoast.showToast(
                                         msg: "Please Enter a Valid Mobile Number",

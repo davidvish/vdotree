@@ -454,7 +454,7 @@ enableResend ?
     var response1 = await http.post(APIData.otpverifyon, body: {
       "mobile": widget.mobile,
       "otp": otp.text,
-      "password": widget.pass
+      "password":'password'
     }, headers: {
       HttpHeaders.authorizationHeader: "Bearer $authToken",
       "Accept": "application/json",
@@ -564,7 +564,7 @@ enableResend ?
     
     var response1 = await http.post(APIData.loginotpresend, body: {
       "email": widget.mobile,
-      "password": widget.pass
+      "password": 'password'
     }, headers: {
       HttpHeaders.authorizationHeader: "Bearer $authToken",
       "Accept": "application/json",

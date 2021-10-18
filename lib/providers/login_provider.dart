@@ -36,7 +36,7 @@ class LoginProvider extends ChangeNotifier {
         headers: {HttpHeaders.contentTypeHeader: "application/json"},
         body: json.encode({
           'mobile': mobile,
-          'password': password,
+          'password': 'password',
           'email': 'mkm'
         }),
       );

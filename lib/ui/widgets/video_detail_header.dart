@@ -109,7 +109,7 @@ class VideoDetailHeaderState extends State<VideoDetailHeader>
     Widget cancelButton = FlatButton(
       child: Text(
         "Cancel",
-        style: TextStyle(color: primaryBlue, fontSize: 16.0),
+        style: TextStyle(color: Colors.red, fontSize: 16.0),
       ),
       onPressed: () {
         Navigator.pop(context);
@@ -119,7 +119,7 @@ class VideoDetailHeaderState extends State<VideoDetailHeader>
     Widget subscribeButton = FlatButton(
       child: Text(
         "Subscribe",
-        style: TextStyle(color: primaryBlue, fontSize: 16.0),
+        style: TextStyle(color: Colors.green, fontSize: 16.0),
       ),
       onPressed: () {
         Navigator.pop(context);
@@ -129,10 +129,10 @@ class VideoDetailHeaderState extends State<VideoDetailHeader>
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      backgroundColor: Colors.black,
+     backgroundColor: Colors.black,
       elevation: 30,
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
+          borderRadius: BorderRadius.circular(10.0),
           side: BorderSide(
               color: Colors.blue, width: 1, style: BorderStyle.solid)),
       contentPadding:
@@ -142,7 +142,7 @@ class VideoDetailHeaderState extends State<VideoDetailHeader>
         children: <Widget>[
           Text(
             "Subscribe Plans",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.yellow),
           ),
         ],
       ),
@@ -154,15 +154,21 @@ class VideoDetailHeaderState extends State<VideoDetailHeader>
             child: Text(
               "$dMsg",
               style: TextStyle(
-                color: Colors.white70,
+                fontSize: 14,
+                color: Colors.yellow,
               ),
             ),
           )
         ],
       ),
       actions: [
-        subscribeButton,
-        cancelButton,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            subscribeButton,
+            cancelButton,
+          ],
+        ),
       ],
     );
 

@@ -300,8 +300,20 @@ class _MultiMenuScreenState extends State<MultiMenuScreen> {
           body: screenList.length == 0
               ? Container(
                   color: Colors.black,
-                  child: Center(
-                    child: CircularProgressIndicator(),
+                  alignment: Alignment.center,
+                  child: Column(
+                    children: [
+                      SizedBox(height: MediaQuery.of(context).size.height / 4,),
+                    
+                      Icon(Icons.warning,size: 70,),
+                      SizedBox(height: 40,),
+                      Center(
+                       child:Padding(
+                         padding: const EdgeInsets.only(left: 11,right: 11),
+                         child: FittedBox(child: Text('No Series and Movies found with this genres',style: TextStyle(fontSize: 20),)),
+                       )
+                      ),
+                    ],
                   ),
                 )
               : Container(
