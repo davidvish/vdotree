@@ -62,9 +62,11 @@ class _FAQScreenState extends State<FAQScreen> {
           SizedBox(
             width: 10,
           ),
-          Text(
-            '${faqList[index].question}',
-            style: TextStyle(color: Color.fromRGBO(50, 150, 220, 1.0),fontSize: 15),
+          Expanded(
+            child: Text(
+              '${faqList[index].question}',
+              style: TextStyle(color: Color.fromRGBO(50, 150, 220, 1.0),fontSize: 15),
+            ),
           ),
         ],
       ),
