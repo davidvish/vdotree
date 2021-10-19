@@ -144,20 +144,24 @@ class _MultiScreenState extends State<MultiScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-             shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
-          side: BorderSide(
-              color: Colors.blue, width: 1, style: BorderStyle.solid)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+                side: BorderSide(
+                    color: Colors.blue, width: 1, style: BorderStyle.solid)),
             backgroundColor: Colors.black87,
             contentTextStyle: TextStyle(color: Colors.yellow, fontSize: 17),
             titleTextStyle: TextStyle(
-                color: Colors.yellow, fontSize: 20, fontWeight: FontWeight.bold),
+                color: Colors.yellow,
+                fontSize: 20,
+                fontWeight: FontWeight.bold),
             title: Text(
               'Sign Out?',
               textAlign: TextAlign.center,
             ),
-            content: Text('Are you sure that you want to logout?',textAlign: TextAlign.center,),
-
+            content: Text(
+              'Are you sure that you want to logout?',
+              textAlign: TextAlign.center,
+            ),
             actions: <Widget>[
               SizedBox(
                 width: 20,
@@ -183,32 +187,27 @@ class _MultiScreenState extends State<MultiScreen> {
                     width: 10,
                   ),
                   InkWell(
-                     onTap: () async {
+                    onTap: () async {
                       print("logout");
                       await storage.deleteAll();
                       Navigator.pushNamed(context, RoutePaths.loginHome);
                       // screenLogout();
                     },
-                    
                     child: Container(
-
                       alignment: Alignment.center,
                       padding: EdgeInsets.only(top: 5),
                       height: 40,
                       width: 80,
                       decoration: BoxDecoration(
-
                           color: Colors.black87,
                           borderRadius: BorderRadius.circular(5)),
-                      
-                        child: Text(
-                          'Confirm',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.red, fontSize: 20),
-                        ),
+                      child: Text(
+                        'Confirm',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.red, fontSize: 20),
                       ),
                     ),
-                
+                  ),
                 ],
               ),
               // TextButton(
@@ -274,7 +273,13 @@ class _MultiScreenState extends State<MultiScreen> {
       Fluttertoast.showToast(msg: "Something went wrong!");
     }
   }
-  final List<String>  imageProfile = ['assets/1.png','assets/2.png','assets/3.png','assets/4.png'];
+
+  final List<String> imageProfile = [
+    'assets/1.png',
+    'assets/2.png',
+    'assets/3.png',
+    'assets/4.png'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -343,8 +348,8 @@ class _MultiScreenState extends State<MultiScreen> {
                                   decoration: BoxDecoration(
                                       color: Colors.black,
                                       border: Border.all(
-                                        //color: Colors.blue,
-                                      ),
+                                          //color: Colors.blue,
+                                          ),
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(5))),
                                   width: MediaQuery.of(context).size.width * .4,
@@ -354,10 +359,10 @@ class _MultiScreenState extends State<MultiScreen> {
                                     child: InkWell(
                                       child: Container(
                                         decoration: BoxDecoration(
-                                            color: Colors.black,
+                                            // color: Colors.black,
                                             border: Border.all(
-                                             // color: Colors.blue,
-                                            ),
+                                                // color: Colors.blue,
+                                                ),
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(5))),
                                         width:
@@ -374,7 +379,10 @@ class _MultiScreenState extends State<MultiScreen> {
                                                           .size
                                                           .width *
                                                       .4,
-                                                  height: 110.0,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      6,
                                                   fit: BoxFit.fill,
                                                 ),
                                               ),
@@ -388,7 +396,8 @@ class _MultiScreenState extends State<MultiScreen> {
                                                 style: TextStyle(
                                                     fontSize: 14.0,
                                                     color: primaryBlue,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ],

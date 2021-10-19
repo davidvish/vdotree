@@ -39,7 +39,7 @@ class _OtpLoginState extends State<OtpLogin> {
       DeviceOrientation.portraitDown,
     ]);
     super.initState();
-     timer = Timer.periodic(Duration(seconds: 1), (_) {
+    timer = Timer.periodic(Duration(seconds: 1), (_) {
       if (secondsRemaining != 0) {
         setState(() {
           secondsRemaining--;
@@ -63,10 +63,10 @@ class _OtpLoginState extends State<OtpLogin> {
     timer.cancel();
     super.dispose();
   }
-   int secondsRemaining = 30;
+
+  int secondsRemaining = 30;
   bool enableResend = false;
   Timer timer;
-
 
   @override
   Widget build(BuildContext context) {
@@ -156,170 +156,172 @@ class _OtpLoginState extends State<OtpLogin> {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.1,
                       ),
-                      Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Container(
-                            // color: Colors.red,
-                            width: MediaQuery.of(context).size.width * 0.67,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                // SizedBox(width: 0.1,),
-                                Container(
-                                  width: 30,
-                                  height: 50,
-                                  alignment: Alignment.bottomCenter,
-                                  // color: Colors.amber,
-                                  // child: Text(
-                                  //   '__',
-                                  //   style: TextStyle(
-                                  //       fontSize: 30, color: primaryBlue),
-                                  // ),
-                                  // height:
-                                  //     MediaQuery.of(context).size.width * 0.15,
-                                  // width:
-                                  //     MediaQuery.of(context).size.width * 0.15,
-                                  // decoration: BoxDecoration(
-                                  //     borderRadius: BorderRadius.circular(10),
-                                  //     border: Border.all(
-                                  //         color: Colors.white, width: 1)),
-                                ),
+                      // Stack(
+                      //   alignment: Alignment.center,
+                      //   children: [
+                      //     Container(
+                      //       // color: Colors.red,
+                      //       width: MediaQuery.of(context).size.width * 0.67,
+                      //       child: Row(
+                      //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //         children: [
+                      //           // SizedBox(width: 0.1,),
+                      //           Container(
+                      //             width: 30,
+                      //             height: 50,
+                      //             alignment: Alignment.bottomCenter,
+                      //             // color: Colors.amber,
+                      //             // child: Text(
+                      //             //   '__',
+                      //             //   style: TextStyle(
+                      //             //       fontSize: 30, color: primaryBlue),
+                      //             // ),
+                      //             // height:
+                      //             //     MediaQuery.of(context).size.width * 0.15,
+                      //             // width:
+                      //             //     MediaQuery.of(context).size.width * 0.15,
+                      //             // decoration: BoxDecoration(
+                      //             //     borderRadius: BorderRadius.circular(10),
+                      //             //     border: Border.all(
+                      //             //         color: Colors.white, width: 1)),
+                      //           ),
 
-                                // SizedBox(width:10),
-                                Container(
-                                  width: 30,
-                                  height: 50,
-                                  alignment: Alignment.bottomCenter,
-                                  // // color: Colors.amber,
-                                  // child: Text(
-                                  //   '__',
-                                  //   style: TextStyle(
-                                  //       fontSize: 30, color: primaryBlue),
-                                  // ),
-                                  // height:
-                                  //     MediaQuery.of(context).size.width * 0.15,
-                                  // width:
-                                  //     MediaQuery.of(context).size.width * 0.15,
-                                  // decoration: BoxDecoration(
-                                  //     borderRadius: BorderRadius.circular(10),
-                                  //     border: Border.all(
-                                  //         color: Colors.white, width: 1)),
-                                ),
-                                // SizedBox(width: 0,),
-                                Container(
-                                  // width: 20,
-                                  height: 27,
-                                  alignment: Alignment.bottomCenter,
-                                  // color: Colors.amber,
-                                  // child: Text(
-                                  //   '|',
-                                  //   style: TextStyle(
-                                  //       fontSize: 30, color: primaryBlue),
-                                  // ),
-                                  // height:
-                                  //     MediaQuery.of(context).size.width * 0.15,
-                                  // width:
-                                  //     MediaQuery.of(context).size.width * 0.15,
-                                  // decoration: BoxDecoration(
-                                  //     borderRadius: BorderRadius.circular(10),
-                                  //     border: Border.all(
-                                  //         color: Colors.white, width: 1)),
-                                ),
-                                Container(
-                                  width: 30,
-                                  height: 30,
-                                  margin: EdgeInsets.only(right: 13),
-                                  alignment: Alignment.bottomCenter,
-                                  // color: Colors.amber,
-                                  // child: Text(
-                                  //   '|',
-                                  //   style: TextStyle(
-                                  //       fontSize: 30, color: primaryBlue),
-                                  // ),
-                                  // color: Colors.green,
+                      //           // SizedBox(width:10),
+                      //           Container(
+                      //             width: 30,
+                      //             height: 50,
+                      //             alignment: Alignment.bottomCenter,
+                      //             // // color: Colors.amber,
+                      //             // child: Text(
+                      //             //   '__',
+                      //             //   style: TextStyle(
+                      //             //       fontSize: 30, color: primaryBlue),
+                      //             // ),
+                      //             // height:
+                      //             //     MediaQuery.of(context).size.width * 0.15,
+                      //             // width:
+                      //             //     MediaQuery.of(context).size.width * 0.15,
+                      //             // decoration: BoxDecoration(
+                      //             //     borderRadius: BorderRadius.circular(10),
+                      //             //     border: Border.all(
+                      //             //         color: Colors.white, width: 1)),
+                      //           ),
+                      //           // SizedBox(width: 0,),
+                      //           Container(
+                      //             // width: 20,
+                      //             height: 27,
+                      //             alignment: Alignment.bottomCenter,
+                      //             // color: Colors.amber,
+                      //             // child: Text(
+                      //             //   '|',
+                      //             //   style: TextStyle(
+                      //             //       fontSize: 30, color: primaryBlue),
+                      //             // ),
+                      //             // height:
+                      //             //     MediaQuery.of(context).size.width * 0.15,
+                      //             // width:
+                      //             //     MediaQuery.of(context).size.width * 0.15,
+                      //             // decoration: BoxDecoration(
+                      //             //     borderRadius: BorderRadius.circular(10),
+                      //             //     border: Border.all(
+                      //             //         color: Colors.white, width: 1)),
+                      //           ),
+                      //           Container(
+                      //             width: 30,
+                      //             height: 30,
+                      //             margin: EdgeInsets.only(right: 13),
+                      //             alignment: Alignment.bottomCenter,
+                      //             // color: Colors.amber,
+                      //             // child: Text(
+                      //             //   '|',
+                      //             //   style: TextStyle(
+                      //             //       fontSize: 30, color: primaryBlue),
+                      //             // ),
+                      //             // color: Colors.green,
 
-                                  // height:
-                                  //     MediaQuery.of(context).size.width * 0.15,
-                                  // width:
-                                  //     MediaQuery.of(context).size.width * 0.15,
-                                  // decoration: BoxDecoration(
-                                  //     borderRadius: BorderRadius.circular(10),
-                                  //     border: Border.all(
-                                  //         color: Colors.white, width: 1)),
-                                ),
-                                // SizedBox(width: 1,)
-                              ],
+                      //             // height:
+                      //             //     MediaQuery.of(context).size.width * 0.15,
+                      //             // width:
+                      //             //     MediaQuery.of(context).size.width * 0.15,
+                      //             // decoration: BoxDecoration(
+                      //             //     borderRadius: BorderRadius.circular(10),
+                      //             //     border: Border.all(
+                      //             //         color: Colors.white, width: 1)),
+                      //           ),
+                      //           // SizedBox(width: 1,)
+                      //         ],
+                      //       ),
+                      //     ),
+                      Container(
+                        // color: Colors.red,
+                        // alignment: Alignment.center,
+                        // color: Colors.red,
+                        width: MediaQuery.of(context).size.width * 0.77,
+
+                        // child: Platform.isIOS ? CupertinoTextField(
+                        //   controller: otp,
+                        //   showCursor: false,
+                        //   textAlign: TextAlign.start,
+                        //
+                        //   cursorColor: Colors.transparent,
+                        //   style: TextStyle(letterSpacing: 60),
+                        //   keyboardType: TextInputType.number,
+                        //   obscureText: true,
+                        //   maxLength:4,
+                        //   decoration: BoxDecoration(
+                        //     //Padding: EdgeInsets.symmetric(horizontal: 19),
+                        //     color: Colors.transparent,
+                        //     //focusColor: Colors.transparent,
+                        //     //hoverColor: Colors.transparent,
+                        //     //enabledBorder: OutlineInputBorder(
+                        //       borderRadius: BorderRadius.circular(60),
+                        //     //   border:
+                        //     //   BorderSide(color: Colors.white),
+                        //     // ),
+                        //     // focusedBorder: OutlineInputBorder(
+                        //     //   borderRadius: BorderRadius.circular(60),
+                        //     //
+                        //     //   borderSide:
+                        //     //   BorderSide(color: Colors.yellow),
+                        //     // ),
+                        //
+                        //   ),
+                        // )
+                        child: TextFormField(
+                          // maxLength: 1,
+                          controller: otp,
+                          showCursor: false,
+                          textAlign: TextAlign.start,
+
+                          cursorColor: Colors.transparent,
+                          style: TextStyle(
+                              letterSpacing:
+                                  MediaQuery.of(context).size.width / 6),
+                          keyboardType: TextInputType.number,
+                          obscureText: true,
+
+                          decoration: InputDecoration(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 19),
+                            fillColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(60),
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(60),
+                              borderSide: BorderSide(color: Colors.yellow),
                             ),
                           ),
-                          Container(
-                            // color: Colors.red,
-                            // alignment: Alignment.center,
-                            // color: Colors.red,
-                            width: MediaQuery.of(context).size.width * 0.77,
-
-                            // child: Platform.isIOS ? CupertinoTextField(
-                            //   controller: otp,
-                            //   showCursor: false,
-                            //   textAlign: TextAlign.start,
-                            //
-                            //   cursorColor: Colors.transparent,
-                            //   style: TextStyle(letterSpacing: 60),
-                            //   keyboardType: TextInputType.number,
-                            //   obscureText: true,
-                            //   maxLength:4,
-                            //   decoration: BoxDecoration(
-                            //     //Padding: EdgeInsets.symmetric(horizontal: 19),
-                            //     color: Colors.transparent,
-                            //     //focusColor: Colors.transparent,
-                            //     //hoverColor: Colors.transparent,
-                            //     //enabledBorder: OutlineInputBorder(
-                            //       borderRadius: BorderRadius.circular(60),
-                            //     //   border:
-                            //     //   BorderSide(color: Colors.white),
-                            //     // ),
-                            //     // focusedBorder: OutlineInputBorder(
-                            //     //   borderRadius: BorderRadius.circular(60),
-                            //     //
-                            //     //   borderSide:
-                            //     //   BorderSide(color: Colors.yellow),
-                            //     // ),
-                            //
-                            //   ),
-                            // )
-                            child: TextFormField(
-                              // maxLength: 1,
-                              controller: otp,
-                              showCursor: false,
-                              textAlign: TextAlign.start,
-
-                              cursorColor: Colors.transparent,
-                              style: TextStyle(letterSpacing: 60),
-                              keyboardType: TextInputType.number,
-                              obscureText: true,
-
-                              decoration: InputDecoration(
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 19),
-                                fillColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(60),
-                                  borderSide: BorderSide(color: Colors.white),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(60),
-                                  borderSide: BorderSide(color: Colors.yellow),
-                                ),
-                              ),
-                              inputFormatters: [
-                                LengthLimitingTextInputFormatter(4)
-                              ],
-                            ),
-                          ),
-                        ],
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(4)
+                          ],
+                        ),
                       ),
+                      // ],
+                      // ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.07,
                       ),
@@ -333,85 +335,83 @@ class _OtpLoginState extends State<OtpLogin> {
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold),
                           ),
-enableResend ?
-                         
-                                  
-                        
-                          InkWell(
-                            onTap:enableResend ? resendotp : null,
-                            child: Text(
-                              " RESEND",
-                              style: TextStyle(
-                                  color: primaryBlue,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          )
-
-                          :
-                           Padding(
-                             padding: const EdgeInsets.only(left:5),
-                             child: TweenAnimationBuilder(
-                                tween: Tween(begin: 30.0, end: 0),
-                                duration: Duration(seconds: 30),
-                                builder: (context, value, child) => Text(
-                                      '00:${value.toInt()}',
-                                      style: TextStyle(color: primaryBlue,fontSize: 16),
-                                    )),
-                           )
+                          enableResend
+                              ? InkWell(
+                                  onTap: enableResend ? resendotp : null,
+                                  child: Text(
+                                    " RESEND",
+                                    style: TextStyle(
+                                        color: primaryBlue,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                )
+                              : Padding(
+                                  padding: const EdgeInsets.only(left: 5),
+                                  child: TweenAnimationBuilder(
+                                      tween: Tween(begin: 30.0, end: 0),
+                                      duration: Duration(seconds: 30),
+                                      builder: (context, value, child) => Text(
+                                            '00:${value.toInt()}',
+                                            style: TextStyle(
+                                                color: primaryBlue,
+                                                fontSize: 16),
+                                          )),
+                                )
                         ],
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.1,
                       ),
-
-                       (_spincontorller == false)?
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.75,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                otpenter();
-                                // Navigator.push(context, MaterialPageRoute(
-                                //     builder: (BuildContext context) {
-                                //   return ResetPassword();
-                                // }));
-                                setState(() {
-                                  _spincontorller = true;
-                                });
-                              },
-                              child: Container(
-                                height: 50,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color: primaryBlue,
-                                ),
-                                child: Center(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        child: Center(
-                                          child: Icon(
-                                            Icons.arrow_forward,
-                                            color: Colors.black,
-                                            size: 30,
-                                          ),
+                      (_spincontorller == false)
+                          ? Container(
+                              width: MediaQuery.of(context).size.width * 0.75,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      otpenter();
+                                      // Navigator.push(context, MaterialPageRoute(
+                                      //     builder: (BuildContext context) {
+                                      //   return ResetPassword();
+                                      // }));
+                                      setState(() {
+                                        _spincontorller = true;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 50,
+                                      width: 100,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                        color: primaryBlue,
+                                      ),
+                                      child: Center(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              child: Center(
+                                                child: Icon(
+                                                  Icons.arrow_forward,
+                                                  color: Colors.black,
+                                                  size: 30,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                    ],
+                                    ),
                                   ),
-                                ),
+                                ],
                               ),
-                            ),
-                          ],
-                        ),
-                      )
-                      :
-                      Container(color: Colors.red,)
+                            )
+                          : Container(
+                              color: Colors.red,
+                            )
                     ],
                   )
                       // ],
@@ -425,8 +425,8 @@ enableResend ?
               child: Center(
                   child: (_spincontorller == true)
                       ? AbsorbPointer(
-                        child: Container(
-                          // color:Colors.red,
+                          child: Container(
+                            // color:Colors.red,
                             margin: const EdgeInsets.only(
                                 bottom: 6.0), //Same as `blurRadius` i guess
                             height: MediaQuery.of(context).size.height,
@@ -437,7 +437,7 @@ enableResend ?
                                 // lineWidth: 70,
                                 size: _spincontorller ? 40 : 0),
                           ),
-                      )
+                        )
                       : null),
             ),
           ],
@@ -454,7 +454,7 @@ enableResend ?
     var response1 = await http.post(APIData.otpverifyon, body: {
       "mobile": widget.mobile,
       "otp": otp.text,
-      "password":'password'
+      "password": 'password'
     }, headers: {
       HttpHeaders.authorizationHeader: "Bearer $authToken",
       "Accept": "application/json",
@@ -561,9 +561,9 @@ enableResend ?
 
   resendotp() async {
     print(authToken);
-    
+
     var response1 = await http.post(APIData.loginotpresend, body: {
-      "email": widget.mobile,
+      "mobile": widget.mobile,
       "password": 'password'
     }, headers: {
       HttpHeaders.authorizationHeader: "Bearer $authToken",
@@ -580,10 +580,10 @@ enableResend ?
         textColor: Colors.white,
         gravity: ToastGravity.BOTTOM,
       );
-       setState((){
-      secondsRemaining = 30;
-      enableResend = false;
-    });
+      setState(() {
+        secondsRemaining = 30;
+        enableResend = false;
+      });
     } else {
       Fluttertoast.showToast(
         msg: "Getting Some Error",
@@ -593,5 +593,4 @@ enableResend ?
       );
     }
   }
-  
 }

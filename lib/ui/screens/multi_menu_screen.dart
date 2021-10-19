@@ -14,14 +14,14 @@ import 'package:IQRA/ui/screens/bottom_navigations_bar.dart';
 import 'package:IQRA/ui/shared/appbar.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-class MultiMenuScreen extends StatefulWidget {
 
+class MultiMenuScreen extends StatefulWidget {
   @override
   _MultiMenuScreenState createState() => _MultiMenuScreenState();
 }
 
 class _MultiMenuScreenState extends State<MultiMenuScreen> {
-   Widget appBar() {
+  Widget appBar() {
     var appConfig = Provider.of<AppConfig>(context, listen: false).appModel;
     return AppBar(
       title: Image.network(
@@ -144,20 +144,24 @@ class _MultiMenuScreenState extends State<MultiMenuScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-             shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
-          side: BorderSide(
-              color: Colors.blue, width: 1, style: BorderStyle.solid)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+                side: BorderSide(
+                    color: Colors.blue, width: 1, style: BorderStyle.solid)),
             backgroundColor: Colors.black87,
             contentTextStyle: TextStyle(color: Colors.yellow, fontSize: 17),
             titleTextStyle: TextStyle(
-                color: Colors.yellow, fontSize: 20, fontWeight: FontWeight.bold),
+                color: Colors.yellow,
+                fontSize: 20,
+                fontWeight: FontWeight.bold),
             title: Text(
               'Sign Out?',
               textAlign: TextAlign.center,
             ),
-            content: Text('Are you sure that you want to logout?',textAlign: TextAlign.center,),
-
+            content: Text(
+              'Are you sure that you want to logout?',
+              textAlign: TextAlign.center,
+            ),
             actions: <Widget>[
               SizedBox(
                 width: 20,
@@ -183,32 +187,27 @@ class _MultiMenuScreenState extends State<MultiMenuScreen> {
                     width: 10,
                   ),
                   InkWell(
-                     onTap: () async {
+                    onTap: () async {
                       print("logout");
                       await storage.deleteAll();
                       Navigator.pushNamed(context, RoutePaths.loginHome);
                       // screenLogout();
                     },
-                    
                     child: Container(
-
                       alignment: Alignment.center,
                       padding: EdgeInsets.only(top: 5),
                       height: 40,
                       width: 80,
                       decoration: BoxDecoration(
-
                           color: Colors.black87,
                           borderRadius: BorderRadius.circular(5)),
-                      
-                        child: Text(
-                          'Confirm',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.red, fontSize: 20),
-                        ),
+                      child: Text(
+                        'Confirm',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.red, fontSize: 20),
                       ),
                     ),
-                
+                  ),
                 ],
               ),
               // TextButton(
@@ -274,7 +273,13 @@ class _MultiMenuScreenState extends State<MultiMenuScreen> {
       Fluttertoast.showToast(msg: "Something went wrong!");
     }
   }
-  final List<String>  imageProfile = ['assets/1.png','assets/2.png','assets/3.png','assets/4.png'];
+
+  final List<String> imageProfile = [
+    'assets/1.png',
+    'assets/2.png',
+    'assets/3.png',
+    'assets/4.png'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -303,16 +308,25 @@ class _MultiMenuScreenState extends State<MultiMenuScreen> {
                   alignment: Alignment.center,
                   child: Column(
                     children: [
-                      SizedBox(height: MediaQuery.of(context).size.height / 4,),
-                    
-                      Icon(Icons.warning,size: 70,),
-                      SizedBox(height: 40,),
-                      Center(
-                       child:Padding(
-                         padding: const EdgeInsets.only(left: 11,right: 11),
-                         child: FittedBox(child: Text('No Series and Movies found with this genres',style: TextStyle(fontSize: 20),)),
-                       )
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 4,
                       ),
+                      Icon(
+                        Icons.warning,
+                        size: 70,
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Center(
+                          child: Padding(
+                        padding: const EdgeInsets.only(left: 11, right: 11),
+                        child: FittedBox(
+                            child: Text(
+                          'No Series and Movies found with this genres',
+                          style: TextStyle(fontSize: 20),
+                        )),
+                      )),
                     ],
                   ),
                 )
@@ -355,8 +369,8 @@ class _MultiMenuScreenState extends State<MultiMenuScreen> {
                                   decoration: BoxDecoration(
                                       color: Colors.black,
                                       border: Border.all(
-                                        //color: Colors.blue,
-                                      ),
+                                          //color: Colors.blue,
+                                          ),
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(5))),
                                   width: MediaQuery.of(context).size.width * .4,
@@ -368,8 +382,8 @@ class _MultiMenuScreenState extends State<MultiMenuScreen> {
                                         decoration: BoxDecoration(
                                             color: Colors.black,
                                             border: Border.all(
-                                             // color: Colors.blue,
-                                            ),
+                                                // color: Colors.blue,
+                                                ),
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(5))),
                                         width:
@@ -386,7 +400,10 @@ class _MultiMenuScreenState extends State<MultiMenuScreen> {
                                                           .size
                                                           .width *
                                                       .4,
-                                                  height: 110.0,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      6,
                                                   fit: BoxFit.fill,
                                                 ),
                                               ),
@@ -400,7 +417,8 @@ class _MultiMenuScreenState extends State<MultiMenuScreen> {
                                                 style: TextStyle(
                                                     fontSize: 14.0,
                                                     color: primaryBlue,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             ),
                                           ],
@@ -440,6 +458,7 @@ class _MultiMenuScreenState extends State<MultiMenuScreen> {
         onWillPop: onWillPopS);
   }
 }
+
 class ScreenProfileMenu {
   int id;
   String screenName;
