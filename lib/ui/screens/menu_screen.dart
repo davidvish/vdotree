@@ -831,7 +831,7 @@ class _MenuScreenState extends State<MenuScreen> {
     return LayoutBuilder(builder: (context, constraint) {
       if (constraint.maxWidth <= 768) {
         return Container(
-          padding: EdgeInsets.only(bottom: 10),
+          // padding: EdgeInsets.only(bottom: 10),
 
           // color: Colors.black,
 
@@ -1277,8 +1277,9 @@ class _MenuScreenState extends State<MenuScreen> {
 //  Drawer body container
   Widget drawerBodyContainer() {
     var appConfig = Provider.of<AppConfig>(context, listen: false).appModel;
+    final size = MediaQuery.of(context).size.width;
     return Container(
-      height: MediaQuery.of(context).size.height,
+      height: size <= 768 ?   MediaQuery.of(context).size.height / 1.5 : MediaQuery.of(context).size.height ,
       color: Colors.black,
       child: Column(
         children: <Widget>[

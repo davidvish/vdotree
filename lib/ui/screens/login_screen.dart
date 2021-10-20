@@ -69,10 +69,12 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         isShowing = true;
       });
+      print('FAEBOOK LOGIN ${graphResponse.body}');
       var name = profile['name'];
       var email = profile['email'];
       var code = profile['id'];
       var password = "password";
+      print('EMAIL ${profile['email']}');
       goToDialog();
       socialLogin(APIData.fbLoginApi, email, password, code, name, "code");
 
