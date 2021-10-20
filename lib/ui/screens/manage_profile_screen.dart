@@ -152,6 +152,8 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
   }
 
   Widget mailId() {
+        final padding = MediaQuery.of(context).size.width;
+
     var userDetails =
         Provider.of<UserProfileProvider>(context).userProfileModel;
     return Padding(
@@ -168,12 +170,12 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
                   child: Text(
                     'User Email',
                     textAlign: TextAlign.start,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: padding <= 768 ? null  : 27),
                   )),
               Container(
                   margin: EdgeInsets.only(right: 20, bottom: 5),
                   child:
-                      Text(userDetails.user.email, textAlign: TextAlign.end)),
+                      Text(userDetails.user.email,style: TextStyle(fontSize:padding <= 768 ? null  : 27), textAlign: TextAlign.end)),
             ],
           ),
           Divider(
@@ -186,6 +188,7 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
   }
 
   Widget phoneNumber() {
+    final padding = MediaQuery.of(context).size.width;
     var userDetails =
         Provider.of<UserProfileProvider>(context).userProfileModel;
     return Padding(
@@ -195,20 +198,23 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
         spacing: 100,
         children: <Widget>[
           Container(
+
             margin: EdgeInsets.only(left: 20, bottom: 5),
+            padding: padding <= 768 ? null : EdgeInsets.only(top:10,bottom: 10),
             child: Text(
               'Phone Number',
               textAlign: TextAlign.start,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,fontSize:padding <= 768 ? null  : 27),
             ),
           ),
           Container(
             margin: EdgeInsets.only(right: 20, bottom: 5),
+             padding: padding <= 768 ? null : EdgeInsets.only(top:10,bottom: 10),
             child: Text(
                 userDetails.user.mobile == null
                     ? "N/A"
                     : userDetails.user.mobile,
-                textAlign: TextAlign.end),
+                textAlign: TextAlign.end,style: TextStyle(fontSize: padding <= 768 ? null  : 27),),
             decoration: BoxDecoration(border: Border.all(width: 1)),
           ),
           Divider(
@@ -223,6 +229,8 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
   Widget birthDate() {
     var userDetails =
         Provider.of<UserProfileProvider>(context).userProfileModel;
+            final padding = MediaQuery.of(context).size.width;
+
     return Padding(
       padding: EdgeInsets.only(top: 340),
       child: Wrap(
@@ -230,17 +238,21 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
         spacing: 100,
         children: <Widget>[
           Container(
+             padding: padding <= 768 ? null : EdgeInsets.only(top:30,bottom: 10),
+
               margin: EdgeInsets.only(left: 20, bottom: 5),
               child: Text(
                 'Birthdate',
                 textAlign: TextAlign.start,
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold,fontSize:padding <= 768 ? null  :27),
               )),
           Container(
             margin: EdgeInsets.only(right: 20, bottom: 5),
+             padding: padding <= 768 ? null : EdgeInsets.only(top:30,bottom: 10),
+
             child: Text(
                 userDetails.user.dob == null ? "N/A" : userDetails.user.dob,
-                textAlign: TextAlign.end),
+                textAlign: TextAlign.end,style: TextStyle(fontSize:padding <= 768 ? null  : 27),),
             decoration: BoxDecoration(border: Border.all(width: 1)),
           ),
           Divider(
@@ -253,6 +265,8 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
   }
 
   Widget joinedDate() {
+        final padding = MediaQuery.of(context).size.width;
+
     var userDetails =
         Provider.of<UserProfileProvider>(context).userProfileModel;
     return Padding(
@@ -262,17 +276,18 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
         spacing: 100,
         children: <Widget>[
           Container(
-              margin: EdgeInsets.only(left: 20, bottom: 5),
+            
+              margin: padding <= 768 ? EdgeInsets.only(left: 20, bottom: 5) : EdgeInsets.only(left: 20, bottom: 10,top:50),
               child: Text(
                 'Joined On',
                 textAlign: TextAlign.start,
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold,fontSize: padding <= 768 ? null  : 27),
               )),
           Container(
-              margin: EdgeInsets.only(right: 20, bottom: 5),
+              margin: padding <= 768 ? EdgeInsets.only(left: 20, bottom: 5,right: 20) : EdgeInsets.only(left: 20, bottom: 10,top:50,right: 20),
               child: Text(
                   DateFormat("dd-MM-y").format(userDetails.user.createdAt),
-                  textAlign: TextAlign.start)),
+                  textAlign: TextAlign.start,style: TextStyle(fontSize: padding <= 768 ? null  : 27),)),
           Divider(
             color: Colors.white,
             thickness: 0.3,
@@ -283,6 +298,8 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
   }
 
   Widget subscriptionExpiryDate() {
+        final padding = MediaQuery.of(context).size.width;
+
     var userDetails =
         Provider.of<UserProfileProvider>(context).userProfileModel;
     return Padding(
@@ -292,26 +309,26 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
         spacing: 100,
         children: <Widget>[
           Container(
-              margin: EdgeInsets.only(left: 20, bottom: 5),
+              margin: padding <= 768 ? EdgeInsets.only(left: 20, bottom: 5) : EdgeInsets.only(left: 20, bottom: 10,top:70),
               child: Text(
                 'Subscription End On',
                 textAlign: TextAlign.start,
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold,fontSize: padding <= 768 ? null  : 27),
               )),
           Container(
-            margin: EdgeInsets.only(right: 20, bottom: 5),
+              margin: padding <= 768 ? EdgeInsets.only(left: 20, bottom: 5,right: 20) : EdgeInsets.only(left: 20, bottom: 10,top:70,right: 20),
             child: userDetails.active == "1"
                 ? Text(
                     "${userDetails.end}" == ''
                         ? sw
                         : '${DateFormat.yMMMd().format(_date)}',
-                    textAlign: TextAlign.end,
+                    textAlign: TextAlign.end,style: TextStyle(fontSize: padding <= 768 ? null  : 27),
                   )
                 : Text(
                     sw,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 15.0,
+                      fontSize: padding <= 768 ? null  : MediaQuery.of(context).size.width / 35
                     ),
                     textAlign: TextAlign.right,
                   ),
@@ -326,6 +343,8 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
   }
 
   Widget userAccountStatus() {
+        final padding = MediaQuery.of(context).size.width;
+
     var userDetails =
         Provider.of<UserProfileProvider>(context).userProfileModel;
     return Container(
@@ -335,10 +354,15 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              accountStatusText(),
+              Container(
+                                                margin: padding <= 768 ? EdgeInsets.only(left: 20, bottom: 5) : EdgeInsets.only(left: 20, bottom: 10,top:90),
+
+                child: accountStatusText()),
               Padding(
                 padding: const EdgeInsets.only(right: 20),
                 child: Container(
+                                margin: padding <= 768 ? EdgeInsets.only(left: 20, bottom: 5) : EdgeInsets.only(left: 20, bottom: 10,top:90),
+
                   child: userDetails.active == "0"
                       ? inactiveStatus()
                       : activeStatus(),
@@ -353,6 +377,7 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
   }
 
   Widget editProfile() {
+    final size = MediaQuery.of(context).size.width;
     return LayoutBuilder(builder: (context, constraint) {
       if (constraint.maxWidth < 600) {
         return Container(
@@ -379,10 +404,14 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
             ],
           ),
         );
-      } else {
+      } 
+    
+       else {
         return Container(
+          // color: size <= 768 ? Colors.yellow : Colors.red,
           // margin: EdgeInsets.only(top: 510, right: 220, left: 20),
-          margin: EdgeInsets.only(top: 510, left: 10, right: 430),
+          margin: size <= 768 ? EdgeInsets.only(top: 510, left: 10, right: 430)
+          : EdgeInsets.only(top: 630, left: 59, right: 500),
           height: 100,
           child: Row(
             children: <Widget>[
@@ -392,6 +421,7 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
                     "Edit Profile",
                     style: TextStyle(
                       color: Colors.black,
+                      fontSize: size <= 768 ? null : 25
                     ),
                   ),
                   color: Color.fromRGBO(255, 255, 0, 1.0),
@@ -408,32 +438,10 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
   }
 
   Widget resetPassword() {
+        final size = MediaQuery.of(context).size.width;
+
     return LayoutBuilder(builder: (context, constraint) {
-      if (constraint.maxWidth > 600) {
-        return Container(
-
-            // margin: EdgeInsets.only(top: 510, right: 20, left: 220),
-            margin: EdgeInsets.only(top: 510, right: 10, left: 420),
-            height: 100,
-
-            // width:200,
-            child: Row(children: <Widget>[
-              Expanded(
-                  child: RaisedButton(
-                onPressed: () {
-                  pass();
-                  // Navigator.pushNamed(context, RoutePaths.changePassword);
-                },
-                color: Color.fromRGBO(255, 255, 0, 1.0),
-                child: Text(
-                  "Reset Password",
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-              )),
-            ]));
-      } else {
+      if (constraint.maxWidth < 600) {
         return Container(
             margin: EdgeInsets.only(top: 510, right: 20, left: 220),
             // margin: EdgeInsets.only(top:510,right:10,left: 420),
@@ -461,6 +469,33 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
                       fontSize: 12,
                       color: Colors.black,
                     ),
+                  ),
+                ),
+              )),
+            ]));
+      } else {
+        return Container(
+
+            // margin: EdgeInsets.only(top: 510, right: 20, left: 220),
+            margin:size <= 768 ? EdgeInsets.only(top: 510, right: 10, left: 420) 
+            :EdgeInsets.only(top: 630, right: 50, left: 500),
+            height: 100,
+
+            // width:200,
+            child: Row(children: <Widget>[
+              Expanded(
+                  child: RaisedButton(
+                onPressed: () {
+                  pass();
+                  // Navigator.pushNamed(context, RoutePaths.changePassword);
+                },
+                color: Color.fromRGBO(255, 255, 0, 1.0),
+                child: Text(
+                  "Reset Password",
+                  style: TextStyle(
+                                          fontSize: size <= 768 ? null : 25,
+
+                    color: Colors.black,
                   ),
                 ),
               )),
@@ -568,13 +603,16 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
 
 //  Account status text
   Widget accountStatusText() {
+        final padding = MediaQuery.of(context).size.width;
+
     return new Padding(
-      padding: EdgeInsets.only(top: 275.0, left: 20),
+      padding: EdgeInsets.only(top: 275.0, ),
       child: Text(
         'Account status',
         textAlign: TextAlign.start,
         style: TextStyle(
           fontWeight: FontWeight.bold,
+          fontSize: padding <= 768 ? null  : 27
         ),
       ),
     );
@@ -582,6 +620,8 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
 
 //  When user is active
   Widget activeStatus() {
+        final padding = MediaQuery.of(context).size.width;
+
     return Padding(
         padding: EdgeInsets.only(top: 267, left: 0),
         child: Row(
@@ -618,7 +658,7 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
                 'Active',
                 style: TextStyle(
                   color: Colors.white70,
-                  fontSize: 12.0,
+                  fontSize: padding <= 768 ? null  : 27
                 ),
               ),
             ),
@@ -628,6 +668,8 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
 
 //  When user is inactive
   Widget inactiveStatus() {
+        final padding = MediaQuery.of(context).size.width;
+
     return Padding(
         padding: EdgeInsets.only(top: 267, left: 0),
         child: Row(
@@ -662,7 +704,7 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
                 'Inactive',
                 style: TextStyle(
                   color: Colors.white70,
-                  fontSize: 12.0,
+                  fontSize:padding <= 768 ? null  : 27
                 ),
               ),
             ),
@@ -1040,9 +1082,11 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
 
 //  Scaffold body
   Widget scaffoldBody() {
+        final padding = MediaQuery.of(context).size.width;
+
     return SingleChildScrollView(
       child: Container(
-        height: 600,
+        height: padding <= 768 ? 600 : MediaQuery.of(context).size.height,
         color: Colors.black,
         // height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,

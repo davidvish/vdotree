@@ -206,97 +206,97 @@ SystemChrome.setPreferredOrientations([
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.1,
                       ),
-                      Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.72,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                   width: 30,
-                                  height: 50,
-                                  alignment: Alignment.bottomCenter,
-                                  // color: Colors.amber,
-                                  // child: Text(
-                                  //   '___',
-                                  //   style: TextStyle(
-                                  //       fontSize: 30, color: primaryBlue),
-                                  // ),
-                                  // height:
-                                  //     MediaQuery.of(context).size.width * 0.15,
-                                  // width:
-                                  //     MediaQuery.of(context).size.width * 0.15,
-                                  // decoration: BoxDecoration(
-                                  //     borderRadius: BorderRadius.circular(10),
-                                  //     border: Border.all(
-                                  //         color: Colors.white, width: 1)),
-                                ),
-                                Container(
-                                  width: 30,
-                                  height: 50,
-                                  alignment: Alignment.bottomCenter,
-                                  // color: Colors.amber,
-                                  // child: Text(
-                                  //   '___',
-                                  //   style: TextStyle(
-                                  //       fontSize: 30, color: primaryBlue),
-                                  // ),
-                                  // height:
-                                  //     MediaQuery.of(context).size.width * 0.15,
-                                  // width:
-                                  //     MediaQuery.of(context).size.width * 0.15,
-                                  // decoration: BoxDecoration(
-                                  //     borderRadius: BorderRadius.circular(10),
-                                  //     border: Border.all(
-                                  //         color: Colors.white, width: 1)),
-                                ),
-                                Container(
-                                  height: 27,
+                      // Stack(
+                      //   alignment: Alignment.center,
+                      //   children: [
+                      //     Container(
+                      //       width: MediaQuery.of(context).size.width * 0.72,
+                      //       child: Row(
+                      //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //         children: [
+                      //           Container(
+                      //              width: 30,
+                      //             height: 50,
+                      //             alignment: Alignment.bottomCenter,
+                      //             // color: Colors.amber,
+                      //             // child: Text(
+                      //             //   '___',
+                      //             //   style: TextStyle(
+                      //             //       fontSize: 30, color: primaryBlue),
+                      //             // ),
+                      //             // height:
+                      //             //     MediaQuery.of(context).size.width * 0.15,
+                      //             // width:
+                      //             //     MediaQuery.of(context).size.width * 0.15,
+                      //             // decoration: BoxDecoration(
+                      //             //     borderRadius: BorderRadius.circular(10),
+                      //             //     border: Border.all(
+                      //             //         color: Colors.white, width: 1)),
+                      //           ),
+                      //           Container(
+                      //             width: 30,
+                      //             height: 50,
+                      //             alignment: Alignment.bottomCenter,
+                      //             // color: Colors.amber,
+                      //             // child: Text(
+                      //             //   '___',
+                      //             //   style: TextStyle(
+                      //             //       fontSize: 30, color: primaryBlue),
+                      //             // ),
+                      //             // height:
+                      //             //     MediaQuery.of(context).size.width * 0.15,
+                      //             // width:
+                      //             //     MediaQuery.of(context).size.width * 0.15,
+                      //             // decoration: BoxDecoration(
+                      //             //     borderRadius: BorderRadius.circular(10),
+                      //             //     border: Border.all(
+                      //             //         color: Colors.white, width: 1)),
+                      //           ),
+                      //           Container(
+                      //             height: 27,
 
-                                  // width: 50,
-                                  // height: 50,
-                                  alignment: Alignment.bottomCenter,
-                                  // color: Colors.amber,
-                                  // child: Text(
-                                  //   '___',
-                                  //   style: TextStyle(
-                                  //       fontSize: 30, color: primaryBlue),
-                                  // ),
-                                  // height:
-                                  //     MediaQuery.of(context).size.width * 0.15,
-                                  // width:
-                                  //     MediaQuery.of(context).size.width * 0.15,
-                                  // decoration: BoxDecoration(
-                                  //     borderRadius: BorderRadius.circular(10),
-                                  //     border: Border.all(
-                                  //         color: Colors.white, width: 1)),
-                                ),
-                                Container(
-                                  width: 30,
-                                  height: 50,
-                                  alignment: Alignment.bottomCenter,
-                                  // color: Colors.amber,
-                                  // child: Text(
-                                  //   '___',
-                                  //   style: TextStyle(
-                                  //       fontSize: 30, color: primaryBlue),
-                                  // ),
-                                  // color: Colors.green,
+                      //             // width: 50,
+                      //             // height: 50,
+                      //             alignment: Alignment.bottomCenter,
+                      //             // color: Colors.amber,
+                      //             // child: Text(
+                      //             //   '___',
+                      //             //   style: TextStyle(
+                      //             //       fontSize: 30, color: primaryBlue),
+                      //             // ),
+                      //             // height:
+                      //             //     MediaQuery.of(context).size.width * 0.15,
+                      //             // width:
+                      //             //     MediaQuery.of(context).size.width * 0.15,
+                      //             // decoration: BoxDecoration(
+                      //             //     borderRadius: BorderRadius.circular(10),
+                      //             //     border: Border.all(
+                      //             //         color: Colors.white, width: 1)),
+                      //           ),
+                      //           Container(
+                      //             width: 30,
+                      //             height: 50,
+                      //             alignment: Alignment.bottomCenter,
+                      //             // color: Colors.amber,
+                      //             // child: Text(
+                      //             //   '___',
+                      //             //   style: TextStyle(
+                      //             //       fontSize: 30, color: primaryBlue),
+                      //             // ),
+                      //             // color: Colors.green,
 
-                                  // height:
-                                  //     MediaQuery.of(context).size.width * 0.15,
-                                  // width:
-                                  //     MediaQuery.of(context).size.width * 0.15,
-                                  // decoration: BoxDecoration(
-                                  //     borderRadius: BorderRadius.circular(10),
-                                  //     border: Border.all(
-                                  //         color: Colors.white, width: 1)),
-                                ),
-                              ],
-                            ),
-                          ),
+                      //             // height:
+                      //             //     MediaQuery.of(context).size.width * 0.15,
+                      //             // width:
+                      //             //     MediaQuery.of(context).size.width * 0.15,
+                      //             // decoration: BoxDecoration(
+                      //             //     borderRadius: BorderRadius.circular(10),
+                      //             //     border: Border.all(
+                      //             //         color: Colors.white, width: 1)),
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     ),
                             Container(
                             // color: Colors.red,
                             // alignment: Alignment.center,
@@ -310,7 +310,7 @@ SystemChrome.setPreferredOrientations([
                               textAlign: TextAlign.start,
                               
                               cursorColor: Colors.transparent,
-                              style: TextStyle(letterSpacing: 60),
+                              style: TextStyle(letterSpacing: MediaQuery.of(context).size.width / 6),
                               keyboardType: TextInputType.number,
                               obscureText: true,
                               decoration: InputDecoration(
@@ -336,8 +336,8 @@ SystemChrome.setPreferredOrientations([
                               ],
                             ),
                           ),
-                        ],
-                      ),
+                        // ],
+                      // ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.07,
                       ),

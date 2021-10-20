@@ -34,11 +34,11 @@ class _BlankWishListState extends State<BlankWishList> {
               children: [
                 Expanded(
                   flex: 1,
-                  child: Text(
-                    "Add movies & TV shows to your list so you can easily find them later.",
+                  child: Text("Coming Soon",
+                    // "Add movies & TV shows to your list so you can easily find them later.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 16.0,
+                      fontSize: 20.0,
                       color: Colors.white.withOpacity(1),
                     ),
                   ),
