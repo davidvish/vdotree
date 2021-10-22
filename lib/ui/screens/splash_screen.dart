@@ -356,6 +356,8 @@ class SplashScreenState extends State<SplashScreen> {
     return null;
   }
 
+  final LinearGradient gradient =
+      LinearGradient(colors: [primaryBlue, Colors.deepOrange, Colors.purple]);
   @override
   Widget build(BuildContext context) {
     final myModel = Provider.of<AppConfig>(context, listen: false);
@@ -390,13 +392,17 @@ class SplashScreenState extends State<SplashScreen> {
                 logoImage(myModel),
                 Padding(
                   padding: const EdgeInsets.only(top: 15),
-                  child: Text(
+                  child:
+                   ShaderMask(
+                  shaderCallback: (Rect rect) {
+                    return gradient.createShader(rect);
+                  },child: Text(
                     "VDOTREE",
                     style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
-                  ),
+                  ))
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 15),

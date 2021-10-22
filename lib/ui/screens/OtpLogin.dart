@@ -72,6 +72,7 @@ class _OtpLoginState extends State<OtpLogin> {
   Widget build(BuildContext context) {
     final userDetails = Provider.of<UserProfileProvider>(context, listen: false)
         .userProfileModel;
+        final size = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         appBar: customAppBar(context, "VERIFICATION CODE"),
@@ -296,7 +297,8 @@ class _OtpLoginState extends State<OtpLogin> {
                           cursorColor: Colors.transparent,
                           style: TextStyle(
                               letterSpacing:
-                                  MediaQuery.of(context).size.width / 6),
+                              size <= 768 ? MediaQuery.of(context).size.width / 7 :
+                                  MediaQuery.of(context).size.width / 6 ),
                           keyboardType: TextInputType.number,
                           obscureText: true,
 

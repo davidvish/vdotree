@@ -1279,7 +1279,7 @@ class _MenuScreenState extends State<MenuScreen> {
     var appConfig = Provider.of<AppConfig>(context, listen: false).appModel;
     final size = MediaQuery.of(context).size.width;
     return Container(
-      height: size <= 768 ?   MediaQuery.of(context).size.height / 1.5 : MediaQuery.of(context).size.height ,
+      height: size <= 768 ?   MediaQuery.of(context).size.height / 1.1 : MediaQuery.of(context).size.height ,
       color: Colors.black,
       child: Column(
         children: <Widget>[
@@ -1456,92 +1456,106 @@ class _MenuScreenState extends State<MenuScreen> {
   }
 
   _signOutDialog() {
+    final size = MediaQuery.of(context).size.width;
     return showDialog(
+    
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-                side: BorderSide(
-                    color: Colors.blue, width: 1, style: BorderStyle.solid)),
-            backgroundColor: Colors.black87,
-            contentTextStyle: TextStyle(color: Colors.yellow, fontSize: 17),
-            titleTextStyle: TextStyle(
-                color: Colors.yellow,
-                fontSize: 20,
-                fontWeight: FontWeight.bold),
-            title: Text(
-              'Sign Out?',
-              textAlign: TextAlign.center,
-            ),
-            content: Text(
-              'Are you sure that you want to logout?',
-              textAlign: TextAlign.center,
-            ),
-            actions: <Widget>[
-              SizedBox(
-                width: 20,
+          return Container(
+            child: AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                  side: BorderSide(
+                      color: Colors.blue, width: 1, style: BorderStyle.solid)),
+              backgroundColor: Colors.black87,
+              contentTextStyle: TextStyle(color: Colors.yellow, fontSize: 17),
+              titleTextStyle: TextStyle(
+                  color: Colors.yellow,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+              title: Container(
+                // color: Colors.red,
+                height: size <= 768 ?null :80,
+                // width:150,
+                child: Column(
+                  children: [
+                    Text(
+                      'Sign Out?',
+                      textAlign: TextAlign.center,
+                    ),
+                    
+                  ],
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      textStyle: TextStyle(fontSize: 20),
-                      backgroundColor: Colors.black87,
-                    ),
-                    onPressed: () {
-                      print("you choose no");
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      'Cancel',
-                      style: TextStyle(color: Colors.yellow),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  InkWell(
-                    onTap: () async {
-                      print("logout");
-                      screenLogout();
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.only(top: 5),
-                      height: 40,
-                      width: 80,
-                      decoration: BoxDecoration(
-                          color: Colors.black87,
-                          borderRadius: BorderRadius.circular(5)),
+              content: Text(
+                'Are you sure that you want to logout?',
+                textAlign: TextAlign.center,
+              ),
+              actions: <Widget>[
+                SizedBox(
+                  width: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        textStyle: TextStyle(fontSize: 20),
+                        backgroundColor: Colors.black87,
+                      ),
+                      onPressed: () {
+                        print("you choose no");
+                        Navigator.pop(context);
+                      },
                       child: Text(
-                        'Confirm',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.red, fontSize: 20),
+                        'Cancel',
+                        style: TextStyle(color: Colors.yellow),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              // TextButton(
-              //   style: TextButton.styleFrom(
-              //     textStyle: TextStyle(fontSize: 20),
-              //     backgroundColor: Colors.black87,
-              //   ),
-              //   onPressed: () {
-              //     print("logout");
-              //     screenLogout();
-              //   },
-              //   child: Text(
-              //     'Confirm',
-              //     style: TextStyle(color: Colors.white),
-              //   ),
-              // ),
-              SizedBox(
-                width: 50,
-              ),
-            ],
+                    SizedBox(
+                      width: 10,
+                    ),
+                    InkWell(
+                      onTap: () async {
+                        print("logout");
+                        screenLogout();
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.only(top: 5),
+                        height: 40,
+                        width: 80,
+                        decoration: BoxDecoration(
+                            color: Colors.black87,
+                            borderRadius: BorderRadius.circular(5)),
+                        child: Text(
+                          'Confirm',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.red, fontSize: 20),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                // TextButton(
+                //   style: TextButton.styleFrom(
+                //     textStyle: TextStyle(fontSize: 20),
+                //     backgroundColor: Colors.black87,
+                //   ),
+                //   onPressed: () {
+                //     print("logout");
+                //     screenLogout();
+                //   },
+                //   child: Text(
+                //     'Confirm',
+                //     style: TextStyle(color: Colors.white),
+                //   ),
+                // ),
+                SizedBox(
+                  width: 50,
+                ),
+              ],
+            ),
           );
         });
   }
