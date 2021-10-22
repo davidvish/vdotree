@@ -133,10 +133,12 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.only(bottom: 10, left: 50, right: 50),
-                  child: Text(
-                    userDetails.user.name,
-                    textAlign: TextAlign.start,
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  child: FittedBox(
+                    child: Text(
+                      userDetails.user.name,
+                      textAlign: TextAlign.start,
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
                   ),
                 ),
                 Divider(
