@@ -29,7 +29,7 @@ class MovieTVProvider with ChangeNotifier {
     var audioList = Provider.of<MainProvider>(context, listen: false).audioList;
     // try {
     var token = await storage.read(key: "authToken");
-    final response = await http.get(APIData.movieTvApi, headers: {
+    final response = await http.get(Uri.parse(APIData.movieTvApi), headers: {
       HttpHeaders.contentTypeHeader: "application/json",
       HttpHeaders.authorizationHeader: "Bearer $token",
     });

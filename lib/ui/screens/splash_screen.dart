@@ -308,7 +308,7 @@ class SplashScreenState extends State<SplashScreen> {
 
   Future<String> getAllScreens() async {
     final getAllScreensResponse =
-        await http.get(Uri.encodeFull(APIData.showScreensApi), headers: {
+        await http.get(Uri.parse(Uri.encodeFull(APIData.showScreensApi)), headers: {
       HttpHeaders.authorizationHeader: "Bearer $authToken",
       "Accept": "application/json"
     });

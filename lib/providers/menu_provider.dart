@@ -12,7 +12,7 @@ class MenuProvider with ChangeNotifier {
   List<Menu> menuList = [];
 
   Future<MenuModel> getMenus(BuildContext context) async {
-    final response = await http.get(APIData.topMenu, headers: {
+    final response = await http.get(Uri.parse(APIData.topMenu), headers: {
       "Accept": "application/json",
       HttpHeaders.authorizationHeader: "Bearer $authToken",
     });

@@ -10,7 +10,7 @@ class FAQProvider with ChangeNotifier {
   FaqModel faqModel;
 
   Future<FaqModel> fetchFAQ(BuildContext context) async {
-    final response = await http.get(APIData.faq, headers: {
+    final response = await http.get(Uri.parse(APIData.faq), headers: {
       HttpHeaders.contentTypeHeader: "application/json",
     });
     if (response.statusCode == 200) {

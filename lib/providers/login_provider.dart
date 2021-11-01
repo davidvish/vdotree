@@ -32,7 +32,7 @@ class LoginProvider extends ChangeNotifier {
     FAQProvider faqProvider = Provider.of<FAQProvider>(ctx, listen: false);
     try {
       final response = await http.post(
-        APIData.loginApi,
+          Uri.parse(APIData.loginApi),
         headers: {HttpHeaders.contentTypeHeader: "application/json"},
         body: json.encode({
           'mobile': mobile,
@@ -86,7 +86,7 @@ class LoginProvider extends ChangeNotifier {
     FAQProvider faqProvider = Provider.of<FAQProvider>(ctx, listen: false);
     try {
       final response = await http.post(
-        APIData.registerApi,
+          Uri.parse(APIData.registerApi),
         headers: {"Accept": "application/json"},
         body: {
           'email': email,

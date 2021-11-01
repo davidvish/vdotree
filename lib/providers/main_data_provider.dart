@@ -16,7 +16,7 @@ class MainProvider with ChangeNotifier {
 
   Future<GenreModel> getMainApiData(BuildContext context) async {
     try {
-      final response = await http.get(APIData.allDataApi, headers: {
+      final response = await http.get(Uri.parse(APIData.allDataApi), headers: {
         "Accept": "application/json",
         HttpHeaders.authorizationHeader: "Bearer $authToken",
       });

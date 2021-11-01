@@ -350,7 +350,7 @@ class MoviesWishList extends StatefulWidget {
 
 class _MoviesWishListState extends State<MoviesWishList> {
   Future<String> removeWishList(vType, id) async {
-    final response = await http.get("${APIData.removeWatchlistMovie}$id",
+    final response = await http.get(Uri.parse("${APIData.removeWatchlistMovie}$id"),
         headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
     if (response.statusCode == 200) {
       moviesWishList
@@ -635,7 +635,7 @@ class TVSeriesWishList extends StatefulWidget {
 
 class _TVSeriesWishListState extends State<TVSeriesWishList> {
   Future<String>  removeWishList(vType, id) async {
-    final response = await http.get("${APIData.removeWatchlistSeason}$id",
+    final response = await http.get(Uri.parse("${APIData.removeWatchlistSeason}$id"),
         headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
         print(' RFCTFCFC $id');
         print(response.body);

@@ -880,11 +880,11 @@ class _SelectPaymentScreenState extends State<SelectPaymentScreen>
                   }
                   if (couponCode == '') {
                     if (genCoupon == null) {
-                      Navigator.pushNamed(context, RoutePaths.paytm,
-                          arguments: PaytmPayment(indexPer, null));
+                      // Navigator.pushNamed(context, RoutePaths.paytm,
+                      //     arguments: PaytmPayment(indexPer, null));
                     } else {
-                      Navigator.pushNamed(context, RoutePaths.paytm,
-                          arguments: PaytmPayment(indexPer, genCoupon));
+                      // Navigator.pushNamed(context, RoutePaths.paytm,
+                      //     arguments: PaytmPayment(indexPer, genCoupon));
                     }
                   } else {
                     Future.delayed(Duration(seconds: 1)).then((_) {
@@ -929,11 +929,11 @@ class _SelectPaymentScreenState extends State<SelectPaymentScreen>
                   }
                   if (couponCode == '') {
                     if (genCoupon == null) {
-                      Navigator.pushNamed(context, RoutePaths.paystack,
-                          arguments: PaystackPayment(indexPer, null));
+                      // Navigator.pushNamed(context, RoutePaths.paystack,
+                      //     arguments: PaystackPayment(indexPer, null));
                     } else {
-                      Navigator.pushNamed(context, RoutePaths.paystack,
-                          arguments: PaystackPayment(indexPer, genCoupon));
+                      // Navigator.pushNamed(context, RoutePaths.paystack,
+                      //     arguments: PaystackPayment(indexPer, genCoupon));
                     }
                   } else {
                     Future.delayed(Duration(seconds: 1)).then((_) {
@@ -980,8 +980,8 @@ class _SelectPaymentScreenState extends State<SelectPaymentScreen>
 
                   if (validCoupon != false || couponCode == '') {
                     if (genCoupon == null) {
-                      Navigator.pushNamed(context, RoutePaths.stripe,
-                          arguments: StripePayment(indexPer, couponCode));
+                      // Navigator.pushNamed(context, RoutePaths.stripe,
+                      //     arguments: StripePayment(indexPer, couponCode));
                     } else {
                       Fluttertoast.showToast(
                           msg:
@@ -1436,7 +1436,7 @@ class _SelectPaymentScreenState extends State<SelectPaymentScreen>
     var am = planDetails[widget.planIndex].amount;
     var plan1 = planDetails[widget.planIndex].id;
     print(authToken);
-    final sendResponse = await http.post(APIData.sendRazorDetails,
+    final sendResponse = await http.post(Uri.parse(APIData.sendRazorDetails),
         body: jsonEncode(
           {
             "reference": "$payId",

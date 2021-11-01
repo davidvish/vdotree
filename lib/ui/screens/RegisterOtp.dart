@@ -465,7 +465,7 @@ SystemChrome.setPreferredOrientations([
     setState(() {
       _spincontorller = !_spincontorller;
     });
-    var response1 = await http.post(APIData.registerverify, body: {
+    var response1 = await http.post(Uri.parse(APIData.registerverify), body: {
       "email": widget.email,
       "code":widget.code,
       "otp": otp.text,
@@ -532,7 +532,7 @@ SystemChrome.setPreferredOrientations([
 
   resendotp() async {
     print(authToken);
-    var response1 = await http.post(APIData.registerotpresend, body: {
+    var response1 = await http.post(Uri.parse(APIData.registerotpresend), body: {
       "email": widget.email,
       "code":widget.code,
       "otp": otp.text,

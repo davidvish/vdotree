@@ -20,7 +20,7 @@ class _CreateMultiProfileState extends State<CreateMultiProfile> {
 
   Future<String> postScreenProfile(screen) async {
     final postScreenResponse =
-        await http.post(APIData.screensProfilesApi, body: {
+        await http.post(Uri.parse(APIData.screensProfilesApi), body: {
       "type": '$screen',
       "value": _nameController.text,
     }, headers: {

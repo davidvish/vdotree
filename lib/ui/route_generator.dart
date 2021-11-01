@@ -139,11 +139,11 @@ class RouteGenerator {
         return MaterialPageRoute(
             builder: (context) =>
                 RazorPayment(argument.index, argument.payAmount));
-      case RoutePaths.stripe:
-        StripePayment argument = args;
-        return MaterialPageRoute(
-            builder: (context) =>
-                StripePayment(argument.index, argument.couponCode));
+      // case RoutePaths.stripe:
+      //   StripePayment argument = args;
+      //   return MaterialPageRoute(
+      //       builder: (context) =>
+      //           StripePayment(argument.index, argument.couponCode));
       case RoutePaths.braintree:
   
       case RoutePaths.paypal:
@@ -158,16 +158,16 @@ class RouteGenerator {
                   payAmount: argument.payAmount,
                   planIndex: argument.planIndex,
                 ));
-      case RoutePaths.paytm:
-        PaytmPayment argument = args;
-        return MaterialPageRoute(
-            builder: (context) =>
-                PaytmPayment(argument.index, argument.payAmount));
-      case RoutePaths.paystack:
-        PaystackPayment argument = args;
-        return MaterialPageRoute(
-            builder: (context) =>
-                PaystackPayment(argument.index, argument.payAmount));
+      // case RoutePaths.paytm:
+      //   PaytmPayment argument = args;
+      //   return MaterialPageRoute(
+      //       builder: (context) =>
+      //           PaytmPayment(argument.index, argument.payAmount));
+      // case RoutePaths.paystack:
+      //   PaystackPayment argument = args;
+      //   return MaterialPageRoute(
+      //       builder: (context) =>
+      //           PaystackPayment(argument.index, argument.payAmount));
       case RoutePaths.inApp:
         InApp argument = args;
         return MaterialPageRoute(builder: (context) => InApp(argument.index));

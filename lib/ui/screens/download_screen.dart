@@ -276,6 +276,23 @@ _checkPermission().then((value) => _permissionReady == value);
       if (permission != PermissionStatus.granted) {
         await Permission.storage.request();
         if (await Permission.storage.status == PermissionStatus.granted) {
+          await _checkPermission2();
+          return true;
+        }
+      } else {
+        return true;
+      }
+    } else {
+      return true;
+    }
+    return false;
+  }
+  Future<bool> _checkPermission2() async {
+    if (platform == TargetPlatform.android) {
+      PermissionStatus permission = await Permission.manageExternalStorage.status;
+      if (permission != PermissionStatus.granted) {
+        await Permission.manageExternalStorage.request();
+        if (await Permission.manageExternalStorage.status == PermissionStatus.granted) {
           return true;
         }
       } else {

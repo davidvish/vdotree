@@ -1178,7 +1178,7 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
     setState(() {
       _spincontorller = !_spincontorller;
     });
-    var response = await http.post(APIData.change, body: {
+    var response = await http.post(Uri.parse(APIData.change), body: {
       "email": "${userDetails.user.email}"
     }, headers: {
       HttpHeaders.authorizationHeader: "Bearer $authToken",

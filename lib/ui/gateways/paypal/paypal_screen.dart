@@ -90,7 +90,7 @@ class _PaypalScreenState extends State<PaypalScreen> {
 //  Send payment details
   _sendDetails(transactionId, planId) async {
     try {
-      final sendResponse = await http.post(APIData.sendRazorDetails, body: {
+      final sendResponse = await http.post(Uri.parse(APIData.sendRazorDetails), body: {
         "reference": "$transactionId",
         "amount": "${widget.amount}",
         "plan_id": "$planId",

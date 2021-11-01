@@ -113,7 +113,7 @@ class _MenuScreenState extends State<MenuScreen> {
 
   updateScreens(screen, count, index) async {
     final updateScreensResponse =
-        await http.post(APIData.updateScreensApi, body: {
+        await http.post(Uri.parse(APIData.updateScreensApi), body: {
       "macaddress": '$ip',
       "screen": '$screen',
       "count": '$count',
@@ -1572,12 +1572,12 @@ class _MenuScreenState extends State<MenuScreen> {
 
     if (userDetails.active == "1" || userDetails.active == 1) {
       if (userDetails.payment == "Free") {
-        screenLogOutResponse = await http.post(APIData.screenLogOutApi,
+        screenLogOutResponse = await http.post(Uri.parse(APIData.screenLogOutApi),
             headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
       } else {
         screenCount = await storage.read(key: "screenCount");
         actScreen = await storage.read(key: "activeScreen");
-        screenLogOutResponse = await http.post(APIData.screenLogOutApi, body: {
+        screenLogOutResponse = await http.post(Uri.parse(APIData.screenLogOutApi), body: {
           "screen": '$actScreen',
           "count": '$screenCount',
           "macaddress": '$ip',
@@ -1586,7 +1586,7 @@ class _MenuScreenState extends State<MenuScreen> {
         });
       }
     } else {
-      screenLogOutResponse = await http.post(APIData.screenLogOutApi,
+      screenLogOutResponse = await http.post(Uri.parse(APIData.screenLogOutApi),
           headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
     }
     print(screenLogOutResponse.body);

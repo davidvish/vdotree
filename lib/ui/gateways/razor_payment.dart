@@ -396,7 +396,7 @@ class _RazorPaymentState extends State<RazorPayment> {
     var am = planDetails[widget.index].amount;
     var plan1 = planDetails[widget.index].id;
     print(authToken);
-    final sendResponse = await http.post(APIData.sendRazorDetails,
+    final sendResponse = await http.post(Uri.parse(APIData.sendRazorDetails),
         body: jsonEncode(
           {
             "reference": "$payId",

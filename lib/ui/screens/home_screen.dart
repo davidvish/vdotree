@@ -22,16 +22,33 @@ class _HomeScreenState extends State<HomeScreen>
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   ScrollController _scrollViewController;
   TabController tabController;
-  FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   TargetPlatform platform;
   bool notificationPermission;
 
   Future<bool> _checkPermission() async {
     if (platform == TargetPlatform.android) {
-      PermissionStatus permission = await Permission.notification.status;
+      PermissionStatus permission = await Permission.storage.status;
       if (permission != PermissionStatus.granted) {
-        Permission.notification.request();
-        if (await Permission.notification.status == PermissionStatus.granted) {
+        await Permission.storage.request();
+        if (await Permission.storage.status == PermissionStatus.granted) {
+          await _checkPermission2();
+          return true;
+        }
+      } else {
+        return true;
+      }
+    } else {
+      return true;
+    }
+    return false;
+  }
+  Future<bool> _checkPermission2() async {
+    if (platform == TargetPlatform.android) {
+      PermissionStatus permission = await Permission.manageExternalStorage.status;
+      if (permission != PermissionStatus.granted) {
+        await Permission.manageExternalStorage.request();
+        if (await Permission.manageExternalStorage.status == PermissionStatus.granted) {
           return true;
         }
       } else {

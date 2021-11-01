@@ -13,7 +13,7 @@ class CouponProvider extends ChangeNotifier {
 
   Future<CouponModel> getCoupons(BuildContext context) async {
     try {
-      final response = await http.get(APIData.getCoupons, headers: {
+      final response = await http.get(Uri.parse(APIData.getCoupons), headers: {
         HttpHeaders.contentTypeHeader: "application/json",
         HttpHeaders.authorizationHeader: "Bearer $authToken"
       });

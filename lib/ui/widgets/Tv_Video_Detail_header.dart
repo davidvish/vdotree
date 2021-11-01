@@ -83,7 +83,7 @@ class _TvvideoState extends State<Tvvideo> with WidgetsBindingObserver {
 
   Future<String> addHistory(vType, id) async {
     var type = vType == DatumType.M ? "M" : "T";
-    final response = await http.get("${APIData.addWatchHistory}/$type/$id",
+    final response = await http.get(Uri.parse("${APIData.addWatchHistory}/$type/$id"),
         headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
     if (response.statusCode == 200) {
     } else {

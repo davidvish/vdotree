@@ -38,7 +38,7 @@ class MenuDataProvider with ChangeNotifier {
     featuredData = [];
     watchHistoryMovieData = [];
     recentAddedSeriesData = [];
-    final response = await http.get(APIData.menuDataApi + "/$menuId", headers: {
+    final response = await http.get(Uri.parse(APIData.menuDataApi + "/$menuId"), headers: {
       HttpHeaders.contentTypeHeader: "application/json",
       HttpHeaders.authorizationHeader: "Bearer $authToken",
     });

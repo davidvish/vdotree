@@ -78,7 +78,7 @@ class _ResetAlertBoxContainerState extends State<ResetAlertBoxContainer> {
 
 // Verify OTP code
   Future<String> verifyOtp() async {
-    final sendOtpResponse = await http.post(APIData.verifyOTPApi, body: {
+    final sendOtpResponse = await http.post(Uri.parse(APIData.verifyOTPApi), body: {
       "email": _resetEmailController.text,
       "code": _otpController.text,
     });
@@ -97,7 +97,7 @@ class _ResetAlertBoxContainerState extends State<ResetAlertBoxContainer> {
 
 // Send OTP code
   Future<String> sendOtp() async {
-    final sendOtpResponse = await http.post(APIData.forgotPasswordApi, body: {
+    final sendOtpResponse = await http.post(Uri.parse(APIData.forgotPasswordApi), body: {
       "email": _resetEmailController.text,
     }, headers: {
       HttpHeaders.authorizationHeader: "Bearer $authToken",

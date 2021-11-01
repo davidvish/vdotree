@@ -462,7 +462,7 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
     var userDetails = Provider.of<UserProfileProvider>(context, listen: false)
         .userProfileModel;
     var type = widget.videoDetail.type == DatumType.M ? "M" : "T";
-    final postCommentResponse = await http.post(APIData.postBlogComment, body: {
+    final postCommentResponse = await http.post(Uri.parse(APIData.postBlogComment), body: {
       "type": '$type',
       "id": '${widget.videoDetail.id}',
       "comment": '${commentsController.text}',
@@ -779,8 +779,8 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
       seasonEpisodeData = null;
     });
     final episodesResponse = await http.get(
-        Uri.encodeFull(APIData.episodeDataApi +
-            "${widget.videoDetail.seasons[currentIndex].id}"),
+        Uri.parse(Uri.encodeFull(APIData.episodeDataApi +
+            "${widget.videoDetail.seasons[currentIndex].id}")),
         headers: {
           // ignore: deprecated_member_use
           HttpHeaders.authorizationHeader: "Bearer $authToken"
@@ -1460,7 +1460,7 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
 
   Future<String> addHistory(vType, id) async {
     var type = vType == DatumType.M ? "M" : "S";
-    final response = await http.post("${APIData.addWatchHistory}/$type/$id",
+    final response = await http.post(Uri.parse("${APIData.addWatchHistory}/$type/$id"),
         headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
     // print(response.statusCode);
     if (response.statusCode == 200) {
@@ -1664,6 +1664,23 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
       if (permission != PermissionStatus.granted) {
         await Permission.storage.request();
         if (await Permission.storage.status == PermissionStatus.granted) {
+          await _checkPermission2();
+          return true;
+        }
+      } else {
+        return true;
+      }
+    } else {
+      return true;
+    }
+    return false;
+  }
+  Future<bool> _checkPermission2() async {
+    if (platform == TargetPlatform.android) {
+      PermissionStatus permission = await Permission.manageExternalStorage.status;
+      if (permission != PermissionStatus.granted) {
+        await Permission.manageExternalStorage.request();
+        if (await Permission.manageExternalStorage.status == PermissionStatus.granted) {
           return true;
         }
       } else {

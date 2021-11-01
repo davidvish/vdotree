@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
       print("ok");
       print(facebookLoginResult.token);
       var graphResponse = await http.get(
-          'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.height(200)&access_token=${facebookLoginResult.token}');
+          Uri.parse('https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.height(200)&access_token=${facebookLoginResult.token}'));
 
       var profile = json.decode(graphResponse.body);
        print(profile);
@@ -85,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
       print(facebookLoginResult.status);
       if (facebookLoginResult.status == LoginStatus.success) {
         var graphResponse = await http.get(
-            'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.height(200)&access_token=${facebookLoginResult.accessToken.token}');
+            Uri.parse('https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.height(200)&access_token=${facebookLoginResult.accessToken.token}'));
 
         var profile = json.decode(graphResponse.body);
         var name = profile['name'];
@@ -132,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<String> socialLogin(url, email, password, code, name, uid) async {
-    final accessTokenResponse = await http.post(url, body: {
+    final accessTokenResponse = await http.post(Uri.parse(url), body: {
       "email": email,
       "password": "password",
       "$uid": code,
@@ -219,7 +219,7 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       _isLoading = true;
     });
-    var response1 = await http.post(APIData.loginotpsend, body: {
+    var response1 = await http.post(Uri.parse(APIData.loginotpsend), body: {
       "mobile": _mobileController.text,
       // "otp": otp.text,
       "password": 'password'

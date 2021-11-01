@@ -12,7 +12,7 @@ class WishListProvider with ChangeNotifier {
 
   Future<WishListModel> getWishList(BuildContext context) async {
     var token = await storage.read(key: "authToken");
-    final response = await http.get(APIData.watchListApi, headers: {
+    final response = await http.get(Uri.parse(APIData.watchListApi), headers: {
       HttpHeaders.contentTypeHeader: "application/json",
       HttpHeaders.authorizationHeader: "Bearer $token",
     });

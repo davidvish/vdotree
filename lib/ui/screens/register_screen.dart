@@ -42,7 +42,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     setState(() {
       _isLoading = true;
     });
-    var response1 = await http.post(APIData.registerotpsend, body: {
+    var response1 = await http.post(Uri.parse(APIData.registerotpsend), body: {
       "name": _nameController.text,
       "email": _emailController.text,
       //otp

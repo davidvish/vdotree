@@ -186,14 +186,14 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
 //  For selecting image from camera
   chooseImageFromCamera() {
     setState(() {
-      files = ImagePicker.pickImage(source: ImageSource.camera);
+      files = ImagePicker().getImage(source: ImageSource.camera);
     });
   }
 
 //  For selecting image from gallery
   chooseImageFromGallery() {
     setState(() {
-      files = ImagePicker.pickImage(source: ImageSource.gallery);
+      files = ImagePicker().getImage(source: ImageSource.gallery);
     });
   }
 
