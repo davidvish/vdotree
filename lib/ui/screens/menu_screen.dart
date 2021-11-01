@@ -999,7 +999,7 @@ class _MenuScreenState extends State<MenuScreen> {
 
           child: InkWell(
               onTap: () => launch(
-                  'https://play.google.com/store/apps/details?id=com.tech.vdotree'),
+                  'https://play.google.com/store/apps/details?id=com.vdotree.vdotree'),
               child: Padding(
                 padding: EdgeInsets.fromLTRB(20.0, 12.0, 10.0, 12.0),
                 child: Row(
