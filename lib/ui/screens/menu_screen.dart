@@ -1007,7 +1007,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     Icon(Icons.star, size: 29, color: Colors.white),
                     SizedBox(
                       width: 20.0,
-                    ),
+                    ), 
                     Text(
                       "Rate Us",
                       textAlign: TextAlign.center,
@@ -1279,7 +1279,7 @@ class _MenuScreenState extends State<MenuScreen> {
     var appConfig = Provider.of<AppConfig>(context, listen: false).appModel;
     final size = MediaQuery.of(context).size.width;
     return Container(
-      height: size <= 768 ?   MediaQuery.of(context).size.height / 1.1 : MediaQuery.of(context).size.height ,
+      height: size <= 768 ?  600 : MediaQuery.of(context).size.height ,
       color: Colors.black,
       child: Column(
         children: <Widget>[
@@ -1402,7 +1402,7 @@ class _MenuScreenState extends State<MenuScreen> {
     return Drawer(
       child: Container(
         color: Colors.black,
-        height: MediaQuery.of(context).size.height,
+        height: 600,
         // height: 760,
         child: ListView(
           children: <Widget>[
