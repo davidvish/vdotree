@@ -33,7 +33,7 @@ class ActorMoviesProvider with ChangeNotifier {
     loading = true;
     actorMoviesTVList = [];
     try {
-      final response = await http.get("${APIData.actorMovies}$id", headers: {
+      final response = await http.get(Uri.parse("${APIData.actorMovies}$id"), headers: {
         "Accept": "application/json",
         HttpHeaders.authorizationHeader: "Bearer $authToken"
       });

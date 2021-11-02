@@ -28,8 +28,7 @@ class _ApplyCouponScreenState extends State<ApplyCouponScreen> {
 
   Future<String> _applyCoupon() async {
     final applyCouponResponse = await http.post(
-        Uri.encodeFull(
-            "https://api.stripe.com/v1/coupons/${_couponController.text}"),
+        Uri.parse(Uri.encodeFull("https://api.stripe.com/v1/coupons/${_couponController.text}")),
         headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
     var applyCouponDetails = json.decode(applyCouponResponse.body);
     if (applyCouponResponse.statusCode == 200) {
@@ -69,8 +68,7 @@ class _ApplyCouponScreenState extends State<ApplyCouponScreen> {
   Future<String> _verifyCoupon(couponCode) async {
     var couponProvider =
         Provider.of<CouponProvider>(context, listen: false).couponModel;
-    final applyCouponResponse = await http.get(
-      APIData.applyGeneralCoupon + "?coupon_code=$couponCode",
+    final applyCouponResponse = await http.get(Uri.parse(APIData.applyGeneralCoupon + "?coupon_code=$couponCode"),
       headers: {
         HttpHeaders.authorizationHeader: "Bearer $authToken",
         "Content-Type": "application/json",

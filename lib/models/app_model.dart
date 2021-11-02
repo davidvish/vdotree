@@ -42,7 +42,7 @@ class AppModel {
         "blogs": List<dynamic>.from(blogs.map((x) => x.toJson())),
       };
   Future<AppModel> getHomePageData() async {
-    final response = await http.get(APIData.homeDataApi);
+    final response = await http.get(Uri.parse(APIData.homeDataApi));
     if (response.statusCode == 200) {
       return AppModel.fromJson(json.decode(response.body));
     } else {

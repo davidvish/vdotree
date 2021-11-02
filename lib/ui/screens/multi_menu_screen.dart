@@ -64,7 +64,7 @@ class _MultiMenuScreenState extends State<MultiMenuScreen> {
   updateScreens(screen, count, index) async {
     print("saad bhati");
     final updateScreensResponse =
-        await http.post(APIData.updateScreensApi, body: {
+        await http.post(Uri.parse(APIData.updateScreensApi), body: {
       "macaddress": '$ip',
       "screen": '$screen',
       "count": '$count',
@@ -88,7 +88,7 @@ class _MultiMenuScreenState extends State<MultiMenuScreen> {
 
   Future<String> getAllScreens() async {
     final getAllScreensResponse =
-        await http.get(Uri.encodeFull(APIData.showScreensApi), headers: {
+        await http.get(Uri.parse(Uri.encodeFull(APIData.showScreensApi)), headers: {
       HttpHeaders.authorizationHeader: "Bearer $authToken",
       "Accept": "application/json"
     });
@@ -243,12 +243,12 @@ class _MultiMenuScreenState extends State<MultiMenuScreen> {
 
     if (userDetails.active == "1" || userDetails.active == 1) {
       if (userDetails.payment == "Free") {
-        screenLogOutResponse = await http.post(APIData.screenLogOutApi,
+        screenLogOutResponse = await http.post(Uri.parse(APIData.screenLogOutApi),
             headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
       } else {
         screenCount = await storage.read(key: "screenCount");
         actScreen = await storage.read(key: "activeScreen");
-        screenLogOutResponse = await http.post(APIData.screenLogOutApi, body: {
+        screenLogOutResponse = await http.post(Uri.parse(APIData.screenLogOutApi), body: {
           "screen": '$actScreen',
           "count": '$screenCount',
           "macaddress": '$ip',
@@ -257,7 +257,7 @@ class _MultiMenuScreenState extends State<MultiMenuScreen> {
         });
       }
     } else {
-      screenLogOutResponse = await http.post(APIData.screenLogOutApi,
+      screenLogOutResponse = await http.post(Uri.parse(APIData.screenLogOutApi),
           headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
     }
     if (screenLogOutResponse.statusCode == 200) {

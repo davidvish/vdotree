@@ -10,7 +10,7 @@ class NotificationsProvider extends ChangeNotifier {
   Notifications notifications;
   List<Notification> notificationsList = [];
   Future<Notifications> fetchNotifications() async {
-    final response = await http.get(APIData.notificationsApi, headers: {
+    final response = await http.get(Uri.parse(APIData.notificationsApi), headers: {
       HttpHeaders.contentTypeHeader: "application/json",
       HttpHeaders.authorizationHeader: "Bearer $authToken",
     });

@@ -117,7 +117,7 @@ class _RateUsState extends State<RateUs> {
 
   Future<String> postRating() async {
     var vType = widget.type == DatumType.T ? "T" : "M";
-    final postRatingResponse = await http.post(APIData.postVideosRating, body: {
+    final postRatingResponse = await http.post(Uri.parse(APIData.postVideosRating), body: {
       "type": '$vType',
       "id": '${widget.id}',
       "rating": '$_rating',
@@ -136,7 +136,7 @@ class _RateUsState extends State<RateUs> {
   Future<String> checkRating() async {
     var vType = widget.type == DatumType.T ? "T" : "M";
     final checkRatingResponse = await http.get(
-        APIData.checkVideosRating + '/' + '$vType' + '/' + '${widget.id}',
+        Uri.parse(APIData.checkVideosRating + '/' + '$vType' + '/' + '${widget.id}'),
         headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
     var checkRate = json.decode(checkRatingResponse.body);
     print(checkRate.length);

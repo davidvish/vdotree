@@ -93,11 +93,7 @@ class _PlayerMovieState extends State<PlayerMovie> with WidgetsBindingObserver {
   Future<String> loadLocal() async {
     var userDetails = Provider.of<UserProfileProvider>(context, listen: false)
         .userProfileModel;
-    playerResponse = await http.get(widget.type == DatumType.T
-        ? APIData.tvSeriesPlayer +
-            '${userDetails.user.id}/${userDetails.code}/$ser'
-        : APIData.moviePlayer +
-            '${userDetails.user.id}/${userDetails.code}/${widget.id}');
+    playerResponse = await http.get(Uri.parse(widget.type == DatumType.T ? APIData.tvSeriesPlayer + '${userDetails.user.id}/${userDetails.code}/$ser' : APIData.moviePlayer + '${userDetails.user.id}/${userDetails.code}/${widget.id}'));
     setState(() {
       status = playerResponse.statusCode;
     });

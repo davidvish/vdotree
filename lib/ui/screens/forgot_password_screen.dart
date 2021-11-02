@@ -49,7 +49,7 @@ class ForgotPasswordState extends State<ForgotPassword> {
   }
 
   Future<String> resetPassword() async {
-    final sendOtpResponse = await http.post(APIData.resetPasswordApi, body: {
+    final sendOtpResponse = await http.post(Uri.parse(APIData.resetPasswordApi), body: {
       "email": widget.email,
       "password": _newPasswordController.text,
       "password_confirmation": _confirmNewPasswordController.text,

@@ -158,6 +158,23 @@ class _DownloadPageState extends State<DownloadPage>
       if (permission != PermissionStatus.granted) {
         await Permission.storage.request();
         if (await Permission.storage.status == PermissionStatus.granted) {
+          await _checkPermission2();
+          return true;
+        }
+      } else {
+        return true;
+      }
+    } else {
+      return true;
+    }
+    return false;
+  }
+  Future<bool> _checkPermission2() async {
+    if (platform == TargetPlatform.android) {
+      PermissionStatus permission = await Permission.manageExternalStorage.status;
+      if (permission != PermissionStatus.granted) {
+        await Permission.manageExternalStorage.request();
+        if (await Permission.manageExternalStorage.status == PermissionStatus.granted) {
           return true;
         }
       } else {
@@ -247,7 +264,7 @@ class _DownloadPageState extends State<DownloadPage>
 
   Future<String> getAllScreens() async {
     final getAllScreensResponse =
-        await http.get(Uri.encodeFull(APIData.showScreensApi), headers: {
+        await http.get(Uri.parse(Uri.encodeFull(APIData.showScreensApi)), headers: {
       HttpHeaders.authorizationHeader: "Bearer $authToken",
       "Accept": "application/json"
     });
@@ -661,7 +678,7 @@ class _DownloadPageState extends State<DownloadPage>
 
   increaseCounter() async {
     var screenCount = await storage.read(key: "screenCount");
-    final increaseCounter = await http.post(APIData.downloadCounter, body: {
+    final increaseCounter = await http.post(Uri.parse(APIData.downloadCounter), body: {
       "count": '$screenCount',
     }, headers: {
       HttpHeaders.authorizationHeader: "Bearer $authToken"

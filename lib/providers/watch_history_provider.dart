@@ -20,7 +20,7 @@ class WatchHistoryProvider with ChangeNotifier {
 
   Future<WatchHistoryModel> getWatchHistory(BuildContext context) async {
     var token = await storage.read(key: "authToken");
-    final response = await http.get(APIData.watchHistory, headers: {
+    final response = await http.get(Uri.parse(APIData.watchHistory), headers: {
       HttpHeaders.contentTypeHeader: "application/json",
       HttpHeaders.authorizationHeader: "Bearer $token",
     });

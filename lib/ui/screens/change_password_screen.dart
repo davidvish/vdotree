@@ -343,7 +343,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         .userProfileModel;
     print("anam");
     print(_editNewPasswordController.text);
-    final updateResponse = await http.post(APIData.userProfileUpdate, body: {
+    final updateResponse = await http.post(Uri.parse(APIData.userProfileUpdate), body: {
       "email": userDetails.user.email,
       "current_password": _oldpassword.text,
       "new_password": _editNewPasswordController.text,

@@ -453,7 +453,7 @@ class _OtpLoginState extends State<OtpLogin> {
     setState(() {
       _spincontorller = !_spincontorller;
     });
-    var response1 = await http.post(APIData.otpverifyon, body: {
+    var response1 = await http.post(Uri.parse(APIData.otpverifyon), body: {
       "mobile": widget.mobile,
       "otp": otp.text,
       "password": 'password'
@@ -564,7 +564,7 @@ class _OtpLoginState extends State<OtpLogin> {
   resendotp() async {
     print(authToken);
 
-    var response1 = await http.post(APIData.loginotpresend, body: {
+    var response1 = await http.post(Uri.parse(APIData.loginotpresend), body: {
       "mobile": widget.mobile,
       "password": 'password'
     }, headers: {

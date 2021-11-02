@@ -11,7 +11,7 @@ class PaymentKeyProvider with ChangeNotifier {
 
   Future<PaymentKeyModel> fetchPaymentKeys() async {
     try {
-      final response = await http.get(APIData.stripeDetailApi,
+      final response = await http.get(Uri.parse(APIData.stripeDetailApi),
           headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
       print(response.statusCode);
       if (response.statusCode == 200) {

@@ -99,7 +99,7 @@ class _WatchHistoryScreenState extends State<WatchHistoryScreen> {
 
   Future<String> removeHistory(vType, id) async {
     var type = vType == DatumType.M ? "M" : "T";
-    final response = await http.get("${APIData.deleteWatchHistory}$type/$id",
+    final response = await http.get(Uri.parse("${APIData.deleteWatchHistory}$type/$id"),
         headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
     if (response.statusCode == 200) {
       watchHistoryList
@@ -110,7 +110,7 @@ class _WatchHistoryScreenState extends State<WatchHistoryScreen> {
   }
 
   Future<String> removeAllHistory() async {
-    final response = await http.get("${APIData.deleteWatchHistory}",
+    final response = await http.get(Uri.parse("${APIData.deleteWatchHistory}"),
         headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
     if (response.statusCode == 200) {
       watchHistoryList.clear();

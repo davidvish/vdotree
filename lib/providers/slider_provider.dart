@@ -10,7 +10,7 @@ class SliderProvider with ChangeNotifier {
   SliderModel sliderModel;
 
   Future<SliderModel> getSlider() async {
-    final response = await http.get(APIData.sliderApi, headers: {
+    final response = await http.get(Uri.parse(APIData.sliderApi), headers: {
       HttpHeaders.contentTypeHeader: "application/json",
       HttpHeaders.authorizationHeader: "Bearer $authToken",
     });

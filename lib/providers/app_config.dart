@@ -15,7 +15,7 @@ class AppConfig with ChangeNotifier {
   Future<AppModel> getHomeData(BuildContext context) async {
     try {
       final response = await http
-          .get(APIData.homeDataApi, headers: {"Accept": "application/json"});
+          .get(Uri.parse(APIData.homeDataApi), headers: {"Accept": "application/json"});
       print(response.statusCode);
       print(response.body);
       print("saad");

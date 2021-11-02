@@ -14,7 +14,7 @@ class UserProfileProvider with ChangeNotifier {
 
   Future<UserProfileModel> getUserProfile(BuildContext context) async {
     try {
-      final response = await http.get(APIData.userProfileApi, headers: {
+      final response = await http.get(Uri.parse(APIData.userProfileApi), headers: {
         "Accept": "application/json",
         HttpHeaders.authorizationHeader: "Bearer $authToken",
       });

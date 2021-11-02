@@ -58,7 +58,7 @@ class _PlayerEpisodeState extends State<PlayerEpisode>
 
   updateScreens(screen, count) async {
     final updateScreensResponse =
-        await http.post(APIData.updateScreensApi, body: {
+        await http.post(Uri.parse(APIData.updateScreensApi), body: {
       "macaddress": '$ip',
       "screen": '$screen',
       "count": '$count',
@@ -94,7 +94,7 @@ class _PlayerEpisodeState extends State<PlayerEpisode>
   screenLogout() async {
     Wakelock.disable();
     final screenLogOutResponse =
-        await http.post(APIData.screenLogOutApi, body: {
+        await http.post(Uri.parse(APIData.screenLogOutApi), body: {
       "screen": '$myActiveScreen',
       "count": '${fileContent['screenCount']}',
     }, headers: {
@@ -103,7 +103,7 @@ class _PlayerEpisodeState extends State<PlayerEpisode>
     print(screenLogOutResponse.statusCode);
     print(screenLogOutResponse.body);
 
-    final accessToken = await http.post(APIData.loginApi, body: {
+    final accessToken = await http.post(Uri.parse(APIData.loginApi), body: {
       "email": fileContent['user'],
       "password": fileContent['pass'],
     });

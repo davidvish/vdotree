@@ -25,7 +25,7 @@ class _WishListViewState extends State<WishListView> {
   checkWishList(vType, id) async {
     var res;
     if (vType == DatumType.M) {
-      final response = await http.get("${APIData.checkWatchlistMovie}$id",
+      final response = await http.get(Uri.parse("${APIData.checkWatchlistMovie}$id"),
           headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
       // print(response.statusCode);
       // print(response.body);
@@ -46,7 +46,7 @@ class _WishListViewState extends State<WishListView> {
         throw "Can't check wishlist";
       }
     } else {
-      final response = await http.get("${APIData.checkWatchlistSeason}$id",
+      final response = await http.get(Uri.parse("${APIData.checkWatchlistSeason}$id"),
           headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
       setState(() {
         print("ok");
@@ -73,7 +73,7 @@ class _WishListViewState extends State<WishListView> {
 
   removeWishList(vType, id) async {
     if (vType == DatumType.M) {
-      final response = await http.get("${APIData.removeWatchlistMovie}$id",
+      final response = await http.get(Uri.parse("${APIData.removeWatchlistMovie}$id"),
           headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
       if (response.statusCode == 200) {
         setState(() {
@@ -83,7 +83,7 @@ class _WishListViewState extends State<WishListView> {
         throw "Can't remove from wishlist";
       }
     } else {
-      final response = await http.get("${APIData.removeWatchlistSeason}$id",
+      final response = await http.get(Uri.parse("${APIData.removeWatchlistSeason}$id"),
           headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
       if (response.statusCode == 200) {
         setState(() {
@@ -98,7 +98,7 @@ class _WishListViewState extends State<WishListView> {
 
   addWishList(vType, id) async {
     var type = vType == DatumType.T ? "S" : "M";
-    final response = await http.post("${APIData.addWatchlist}",
+    final response = await http.post(Uri.parse("${APIData.addWatchlist}"),
         body: {"type": type, "id": '$id', "value": '1'},
         headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
     // print(response.statusCode);
