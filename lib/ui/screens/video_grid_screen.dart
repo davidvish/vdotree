@@ -1,3 +1,4 @@
+import 'package:IQRA/ui/screens/blank_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:IQRA/models/datum.dart';
 import 'package:IQRA/ui/shared/appbar.dart';
@@ -27,7 +28,8 @@ class VideoGridScreen extends StatelessWidget {
       body: Scaffold(
         backgroundColor: Colors.black,
         body: (genreDataList.length == 0)
-            ? BlankWishList()
+            // ? BlankWishList()
+            ? BlankTab()
             : Container(
                 color: Colors.black,
                 child: GridView.count(

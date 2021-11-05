@@ -1,13 +1,13 @@
 import 'package:IQRA/common/route_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-class BlankWishList extends StatefulWidget {
+//farman
+class BlankTab extends StatefulWidget {
   @override
-  _BlankWishListState createState() => _BlankWishListState();
+  _BlankTabState createState() => _BlankTabState();
 }
 
-class _BlankWishListState extends State<BlankWishList> {
+class _BlankTabState extends State<BlankTab> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,8 +21,7 @@ class _BlankWishListState extends State<BlankWishList> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Icon(
-                // FontAwesomeIcons.solidCheckCircle,
-                Icons.add_task,
+                FontAwesomeIcons.solidCheckCircle,
                 size: 80,
                 color: Theme.of(context).cardColor.withOpacity(0.5),
               ),
@@ -35,7 +34,8 @@ class _BlankWishListState extends State<BlankWishList> {
               children: [
                 Expanded(
                   flex: 1,
-                  child: Text("Nothing Selected",
+                  child: Text(
+                    "Coming Soon",
                     // "Add movies & TV shows to your list so you can easily find them later.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -53,7 +53,7 @@ class _BlankWishListState extends State<BlankWishList> {
           FlatButton(
               color: Theme.of(context).primaryColorLight.withOpacity(0.8),
               onPressed: () {
-                             Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
+                Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
 
               },
               child: Text(

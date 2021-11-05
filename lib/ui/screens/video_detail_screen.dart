@@ -1150,7 +1150,9 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
         size: 35.0,
       ),
       onTap: () {
+
         if (userDetails.active == "1" || userDetails.active == 1) {
+
           mReadyUrl = seasonEpisodeData[i]['video_link']['ready_url'];
           mUrl360 = seasonEpisodeData[i]['video_link']['url_360'];
           mUrl480 = seasonEpisodeData[i]['video_link']['url_480'];
@@ -1165,7 +1167,9 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
               mUrl480 != null ||
               mUrl720 != null ||
               mUrl1080 != null) {
+
             if (mIFrameUrl != null) {
+
               var matchIFrameUrl = mIFrameUrl.substring(0, 24);
               if (matchIFrameUrl == 'https://drive.google.com') {
                 var ind = mIFrameUrl.lastIndexOf('d/');
@@ -1178,6 +1182,7 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
                 getAllScreens(mIFrameUrl, "EMD", title);
               }
             } else if (mReadyUrl != null) {
+
               var checkMp4 = seasonEpisodeData[i]['video_link']['ready_url']
                   .substring(mReadyUrl.length - 4);
               var checkMpd = seasonEpisodeData[i]['video_link']['ready_url']
@@ -1196,21 +1201,25 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
               } else if (seasonEpisodeData[i]['video_link']['ready_url']
                       .substring(0, 23) ==
                   'https://jlas.s3.ap-sout') {
+
                 getAllScreens(seasonEpisodeData[i]['id'], "JS", title);
               } else if (seasonEpisodeData[i]['video_link']['ready_url']
                       .substring(0, 29) ==
                   'https://www.youtube.com/embed') {
+
                 getAllScreens(mReadyUrl, "EMD", title);
               } else if (seasonEpisodeData[i]['video_link']['ready_url']
                       .substring(0, 23) ==
                   'https://www.youtube.com') {
+
                 getAllScreens(seasonEpisodeData[i]['id'], "JS", title);
               } else if (checkMp4 == ".mp4" ||
                   checkMpd == ".mpd" ||
                   checkWebm == ".webm" ||
                   checkMkv == ".mkv" ||
                   checkM3u8 == ".m3u8") {
-                getAllScreens(mReadyUrl, "CUSTOM", title);
+                print("saif 234");
+                getAllScreens(seasonEpisodeData[i]['id'], "JS", title);
               } else {
                 getAllScreens(seasonEpisodeData[i]['id'], "JS", title);
               }
@@ -1483,6 +1492,7 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
       //           title: title,
       //         ));
       // Navigator.of(context).push(router);
+
       var router = new MaterialPageRoute(
         builder: (BuildContext context) => PlayerMovie(
             id: widget.videoDetail.id, type: widget.videoDetail.type),
@@ -1736,19 +1746,25 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
 function()async{
 
 }
+
   //  Seasons tab bar
  Widget seasonsTabBar()  {
 
     return TabBar(
       onTap: (currentIndex) async {
+        int share;
         setState(() {
           cSeasonIndex = currentIndex;
           seasonId = widget.videoDetail.seasons[currentIndex].id;
           ser = widget.videoDetail.seasons[currentIndex].id;
+           share = widget.videoDetail.seasons[currentIndex].id;
         });
         getData(currentIndex);
+        PlayerMovie(playerId: widget.videoDetail.seasons[currentIndex].id,);
         print('THSI SI SIE ${ser}');
 
+        SharedPreferences preference = await SharedPreferences.getInstance() ;
+        preference.setInt(seasonId,share);
       },
       indicatorSize: TabBarIndicatorSize.tab,
       indicator: BubbleTabIndicator(
