@@ -378,18 +378,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
         // prefix:
         //Container(
         child: CountryCodePicker(
+
+          searchDecoration: const InputDecoration(
+        labelText: "country",
+            labelStyle: TextStyle()
+          ),
           //  backgroundColor: Colors.yellowAccent,
           dialogBackgroundColor: Colors.black,
           onChanged: (code){
-setState(() {
-  sigtssd=code.dialCode;
-});
+              setState(() {
+              sigtssd=code.dialCode;
+                 });
 
           },
           initialSelection: "IN",
           showCountryOnly: true,
           // showOnlyCountryWhenClosed: true,
           favorite: ["+91" "IN"],
+         // countryFilter: ['IT', 'IN'],
           // comparator: (a, b) => b.name.compareTo(a.name),
           // //Get the country information relevant to the initial selection
           onInit: (code) {

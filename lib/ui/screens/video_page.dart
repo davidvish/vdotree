@@ -103,40 +103,52 @@ class _VideosPageState extends State<VideosPage> {
                       children: [
                         // Text("saad"),
                         ImageSlider(),
+
                         Container(
                           height: 15.0,
                           color: Colors.black,
                         ),
                         HorizontalGenreList(),
-                        Container(
-                          color: Colors.black,
-                          height: 0.0,
-                        ),
+
+                        // Container(
+                        //   color: Colors.black,
+                        //   height: 0.0,
+                        // ),
                         actorsList.length == 0
                             ? SizedBox.shrink()
                             : Heading1("Artist", "Actor"),
-                        actorsList.length == 0
-                            ? SizedBox.shrink()
-                            : Container(
-                                color: Colors.black,
-                                height: 15.0,
-                              ),
+
+                        // actorsList.length == 0
+                        //     ? SizedBox.shrink()
+                        //     : Container(
+                        //         color: Colors.black,
+                        //         height: 15.0,
+                        //       ),
+
                         actorsList.length == 0
                             ? SizedBox.shrink()
                             : ActorsHorizontalList(),
+//////////////////////////////////////////////////////////////////////
                         Container(
                           height: 15.0,
                           color: Colors.black,
                         ),
+
                         topVideosList.length == 0
                             ? SizedBox.shrink()
                             : Heading1("Top Movies & TV Series", "Top"),
-                        topVideosList.length == 0
-                            ? SizedBox.shrink()
-                            : Container(
-                                color: Colors.black,
-                                height: 15.0,
-                              ),
+                        // topVideosList.length == 0
+                        //     ? SizedBox.shrink()
+                        //
+                        //     : Container(
+                        //         color: Colors.black,
+                        //         height: 15.0,
+                        //       ),
+                        Container(
+                          height: 15.0,
+                          color: Colors.black,
+                        ),
+
                         topVideosList.length == 0
                             ? SizedBox.shrink()
                             : Container(
@@ -144,35 +156,54 @@ class _VideosPageState extends State<VideosPage> {
                                 color: Colors.black,
                                 child: TopVideoList(),
                               ),
+
+                        Container(
+                          height: 15.0,
+                          color: Colors.black,
+                        ),
+
+                        //////////////////////////////////////////////////////////
+
                         tvSeriesList.length == 0
                             ? SizedBox.shrink()
                             : Heading1("TV Series", "TV"),
                         TvSeriesList(),
+
+                        // Container(
+                        //   height: 15.0,
+                        //   color: Colors.black,
+                        // ),
+
                         moviesList.length == 0
                             ? SizedBox.shrink()
                             : Heading1("Specials & Latest Movies", "Mov"),
                         MoviesList(),
-                        // SizedBox(
-                        //   height: 15.0,
-                        // ),
+
+                        Container(
+                          height: 15.0,
+                          color: Colors.black,
+                        ),
                         recentDataList.length == 0
                             ? SizedBox.shrink()
                             : Heading1("Recently Added Movies", "ReMov"),
                         RecentMoviesList(true),
-                        // SizedBox(
-                        //   height: 15.0,
-                        // ),
+
+                        Container(
+                          height: 15.0,
+                          color: Colors.black,
+                        ),
+
+                        recentAddedSeriesData.length == 0
+                            ? SizedBox.shrink()
+                            : Heading1("Recently Added TV Series", "ReTvSe"),
+                        //farman
                         recentAddedSeriesData.length == 0
                             ? SizedBox.shrink()
                             : Heading1("Recently Added TV Series", "ReTvSe"),
                         RecentSeriesList(true),
-                        // SizedBox(
-                        //   height: 15.0,
-                        // ),
-                        featuredDataList.length == 0
-                            ? SizedBox.shrink()
-                            : Heading1("Featured Movies", "FeMov"),
-                        FeaturedMoviesList(true),
+
+/////////////////////////////////////////////////////////////////////////////////////////
+                        //here the last movies and feature movies extra box
                         SizedBox(
                           height: 15.0,
                         ),
@@ -180,20 +211,36 @@ class _VideosPageState extends State<VideosPage> {
                             ? SizedBox.shrink()
                             : Heading1("Last Watched Movies", "HeMov"),
                         WatchHistoryMoviesList(true),
+
                         SizedBox(
                           height: 15.0,
                         ),
-                        liveDataList.length == 0
+
+                        featuredDataList.length == 0
                             ? SizedBox.shrink()
-                            : SizedBox(
-                                height: 15.0,
-                              ),
+                            : Heading1("Featured Movies", "FeMov"),
+                        FeaturedMoviesList(true),
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+                        /////////////////////////////////////////
+                        SizedBox(
+                          height: 15.0,
+                        ),
+
+                        // liveDataList.length == 0
+                        //     ? SizedBox.shrink()
+                        //     : SizedBox(
+                        //         height: 15.0,
+                        //       ),
+
                         liveDataList.length == 0
                             ? SizedBox.shrink()
                             : Heading2("LIVE", "Live"),
                         liveDataList.length == 0
                             ? SizedBox.shrink()
                             : LiveVideoList(),
+
                         // SizedBox(
                         //   height: 15.0,
                         // ),

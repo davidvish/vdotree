@@ -147,8 +147,7 @@ class _HomeScreenState extends State<HomeScreen>
 
 //   Tabs used on home page
         title:
-        
-        
+
          Row(
            children: <Widget> [
               Expanded(
@@ -184,6 +183,7 @@ class _HomeScreenState extends State<HomeScreen>
                flex: type == true ? 4 : 5,
 
                child: Align(
+
                  alignment: Alignment.centerLeft,
              
                  child: TabBar(
