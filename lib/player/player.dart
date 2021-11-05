@@ -7,12 +7,13 @@ import 'package:IQRA/common/global.dart';
 import 'package:IQRA/models/episode.dart';
 import 'package:IQRA/providers/user_profile_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wakelock/wakelock.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PlayerMovie extends StatefulWidget {
-  PlayerMovie({this.id, this.type});
-
+  PlayerMovie({this.playerId,this.id, this.type});
+final playerId;
   final int id;
   final type;
 
@@ -28,9 +29,11 @@ class _PlayerMovieState extends State<PlayerMovie> with WidgetsBindingObserver {
   var status;
   GlobalKey sc = new GlobalKey<ScaffoldState>();
   DateTime currentBackPressTime;
-
+var seasonId1;
   @override
   void initState() {
+    print('THIS IS PLAYER ID ${widget.playerId}');
+    // function();
     WidgetsBinding.instance.addObserver(this);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
@@ -41,6 +44,13 @@ class _PlayerMovieState extends State<PlayerMovie> with WidgetsBindingObserver {
     super.initState();
     this.loadLocal();
   }
+// function()async{
+//     SharedPreferences preferences = await SharedPreferences.getInstance();
+//    setState(() {
+//      seasonId1 =  preferences.getInt('seasonId');
+//    });
+//    print('FUNCTION ID ${seasonId1}');
+// }
 
   @override
   void dispose() {
@@ -89,8 +99,9 @@ class _PlayerMovieState extends State<PlayerMovie> with WidgetsBindingObserver {
     }
     return Future.value(true);
   }
-
+int hello = 11;
   Future<String> loadLocal() async {
+    print('THIS IS THE ID ${widget.id}');
     var userDetails = Provider.of<UserProfileProvider>(context, listen: false)
         .userProfileModel;
     playerResponse = await http.get(Uri.parse(widget.type == DatumType.T ? APIData.tvSeriesPlayer + '${userDetails.user.id}/${userDetails.code}/$ser' : APIData.moviePlayer + '${userDetails.user.id}/${userDetails.code}/${widget.id}'));
@@ -103,6 +114,7 @@ class _PlayerMovieState extends State<PlayerMovie> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    print('THIS IS SEASON IS ! !!!!!${seasonId1}');
     var userDetails = Provider.of<UserProfileProvider>(context, listen: false)
         .userProfileModel;
     print(widget.type == DatumType.T

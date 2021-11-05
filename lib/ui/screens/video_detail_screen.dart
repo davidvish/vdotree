@@ -42,6 +42,7 @@ import 'package:IQRA/ui/widgets/video_detail_header.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:IQRA/ui/widgets/video_rating.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 int episodesCounting = 0;
 int cSeasonIndex = 0;
@@ -787,6 +788,9 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
         });
         print('EPISODE RESPONSE ${episodesResponse.body}');
         print( 'SEASON ID ${widget.videoDetail.seasons[currentIndex].id}');
+        PlayerMovie(playerId: widget.videoDetail.seasons[currentIndex].id);
+    // SharedPreferences preference = await SharedPreferences.getInstance() ;
+    // preference.setInt(seasonId, ser);
     var episodesData = json.decode(episodesResponse.body);
     if (this.mounted) {
       setState(() {
@@ -1729,17 +1733,22 @@ class _VideoDetailScreenState extends State<VideoDetailScreen>
       automaticallyImplyLeading: false,
     );
   }
+function()async{
 
+}
   //  Seasons tab bar
-  Widget seasonsTabBar() {
+ Widget seasonsTabBar()  {
+
     return TabBar(
-      onTap: (currentIndex) {
+      onTap: (currentIndex) async {
         setState(() {
           cSeasonIndex = currentIndex;
           seasonId = widget.videoDetail.seasons[currentIndex].id;
           ser = widget.videoDetail.seasons[currentIndex].id;
         });
         getData(currentIndex);
+        print('THSI SI SIE ${ser}');
+
       },
       indicatorSize: TabBarIndicatorSize.tab,
       indicator: BubbleTabIndicator(
