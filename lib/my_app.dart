@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'providers/actor_movies_provider.dart';
@@ -85,6 +86,13 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
             
         debugShowCheckedModeBanner: false,
+        supportedLocales: [
+             Locale('en','US'),
+           ],
+           localizationsDelegates:
+           [
+             CountryLocalizations.delegate
+           ],
         title: RoutePaths.appTitle,
         theme: buildDarkTheme(),
         initialRoute: RoutePaths.splashScreen,

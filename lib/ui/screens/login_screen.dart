@@ -641,7 +641,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               onPressed: () {
                                 Navigator.push(context, MaterialPageRoute(
                                     builder: (BuildContext context) {
+                                      // print("farman");
                                   return ForgotPassword();
+                                  print("farman");
                                 }));
                               },
                               child: Text(
