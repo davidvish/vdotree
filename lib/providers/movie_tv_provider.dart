@@ -58,7 +58,8 @@ class MovieTVProvider with ChangeNotifier {
               var directors = moviesList[i].directorId == null
                   ? null
                   : moviesList[i].directorId.split(",").toList();
-              topVideoList.add(Datum(
+              topVideoList.add(
+                  Datum(
                 id: moviesList[i].id,
                 tmdbId: moviesList[i].tmdbId,
                 title: moviesList[i].title,

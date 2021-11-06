@@ -323,7 +323,8 @@ class _MultiMenuScreenState extends State<MultiMenuScreen> {
                         padding: const EdgeInsets.only(left: 11, right: 11),
                         child: FittedBox(
                             child: Text(
-                          'No Series and Movies found with this genres',
+                          'No Plan Found, Please Select a Plan',
+                          // 'No Series and Movies found with this genres',
                           style: TextStyle(fontSize: 20),
                         )),
                       )),

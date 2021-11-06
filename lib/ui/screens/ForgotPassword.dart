@@ -116,7 +116,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     padding: const EdgeInsets.all(20.0),
                     child: Text(
                      // "Enter your email address and your password will be reset and email to you.",
-                      "Enter Your Email Address",
+                      "Enter Your Valid Email Address",
                       style: TextStyle(
                           // color: Color.fromRGBO(255, 255, 0, 1.0),
                           fontSize: 16),

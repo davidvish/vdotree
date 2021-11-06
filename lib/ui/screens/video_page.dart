@@ -64,23 +64,38 @@ class _VideosPageState extends State<VideosPage> {
   @override
   Widget build(BuildContext context) {
     var login = Provider.of<LoginProvider>(context);
+
     var menuDataList = Provider.of<MenuDataProvider>(context).menuDataList;
+
     var recentDataList = Provider.of<MenuDataProvider>(context).recentData;
-    var recentAddedSeriesData =
-        Provider.of<MenuDataProvider>(context).recentAddedSeriesData;
+
+    var recentAddedSeriesData = Provider.of<MenuDataProvider>(context).recentAddedSeriesData;
+
     var featuredDataList = Provider.of<MenuDataProvider>(context).featuredData;
+
     var watchMovieHistoryDataList =
         Provider.of<MenuDataProvider>(context).watchHistoryMovieData;
+
     var moviesList = Provider.of<MenuDataProvider>(context).menuCatMoviesList;
+
     var tvSeriesList =
         Provider.of<MenuDataProvider>(context).menuCatTvSeriesList;
+
     var liveDataList = Provider.of<MenuDataProvider>(context).liveDataList;
+
     var topVideosList =
         Provider.of<MovieTVProvider>(context, listen: false).topVideoList;
+
     var blogList =
         Provider.of<AppConfig>(context, listen: false).appModel.blogs;
+
     var actorsList =
         Provider.of<MainProvider>(context, listen: false).actorList;
+
+    print(recentAddedSeriesData.length);
+    print(recentDataList.length);
+    print("mohmmad");
+
     return Container(
       color: Colors.black,
       child: _visible == false
@@ -118,9 +133,9 @@ class _VideosPageState extends State<VideosPage> {
                         actorsList.length == 0
                             ? SizedBox.shrink()
                             : Container(
-                                color: Colors.black,
-                                height: 15.0,
-                              ),
+                          color: Colors.black,
+                          height: 15.0,
+                        ),
                         actorsList.length == 0
                             ? SizedBox.shrink()
                             : ActorsHorizontalList(),
@@ -134,16 +149,16 @@ class _VideosPageState extends State<VideosPage> {
                         topVideosList.length == 0
                             ? SizedBox.shrink()
                             : Container(
-                                color: Colors.black,
-                                height: 15.0,
-                              ),
+                          color: Colors.black,
+                          height: 15.0,
+                        ),
                         topVideosList.length == 0
                             ? SizedBox.shrink()
                             : Container(
-                                height: 260,
-                                color: Colors.black,
-                                child: TopVideoList(),
-                              ),
+                          height: 260,
+                          color: Colors.black,
+                          child: TopVideoList(),
+                        ),
                         tvSeriesList.length == 0
                             ? SizedBox.shrink()
                             : Heading1("TV Series", "TV"),
@@ -186,8 +201,8 @@ class _VideosPageState extends State<VideosPage> {
                         liveDataList.length == 0
                             ? SizedBox.shrink()
                             : SizedBox(
-                                height: 15.0,
-                              ),
+                          height: 15.0,
+                        ),
                         liveDataList.length == 0
                             ? SizedBox.shrink()
                             : Heading2("LIVE", "Live"),
