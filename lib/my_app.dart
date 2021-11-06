@@ -1,6 +1,7 @@
 import 'package:country_code_picker/country_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'common/apipath.dart';
 import 'providers/actor_movies_provider.dart';
 import 'providers/app_config.dart';
 import 'common/route_paths.dart';
