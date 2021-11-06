@@ -196,17 +196,14 @@ class _HomeScreenState extends State<HomeScreen>
                     menus.menuList.length,
                     (int index) {
                       return Tab(
-                      
                         child: new Container(
                           
                           alignment: Alignment.center,
                           padding: EdgeInsets.only(left: 5.0, right: 5.0),
                           child: Row(
                             children: <Widget> [
-               
-               // Image.asset("assets/logo.png"),
                               new Text(
-                                // "saad",
+                                //'${menus.menuList[index].id}',
                                 '${menus.menuList[index].name}',
                                 style: TextStyle(
                                     fontFamily: 'Lato',
@@ -244,11 +241,15 @@ class _HomeScreenState extends State<HomeScreen>
         ];
       },
       body: TabBarView(
-        children: List<Widget>.generate(menus.menuList.length, (int index) {
-          menuId = menus.menuList[index].id;
-          return VideosPage(
-            menuId: menuId,
-          );
+        children:
+        List<Widget>.generate(
+            menus.menuList.length,
+                (int index)
+            {
+         menuId = menus.menuList[index].id;
+
+        //   menuId = menus.menuList[index].name;
+          return VideosPage(menuId: menuId,);
         }),
       ),
     );

@@ -379,10 +379,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
         //Container(
         child: CountryCodePicker(
 
+              searchStyle: TextStyle(),
           searchDecoration: const InputDecoration(
-        labelText: "country",
-            labelStyle: TextStyle()
+        labelText: "Country",
+
           ),
+
+
           //  backgroundColor: Colors.yellowAccent,
           dialogBackgroundColor: Colors.black,
           onChanged: (code){
@@ -392,7 +395,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
           },
           initialSelection: "IN",
-          showCountryOnly: true,
+          showCountryOnly: false,
           // showOnlyCountryWhenClosed: true,
           favorite: ["+91" "IN"],
          // countryFilter: ['IT', 'IN'],
@@ -514,20 +517,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     final myModel = Provider.of<AppConfig>(context, listen: false);
     return SafeArea(
-      // child: MaterialApp(
-      //   debugShowCheckedModeBanner: false,
-      //    // supportedLocales: [
-      //    //   Locale('en','US'),
-      //    // ],
-      //    localizationsDelegates:
-      //    [
-      //      CountryLocalizations.delegate
-      //    ],
-      //    home: Scaffold(
+
       child: Scaffold(
+
         appBar: customAppBar(context, "Sign Up"),
         key: scaffoldKey,
         body: Container(
+
           color: Colors.black,
           child: ListView(
             children: [
