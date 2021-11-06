@@ -125,24 +125,25 @@ class SplashScreenState extends State<SplashScreen> {
 
     OneSignal.shared.setRequiresUserPrivacyConsent(_requireConsent);
 
-    var settings = {
-      OSiOSSettings.autoPrompt: false,
-      OSiOSSettings.promptBeforeOpeningPushUrl: true
-    };
+    // var settings = {
+    //   OSiOSSettings.autoPrompt: false,
+    //   OSiOSSettings.promptBeforeOpeningPushUrl: false,
+    //   OSiOSSettings.inAppLaunchUrl: false
+    // };
 
     OneSignal.shared
-        .setNotificationWillShowInForegroundHandler((OSNotificationReceivedEvent event) {
+        .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
+      print('NOTIFICATION OPENED HANDLER CALLED WITH: ${result}');
       this.setState(() {
         _debugLabelString =
-            "Received notification: \n${event.jsonRepresentation().replaceAll("\\n", "\n")}";
+        "Opened notification: \n${result.notification.jsonRepresentation().replaceAll("\\n", "\n")}";
       });
     });
-
     OneSignal.shared
         .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
       this.setState(() {
         _debugLabelString =
-            "Opened notification: \n${result.notification.jsonRepresentation().replaceAll("\\n", "\n")}";
+        "Opened notification: \n${result.notification.jsonRepresentation().replaceAll("\\n", "\n")}";
       });
     });
 
@@ -150,7 +151,7 @@ class SplashScreenState extends State<SplashScreen> {
         .setInAppMessageClickedHandler((OSInAppMessageAction action) {
       this.setState(() {
         _debugLabelString =
-            "In App Message Clicked: \n${action.jsonRepresentation().replaceAll("\\n", "\n")}";
+        "In App Message Clicked: \n${action.jsonRepresentation().replaceAll("\\n", "\n")}";
       });
     });
 
@@ -161,12 +162,12 @@ class SplashScreenState extends State<SplashScreen> {
         .setPermissionObserver((OSPermissionStateChanges changes) {});
 
     OneSignal.shared.setEmailSubscriptionObserver(
-        (OSEmailSubscriptionStateChanges changes) {});
+            (OSEmailSubscriptionStateChanges changes) {});
 
-    await OneSignal.shared.setAppId(APIData.onSignalAppId);
-
+    // await OneSignal.shared.init(APIData.onSignalAppId, iOSSettings: settings);
+    OneSignal.shared.setAppId(APIData.onSignalAppId);
     // OneSignal.shared
-    //     .setInFocusDisplayType(OSNotificationDisplayType.notification);
+    // .setInFocusDisplayType(OSNotificationDisplayType.notification);
 
     bool requiresConsent = await OneSignal.shared.requiresUserPrivacyConsent();
 
@@ -188,8 +189,8 @@ class SplashScreenState extends State<SplashScreen> {
 
     // ignore: unused_local_variable
     Object triggerValue =
-        await OneSignal.shared.getTriggerValueForKey("trigger_3");
-    List<String> keys = new List<String>();
+    (await OneSignal.shared.getTriggerValueForKey("trigger_3"));
+    List<String> keys = [];
     keys.add("trigger_1");
     keys.add("trigger_3");
     OneSignal.shared.removeTriggersForKeys(keys);

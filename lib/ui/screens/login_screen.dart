@@ -800,34 +800,34 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Container(
-                                    // flex: 1,
-                                    height: 50.0,
-                                    width:
-                                        MediaQuery.of(context).size.width * .60,
-                                    child: ButtonTheme(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      height: 50.0,
-                                      child: RaisedButton.icon(
-                                          icon: Icon(
-                                            FontAwesomeIcons.facebook,
-                                            color: Colors.black,
-                                            size: 28,
-                                          ),
-                                          label: Text(
-                                            "Facebook Sign In",
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 18.0,fontWeight: FontWeight.bold),
-                                          ),
-                                          color: primaryBlue,
-                                          onPressed: () {
-                                            initiateFacebookLogin();
-                                          }),
-                                    ),
-                                  ),
+                                  // Container(
+                                  //   // flex: 1,
+                                  //   height: 50.0,
+                                  //   width:
+                                  //       MediaQuery.of(context).size.width * .60,
+                                  //   child: ButtonTheme(
+                                  //     shape: RoundedRectangleBorder(
+                                  //         borderRadius:
+                                  //             BorderRadius.circular(5)),
+                                  //     height: 50.0,
+                                  //     child: RaisedButton.icon(
+                                  //         icon: Icon(
+                                  //           FontAwesomeIcons.facebook,
+                                  //           color: Colors.black,
+                                  //           size: 28,
+                                  //         ),
+                                  //         label: Text(
+                                  //           "Facebook Sign In",
+                                  //           style: TextStyle(
+                                  //               color: Colors.black,
+                                  //               fontSize: 18.0,fontWeight: FontWeight.bold),
+                                  //         ),
+                                  //         color: primaryBlue,
+                                  //         onPressed: () {
+                                  //           initiateFacebookLogin();
+                                  //         }),
+                                  //   ),
+                                  // ),
                                 ],
                               ))
                           : SizedBox.shrink(),

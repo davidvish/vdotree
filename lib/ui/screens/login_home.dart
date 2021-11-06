@@ -281,9 +281,10 @@ class _LoginHomeState extends State<LoginHome> {
         Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-            image: AssetImage('assets/login.jpg'),
+            image: AssetImage('assets/login.jpg',),
             fit: BoxFit.cover,
-          )),
+          )
+          ),
           height: MediaQuery.of(context).size.height * 1,
           width: MediaQuery.of(context).size.width * 1,
           // color: Colors.black,

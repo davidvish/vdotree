@@ -106,7 +106,8 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<String> initOneSignal() async {
-    await OneSignal.shared.setAppId("07ef6c88-0305-4f67-b1af-471aa9cdbdf7");
+    OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
+    await OneSignal.shared.setAppId(APIData.onSignalAppId);
     OneSignal.shared.sendUniqueOutcome(OSNotificationDisplayType.notification as String);
     OneSignal.shared
         .setNotificationWillShowInForegroundHandler((OSNotificationReceivedEvent event) {
