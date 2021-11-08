@@ -1,3 +1,4 @@
+import 'package:IQRA/common/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '/common/route_paths.dart';
@@ -23,7 +24,8 @@ class _BlankDownloadListState extends State<BlankDownloadList> {
               Icon(
                 FontAwesomeIcons.download,
                 size: 80,
-                color: Theme.of(context).cardColor.withOpacity(0.7),
+                // color: Theme.of(context).cardColor.withOpacity(0.7),
+                color: Colors.white60,
               ),
             ],
           ),
@@ -56,7 +58,13 @@ class _BlankDownloadListState extends State<BlankDownloadList> {
               },
               child: Text(
                 "Find Something to watch".toUpperCase(),
-                style: TextStyle(color: Colors.white70),
+                // style: TextStyle(color: Colors.white70),
+
+                style: TextStyle(
+                  fontSize: 15.0,
+                  // fontWeight: FontWeight.bold,
+                  color: primaryBlue,
+                ),
               ))
         ],
       ),

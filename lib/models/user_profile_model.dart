@@ -134,6 +134,7 @@ class User {
     this.name,
     this.image,
     this.email,
+    this.code,
     this.verifyToken,
     this.status,
     this.googleId,
@@ -143,7 +144,6 @@ class User {
     this.age,
     this.mobile,
     this.braintreeId,
-    this.code,
     this.stripeId,
     this.cardBrand,
     this.cardLastFour,
@@ -186,6 +186,7 @@ class User {
     name: json["name"],
     image: json["image"] == null ? null: json["image"],
     email: json["email"],
+
     verifyToken: json["verifyToken"] == null ? null: json["verifyToken"],
     status: json["status"] == null ? null: json["status"],
     googleId: json["google_id"] == null ? null: json["google_id"],

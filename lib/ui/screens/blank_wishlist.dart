@@ -1,4 +1,5 @@
 import 'package:IQRA/common/route_paths.dart';
+import 'package:IQRA/common/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -24,7 +25,8 @@ class _BlankWishListState extends State<BlankWishList> {
                 // FontAwesomeIcons.solidCheckCircle,
                 Icons.add_task,
                 size: 80,
-                color: Theme.of(context).cardColor.withOpacity(0.7),
+                // color: Theme.of(context).cardColor.withOpacity(0.7),
+                color: Colors.white60,
               ),
             ],
           ),
@@ -54,12 +56,16 @@ class _BlankWishListState extends State<BlankWishList> {
           FlatButton(
               color: Theme.of(context).primaryColor,
               onPressed: () {
-                             Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
-
+                Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
               },
               child: Text(
                 "Find Something to watch".toUpperCase(),
-                style: TextStyle(color: Colors.white70),
+                // style: TextStyle(color: Colors.white70),
+                style: TextStyle(
+                  fontSize: 15.0,
+                  // fontWeight: FontWeight.bold,
+                  color: primaryBlue,
+                ),
               ))
         ],
       ),
