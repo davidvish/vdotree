@@ -59,7 +59,7 @@ class _AppSettingsScreenState extends State<AppSettingsScreen> {
             children: <Widget>[
               Expanded(
                 flex: 1,
-                child: Text("Play video only when connected to wi-fi.",
+                child: Text("Play video only when connected to WI-FI.",
                     style: TextStyle(color: Colors.white, fontSize: 12.0)),
               ),
             ],

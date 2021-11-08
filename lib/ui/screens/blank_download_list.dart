@@ -23,7 +23,7 @@ class _BlankDownloadListState extends State<BlankDownloadList> {
               Icon(
                 FontAwesomeIcons.download,
                 size: 80,
-                color: Theme.of(context).cardColor.withOpacity(0.5),
+                color: Theme.of(context).cardColor.withOpacity(0.7),
               ),
             ],
           ),
@@ -39,7 +39,7 @@ class _BlankDownloadListState extends State<BlankDownloadList> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: Colors.white.withOpacity(0.55),
+                      color: Colors.white.withOpacity(1),
                     ),
                   ),
                 ),
