@@ -46,14 +46,14 @@ class _SearchScreenState extends State<SearchScreen> {
                       Text(
                         "No Result Found.",
                         style: TextStyle(
-                            fontSize: 16.0, fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.left,
+                            fontSize: 16.0, fontWeight: FontWeight.bold,color: primaryBlue ),
+                        textAlign: TextAlign.center,
                       ),
                       new Padding(padding: EdgeInsets.only(top: 10.0)),
                       Text(
                         "We can't find any item matching your search.",
-                        style: TextStyle(fontSize: 14.0, color: Colors.white54),
-                        textAlign: TextAlign.left,
+                        style: TextStyle(fontSize: 16.0, color: Colors.white.withOpacity(1)),
+                        textAlign: TextAlign.center,
                       )
                     ],
                   ),
@@ -85,6 +85,15 @@ class _SearchScreenState extends State<SearchScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
+
+
+                      Icon(
+                        // FontAwesomeIcons.solidCheckCircle,
+                        Icons.search,
+                        size: 80,
+                        color: Theme.of(context).cardColor.withOpacity(0.7),
+                      ),
+
                       Padding(
                         padding: const EdgeInsets.only(top: 30),
                         child: Text(
@@ -93,13 +102,14 @@ class _SearchScreenState extends State<SearchScreen> {
                               fontSize: 16.0,
                               fontWeight: FontWeight.bold,
                               color: primaryBlue),
-                          textAlign: TextAlign.left,
+                          textAlign: TextAlign.center,
                         ),
                       ),
                       new Padding(padding: EdgeInsets.only(top: 10.0)),
                       Text(
-                        "Search for shows for the commute, movies to help unwind, or your go-to genres.",
-                        style: TextStyle(fontSize: 14.0, color: Colors.white54),
+                        "Search for shows for the Commute, Movies to Help Unwind, or your go-to genres.",
+                        // "Search Form 1000+ Movies And Shows",
+                        style: TextStyle(fontSize: 16.0, color: Colors.white.withOpacity(1)),
                         textAlign: TextAlign.center,
                       )
                     ],
@@ -259,11 +269,13 @@ class _SearchScreenState extends State<SearchScreen> {
     return TextField(
       focusNode: focusNode,
       controller: searchController,
-      style: TextStyle(fontSize: 14.0),
+      style: TextStyle(fontSize: 16.0),
       decoration: InputDecoration(
+
         hintText: 'Search for a show, movie, etc.',
         border: InputBorder.none,
       ),
+
     );
   }
 
@@ -276,14 +288,14 @@ class _SearchScreenState extends State<SearchScreen> {
       // ),
       automaticallyImplyLeading: false,
       title: searchField(),
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.black54,
       actions: <Widget>[
         Padding(
           padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: searchController.text == ''
               ? new IconButton(
                   icon: new Icon(Icons.search,
-                      color: Colors.grey.withOpacity(0.3)),
+                      color: Colors.grey.withOpacity(0.7)),
                   onPressed: () {
                     FocusScope.of(context).requestFocus(focusNode);
                   },

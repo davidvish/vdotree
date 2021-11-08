@@ -1190,16 +1190,17 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
     });
     print(response);
     var res1 = jsonDecode(response.body);
-    if (res1["message"] == "We have e-mailed your password reset link!") {
+    if (res1["message"] == "We have E-mailed your Password reset link!") {
       Fluttertoast.showToast(
-          msg: "An Email with Password Reset Link is send to yours Email.");
+          msg: "Reset Password Link Has Been Sent to Your Registered Email.");
+          // msg: "An Email with Password Reset Link is send to yours Email.");
       // Navigator.push(context,
       //     MaterialPageRoute(builder: (BuildContext context) {
       //   return SplashScreen();
       // }));
     } else {
       Fluttertoast.showToast(
-          msg: "Getting Some Error Please Try After Some Time Later .");
+          msg: "Getting Some Error, Please Try After Some Time.");
     }
   }
 }

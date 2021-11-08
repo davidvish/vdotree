@@ -92,9 +92,9 @@ class _VideosPageState extends State<VideosPage> {
     var actorsList =
         Provider.of<MainProvider>(context, listen: false).actorList;
 
-    print(recentAddedSeriesData.length);
-    print(recentDataList.length);
-    print("mohmmad");
+    // print(recentAddedSeriesData.length);
+    // print(recentDataList.length);
+    // print("mohmmad");
 
     return Container(
       color: Colors.black,
@@ -188,8 +188,9 @@ class _VideosPageState extends State<VideosPage> {
                             ? SizedBox.shrink()
                             : Heading1("Featured Movies", "FeMov"),
                         FeaturedMoviesList(true),
+
                         SizedBox(
-                          height: 15.0,
+                          height: 10.0,
                         ),
                         watchMovieHistoryDataList.length == 0
                             ? SizedBox.shrink()

@@ -24,7 +24,7 @@ class _BlankWishListState extends State<BlankWishList> {
                 // FontAwesomeIcons.solidCheckCircle,
                 Icons.add_task,
                 size: 80,
-                color: Theme.of(context).cardColor.withOpacity(0.5),
+                color: Theme.of(context).cardColor.withOpacity(0.7),
               ),
             ],
           ),
@@ -35,11 +35,12 @@ class _BlankWishListState extends State<BlankWishList> {
               children: [
                 Expanded(
                   flex: 1,
-                  child: Text("Nothing Selected",
-                    // "Add movies & TV shows to your list so you can easily find them later.",
+                  child: Text(
+                    // "Nothing Selected",
+                    "Add Your Favorite Movies & Shows and Watch Later.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 20.0,
+                      fontSize: 16.0,
                       color: Colors.white.withOpacity(1),
                     ),
                   ),
@@ -51,14 +52,14 @@ class _BlankWishListState extends State<BlankWishList> {
             height: 40.0,
           ),
           FlatButton(
-              color: Theme.of(context).primaryColorLight.withOpacity(0.8),
+              color: Theme.of(context).primaryColor,
               onPressed: () {
                              Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
 
               },
               child: Text(
                 "Find Something to watch".toUpperCase(),
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white70),
               ))
         ],
       ),
