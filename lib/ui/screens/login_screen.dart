@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:IQRA/ui/screens/ForgotPassword.dart';
 import 'package:IQRA/ui/screens/OtpLogin.dart';
 import 'package:flutter/cupertino.dart';
@@ -390,7 +391,31 @@ class _LoginScreenState extends State<LoginScreen> {
       },
     );
   }
+  goToError() {
+    if (isShowing == false) {
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => WillPopScope(
+              child: AlertDialog(
+                backgroundColor: Colors.white,
+                title: Row(
+                  children: [
 
+
+                    Text(
+                     "No Account Found",
+                      style:
+                      TextStyle(color: Theme.of(context).backgroundColor),
+                    )
+                  ],
+                ),
+              ),
+              onWillPop: () async => false));
+    } else {
+      Navigator.pop(context);
+    }
+  }
   goToDialog() {
     if (isShowing == true) {
       showDialog(
@@ -765,6 +790,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                             onPressed: () {
                                               print(myModel.config.googleLogin);
                                               signInWithGoogle().then((result) {
+                                                print(result);
+                                                print("noway");
                                                 if (result != null) {
                                                   setState(() {
                                                     isShowing = true;
@@ -783,6 +810,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                                       code,
                                                       name,
                                                       "uid");
+                                                }
+                                                else{
+                                                  return goToError();
                                                 }
                                               });
                                             }),

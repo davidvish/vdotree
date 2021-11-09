@@ -46,7 +46,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
       "name": _nameController.text,
       "email": _emailController.text,
       //otp
-      "code": sigtssd,
+      // "code": sigtssd,
+      "code":sigtssd,
       "mobile": _mobileController.text,
       "password": _passController.text,
       "confirm_password": _passController.text

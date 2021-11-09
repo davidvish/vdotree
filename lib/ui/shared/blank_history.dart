@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:IQRA/ui/shared/appbar.dart';
 
 //  When history is not available then this widget will called
+
 class BlankHistoryContainer extends StatelessWidget {
 //  Blank history icon
   Widget blankHistoryIcon() {
     return Container(
       child: Icon(
         Icons.history,
-        size: 150.0,
+        size: 80.0,
         color: Color.fromRGBO(70, 70, 70, 1.0),
       ),
     );

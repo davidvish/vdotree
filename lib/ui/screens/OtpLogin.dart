@@ -482,6 +482,7 @@ class _OtpLoginState extends State<OtpLogin> {
         setState(() {
           _spincontorller = !_spincontorller;
         });
+
         if (loginProvider.loginStatus == true) {
           final userDetails =
               Provider.of<UserProfileProvider>(context, listen: false)

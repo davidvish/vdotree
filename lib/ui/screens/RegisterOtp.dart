@@ -24,7 +24,7 @@ class RegisterOtp extends StatefulWidget {
   final name;
   final password;
   const RegisterOtp(
-      {Key key, this.mobile, this.email, this.name, this.password, this.code})
+      {Key key, this.mobile, this.email, this.name, this.password, this.code, })
       : super(key: key);
   @override
   _RegisterOtpState createState() => _RegisterOtpState();

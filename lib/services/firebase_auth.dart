@@ -27,6 +27,7 @@ Future<User> signInWithGoogle() async {
     assert(user.uid == currentUser.uid);
 
     print('signInWithGoogle succeeded: $user');
+    print('signInWithGoogle succeeded');
 
     return user;
   }

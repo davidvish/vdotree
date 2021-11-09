@@ -683,7 +683,9 @@ class _WatchHistoryScreenState extends State<WatchHistoryScreen> {
                                                                           .w800),
                                                             ),
                                                       SizedBox(height: 10.0),
-                                                      Row(
+
+                                                      Row
+                                                        (
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .spaceBetween,
@@ -715,11 +717,11 @@ class _WatchHistoryScreenState extends State<WatchHistoryScreen> {
                                                             },
                                                           ),
                                                           SizedBox(
-                                                            width: 73.0,
+                                                            width: 35.0,
                                                           ),
+
                                                           deleteIcon(
-                                                              watchHistoryList[
-                                                                  index]),
+                                                              watchHistoryList[index]),
                                                         ],
                                                       ),
                                                     ],
