@@ -5,6 +5,7 @@ import 'package:IQRA/common/styles.dart';
 import 'package:IQRA/providers/notifications_provider.dart';
 import 'package:IQRA/ui/screens/notification_detail_screen.dart';
 import 'package:IQRA/ui/shared/appbar.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class NotificationsScreen extends StatefulWidget {
@@ -99,10 +100,11 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                             children: <Widget>[
                               ListTile(
                                 leading: Padding(
-                                  padding: const EdgeInsets.only(top: 10),
+                                  padding:
+                                      const EdgeInsets.only(top: 8, bottom: 8),
                                   child: Container(
                                     height: 80,
-                                    width: 100,
+                                    width: 60,
                                     decoration: BoxDecoration(
                                         color: Colors.grey[800],
                                         borderRadius:
@@ -120,6 +122,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                                       color: Colors.white,
                                       fontSize: 18.0,
                                       fontWeight: FontWeight.w700),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                                 subtitle: Text(
                                   "${notifications[index].data.data}",
@@ -140,8 +144,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                                 height: 5.0,
                               ),
                               Container(
-                                color: Colors.grey[800],
-                                height: 2,
+                                color: Colors.yellow[500],
+                                height: 1,
                               ),
                             ],
                           ),

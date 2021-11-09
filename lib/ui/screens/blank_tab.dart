@@ -1,4 +1,5 @@
 import 'package:IQRA/common/route_paths.dart';
+import 'package:IQRA/common/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 //farman
@@ -20,11 +21,12 @@ class _BlankTabState extends State<BlankTab> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+
               Icon(
                 FontAwesomeIcons.solidCheckCircle,
                 size: 80,
-                color: Theme.of(context).cardColor.withOpacity(0.5),
-              ),
+                // color: Theme.of(context).cardColor.withOpacity(0.5),
+                color: Colors.white60,),
             ],
           ),
           Padding(
@@ -58,7 +60,11 @@ class _BlankTabState extends State<BlankTab> {
               },
               child: Text(
                 "Find Something to watch".toUpperCase(),
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(
+                  fontSize: 15.0,
+                  // fontWeight: FontWeight.bold,
+                  color: primaryBlue,
+                ),
               ))
         ],
       ),

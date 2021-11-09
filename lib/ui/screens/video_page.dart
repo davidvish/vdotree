@@ -69,7 +69,8 @@ class _VideosPageState extends State<VideosPage> {
 
     var recentDataList = Provider.of<MenuDataProvider>(context).recentData;
 
-    var recentAddedSeriesData = Provider.of<MenuDataProvider>(context).recentAddedSeriesData;
+    var recentAddedSeriesData =
+        Provider.of<MenuDataProvider>(context).recentAddedSeriesData;
 
     var featuredDataList = Provider.of<MenuDataProvider>(context).featuredData;
 
@@ -133,9 +134,9 @@ class _VideosPageState extends State<VideosPage> {
                         actorsList.length == 0
                             ? SizedBox.shrink()
                             : Container(
-                          color: Colors.black,
-                          height: 15.0,
-                        ),
+                                color: Colors.black,
+                                height: 15.0,
+                              ),
                         actorsList.length == 0
                             ? SizedBox.shrink()
                             : ActorsHorizontalList(),
@@ -149,16 +150,16 @@ class _VideosPageState extends State<VideosPage> {
                         topVideosList.length == 0
                             ? SizedBox.shrink()
                             : Container(
-                          color: Colors.black,
-                          height: 15.0,
-                        ),
+                                color: Colors.black,
+                                height: 15.0,
+                              ),
                         topVideosList.length == 0
                             ? SizedBox.shrink()
                             : Container(
-                          height: 260,
-                          color: Colors.black,
-                          child: TopVideoList(),
-                        ),
+                                height: 260,
+                                color: Colors.black,
+                                child: TopVideoList(),
+                              ),
                         tvSeriesList.length == 0
                             ? SizedBox.shrink()
                             : Heading1("TV Series", "TV"),
@@ -202,8 +203,8 @@ class _VideosPageState extends State<VideosPage> {
                         liveDataList.length == 0
                             ? SizedBox.shrink()
                             : SizedBox(
-                          height: 15.0,
-                        ),
+                                height: 15.0,
+                              ),
                         liveDataList.length == 0
                             ? SizedBox.shrink()
                             : Heading2("LIVE", "Live"),

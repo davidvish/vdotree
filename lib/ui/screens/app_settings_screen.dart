@@ -15,13 +15,14 @@ class _AppSettingsScreenState extends State<AppSettingsScreen> {
   Connectivity connectivity;
   // ignore: cancel_subscriptions
   StreamSubscription<ConnectivityResult> subscription;
-  var _connectionStatus = 'Unknown';
+  var _connectionStatus;
 
   void _onChanged1(bool value) {
     setState(() {
       boolValue = value;
       addBoolToSF(value);
       print(value);
+      print("farman");
     });
   }
 
@@ -84,55 +85,55 @@ class _AppSettingsScreenState extends State<AppSettingsScreen> {
     );
   }
 
-  Widget _listTile4() {
-    return ListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-      leading: Container(
-        padding: EdgeInsets.only(right: 20.0),
-        decoration: new BoxDecoration(
-            border: new Border(
-                right: new BorderSide(width: 1.0, color: Colors.white24))),
-        child: Icon(
-          FontAwesomeIcons.mobile,
-          color: Colors.white,
-          size: 20.0,
-        ),
-      ),
-      title: Text(
-        "About Phone",
-        style: TextStyle(
-            color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14.0),
-      ),
-      subtitle: Container(
-        height: 40.0,
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: 8.0,
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  flex: 1,
-                  child: Text("Phone info, version, build number",
-                      style: TextStyle(color: Colors.white, fontSize: 12.0)),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-      trailing: Icon(
-        Icons.arrow_forward_ios,
-        size: 15.0,
-        color: Color.fromRGBO(237, 237, 237, 1.0),
-      ),
-      onTap: () {
-        // var route = MaterialPageRoute(builder: (context) => AboutPhone());
-        // Navigator.push(context, route);
-      },
-    );
-  }
+  // Widget _listTile4() {
+  //   return ListTile(
+  //     contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+  //     leading: Container(
+  //       padding: EdgeInsets.only(right: 20.0),
+  //       decoration: new BoxDecoration(
+  //           border: new Border(
+  //               right: new BorderSide(width: 1.0, color: Colors.white24))),
+  //       child: Icon(
+  //         FontAwesomeIcons.mobile,
+  //         color: Colors.white,
+  //         size: 20.0,
+  //       ),
+  //     ),
+  //     title: Text(
+  //       "About Phone",
+  //       style: TextStyle(
+  //           color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14.0),
+  //     ),
+  //     subtitle: Container(
+  //       height: 40.0,
+  //       child: Column(
+  //         children: <Widget>[
+  //           SizedBox(
+  //             height: 8.0,
+  //           ),
+  //           Row(
+  //             children: <Widget>[
+  //               Expanded(
+  //                 flex: 1,
+  //                 child: Text("Phone info, version, build number",
+  //                     style: TextStyle(color: Colors.white, fontSize: 12.0)),
+  //               ),
+  //             ],
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //     trailing: Icon(
+  //       Icons.arrow_forward_ios,
+  //       size: 15.0,
+  //       color: Color.fromRGBO(237, 237, 237, 1.0),
+  //     ),
+  //     onTap: () {
+  //       // var route = MaterialPageRoute(builder: (context) => AboutPhone());
+  //       // Navigator.push(context, route);
+  //     },
+  //   );
+  // }
 
   Widget scaffold() {
     return Scaffold(
@@ -166,7 +167,10 @@ class _AppSettingsScreenState extends State<AppSettingsScreen> {
 //  Used to save value to shared preference of wi-fi switch
   addBoolToSF(value) async {
     prefs = await SharedPreferences.getInstance();
+    print(value);
     prefs.setBool('boolValue', value);
+    print(_connectionStatus);
+    print(" addBoolToSF");
   }
 
 //  Used to get saved value from shared preference of wi-fi switch
@@ -174,6 +178,9 @@ class _AppSettingsScreenState extends State<AppSettingsScreen> {
     prefs = await SharedPreferences.getInstance();
     setState(() {
       boolValue = prefs.getBool('boolValue');
+      print('bool');
+      print(_connectionStatus);
+      print("getValuesSF");
     });
   }
 
@@ -187,7 +194,8 @@ class _AppSettingsScreenState extends State<AppSettingsScreen> {
     connectivity = new Connectivity();
     subscription =
         connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
-      _connectionStatus = result.toString();
+          _connectionStatus = result.toString();
+print(_connectionStatus);
 
       checkConnectionStatus = result.toString();
       if (result == ConnectivityResult.wifi) {

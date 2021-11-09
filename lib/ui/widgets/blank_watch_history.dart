@@ -1,3 +1,4 @@
+import 'package:IQRA/common/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -15,16 +16,22 @@ class _BlankWatchHistoryState extends State<BlankWatchHistory> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Icon(
-                FontAwesomeIcons.solidPlayCircle,
-                size: 100,
-                color: Colors.white60,
+          Icon(
+            FontAwesomeIcons.solidPlayCircle,
+            size: 80,
+            color: Colors.white60,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 30),
+            child: Text(
+              "No Watch History Found",
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+                color: primaryBlue,
               ),
-            ],
+              textAlign: TextAlign.center,
+            ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 15.0),
@@ -39,7 +46,7 @@ class _BlankWatchHistoryState extends State<BlankWatchHistory> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16.0,
-                      color: Colors.white60,
+                      color: Colors.white.withOpacity(1),
                     ),
                   ),
                 ),

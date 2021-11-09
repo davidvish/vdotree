@@ -46,13 +46,16 @@ class _SearchScreenState extends State<SearchScreen> {
                       Text(
                         "No Result Found.",
                         style: TextStyle(
-                            fontSize: 16.0, fontWeight: FontWeight.bold,color: primaryBlue ),
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                            color: primaryBlue),
                         textAlign: TextAlign.center,
                       ),
                       new Padding(padding: EdgeInsets.only(top: 10.0)),
                       Text(
                         "We can't find any item matching your search.",
-                        style: TextStyle(fontSize: 16.0, color: Colors.white.withOpacity(1)),
+                        style: TextStyle(
+                            fontSize: 16.0, color: Colors.white.withOpacity(1)),
                         textAlign: TextAlign.center,
                       )
                     ],
@@ -68,11 +71,9 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget defaultSearchPage() {
     return Container(
       width: double.infinity,
-      
       margin: const EdgeInsets.symmetric(
         vertical: 8.0,
         horizontal: 15.0,
-        
       ),
       alignment: Alignment.center,
       child: InkWell(
@@ -85,21 +86,19 @@ class _SearchScreenState extends State<SearchScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-
-
                       Icon(
                         // FontAwesomeIcons.solidCheckCircle,
                         Icons.search,
                         size: 80,
-                        color: Theme.of(context).cardColor.withOpacity(0.7),
+                        // color: Theme.of(context).cardColor.withOpacity(0.7),
+                        color: Colors.white60,
                       ),
-
                       Padding(
                         padding: const EdgeInsets.only(top: 30),
                         child: Text(
                           "Find what to watch next.",
                           style: TextStyle(
-                              fontSize: 16.0,
+                              fontSize: 18.0,
                               fontWeight: FontWeight.bold,
                               color: primaryBlue),
                           textAlign: TextAlign.center,
@@ -109,7 +108,8 @@ class _SearchScreenState extends State<SearchScreen> {
                       Text(
                         "Search for shows for the Commute, Movies to Help Unwind, or your go-to genres.",
                         // "Search Form 1000+ Movies And Shows",
-                        style: TextStyle(fontSize: 16.0, color: Colors.white.withOpacity(1)),
+                        style: TextStyle(
+                            fontSize: 16.0, color: Colors.white.withOpacity(1)),
                         textAlign: TextAlign.center,
                       )
                     ],
@@ -182,7 +182,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: new Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                       // starRating,
+                        // starRating,
                         new RatingInformation(movieTvList[index])
                       ]),
                 )),
@@ -271,21 +271,22 @@ class _SearchScreenState extends State<SearchScreen> {
       controller: searchController,
       style: TextStyle(fontSize: 16.0),
       decoration: InputDecoration(
-
         hintText: 'Search for a show, movie, etc.',
         border: InputBorder.none,
       ),
-
     );
   }
 
   //  App bar
   Widget appBar() {
     return AppBar(
-      // leading: IconButton(
-      //   icon: Icon(Icons.arrow_back),
-      //   onPressed: () {},
-      // ),
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back),
+        color: Colors.white,
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+      ),
       automaticallyImplyLeading: false,
       title: searchField(),
       backgroundColor: Colors.black54,
