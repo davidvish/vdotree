@@ -494,8 +494,10 @@ class _OtpLoginState extends State<OtpLogin> {
           } else {
             Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
           }
-        } else if (loginProvider.emailVerify == false) {
-          showAlertDialog(context, loginProvider.emailVerifyMsg);
+        // }
+        // else if (loginProvider.emailVerify == false)
+        // {
+          // showAlertDialog(context, loginProvider.emailVerifyMsg);
         } else {
           Fluttertoast.showToast(
             msg: "The user credentials were incorrect..!",

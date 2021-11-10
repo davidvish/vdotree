@@ -139,6 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
       "$uid": code,
       "name": name,
     });
+
     
     if (accessTokenResponse.statusCode == 200) {
       loginModel = LoginModel.fromJson(json.decode(accessTokenResponse.body));
@@ -151,11 +152,15 @@ class _LoginScreenState extends State<LoginScreen> {
         authToken = mToken;
       });
       fetchAppData(context);
+
     } else {
       setState(() {
         isShowing = false;
       });
+
       Navigator.pop(context);
+
+
       Fluttertoast.showToast(msg: "Error in login");
     }
     return null;
@@ -192,6 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
   // }
 
   Future<void> fetchAppData(ctx) async {
+
     MenuProvider menuProvider = Provider.of<MenuProvider>(ctx, listen: false);
     UserProfileProvider userProfileProvider =
         Provider.of<UserProfileProvider>(ctx, listen: false);
@@ -213,7 +219,32 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       isShowing = false;
     });
-    Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
+    //code streax
+    final userDetails = Provider.of<UserProfileProvider>(context, listen: false).userProfileModel;
+   if(userDetails.payment=="free")
+     {
+       Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
+     }else if(userDetails.active == 1 || userDetails.active == "1") {
+     Navigator.pushNamed(context, RoutePaths.multiScreen);
+
+   }else{
+
+     Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
+   }
+
+
+
+
+
+
+
+    //Navigator.pushNamed(context, RoutePaths.multiScreen);
+   // if(userDetails.active == 1 || userDetails.active == "1"){
+   //    Navigator.pushNamed(context, RoutePaths.multiScreen);
+   //  }else {
+   //    Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
+   //  }
+    // Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
   }
 
   beforelogin() async {
@@ -391,31 +422,7 @@ class _LoginScreenState extends State<LoginScreen> {
       },
     );
   }
-  goToError() {
-    if (isShowing == false) {
-      showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (context) => WillPopScope(
-              child: AlertDialog(
-                backgroundColor: Colors.white,
-                title: Row(
-                  children: [
 
-
-                    Text(
-                     "No Account Found",
-                      style:
-                      TextStyle(color: Theme.of(context).backgroundColor),
-                    )
-                  ],
-                ),
-              ),
-              onWillPop: () async => false));
-    } else {
-      Navigator.pop(context);
-    }
-  }
   goToDialog() {
     if (isShowing == true) {
       showDialog(
@@ -811,9 +818,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                       name,
                                                       "uid");
                                                 }
-                                                else{
-                                                  return goToError();
-                                                }
+
                                               });
                                             }),
                                       )),

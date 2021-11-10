@@ -1,5 +1,6 @@
 import 'dart:async';
-import 'package:connectivity/connectivity.dart';
+// import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:IQRA/common/global.dart';
@@ -169,7 +170,9 @@ class _AppSettingsScreenState extends State<AppSettingsScreen> {
     prefs = await SharedPreferences.getInstance();
     print(value);
     prefs.setBool('boolValue', value);
+
     print(_connectionStatus);
+    print("mohmmad");
     print(" addBoolToSF");
   }
 
@@ -196,6 +199,7 @@ class _AppSettingsScreenState extends State<AppSettingsScreen> {
         connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
           _connectionStatus = result.toString();
 print(_connectionStatus);
+print("monu");
 
       checkConnectionStatus = result.toString();
       if (result == ConnectivityResult.wifi) {
@@ -207,6 +211,7 @@ print(_connectionStatus);
           _connectionStatus = 'Mobile';
         });
       } else if (result == ConnectivityResult.none) {
+
 //        var routersj = new MaterialPageRoute(
 //            builder: (BuildContext context) => new NoNetwork());
 //        Navigator.of(context).push(routersj);

@@ -69,7 +69,8 @@ dependencies:
   flutter_inapp_purchase: ^4.0.2
   flutter_rating_bar: ^4.0.0
   get_ip: ^0.4.0
-  connectivity: ^3.0.6
+  #connectivity: ^3.0.6
+  connectivity_plus: ^2.0.2
   onesignal_flutter: ^3.2.2
   flutterwave: ^0.0.2
   flutter_widget_from_html: ^0.6.0

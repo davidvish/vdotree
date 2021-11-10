@@ -1590,6 +1590,7 @@ class _MenuScreenState extends State<MenuScreen> {
           headers: {HttpHeaders.authorizationHeader: "Bearer $authToken"});
     }
     print(screenLogOutResponse.body);
+
     if (screenLogOutResponse.statusCode == 200) {
       setState(() {
         isShowing = true;
