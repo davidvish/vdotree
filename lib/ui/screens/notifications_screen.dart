@@ -104,15 +104,17 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                                       const EdgeInsets.only(top: 8, bottom: 8),
                                   child: Container(
                                     height: 80,
-                                    width: 60,
+                                    width: 50,
                                     decoration: BoxDecoration(
-                                        color: Colors.grey[800],
+                                        // color: Colors.grey[800],
+                                      color: Colors.yellowAccent,
                                         borderRadius:
                                             BorderRadius.circular(60)),
                                     child: Icon(
                                       Icons.notifications,
                                       size: 25,
-                                      color: primaryBlue,
+                                      // color: primaryBlue,
+                                      color: Colors.black,
                                     ),
                                   ),
                                 ),

@@ -156,7 +156,8 @@ class _OtherHistoryScreenState extends State<OtherHistoryScreen> {
           child: Container(
               margin: new EdgeInsets.symmetric(vertical: 0.0),
               height: 2.0,
-              width: 364.0,
+             // width: 364.0,
+            //  width: MediaQuery.of(context).size.width*1,
               color: Colors.black),
         ),
       ],
@@ -359,22 +360,19 @@ class _OtherHistoryScreenState extends State<OtherHistoryScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          AspectRatio(
-            aspectRatio: 14.0 / 6.5,
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
-                ),
-                planNameRow(planDetails),
-                rowTransactionId(planDetails),
-                rowSeparator(),
-                // rowCreatedDate(planDetails),
-                // transactionMethod(planDetails),
-                // transactionAmount(planDetails),
-                paymentDetails(planDetails),
-              ],
-            ),
+          Column(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
+              ),
+              planNameRow(planDetails),
+              rowTransactionId(planDetails),
+              rowSeparator(),
+              // rowCreatedDate(planDetails),
+              // transactionMethod(planDetails),
+              // transactionAmount(planDetails),
+              paymentDetails(planDetails),
+            ],
           ),
         ],
       ),

@@ -221,7 +221,9 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
             child: Text(
               userDetails.user.mobile == null
                   ? "N/A"
-                  : " ${userDetails.user.code} - ${userDetails.user.mobile}",
+                  : "${userDetails.user.mobile}",
+                  // : " ${userDetails.user.code} - ${userDetails.user.mobile}",
+                  // : " ${userDetails.user.code.toString()}",
 
               // : userDetails.user.mobile,
               textAlign: TextAlign.end,
@@ -1124,6 +1126,7 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
             userAccountStatus(),
             mailId(),
             phoneNumber(),
+
             birthDate(),
             // subExpiryDate(),
             // borderContainer1(),

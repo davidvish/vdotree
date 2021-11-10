@@ -168,7 +168,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
   }
 
   void _onTap() {
-    print("saad");
+    print("CodeStreax");
     //  if(userPaymentType=='stripe'){
     //    stripeUpdateDetails();
     //  }else if(userPaymentType=='paypal'){

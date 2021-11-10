@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:IQRA/common/styles.dart';
@@ -7,8 +6,6 @@ import 'package:IQRA/common/global.dart';
 import 'package:IQRA/providers/app_config.dart';
 import 'package:IQRA/ui/screens/select_payment_screen.dart';
 import 'package:IQRA/ui/shared/appbar.dart';
-import 'package:IQRA/ui/shared/color_loader.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class SubPlanScreen extends StatefulWidget {

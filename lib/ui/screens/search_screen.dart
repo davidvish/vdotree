@@ -280,13 +280,13 @@ class _SearchScreenState extends State<SearchScreen> {
   //  App bar
   Widget appBar() {
     return AppBar(
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back),
-        color: Colors.white,
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-      ),
+      // leading: IconButton(
+      //   icon: Icon(Icons.arrow_back),
+      //   color: Colors.white,
+      //   onPressed: () {
+      //     Navigator.of(context).pop();
+      //   },
+      // ),
       automaticallyImplyLeading: false,
       title: searchField(),
       backgroundColor: Colors.black54,

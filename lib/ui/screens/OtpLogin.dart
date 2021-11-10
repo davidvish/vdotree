@@ -482,6 +482,7 @@ class _OtpLoginState extends State<OtpLogin> {
         setState(() {
           _spincontorller = !_spincontorller;
         });
+
         if (loginProvider.loginStatus == true) {
           final userDetails =
               Provider.of<UserProfileProvider>(context, listen: false)
@@ -493,8 +494,10 @@ class _OtpLoginState extends State<OtpLogin> {
           } else {
             Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
           }
-        } else if (loginProvider.emailVerify == false) {
-          showAlertDialog(context, loginProvider.emailVerifyMsg);
+        // }
+        // else if (loginProvider.emailVerify == false)
+        // {
+          // showAlertDialog(context, loginProvider.emailVerifyMsg);
         } else {
           Fluttertoast.showToast(
             msg: "The user credentials were incorrect..!",

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:IQRA/ui/screens/ForgotPassword.dart';
 import 'package:IQRA/ui/screens/OtpLogin.dart';
 import 'package:flutter/cupertino.dart';
@@ -138,6 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
       "$uid": code,
       "name": name,
     });
+
     
     if (accessTokenResponse.statusCode == 200) {
       loginModel = LoginModel.fromJson(json.decode(accessTokenResponse.body));
@@ -150,11 +152,15 @@ class _LoginScreenState extends State<LoginScreen> {
         authToken = mToken;
       });
       fetchAppData(context);
+
     } else {
       setState(() {
         isShowing = false;
       });
+
       Navigator.pop(context);
+
+
       Fluttertoast.showToast(msg: "Error in login");
     }
     return null;
@@ -191,6 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
   // }
 
   Future<void> fetchAppData(ctx) async {
+
     MenuProvider menuProvider = Provider.of<MenuProvider>(ctx, listen: false);
     UserProfileProvider userProfileProvider =
         Provider.of<UserProfileProvider>(ctx, listen: false);
@@ -212,7 +219,32 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       isShowing = false;
     });
-    Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
+    //code streax
+    final userDetails = Provider.of<UserProfileProvider>(context, listen: false).userProfileModel;
+   if(userDetails.payment=="free")
+     {
+       Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
+     }else if(userDetails.active == 1 || userDetails.active == "1") {
+     Navigator.pushNamed(context, RoutePaths.multiScreen);
+
+   }else{
+
+     Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
+   }
+
+
+
+
+
+
+
+    //Navigator.pushNamed(context, RoutePaths.multiScreen);
+   // if(userDetails.active == 1 || userDetails.active == "1"){
+   //    Navigator.pushNamed(context, RoutePaths.multiScreen);
+   //  }else {
+   //    Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
+   //  }
+    // Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
   }
 
   beforelogin() async {
@@ -765,6 +797,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                             onPressed: () {
                                               print(myModel.config.googleLogin);
                                               signInWithGoogle().then((result) {
+                                                print(result);
+                                                print("noway");
                                                 if (result != null) {
                                                   setState(() {
                                                     isShowing = true;
@@ -784,6 +818,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                       name,
                                                       "uid");
                                                 }
+
                                               });
                                             }),
                                       )),
