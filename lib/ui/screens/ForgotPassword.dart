@@ -34,17 +34,17 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               fontSize: 16.0, color: Colors.black, fontWeight: FontWeight.bold),
 
           controller: _emailController,
-          validator: (value) {
-            if (value.length == 0) {
-              return 'Email can not be empty';
-            } else {
-              if (!value.contains('@')) {
-                return 'Invalid Email';
-              } else {
-                return null;
-              }
-            }
-          },
+          // validator: (value) {
+          //   if (value.length == 0) {
+          //     return 'Email can not be empty';
+          //   } else {
+          //     if (!value.contains('@')) {
+          //       return 'Invalid Email';
+          //     } else {
+          //       return null;
+          //     }
+          //   }
+          // },
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             prefixIcon: Icon(
@@ -116,7 +116,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     padding: const EdgeInsets.all(20.0),
                     child: Text(
                      // "Enter your email address and your password will be reset and email to you.",
-                      "Enter Your Valid Email Address",
+                      "Enter A Valid Email Address",
                       style: TextStyle(
                           // color: Color.fromRGBO(255, 255, 0, 1.0),
                           fontSize: 16),
@@ -194,12 +194,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             InkWell(
                               onTap: () {
                                 if (_emailController.text.isNotEmpty) {
-                                  if (_emailController.text
-                                      .contains("@gmail.com")) {
+                                  if (_emailController.text.contains("@")) {
                                     resendotp();
                                   } else {
                                     Fluttertoast.showToast(
-                                      msg: "Please Provide a Valid Email",
+                                      msg: "Please Provide a Valid Email Address",
+                                      // msg: "Please Provide a Valid Email Address",
                                       backgroundColor: Colors.red,
                                       textColor: Colors.white,
                                       gravity: ToastGravity.BOTTOM,
@@ -207,7 +207,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                   }
                                 } else {
                                   Fluttertoast.showToast(
-                                    msg: "Please provide a valid email address",
+                                    //farman
+                                    msg: "Email Field Cannot Be Empty",
                                     backgroundColor: Colors.red,
                                     textColor: Colors.white,
                                     gravity: ToastGravity.BOTTOM,

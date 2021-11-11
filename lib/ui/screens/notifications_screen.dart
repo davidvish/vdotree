@@ -51,7 +51,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       padding: EdgeInsets.only(left: 50.0, right: 50.0),
       child: Text(
         "You don't have any notification.",
-        style: TextStyle(height: 1.5, color: Colors.white60, fontSize: 18.0),
+        style: TextStyle(height: 1.5, color: Colors.white.withOpacity(1), fontSize: 18.0),
       ),
     );
   }
