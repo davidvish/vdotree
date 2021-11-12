@@ -292,7 +292,9 @@ class _LoginScreenState extends State<LoginScreen> {
       }));
     } else {
       Fluttertoast.showToast(
-        msg: "The user credentials were incorrect..",
+        // timeInSecForIosWeb: 3,
+        msg: "Sorry, we can't find an account with this number.",
+        // msg: "The user credentials were incorrect..",
         backgroundColor: Colors.red,
         textColor: Colors.white,
         gravity: ToastGravity.BOTTOM,
@@ -542,17 +544,17 @@ class _LoginScreenState extends State<LoginScreen> {
         maxLength: 10,
         style: TextStyle(fontSize: 16.0, color: Colors.white),
         controller: _mobileController,
-        validator: (value) {
-          if (value.length == 0) {
-              return 'Mobile can not be empty';
-            } else {
-              if (value.length != 10) {
-                return 'Invalid Mobile Number';
-              } else {
-                return null;
-              }
-            }
-        },
+        // validator: (value) {
+        //   if (value.length == 0) {
+        //       return 'Mobile can not be empty';
+        //     } else {
+        //       if (value.length != 10) {
+        //         return 'Invalid Mobile Number';
+        //       } else {
+        //         return null;
+        //       }
+        //     }
+        // },
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
           prefixIcon: Icon(

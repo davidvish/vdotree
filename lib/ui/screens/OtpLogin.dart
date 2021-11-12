@@ -545,7 +545,8 @@ class _OtpLoginState extends State<OtpLogin> {
       otp.clear();
 
       Fluttertoast.showToast(
-        msg: "OTP Does Not Match Please Try Again ",
+        msg: "The OTP entered is incorrect. Please enter correct OTP or try regenerating the OTP.",
+        // msg: "OTP Does Not Match Please Try Again ",
         backgroundColor: Colors.red,
         textColor: Colors.white,
         gravity: ToastGravity.BOTTOM,
@@ -580,7 +581,8 @@ class _OtpLoginState extends State<OtpLogin> {
     if (response["type"] == "success") {
       otp.clear();
       Fluttertoast.showToast(
-        msg: "OTP Resend Successfully",
+        msg: " A OTP has been resend on your mobile number.",
+        // msg: "OTP Resend Successfully",
         backgroundColor: Colors.red,
         textColor: Colors.white,
         gravity: ToastGravity.BOTTOM,

@@ -308,17 +308,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
       padding: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
       child: TextFormField(
         controller: _nameController,
-        validator: (value) {
-          if (value.length < 2) {
-            if (value.length == 0) {
-              return 'Enter name';
-            } else {
-              return 'Enter minimum 2 characters';
-            }
-          } else {
-            return null;
-          }
-        },
+        // validator: (value) {
+        //   if (value.length < 2) {
+        //     if (value.length == 0) {
+        //       return 'Enter name';
+        //     } else {
+        //       return 'Enter minimum 2 characters';
+        //     }
+        //   } else {
+        //     return null;
+        //   }
+        // },
         keyboardType: TextInputType.name,
         decoration: InputDecoration(
           prefixIcon: Icon(
@@ -340,17 +340,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
       padding: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
       child: TextFormField(
         controller: _emailController,
-        validator: (value) {
-          if (value.length == 0) {
-            return 'Email can not be empty';
-          } else {
-            if (!value.contains('@')) {
-              return 'Invalid Email';
-            } else {
-              return null;
-            }
-          }
-        },
+        // validator: (value) {
+        //   if (value.length == 0) {
+        //     return 'Email can not be empty';
+        //   } else {
+        //     if (!value.contains('@')) {
+        //       return 'Invalid Email';
+        //     } else {
+        //       return null;
+        //     }
+        //   }
+        // },
 
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
@@ -441,17 +441,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: TextFormField(
           maxLength: 10,
           controller: _mobileController,
-          validator: (value) {
-            if (value.length == 0) {
-              return 'Mobile can not be empty';
-            } else {
-              if (value.length != 10) {
-                return 'Invalid Mobile Number';
-              } else {
-                return null;
-              }
-            }
-          },
+          // validator: (value) {
+          //   if (value.length == 0) {
+          //     return 'Mobile can not be empty';
+          //   } else {
+          //     if (value.length != 10) {
+          //       return 'Invalid Mobile Number';
+          //     } else {
+          //       return null;
+          //     }
+          //   }
+          // },
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
             //prefix: Text('+91   '),
@@ -478,16 +478,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: TextFormField(
         controller: _passController,
         obscureText: !this._showPassword,
-        validator: (value) {
-          if (value.isEmpty) {
-            print(value);
-            return 'Please enter your password';
-          } else if (value.length < 6) {
-            return 'Enter minimum 6 digits';
-          } else {
-            return null;
-          }
-        },
+        // validator: (pass) {
+        //   if (pass.isEmpty) {
+        //
+        //     print(pass);
+        //
+        //     return 'Please enter your password';
+        //
+        //   } else
+        //     if (pass.length < 6) {
+        //     return 'Please enter minimum 6 character';
+        //     // return 'Enter minimum 6 digits';
+        //   } else {
+        //     return null;
+        //   }
+        // },
         decoration: InputDecoration(
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
@@ -590,25 +595,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       style: TextStyle(
                                           fontSize: 18, color: Colors.black,fontWeight: FontWeight.bold),
                                     ),
-                              // onPressed: (){},
+
                               onPressed: () {
                                 if (_nameController.text.isNotEmpty) {
+
                                   if (_emailController.text.isNotEmpty) {
+
                                     if (_emailController.text.contains("@")) {
+
                                       if (_mobileController.text.isNotEmpty) {
-                                        if (_mobileController.text.length ==
-                                            10) {
+
+                                        if (_mobileController.text.length == 10) {
+//farman
                                           // if (_countryController.text.isEmpty) {
-                                            if (_passController
-                                                .text.isNotEmpty) {
+                                            if (_passController.text.isNotEmpty) {
+                                              //farman
+                                              if(_passController.text.length>=6){
+
                                               FocusScope.of(context)
                                                   .requestFocus(
                                                       new FocusNode());
                                               _signUp();
                                             } else {
                                               Fluttertoast.showToast(
-                                                msg:
-                                                    "Please Enter Your Password",
+                                                msg:"Enter minimum 6 digits",
+                                                    // "Please Enter Your Password",
                                                 backgroundColor: Colors.red,
                                                 textColor: Colors.white,
                                                 gravity: ToastGravity.BOTTOM,
@@ -625,13 +636,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           //   );
                                           // }
                                         } else {
+                                              //farman
                                           Fluttertoast.showToast(
-                                            msg:
-                                                "Please Enter a Valid Mobile Number",
+                                            msg: "Please Create Your Password",
+                                            // "Enter minimum 6 digits",
+                                                // "Please Enter a Valid Mobile Number",
                                             backgroundColor: Colors.red,
                                             textColor: Colors.white,
                                             gravity: ToastGravity.BOTTOM,
                                           );
+                                        }
+                                        }
+                                        else
+                                        {
+                                        Fluttertoast.showToast(
+                                        msg:"Please Enter a Valid Mobile Number",
+                                        backgroundColor: Colors.red,
+                                        textColor: Colors.white,
+                                        gravity: ToastGravity.BOTTOM,
+                                        );
                                         }
                                       } else {
                                         Fluttertoast.showToast(
@@ -644,7 +667,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       }
                                     } else {
                                       Fluttertoast.showToast(
-                                        msg: "Please Enter a Valid Email",
+                                        msg: "Please Enter a Valid Email Address",
                                         backgroundColor: Colors.red,
                                         textColor: Colors.white,
                                         gravity: ToastGravity.BOTTOM,
