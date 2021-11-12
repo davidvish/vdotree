@@ -439,7 +439,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.70,
         child: TextFormField(
-          maxLength: 10,
+         // maxLength: 15,
           controller: _mobileController,
           // validator: (value) {
           //   if (value.length == 0) {
@@ -605,7 +605,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                                       if (_mobileController.text.isNotEmpty) {
 
-                                        if (_mobileController.text.length == 10) {
+                                        if (_mobileController.text.length >= 5 && _mobileController.text.length<=15) {
 //farman
                                           // if (_countryController.text.isEmpty) {
                                             if (_passController.text.isNotEmpty) {
@@ -618,7 +618,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                               _signUp();
                                             } else {
                                               Fluttertoast.showToast(
-                                                msg:"Enter minimum 6 digits",
+                                                msg:"Please enter minimum 6 character.",
                                                     // "Please Enter Your Password",
                                                 backgroundColor: Colors.red,
                                                 textColor: Colors.white,
@@ -638,7 +638,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         } else {
                                               //farman
                                           Fluttertoast.showToast(
-                                            msg: "Please Create Your Password",
+                                            msg: "Please enter your password. ",
                                             // "Enter minimum 6 digits",
                                                 // "Please Enter a Valid Mobile Number",
                                             backgroundColor: Colors.red,
@@ -650,7 +650,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         else
                                         {
                                         Fluttertoast.showToast(
-                                        msg:"Please Enter a Valid Mobile Number",
+                                        msg:"Please enter a valid mobile number.",
                                         backgroundColor: Colors.red,
                                         textColor: Colors.white,
                                         gravity: ToastGravity.BOTTOM,
@@ -659,7 +659,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       } else {
                                         Fluttertoast.showToast(
                                           msg:
-                                              "Please Enter Your Mobile Number",
+                                              ".Please enter your mobile number.",
                                           backgroundColor: Colors.red,
                                           textColor: Colors.white,
                                           gravity: ToastGravity.BOTTOM,
@@ -667,7 +667,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       }
                                     } else {
                                       Fluttertoast.showToast(
-                                        msg: "Please Enter a Valid Email Address",
+                                        msg: "Please enter a valid email address.",
                                         backgroundColor: Colors.red,
                                         textColor: Colors.white,
                                         gravity: ToastGravity.BOTTOM,
@@ -675,7 +675,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     }
                                   } else {
                                     Fluttertoast.showToast(
-                                      msg: "Please Enter Your Email",
+                                      msg: "Please enter your email address.",
                                       backgroundColor: Colors.red,
                                       textColor: Colors.white,
                                       gravity: ToastGravity.BOTTOM,
@@ -683,7 +683,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   }
                                 } else {
                                   Fluttertoast.showToast(
-                                    msg: "Please Enter Your Name",
+                                    msg: "Please enter your name.",
                                     backgroundColor: Colors.red,
                                     textColor: Colors.white,
                                     gravity: ToastGravity.BOTTOM,

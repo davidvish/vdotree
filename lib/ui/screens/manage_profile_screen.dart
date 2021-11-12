@@ -1218,9 +1218,9 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
     });
     print(response);
     var res1 = jsonDecode(response.body);
-    if (res1["message"] == "We have E-mailed your Password reset link!") {
+    if (res1["message"] == "A reset password link has been send your email address.") {
       Fluttertoast.showToast(
-          msg: "Reset Password Link Has Been Sent to Your Registered Email.");
+          msg: "A reset password link has been send your email address.");
       // msg: "An Email with Password Reset Link is send to yours Email.");
       // Navigator.push(context,
       //     MaterialPageRoute(builder: (BuildContext context) {

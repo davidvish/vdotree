@@ -501,6 +501,7 @@ class _OtpLoginState extends State<OtpLogin> {
         } else {
           Fluttertoast.showToast(
             msg: "The user credentials were incorrect..!",
+            // msg: "The user credentials were incorrect..!",
             backgroundColor: Colors.red,
             textColor: Colors.white,
             gravity: ToastGravity.BOTTOM,
@@ -593,7 +594,7 @@ class _OtpLoginState extends State<OtpLogin> {
       });
     } else {
       Fluttertoast.showToast(
-        msg: "Getting Some Error",
+        msg: "Getting some error",
         backgroundColor: Colors.red,
         textColor: Colors.white,
         gravity: ToastGravity.BOTTOM,
