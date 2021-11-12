@@ -309,8 +309,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       _spincontorller = !_spincontorller;
     });
     // print(authToken);
-    var response1 = await http.post(Uri.parse(APIData.change), body: {
-    // var response1 = await http.post(Uri.parse(APIData.newforgotpassword), body: {
+    // var response1 = await http.post(Uri.parse(APIData.change), body: {
+    var response1 = await http.post(Uri.parse(APIData.newforgotpassword), body: {
       "email": _emailController.text,
       // "password": widget.pass
     }, headers: {
