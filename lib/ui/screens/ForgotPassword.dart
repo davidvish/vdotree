@@ -198,7 +198,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                     resendotp();
                                   } else {
                                     Fluttertoast.showToast(
-                                      msg: "Please Provide a Valid Email Address",
+                                      msg: "Please enter a valid email address.",
                                       // msg: "Please Provide a Valid Email Address",
                                       backgroundColor: Colors.red,
                                       textColor: Colors.white,
@@ -208,7 +208,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                 } else {
                                   Fluttertoast.showToast(
                                     //farman
-                                    msg: "Email Field Cannot Be Empty",
+                                    msg: "Please enter your email address.",
                                     backgroundColor: Colors.red,
                                     textColor: Colors.white,
                                     gravity: ToastGravity.BOTTOM,
@@ -309,6 +309,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       _spincontorller = !_spincontorller;
     });
     // print(authToken);
+    // var response1 = await http.post(Uri.parse(APIData.change), body: {
     var response1 = await http.post(Uri.parse(APIData.newforgotpassword), body: {
       "email": _emailController.text,
       // "password": widget.pass
@@ -324,14 +325,16 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     var response = jsonDecode(response1.body);
     if (response["type"] == "success") {
       Fluttertoast.showToast(
-        msg: response["message"],
+        msg:"A reset password link has been send your email address.",
+        // msg: response["message"]="A reset password link has been send your email address.",
         backgroundColor: Colors.red,
         textColor: Colors.white,
         gravity: ToastGravity.BOTTOM,
       );
     } else {
       Fluttertoast.showToast(
-        msg: response["message"],
+        // msg: response["message"]="Getting some error!,Please try after some time.",
+        msg: "Getting some error!, Please try after some time.",
         backgroundColor: Colors.red,
         textColor: Colors.white,
         gravity: ToastGravity.BOTTOM,

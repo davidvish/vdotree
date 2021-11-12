@@ -1,15 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:IQRA/ui/screens/ForgotPassword.dart';
 import 'package:IQRA/ui/screens/OtpLogin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-//import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:IQRA/common/apipath.dart';
 import 'package:IQRA/common/global.dart';
 import 'package:IQRA/common/route_paths.dart';
@@ -25,7 +22,6 @@ import 'package:IQRA/providers/slider_provider.dart';
 import 'package:IQRA/providers/user_profile_provider.dart';
 import 'package:IQRA/services/firebase_auth.dart';
 import 'package:IQRA/ui/shared/appbar.dart';
-import 'package:IQRA/ui/shared/logo.dart';
 import 'package:IQRA/ui/widgets/register_here.dart';
 import 'package:IQRA/ui/widgets/reset_alert_container.dart';
 import 'package:provider/provider.dart';
@@ -283,12 +279,23 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     }
     if (response["type"] == "success") {
+      //farman
+      Fluttertoast.showToast(
+        // timeInSecForIosWeb: 3,
+        msg: " A OTP has been send on your mobile number. ",
+        // msg: "The user credentials were incorrect..",
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        gravity: ToastGravity.BOTTOM,
+      );
       Navigator.push(context,
           MaterialPageRoute(builder: (BuildContext context) {
+
         return OtpLogin(
           mobile: _mobileController.text,
           pass: _passwordController.text,
         );
+
       }));
     } else {
       Fluttertoast.showToast(
@@ -541,7 +548,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return Padding(
       padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 20.0),
       child: TextFormField(
-        maxLength: 10,
+        //farman
+      //  maxLength: 15,
         style: TextStyle(fontSize: 16.0, color: Colors.white),
         controller: _mobileController,
         // validator: (value) {
@@ -564,7 +572,7 @@ class _LoginScreenState extends State<LoginScreen> {
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
           ),
-          labelText: 'Mobile',
+          labelText: 'Phone Number',
           labelStyle: TextStyle(color: Colors.white,fontSize: 15),
         ),
       ),
@@ -726,7 +734,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                                 onPressed: () {
                                   if (_mobileController.text.isNotEmpty) {
-                                    if (_mobileController.text.length == 10) {
+                                    //farman
+                                    if (_mobileController.text.length >=5 && _mobileController.text.length<=15) {
                                       // if (_passwordController.text.isNotEmpty) {
                                         print("ok");
                                         FocusScope.of(context)
@@ -742,7 +751,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       // }
                                     } else {
                                       Fluttertoast.showToast(
-                                        msg: "Please Enter a Valid Mobile Number",
+                                        msg: "Please enter a valid mobile number.",
                                         backgroundColor: Colors.red,
                                         textColor: Colors.white,
                                         gravity: ToastGravity.BOTTOM,
@@ -750,7 +759,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     }
                                   } else {
                                     Fluttertoast.showToast(
-                                      msg: "Please Enter your Mobile Number",
+                                      msg: ".Please enter your mobile number.",
                                       backgroundColor: Colors.red,
                                       textColor: Colors.white,
                                       gravity: ToastGravity.BOTTOM,
