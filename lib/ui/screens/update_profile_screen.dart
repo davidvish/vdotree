@@ -184,16 +184,24 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   }
 
 //  For selecting image from camera
-  chooseImageFromCamera() {
-    setState(() {
-      files = ImagePicker().getImage(source: ImageSource.camera);
+  chooseImageFromCamera() async {
+    //files = await ImagePicker().getImage(source: ImageSource.camera);
+
+    final picker = ImagePicker();
+    PickedFile pickedFile = await picker.getImage(source: ImageSource.camera);
+    files = File(pickedFile.path);
+
+    setState(()  {
     });
   }
 
 //  For selecting image from gallery
-  chooseImageFromGallery() {
-    setState(() {
-      files = ImagePicker().getImage(source: ImageSource.gallery);
+  chooseImageFromGallery() async {
+    final picker = ImagePicker();
+    PickedFile pickedFile = await picker.getImage(source: ImageSource.gallery);
+    files = File(pickedFile.path);
+
+    setState(()  {
     });
   }
 
@@ -488,13 +496,13 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   Widget showImage() {
     var userDetails = Provider.of<UserProfileProvider>(context, listen: false)
         .userProfileModel;
-    return FutureBuilder<File>(
-      future: files,
-      builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
+    return FutureBuilder<String>(
+      future: filesget(),
+      builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
         if (snapshot.connectionState == ConnectionState.done &&
-            null != snapshot.data) {
-          tmpFile = snapshot.data;
-          base64Image = base64Encode(snapshot.data.readAsBytesSync());
+            null != snapshot.data && files != null) {
+          tmpFile = files;
+          base64Image = base64Encode(files.readAsBytesSync());
           return Container(
               child: Card(
                   shape: RoundedRectangleBorder(
@@ -705,6 +713,13 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                 child: bottomSheet()),
           );
         });
+  }
+
+  Future<String> filesget() {
+    return Future.delayed(Duration(seconds: 2), () {
+      return "I am data";
+      // throw Exception("Custom Error");
+    });
   }
 }
 
