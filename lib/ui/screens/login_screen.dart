@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:IQRA/ui/screens/ForgotPassword.dart';
 import 'package:IQRA/ui/screens/OtpLogin.dart';
 import 'package:flutter/cupertino.dart';
@@ -26,6 +27,7 @@ import 'package:IQRA/ui/widgets/register_here.dart';
 import 'package:IQRA/ui/widgets/reset_alert_container.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class LoginScreen extends StatefulWidget {
   //  AuthService authService = AuthService();
@@ -846,6 +848,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
+                                  appleLogin()
                                   // Container(
                                   //   // flex: 1,
                                   //   height: 50.0,
@@ -888,5 +891,87 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           )),
     );
+  }
+
+  Widget appleLogin() {
+    if(Platform.isIOS)
+      {
+
+        return Container(
+          width: MediaQuery.of(context).size.width *
+              .60,
+          //height: 30,
+          child: SignInWithAppleButton(
+            onPressed: () async {
+              final credential = await SignInWithApple.getAppleIDCredential(
+                scopes: [
+                  AppleIDAuthorizationScopes.email,
+                  AppleIDAuthorizationScopes.fullName,
+                ],
+              );
+
+              print(credential);
+
+              final signInWithAppleEndpoint = Uri(
+                scheme: 'https',
+                host: 'flutter-sign-in-with-apple-example.glitch.me',
+                path: '/sign_in_with_apple',
+                queryParameters: <String, String>{
+                  'code': credential.authorizationCode,
+                  if (credential.givenName != null)
+                    'firstName': credential.givenName,
+                  if (credential.familyName != null)
+                    'lastName': credential.familyName,
+                  'useBundleId':
+                  Platform.isIOS || Platform.isMacOS ? 'true' : 'false',
+                  if (credential.state != null) 'state': credential.state,
+                },
+              );
+
+              final session = await http.Client().post(
+                signInWithAppleEndpoint,
+              );
+
+              // If we got this far, a session based on the Apple ID credential has been created in your system,
+              // and you can now set this as the app's session
+              print("ses");
+              print(session);
+
+              // Now send the credential (especially `credential.authorizationCode`) to your server to create a session
+              // after they have been validated with Apple (see `Integration` section for more information on how to do this)
+            },
+          ),
+        );
+
+
+        // return AppleSignInButton(
+        //   type: ButtonType.continueButton,
+        //   onPressed: () async {
+        //     if(await AppleSignIn.isAvailable()) {
+        //       if(await AppleSignIn.isAvailable()) {
+        //         final AuthorizationResult result = await AppleSignIn.performRequests([
+        //           AppleIdRequest(requestedScopes: [Scope.email, Scope.fullName])
+        //         ]);
+        //         switch (result.status) {
+        //           case AuthorizationStatus.authorized:
+        //             print(result.credential.user);
+        //             break;//All the required credentials
+        //           case AuthorizationStatus.error:
+        //             print("Sign in failed: ${result.error.localizedDescription}");
+        //             break;
+        //           case AuthorizationStatus.cancelled:
+        //             print('User cancelled');
+        //             break;
+        //         }
+        //       }
+        //     }else{
+        //     print('Apple SignIn is not available for your device');
+        //     }
+        //   },
+        // );
+      }
+    else{
+      return Container();
+    }
   }
 }
