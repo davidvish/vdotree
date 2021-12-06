@@ -1343,7 +1343,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 //     ? donate()
                 //     : SizedBox.shrink(),
                 // appConfig.blogs.length != 0 ? blog() : SizedBox.shrink(),
-                subscribe(),
+                Platform.isIOS? Container():subscribe(),
                 Padding(
                   padding: const EdgeInsets.only(left: 60),
                   child: Divider(

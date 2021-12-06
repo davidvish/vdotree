@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:IQRA/common/route_paths.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:IQRA/common/styles.dart';
@@ -7,19 +10,15 @@ import 'package:IQRA/providers/app_config.dart';
 import 'package:IQRA/ui/screens/select_payment_screen.dart';
 import 'package:IQRA/ui/shared/appbar.dart';
 import 'package:provider/provider.dart';
+import 'package:restart_app/restart_app.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SubPlanScreen extends StatefulWidget {
   @override
   _SubPlanScreenState createState() => _SubPlanScreenState();
 }
 
-
 class _SubPlanScreenState extends State<SubPlanScreen> {
-
-
-
-
- 
 //  List used to show all the plans using home API
   List<Widget> _buildCards(int count) {
     var planDetails = Provider.of<AppConfig>(context, listen: false).planList;
@@ -65,23 +64,21 @@ class _SubPlanScreenState extends State<SubPlanScreen> {
                       childAspectRatio: 0.5,
                       crossAxisSpacing: 100,
                       children: List.generate(count, (index) {
-                        return Container(
-                          child:
-                          newWidget(index)
-                          //  OrientationBuilder(builder: (_,orientation){
-                          //   return orientation == Orientation.portrait? newWidget(index):buildLanscapeProxy();
-                          // })
-                          // LayoutBuilder(builder: (_,constraint){
-                          //   if(constraint.maxWidth < 720){
-                          //      return
+                        return Container(child: newWidget(index)
+                            //  OrientationBuilder(builder: (_,orientation){
+                            //   return orientation == Orientation.portrait? newWidget(index):buildLanscapeProxy();
+                            // })
+                            // LayoutBuilder(builder: (_,constraint){
+                            //   if(constraint.maxWidth < 720){
+                            //      return
 
-                          //     buildLanscapeProxy();
-                          //   }else{
-                          //      return newWidget(index);
-                            
-                          //   }
-                          // },)
-                        );
+                            //     buildLanscapeProxy();
+                            //   }else{
+                            //      return newWidget(index);
+
+                            //   }
+                            // },)
+                            );
                       })
                       // margin: EdgeInsets.only(top: 10.0),
                       // child: newWidget(index),
@@ -253,10 +250,9 @@ class _SubPlanScreenState extends State<SubPlanScreen> {
 
   var index1;
 
-  
   Widget newWidget(index) {
 // LayoutBuilder(builder: (BuildContext context,constraint){
-//   return 
+//   return
 // });
 
     var planDetails = Provider.of<AppConfig>(context, listen: false).planList;
@@ -269,47 +265,46 @@ class _SubPlanScreenState extends State<SubPlanScreen> {
           child: Row(
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Stack (
-                children: <Widget> [
-
-             
-              Container(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15),
-                      child: Text(
-                        "CHOOSE THE PLAN THAT'S RIGHT FOR YOU",
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
-                      ),
+              Stack(
+                children: <Widget>[
+                  Container(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Text(
+                            "CHOOSE THE PLAN THAT'S RIGHT FOR YOU",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 15, top: 7, bottom: 25),
+                          child: Text(
+                            "Downgrade or upgrade at any time",
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.grey),
+                          ),
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15, top: 7, bottom: 25),
-                      child: Text(
-                        "Downgrade or upgrade at any time",
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w600, color: Colors.grey),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              // Container(
-              //     alignment: Alignment.centerRight,
-              //     // color: Colors.red,
-              //     child: OrientationButton()),
-              
-                 ],
+                  ),
+                  // Container(
+                  //     alignment: Alignment.centerRight,
+                  //     // color: Colors.red,
+                  //     child: OrientationButton()),
+                ],
               )
               // SizedBox(width: 0.5,)
             ],
           ),
         ),
-        
         Container(
-          
-          
           height: MediaQuery.of(context).size.height * .55,
           width: MediaQuery.of(context).size.width * 1,
           child: ListView.builder(
@@ -324,12 +319,12 @@ class _SubPlanScreenState extends State<SubPlanScreen> {
                   child: SingleChildScrollView(
                     child: Container(
                       child: InkWell(
-                         onTap: () {
-                                setState(() {
-                                  index1 = index;
-                                  print(index1);
-                                });
-                              },
+                        onTap: () {
+                          setState(() {
+                            index1 = index;
+                            print(index1);
+                          });
+                        },
                         child: Column(
                           children: [
                             InkWell(
@@ -352,7 +347,8 @@ class _SubPlanScreenState extends State<SubPlanScreen> {
                                   child: Align(
                                       alignment: Alignment.center,
                                       child: Text(
-                                        '${planDetails[index].name}'.toUpperCase(),
+                                        '${planDetails[index].name}'
+                                            .toUpperCase(),
                                         style: TextStyle(
                                           fontSize: 16,
                                           color: (index1 != index)
@@ -387,8 +383,9 @@ class _SubPlanScreenState extends State<SubPlanScreen> {
                               child: Container(
                                 width: MediaQuery.of(context).size.width * .30,
                                 child: Divider(
-                                  color:
-                                      (index1 == index) ? Colors.white : Colors.grey,
+                                  color: (index1 == index)
+                                      ? Colors.white
+                                      : Colors.grey,
                                   // height: 4,
                                   thickness: 2,
                                 ),
@@ -397,7 +394,8 @@ class _SubPlanScreenState extends State<SubPlanScreen> {
                             Padding(
                               padding: const EdgeInsets.only(top: 10),
                               child: Text(
-                                'Multple Devices \n' '${planDetails[index].screens}',
+                                'Multple Devices \n'
+                                '${planDetails[index].screens}',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     wordSpacing: 1,
@@ -413,8 +411,9 @@ class _SubPlanScreenState extends State<SubPlanScreen> {
                               child: Container(
                                 width: MediaQuery.of(context).size.width * .30,
                                 child: Divider(
-                                  color:
-                                      (index1 == index) ? Colors.white : Colors.grey,
+                                  color: (index1 == index)
+                                      ? Colors.white
+                                      : Colors.grey,
                                   // height: 4,
                                   thickness: 2,
                                 ),
@@ -422,39 +421,40 @@ class _SubPlanScreenState extends State<SubPlanScreen> {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 10),
-                              child: 
-                              planDetails[index].downloadlimit == null ?  Text(
-                                'Total Downloads \n'
-                                'N/A',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    wordSpacing: 1,
-                                    letterSpacing: 1,
-                                    fontSize: 14,
-                                    color: (index1 == index)
-                                        ? Colors.white
-                                        : Colors.grey),
-                              )    :
-                              Text(
-                                'Total Downloads \n'
-                                '${planDetails[index].downloadlimit}',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    wordSpacing: 1,
-                                    letterSpacing: 1,
-                                    fontSize: 14,
-                                    color: (index1 == index)
-                                        ? Colors.white
-                                        : Colors.grey),
-                              ),
+                              child: planDetails[index].downloadlimit == null
+                                  ? Text(
+                                      'Total Downloads \n'
+                                      'N/A',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          wordSpacing: 1,
+                                          letterSpacing: 1,
+                                          fontSize: 14,
+                                          color: (index1 == index)
+                                              ? Colors.white
+                                              : Colors.grey),
+                                    )
+                                  : Text(
+                                      'Total Downloads \n'
+                                      '${planDetails[index].downloadlimit}',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          wordSpacing: 1,
+                                          letterSpacing: 1,
+                                          fontSize: 14,
+                                          color: (index1 == index)
+                                              ? Colors.white
+                                              : Colors.grey),
+                                    ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 5),
                               child: Container(
                                 width: MediaQuery.of(context).size.width * .30,
                                 child: Divider(
-                                  color:
-                                      (index1 == index) ? Colors.white : Colors.grey,
+                                  color: (index1 == index)
+                                      ? Colors.white
+                                      : Colors.grey,
                                   // height: 4,
                                   thickness: 2,
                                 ),
@@ -480,8 +480,9 @@ class _SubPlanScreenState extends State<SubPlanScreen> {
                               child: Container(
                                 width: MediaQuery.of(context).size.width * .30,
                                 child: Divider(
-                                  color:
-                                      (index1 == index) ? Colors.white : Colors.grey,
+                                  color: (index1 == index)
+                                      ? Colors.white
+                                      : Colors.grey,
                                   // height: 4,
                                   thickness: 2,
                                 ),
@@ -597,17 +598,15 @@ class _SubPlanScreenState extends State<SubPlanScreen> {
                       noPlanContainer(),
                     ],
                   )
-                : 
-                     SingleChildScrollView(
-                       child: Container(
-                        //  height: 700,
-                        child: Column(
-                          children: _buildCards(planDetails.length),
-                        ),
-                                         ),
-                     ),
-                
-                  );
+                : SingleChildScrollView(
+                    child: Container(
+                      //  height: 700,
+                      child: Column(
+                        children: _buildCards(planDetails.length),
+                      ),
+                    ),
+                  ),
+          );
   }
 
   //  Empty watchlist container message
@@ -647,17 +646,16 @@ class _SubPlanScreenState extends State<SubPlanScreen> {
       ),
     );
   }
+
 // Widget buildPotrait(){
 //   return
 //   scaffoldBody();
 // }
 
-Widget buildLanscapeProxy(){
-  final deviceSize = MediaQuery.of(context).orientation;
-  var planDetails = Provider.of<AppConfig>(context, listen: false).planList;
-  return
- 
-    Column(
+  Widget buildLanscapeProxy() {
+    final deviceSize = MediaQuery.of(context).orientation;
+    var planDetails = Provider.of<AppConfig>(context, listen: false).planList;
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -678,8 +676,7 @@ Widget buildLanscapeProxy(){
           ),
         ),
         Container(
-          color:Colors.red,
-          
+          color: Colors.red,
           height: MediaQuery.of(context).size.height * .55,
           width: MediaQuery.of(context).size.width * 1,
           child: ListView.builder(
@@ -749,8 +746,9 @@ Widget buildLanscapeProxy(){
                           child: Container(
                             width: MediaQuery.of(context).size.width * .30,
                             child: Divider(
-                              color:
-                                  (index1 == index) ? Colors.white : Colors.grey,
+                              color: (index1 == index)
+                                  ? Colors.white
+                                  : Colors.grey,
                               // height: 4,
                               thickness: 2,
                             ),
@@ -759,7 +757,8 @@ Widget buildLanscapeProxy(){
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: Text(
-                            'Multple Devices \n' '${planDetails[index].screens}',
+                            'Multple Devices \n'
+                            '${planDetails[index].screens}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 wordSpacing: 1,
@@ -775,8 +774,9 @@ Widget buildLanscapeProxy(){
                           child: Container(
                             width: MediaQuery.of(context).size.width * .30,
                             child: Divider(
-                              color:
-                                  (index1 == index) ? Colors.white : Colors.grey,
+                              color: (index1 == index)
+                                  ? Colors.white
+                                  : Colors.grey,
                               // height: 4,
                               thickness: 2,
                             ),
@@ -802,8 +802,9 @@ Widget buildLanscapeProxy(){
                           child: Container(
                             width: MediaQuery.of(context).size.width * .30,
                             child: Divider(
-                              color:
-                                  (index1 == index) ? Colors.white : Colors.grey,
+                              color: (index1 == index)
+                                  ? Colors.white
+                                  : Colors.grey,
                               // height: 4,
                               thickness: 2,
                             ),
@@ -829,8 +830,9 @@ Widget buildLanscapeProxy(){
                           child: Container(
                             width: MediaQuery.of(context).size.width * .30,
                             child: Divider(
-                              color:
-                                  (index1 == index) ? Colors.white : Colors.grey,
+                              color: (index1 == index)
+                                  ? Colors.white
+                                  : Colors.grey,
                               // height: 4,
                               thickness: 2,
                             ),
@@ -844,8 +846,6 @@ Widget buildLanscapeProxy(){
             },
           ),
         ),
-        
-        
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -866,7 +866,6 @@ Widget buildLanscapeProxy(){
                   );
                 }
               },
-              
               child: Container(
                 decoration: BoxDecoration(
                     color: primaryBlue,
@@ -898,7 +897,6 @@ Widget buildLanscapeProxy(){
     );
   }
 
- 
   // Widget OrientationButton(){
   //   return OrientationBuilder(builder: (_,orientation){
   //     return
@@ -906,25 +904,23 @@ Widget buildLanscapeProxy(){
   //   });
   // }
 
-
-
-@override
+  @override
   void initState() {
-   SystemChrome.setPreferredOrientations([
+    SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
-   ]);
+    ]);
     super.initState();
   }
 
   @override
   void dispose() {
-     SystemChrome.setPreferredOrientations([
-    DeviceOrientation.landscapeRight,
-    DeviceOrientation.landscapeLeft,
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     super.dispose();
   }
 
@@ -932,16 +928,40 @@ Widget buildLanscapeProxy(){
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.black,
-        appBar: customAppBarm(context, "SUBSCRIPTION PLAN"),
 
-        body: scaffoldBody()
-      //   OrientationBuilder(builder: (context,orientation)=> orientation == Orientation.portrait ? buildPotrait(): buildLanscape()
-      // )
-      )
-    );
+    if (Platform.isIOS) {
+      _launchURL();
+      return SafeArea(
+        child: Scaffold(
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Re-Launch the app after purchase"),
+                ElevatedButton(onPressed: (){
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, RoutePaths.splashScreen);
+                }, child: Text("Re-Launch"))
+              ],
+            )
+          ),
+        ),
+      );
+    } else {
+      return SafeArea(
+          child: Scaffold(
+              backgroundColor: Colors.black,
+              appBar: customAppBarm(context, "SUBSCRIPTION PLAN"),
+              body: scaffoldBody()
+              //   OrientationBuilder(builder: (context,orientation)=> orientation == Orientation.portrait ? buildPotrait(): buildLanscape()
+              // )
+              ));
+    }
   }
-  
+
+  void _launchURL() async {
+    var token = await storage.read(key: "authToken");
+    if (!await launch("https://vdotree.com/ios/payment/page/$token"))
+      throw 'Could not launch ';
+  }
 }
