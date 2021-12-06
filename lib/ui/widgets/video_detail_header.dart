@@ -613,7 +613,7 @@ class VideoDetailHeaderState extends State<VideoDetailHeader>
         padding: const EdgeInsets.only(top: 12.0),
         child: new Column(
           children: <Widget>[
-            Container(
+            Platform.isIOS? Container():Container(
               height: 40.0,
               width: MediaQuery.of(context).size.width * .6,
               child: OutlineButton(

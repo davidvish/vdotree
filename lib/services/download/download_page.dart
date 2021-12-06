@@ -1285,7 +1285,7 @@ class _DownloadPageState extends State<DownloadPage>
                                                           width: 40),
                                                         Container(
                                                           // color: Colors.yellow,
-                                                          child: downloadText(item.task)),
+                                                          child:downloadText(item.task)),
                                                       ],
                                                     )),
                                                     ],)
@@ -1441,7 +1441,7 @@ class _DownloadPageState extends State<DownloadPage>
       width: MediaQuery.of(context).size.width * .31,
       child: Material(
         
-        child: column(),
+        child: Platform.isIOS? Container():column(),
         color: Colors.transparent,
       ),
     );
