@@ -1218,6 +1218,7 @@ class _ManageProfileScreenState extends State<ManageProfileScreen> {
     });
     print(response);
     var res1 = jsonDecode(response.body);
+    print('resposne$res1');
     if (res1["message"] == "A reset password link has been send your email address.") {
       Fluttertoast.showToast(
           msg: "A reset password link has been send your email address.");
