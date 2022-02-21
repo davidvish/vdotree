@@ -15,6 +15,7 @@ import 'package:IQRA/providers/user_profile_provider.dart';
 import 'package:IQRA/ui/screens/splash_screen.dart';
 import 'package:IQRA/ui/shared/appbar.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
   @override
@@ -29,12 +30,13 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   // new TextEditingController(text: "saad");
   TextEditingController _editMobileController = new TextEditingController();
   DateTime _dateTime = new DateTime.now();
-  String pickedDate = '';
+  String pickedDate;
   var sEmail;
   var sPass;
   var files;
   String status = '';
   String base64Image;
+  DateTime dateTimeMY = DateTime.now();
   File tmpFile;
   String errMessage = 'Error Uploading Image';
   var currentPassword, newPassword, newDob, newMobile, newName;
@@ -209,7 +211,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   Future<Null> _selectDate() async {
     final DateTime picked = await showDatePicker(
       context: context,
-      initialDate: DateTime(1970),
+      initialDate: dateTimeMY,
       firstDate: new DateTime(1970),
       lastDate: new DateTime.now(),
     );
@@ -217,9 +219,11 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
       setState(() {
         print("ok");
         print(picked);
-         _editDOBController.text = pickedDate;
-        print(_editDOBController);
+        
         _dateTime = picked;
+        
+         _editDOBController.text = pickedDate;
+        print(' COntroller  ${_editDOBController}');
       });
       // ignore: unrelated_type_equality_checks
 
@@ -233,13 +237,28 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
             ? TextEditingController(text: pickedDate)
             : TextEditingController(text: "Date of Birth");
         print(pickedDate);
+        
       });
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      preferences.setString('picked', picked.toString());
+preferences.setString('saveDate',_editDOBController.text);
+    }else{
+      print('else now date');
     }
   }
-
+getSharedData()async{
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+  setState(() {
+    pickedDate = preferences.getString('saveDate');
+    _editDOBController.text = preferences.getString('saveDate');
+    _dateTime = DateTime.parse(preferences.getString('picked'));
+        dateTimeMY =  DateTime.parse(preferences.getString('picked')) ?? DateTime.now();
+  });
+}
   @override
   void initState() {
     // TODO: implement initState
+    getSharedData();
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -256,6 +275,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
         }
       });
       print(userDetails.user.dob);
+      print('edittedPost ${_editDOBController.text}');
       newName = _editNameController.text;
       newDob = _editDOBController.text;
       newMobile = _editMobileController.text;
