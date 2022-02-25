@@ -219,15 +219,19 @@ class _LoginScreenState extends State<LoginScreen> {
     });
     //code streax
     final userDetails = Provider.of<UserProfileProvider>(context, listen: false).userProfileModel;
-   if(userDetails.payment=="free")
+   if(userDetails.payment=="Free")
      {
+       print('UserDetails if ${userDetails.payment}');
        Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
      }else if(userDetails.active == 1 || userDetails.active == "1") {
      Navigator.pushNamed(context, RoutePaths.multiScreen);
+       print('UserDetails elseif ${userDetails.payment}');
 
    }else{
 
      Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
+            print('UserDetails else ${userDetails.payment}');
+
    }
 
 
