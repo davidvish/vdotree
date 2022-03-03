@@ -348,7 +348,7 @@ class _OtpLoginState extends State<OtpLogin> {
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,
                                     child: Text(
-                                      "If you haven't received any"
+                                      "If you haven't received any "
                                       "otp then your default otp is 0000",
                                       style: TextStyle(
                                         color: Colors.white,
