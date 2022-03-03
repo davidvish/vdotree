@@ -20,6 +20,7 @@ import 'package:intl/locale.dart';
 import 'package:provider/provider.dart';
 import 'package:IQRA/common/apipath.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -36,9 +37,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = new GlobalKey<FormState>();
   bool _showPassword = false;
   bool _isLoading = false;
-  String sigtssd='91';
+  String sigtssd = '91';
 // Sign up button
+
+  var reg;
   otpsignup() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+
     setState(() {
       _isLoading = true;
     });
@@ -47,7 +52,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       "email": _emailController.text,
       //otp
       // "code": sigtssd,
-      "code":sigtssd,
+      "code": sigtssd,
       "mobile": _mobileController.text,
       "password": _passController.text,
       "confirm_password": _passController.text
@@ -61,6 +66,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
       _isLoading = false;
     });
     var response = jsonDecode(response1.body);
+    print('responseregistor');
+    print(response);
+    print('responseregistor');
+
+    reg = preferences.setInt('otp_default', response['otp_default']);
+    print('reg');
+    print(reg);
+    print('reg');
+    // reg=preferences.setInt(key, value)
     if (response["type"] == "success") {
       Navigator.push(context,
           MaterialPageRoute(builder: (BuildContext context) {
@@ -379,32 +393,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
         // prefix:
         //Container(
         child: CountryCodePicker(
-
-              searchStyle: TextStyle(),
+          searchStyle: TextStyle(),
           searchDecoration: const InputDecoration(
-        labelText: "Country",
-
+            labelText: "Country",
           ),
-
 
           //  backgroundColor: Colors.yellowAccent,
           dialogBackgroundColor: Colors.black,
-          onChanged: (code){
-              setState(() {
-              sigtssd=code.dialCode;
-                 });
-
+          onChanged: (code) {
+            setState(() {
+              sigtssd = code.dialCode;
+            });
           },
           initialSelection: "IN",
           showCountryOnly: false,
           // showOnlyCountryWhenClosed: true,
           favorite: ["+91" "IN"],
-         // countryFilter: ['IT', 'IN'],
+          // countryFilter: ['IT', 'IN'],
           // comparator: (a, b) => b.name.compareTo(a.name),
           // //Get the country information relevant to the initial selection
           onInit: (code) {
-
-              sigtssd=code.dialCode;
+            sigtssd = code.dialCode;
           },
           enabled: true,
           // hideMainText: false,
@@ -439,7 +448,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.70,
         child: TextFormField(
-         // maxLength: 15,
+          // maxLength: 15,
           controller: _mobileController,
           // validator: (value) {
           //   if (value.length == 0) {
@@ -517,19 +526,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
-  final LinearGradient gradient = LinearGradient(colors: [primaryBlue,Colors.deepOrange,Colors.purple]);
+
+  final LinearGradient gradient =
+      LinearGradient(colors: [primaryBlue, Colors.deepOrange, Colors.purple]);
 
   @override
   Widget build(BuildContext context) {
     final myModel = Provider.of<AppConfig>(context, listen: false);
     return SafeArea(
-
       child: Scaffold(
-
         appBar: customAppBar(context, "Sign Up"),
         key: scaffoldKey,
         body: Container(
-
           color: Colors.black,
           child: ListView(
             children: [
@@ -544,13 +552,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         height: 90,
                         width: 150,
                         child: ShaderMask(
-                  shaderCallback: (Rect rect) {
-                    return gradient.createShader(rect);
-                  },
-                  child: Text(
-                    'VDOTREE',
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                  )),
+                            shaderCallback: (Rect rect) {
+                              return gradient.createShader(rect);
+                            },
+                            child: Text(
+                              'VDOTREE',
+                              style: TextStyle(
+                                  fontSize: 30, fontWeight: FontWeight.bold),
+                            )),
                         // Image.asset("assets/logo.png"),
                       ),
                     ),
@@ -593,68 +602,69 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   : Text(
                                       'Sign Up',
                                       style: TextStyle(
-                                          fontSize: 18, color: Colors.black,fontWeight: FontWeight.bold),
+                                          fontSize: 18,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
                                     ),
-
                               onPressed: () {
                                 if (_nameController.text.isNotEmpty) {
-
                                   if (_emailController.text.isNotEmpty) {
-
                                     if (_emailController.text.contains("@")) {
-
                                       if (_mobileController.text.isNotEmpty) {
-
-                                        if (_mobileController.text.length >= 5 && _mobileController.text.length<=15) {
+                                        if (_mobileController.text.length >=
+                                                5 &&
+                                            _mobileController.text.length <=
+                                                15) {
 //farman
                                           // if (_countryController.text.isEmpty) {
-                                            if (_passController.text.isNotEmpty) {
-                                              //farman
-                                              if(_passController.text.length>=6){
-
+                                          if (_passController.text.isNotEmpty) {
+                                            //farman
+                                            if (_passController.text.length >=
+                                                6) {
                                               FocusScope.of(context)
                                                   .requestFocus(
                                                       new FocusNode());
                                               _signUp();
                                             } else {
                                               Fluttertoast.showToast(
-                                                msg:"Please enter minimum 6 character.",
-                                                    // "Please Enter Your Password",
+                                                msg:
+                                                    "Please enter minimum 6 character.",
+                                                // "Please Enter Your Password",
                                                 backgroundColor: Colors.red,
                                                 textColor: Colors.white,
                                                 gravity: ToastGravity.BOTTOM,
                                               );
                                             }
-                                          // }
-                                          // else {
-                                          //   Fluttertoast.showToast(
-                                          //     msg:
-                                          //         "Please Select your country code",
-                                          //     backgroundColor: Colors.red,
-                                          //     textColor: Colors.white,
-                                          //     gravity: ToastGravity.BOTTOM,
-                                          //   );
-                                          // }
+                                            // }
+                                            // else {
+                                            //   Fluttertoast.showToast(
+                                            //     msg:
+                                            //         "Please Select your country code",
+                                            //     backgroundColor: Colors.red,
+                                            //     textColor: Colors.white,
+                                            //     gravity: ToastGravity.BOTTOM,
+                                            //   );
+                                            // }
+                                          } else {
+                                            //farman
+                                            Fluttertoast.showToast(
+                                              msg:
+                                                  "Please enter your password. ",
+                                              // "Enter minimum 6 digits",
+                                              // "Please Enter a Valid Mobile Number",
+                                              backgroundColor: Colors.red,
+                                              textColor: Colors.white,
+                                              gravity: ToastGravity.BOTTOM,
+                                            );
+                                          }
                                         } else {
-                                              //farman
                                           Fluttertoast.showToast(
-                                            msg: "Please enter your password. ",
-                                            // "Enter minimum 6 digits",
-                                                // "Please Enter a Valid Mobile Number",
+                                            msg:
+                                                "Please enter a valid mobile number.",
                                             backgroundColor: Colors.red,
                                             textColor: Colors.white,
                                             gravity: ToastGravity.BOTTOM,
                                           );
-                                        }
-                                        }
-                                        else
-                                        {
-                                        Fluttertoast.showToast(
-                                        msg:"Please enter a valid mobile number.",
-                                        backgroundColor: Colors.red,
-                                        textColor: Colors.white,
-                                        gravity: ToastGravity.BOTTOM,
-                                        );
                                         }
                                       } else {
                                         Fluttertoast.showToast(
@@ -667,7 +677,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       }
                                     } else {
                                       Fluttertoast.showToast(
-                                        msg: "Please enter a valid email address.",
+                                        msg:
+                                            "Please enter a valid email address.",
                                         backgroundColor: Colors.red,
                                         textColor: Colors.white,
                                         gravity: ToastGravity.BOTTOM,

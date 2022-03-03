@@ -16,6 +16,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:IQRA/providers/login_provider.dart';
 import 'package:IQRA/providers/user_profile_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterOtp extends StatefulWidget {
   final mobile;
@@ -23,9 +24,14 @@ class RegisterOtp extends StatefulWidget {
   final code;
   final name;
   final password;
-  const RegisterOtp(
-      {Key key, this.mobile, this.email, this.name, this.password, this.code, })
-      : super(key: key);
+  const RegisterOtp({
+    Key key,
+    this.mobile,
+    this.email,
+    this.name,
+    this.password,
+    this.code,
+  }) : super(key: key);
   @override
   _RegisterOtpState createState() => _RegisterOtpState();
 }
@@ -33,15 +39,21 @@ class RegisterOtp extends StatefulWidget {
 class _RegisterOtpState extends State<RegisterOtp> {
   TextEditingController otp = TextEditingController();
 
+  var hu;
+  huu() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    hu = await preferences.getInt('otp_default');
+  }
 
   @override
   void initState() {
-SystemChrome.setPreferredOrientations([
+    SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+    huu();
     super.initState();
-     timer = Timer.periodic(Duration(seconds: 1), (_) {
+    timer = Timer.periodic(Duration(seconds: 1), (_) {
       if (secondsRemaining != 0) {
         setState(() {
           secondsRemaining--;
@@ -51,20 +63,22 @@ SystemChrome.setPreferredOrientations([
           enableResend = true;
         });
       }
-    });  }
+    });
+  }
 
-@override
+  @override
   void dispose() {
- SystemChrome.setPreferredOrientations([
+    SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight
     ]);
     timer.cancel();
-    super.dispose();  }
+    super.dispose();
+  }
 
-    int secondsRemaining = 30;
+  int secondsRemaining = 30;
   bool enableResend = false;
   Timer timer;
   @override
@@ -297,46 +311,44 @@ SystemChrome.setPreferredOrientations([
                       //         ],
                       //       ),
                       //     ),
-                            Container(
-                            // color: Colors.red,
-                            // alignment: Alignment.center,
-                            // color: Colors.red,
-                            width:
-                             MediaQuery.of(context).size.width * 0.77,
-                            child: TextFormField(
-                              // maxLength: 1,
-                              controller: otp,
-                              showCursor: false,
-                              textAlign: TextAlign.start,
-                              
-                              cursorColor: Colors.transparent,
-                              style: TextStyle(letterSpacing: MediaQuery.of(context).size.width / 6),
-                              keyboardType: TextInputType.number,
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                contentPadding: EdgeInsets.symmetric(horizontal: 19),
-                                fillColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(60),
-                                  borderSide:
-                                      BorderSide(color: Colors.white),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(60),
+                      Container(
+                        // color: Colors.red,
+                        // alignment: Alignment.center,
+                        // color: Colors.red,
+                        width: MediaQuery.of(context).size.width * 0.77,
+                        child: TextFormField(
+                          // maxLength: 1,
+                          controller: otp,
+                          showCursor: false,
+                          textAlign: TextAlign.start,
 
-                                  borderSide:
-                                      BorderSide(color: Colors.yellow),
-                                ),
-
-                              ),
-                              inputFormatters: [
-                                LengthLimitingTextInputFormatter(4)
-                              ],
+                          cursorColor: Colors.transparent,
+                          style: TextStyle(
+                              letterSpacing:
+                                  MediaQuery.of(context).size.width / 6),
+                          keyboardType: TextInputType.number,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 19),
+                            fillColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(60),
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(60),
+                              borderSide: BorderSide(color: Colors.yellow),
                             ),
                           ),
-                        // ],
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(4)
+                          ],
+                        ),
+                      ),
+                      // ],
                       // ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.07,
@@ -344,39 +356,57 @@ SystemChrome.setPreferredOrientations([
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            "Didn't receive the code?",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        enableResend ?
-                         
-                                  
-                        
-                          InkWell(
-                            onTap:enableResend ? resendotp : null,
-                            child: Text(
-                              " RESEND",
-                              style: TextStyle(
-                                  color: primaryBlue,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          )
-
-                          :
-                           Padding(
-                             padding: const EdgeInsets.only(left:5),
-                             child: TweenAnimationBuilder(
-                                tween: Tween(begin: 30.0, end: 0),
-                                duration: Duration(seconds: 30),
-                                builder: (context, value, child) => Text(
-                                      '00:${value.toInt()}',
-                                      style: TextStyle(color: primaryBlue,fontSize: 16),
-                                    )),
-                           )
+                          hu == 1
+                              ? FittedBox(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.9,
+                                      child: Text(
+                                        "If you haven't received any"
+                                        "otp then your default otp is 0000",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : Text(
+                                  "Didn't receive the code?",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                          if (hu != 1)
+                            enableResend
+                                ? InkWell(
+                                    onTap: enableResend ? resendotp : null,
+                                    child: Text(
+                                      " RESEND",
+                                      style: TextStyle(
+                                          color: primaryBlue,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.only(left: 5),
+                                    child: TweenAnimationBuilder(
+                                        tween: Tween(begin: 30.0, end: 0),
+                                        duration: Duration(seconds: 30),
+                                        builder: (context, value, child) =>
+                                            Text(
+                                              '00:${value.toInt()}',
+                                              style: TextStyle(
+                                                  color: primaryBlue,
+                                                  fontSize: 16),
+                                            )),
+                                  )
                         ],
                       ),
                       SizedBox(
@@ -387,8 +417,8 @@ SystemChrome.setPreferredOrientations([
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                           InkWell (
-                              onTap: () async{
+                            InkWell(
+                              onTap: () async {
                                 otpenter();
                                 // Navigator.push(context, MaterialPageRoute(
                                 //     builder: (BuildContext context) {
@@ -432,13 +462,12 @@ SystemChrome.setPreferredOrientations([
               ],
             ),
             Container(
-              
               height: MediaQuery.of(context).size.height,
-              child: Center (
+              child: Center(
                   child: (_spincontorller == true)
                       ? AbsorbPointer(
-                        child: Container(
-                          // color:Colors.red,
+                          child: Container(
+                            // color:Colors.red,
                             margin: const EdgeInsets.only(
                                 bottom: 6.0), //Same as `blurRadius` i guess
                             height: MediaQuery.of(context).size.height,
@@ -449,7 +478,7 @@ SystemChrome.setPreferredOrientations([
                                 // lineWidth: 70,
                                 size: _spincontorller ? 40 : 0),
                           ),
-                      )
+                        )
                       : null),
             ),
           ],
@@ -467,7 +496,7 @@ SystemChrome.setPreferredOrientations([
     });
     var response1 = await http.post(Uri.parse(APIData.registerverify), body: {
       "email": widget.email,
-      "code":widget.code,
+      "code": widget.code,
       "otp": otp.text,
       "password": widget.password,
       "name": widget.name,
@@ -492,8 +521,8 @@ SystemChrome.setPreferredOrientations([
       final loginProvider = Provider.of<LoginProvider>(context, listen: false);
       // final form = _formKey.currentState;
 
-      await loginProvider.register(
-          widget.name, widget.email, widget.password,widget.mobile,widget.code, context);
+      await loginProvider.register(widget.name, widget.email, widget.password,
+          widget.mobile, widget.code, context);
       setState(() {
         _spincontorller = !_spincontorller;
       });
@@ -532,9 +561,10 @@ SystemChrome.setPreferredOrientations([
 
   resendotp() async {
     print(authToken);
-    var response1 = await http.post(Uri.parse(APIData.registerotpresend), body: {
+    var response1 =
+        await http.post(Uri.parse(APIData.registerotpresend), body: {
       "email": widget.email,
-      "code":widget.code,
+      "code": widget.code,
       "otp": otp.text,
       "password": widget.password,
       "name": widget.name,
@@ -554,10 +584,10 @@ SystemChrome.setPreferredOrientations([
         textColor: Colors.white,
         gravity: ToastGravity.BOTTOM,
       );
-        setState((){
-      secondsRemaining = 30;
-      enableResend = false;
-    });
+      setState(() {
+        secondsRemaining = 30;
+        enableResend = false;
+      });
     } else {
       Fluttertoast.showToast(
         msg: "Getting Some Errror",

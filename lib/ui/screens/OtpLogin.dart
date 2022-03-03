@@ -17,6 +17,7 @@ import 'package:IQRA/ui/shared/appbar.dart';
 import 'package:IQRA/common/route_paths.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:IQRA/providers/login_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OtpLogin extends StatefulWidget {
   final mobile;
@@ -32,12 +33,22 @@ class _OtpLoginState extends State<OtpLogin> {
   TextEditingController otp = TextEditingController();
   bool _spincontorller = false;
 
+  var ok;
+  yes() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    ok = preferences.getInt('otp_default');
+    print('yes');
+    print(ok);
+    print('ok');
+  }
+
   @override
   void initState() {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+    yes();
     super.initState();
     timer = Timer.periodic(Duration(seconds: 1), (_) {
       if (secondsRemaining != 0) {
@@ -72,7 +83,7 @@ class _OtpLoginState extends State<OtpLogin> {
   Widget build(BuildContext context) {
     final userDetails = Provider.of<UserProfileProvider>(context, listen: false)
         .userProfileModel;
-        final size = MediaQuery.of(context).size.width;
+    final size = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         appBar: customAppBar(context, "VERIFICATION CODE"),
@@ -296,9 +307,9 @@ class _OtpLoginState extends State<OtpLogin> {
 
                           cursorColor: Colors.transparent,
                           style: TextStyle(
-                              letterSpacing:
-                              size <= 768 ? MediaQuery.of(context).size.width / 7 :
-                                  MediaQuery.of(context).size.width / 6 ),
+                              letterSpacing: size <= 768
+                                  ? MediaQuery.of(context).size.width / 7
+                                  : MediaQuery.of(context).size.width / 6),
                           keyboardType: TextInputType.number,
                           obscureText: true,
 
@@ -330,36 +341,56 @@ class _OtpLoginState extends State<OtpLogin> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            "Didn't receive the code?",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          enableResend
-                              ? InkWell(
-                                  onTap: enableResend ? resendotp : null,
-                                  child: Text(
-                                    " RESEND",
-                                    style: TextStyle(
-                                        color: primaryBlue,
+                          ok == 1
+                              ? Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                    child: Text(
+                                      "If you haven't received any"
+                                      "otp then your default otp is 0000",
+                                      style: TextStyle(
+                                        color: Colors.white,
                                         fontSize: 18,
-                                        fontWeight: FontWeight.w600),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
                                   ),
                                 )
-                              : Padding(
-                                  padding: const EdgeInsets.only(left: 5),
-                                  child: TweenAnimationBuilder(
-                                      tween: Tween(begin: 30.0, end: 0),
-                                      duration: Duration(seconds: 30),
-                                      builder: (context, value, child) => Text(
-                                            '00:${value.toInt()}',
-                                            style: TextStyle(
-                                                color: primaryBlue,
-                                                fontSize: 16),
-                                          )),
-                                )
+                              : Text(
+                                  "Didn't receive the code?",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                          if (ok != 1)
+                            enableResend
+                                ? InkWell(
+                                    onTap: enableResend ? resendotp : null,
+                                    child: Text(
+                                      " RESEND",
+                                      style: TextStyle(
+                                          color: primaryBlue,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.only(left: 5),
+                                    child: TweenAnimationBuilder(
+                                        tween: Tween(begin: 30.0, end: 0),
+                                        duration: Duration(seconds: 30),
+                                        builder: (context, value, child) =>
+                                            Text(
+                                              '00:${value.toInt()}',
+                                              style: TextStyle(
+                                                  color: primaryBlue,
+                                                  fontSize: 16),
+                                            )),
+                                  )
                         ],
                       ),
                       SizedBox(
@@ -494,9 +525,9 @@ class _OtpLoginState extends State<OtpLogin> {
           } else {
             Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
           }
-        // }
-        // else if (loginProvider.emailVerify == false)
-        // {
+          // }
+          // else if (loginProvider.emailVerify == false)
+          // {
           // showAlertDialog(context, loginProvider.emailVerifyMsg);
         } else {
           Fluttertoast.showToast(
@@ -546,7 +577,8 @@ class _OtpLoginState extends State<OtpLogin> {
       otp.clear();
 
       Fluttertoast.showToast(
-        msg: "The OTP entered is incorrect. Please enter correct OTP or try regenerating the OTP.",
+        msg:
+            "The OTP entered is incorrect. Please enter correct OTP or try regenerating the OTP.",
         // msg: "OTP Does Not Match Please Try Again ",
         backgroundColor: Colors.red,
         textColor: Colors.white,
