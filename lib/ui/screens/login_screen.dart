@@ -27,6 +27,7 @@ import 'package:IQRA/ui/widgets/register_here.dart';
 import 'package:IQRA/ui/widgets/reset_alert_container.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -60,11 +61,11 @@ class _LoginScreenState extends State<LoginScreen> {
       facebookLoginResult = await FacebookAuth.instance.accessToken;
       print("ok");
       print(facebookLoginResult.token);
-      var graphResponse = await http.get(
-          Uri.parse('https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.height(200)&access_token=${facebookLoginResult.token}'));
+      var graphResponse = await http.get(Uri.parse(
+          'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.height(200)&access_token=${facebookLoginResult.token}'));
 
       var profile = json.decode(graphResponse.body);
-       print(profile);
+      print(profile);
       setState(() {
         isShowing = true;
       });
@@ -79,12 +80,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
       onLoginStatusChanged(true, profileData: profile);
     } else {
-      final LoginResult facebookLoginResult = await FacebookAuth.instance.login();
+      final LoginResult facebookLoginResult =
+          await FacebookAuth.instance.login();
       //await facebookLogin.logIn(['email']);
       print(facebookLoginResult.status);
       if (facebookLoginResult.status == LoginStatus.success) {
-        var graphResponse = await http.get(
-            Uri.parse('https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.height(200)&access_token=${facebookLoginResult.accessToken.token}'));
+        var graphResponse = await http.get(Uri.parse(
+            'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.height(200)&access_token=${facebookLoginResult.accessToken.token}'));
 
         var profile = json.decode(graphResponse.body);
         var name = profile['name'];
@@ -138,7 +140,6 @@ class _LoginScreenState extends State<LoginScreen> {
       "name": name,
     });
 
-    
     if (accessTokenResponse.statusCode == 200) {
       loginModel = LoginModel.fromJson(json.decode(accessTokenResponse.body));
       var refreshToken = loginModel.refreshToken;
@@ -150,14 +151,12 @@ class _LoginScreenState extends State<LoginScreen> {
         authToken = mToken;
       });
       fetchAppData(context);
-
     } else {
       setState(() {
         isShowing = false;
       });
 
       Navigator.pop(context);
-
 
       Fluttertoast.showToast(msg: "Error in login");
     }
@@ -195,7 +194,6 @@ class _LoginScreenState extends State<LoginScreen> {
   // }
 
   Future<void> fetchAppData(ctx) async {
-
     MenuProvider menuProvider = Provider.of<MenuProvider>(ctx, listen: false);
     UserProfileProvider userProfileProvider =
         Provider.of<UserProfileProvider>(ctx, listen: false);
@@ -218,41 +216,35 @@ class _LoginScreenState extends State<LoginScreen> {
       isShowing = false;
     });
     //code streax
-    final userDetails = Provider.of<UserProfileProvider>(context, listen: false).userProfileModel;
-   if(userDetails.payment=="Free")
-     {
-       print('UserDetails if ${userDetails.payment}');
-       Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
-     }else if(userDetails.active == 1 || userDetails.active == "1") {
-     Navigator.pushNamed(context, RoutePaths.multiScreen);
-       print('UserDetails elseif ${userDetails.payment}');
-
-   }else{
-
-     Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
-            print('UserDetails else ${userDetails.payment}');
-
-   }
-
-
-
-
-
-
+    final userDetails = Provider.of<UserProfileProvider>(context, listen: false)
+        .userProfileModel;
+    if (userDetails.payment == "Free") {
+      print('UserDetails if ${userDetails.payment}');
+      Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
+    } else if (userDetails.active == 1 || userDetails.active == "1") {
+      Navigator.pushNamed(context, RoutePaths.multiScreen);
+      print('UserDetails elseif ${userDetails.payment}');
+    } else {
+      Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
+      print('UserDetails else ${userDetails.payment}');
+    }
 
     //Navigator.pushNamed(context, RoutePaths.multiScreen);
-   // if(userDetails.active == 1 || userDetails.active == "1"){
-   //    Navigator.pushNamed(context, RoutePaths.multiScreen);
-   //  }else {
-   //    Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
-   //  }
+    // if(userDetails.active == 1 || userDetails.active == "1"){
+    //    Navigator.pushNamed(context, RoutePaths.multiScreen);
+    //  }else {
+    //    Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
+    //  }
     // Navigator.pushNamed(context, RoutePaths.bottomNavigationHome);
   }
 
+  var oottpp;
   beforelogin() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
       _isLoading = true;
     });
+
     var response1 = await http.post(Uri.parse(APIData.loginotpsend), body: {
       "mobile": _mobileController.text,
       // "otp": otp.text,
@@ -262,12 +254,22 @@ class _LoginScreenState extends State<LoginScreen> {
       "Accept": "application/json",
       // "Content-Type": "application/json"
     });
+
     setState(() {
       _isLoading = false;
     });
+
     print(response1.body);
 
     var response = jsonDecode(response1.body);
+    print('response');
+    print(response['otp_default']);
+    print('response');
+    oottpp = preferences.setInt('otp_default', response['otp_default']);
+
+    print('oottpp');
+    print(oottpp);
+    print('oottpp');
     if (response == "Blocked User") {
       Fluttertoast.showToast(
         msg: "Blocked User",
@@ -294,14 +296,13 @@ class _LoginScreenState extends State<LoginScreen> {
         textColor: Colors.white,
         gravity: ToastGravity.BOTTOM,
       );
+
       Navigator.push(context,
           MaterialPageRoute(builder: (BuildContext context) {
-
         return OtpLogin(
           mobile: _mobileController.text,
           pass: _passwordController.text,
         );
-
       }));
     } else {
       Fluttertoast.showToast(
@@ -555,7 +556,7 @@ class _LoginScreenState extends State<LoginScreen> {
       padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 20.0),
       child: TextFormField(
         //farman
-      //  maxLength: 15,
+        //  maxLength: 15,
         style: TextStyle(fontSize: 16.0, color: Colors.white),
         controller: _mobileController,
         // validator: (value) {
@@ -579,7 +580,7 @@ class _LoginScreenState extends State<LoginScreen> {
             borderSide: BorderSide(color: Colors.white),
           ),
           labelText: 'Phone Number',
-          labelStyle: TextStyle(color: Colors.white,fontSize: 15),
+          labelStyle: TextStyle(color: Colors.white, fontSize: 15),
         ),
       ),
     );
@@ -638,7 +639,8 @@ class _LoginScreenState extends State<LoginScreen> {
   //     ),
   //   );
   // }
-  final LinearGradient gradient = LinearGradient(colors: [primaryBlue,Colors.deepOrange,Colors.purple]);
+  final LinearGradient gradient =
+      LinearGradient(colors: [primaryBlue, Colors.deepOrange, Colors.purple]);
 
   @override
   Widget build(BuildContext context) {
@@ -659,19 +661,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0),
                         child: Container(
-                          alignment: Alignment.center,
-                          // color:Colors.red,
-                          height: 90,
-                          width: 150,
-                          child: ShaderMask(
-                  shaderCallback: (Rect rect) {
-                    return gradient.createShader(rect);
-                  },
-                  child: Text(
-                    'VDOTREE',
-                    style: TextStyle(color: Colors.white,fontSize: 30, fontWeight: FontWeight.bold),
-                  ))
-                        ),
+                            alignment: Alignment.center,
+                            // color:Colors.red,
+                            height: 90,
+                            width: 150,
+                            child: ShaderMask(
+                                shaderCallback: (Rect rect) {
+                                  return gradient.createShader(rect);
+                                },
+                                child: Text(
+                                  'VDOTREE',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold),
+                                ))),
                       ),
                       SizedBox(
                         height: 10,
@@ -689,7 +693,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               onPressed: () {
                                 Navigator.push(context, MaterialPageRoute(
                                     builder: (BuildContext context) {
-                                      // print("farman");
+                                  // print("farman");
                                   return ForgotPassword();
                                   print("farman");
                                 }));
@@ -741,12 +745,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                 onPressed: () {
                                   if (_mobileController.text.isNotEmpty) {
                                     //farman
-                                    if (_mobileController.text.length >=5 && _mobileController.text.length<=15) {
+                                    if (_mobileController.text.length >= 5 &&
+                                        _mobileController.text.length <= 15) {
                                       // if (_passwordController.text.isNotEmpty) {
-                                        print("ok");
-                                        FocusScope.of(context)
-                                            .requestFocus(new FocusNode());
-                                        _saveForm();
+                                      print("ok");
+                                      FocusScope.of(context)
+                                          .requestFocus(new FocusNode());
+                                      _saveForm();
                                       // } else {
                                       //   Fluttertoast.showToast(
                                       //     msg: "Please Enter a Password",
@@ -757,7 +762,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       // }
                                     } else {
                                       Fluttertoast.showToast(
-                                        msg: "Please enter a valid mobile number.",
+                                        msg:
+                                            "Please enter a valid mobile number.",
                                         backgroundColor: Colors.red,
                                         textColor: Colors.white,
                                         gravity: ToastGravity.BOTTOM,
@@ -780,7 +786,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         height: 20.0,
                       ),
-                     myModel.config.googleLogin == 1 ||
+                      myModel.config.googleLogin == 1 ||
                               "${myModel.config.googleLogin}" == "1"
                           ? Padding(
                               padding: EdgeInsets.symmetric(horizontal: 15.0),
@@ -835,7 +841,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                                       name,
                                                       "uid");
                                                 }
-
                                               });
                                             }),
                                       )),
@@ -898,83 +903,78 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget appleLogin() {
-    if(Platform.isIOS)
-      {
+    if (Platform.isIOS) {
+      return Container(
+        width: MediaQuery.of(context).size.width * .60,
+        //height: 30,
+        child: SignInWithAppleButton(
+          onPressed: () async {
+            final credential = await SignInWithApple.getAppleIDCredential(
+              scopes: [
+                AppleIDAuthorizationScopes.email,
+                AppleIDAuthorizationScopes.fullName,
+              ],
+            );
 
-        return Container(
-          width: MediaQuery.of(context).size.width *
-              .60,
-          //height: 30,
-          child: SignInWithAppleButton(
-            onPressed: () async {
-              final credential = await SignInWithApple.getAppleIDCredential(
-                scopes: [
-                  AppleIDAuthorizationScopes.email,
-                  AppleIDAuthorizationScopes.fullName,
-                ],
-              );
+            print(credential);
 
-              print(credential);
+            final signInWithAppleEndpoint = Uri(
+              scheme: 'https',
+              host: 'flutter-sign-in-with-apple-example.glitch.me',
+              path: '/sign_in_with_apple',
+              queryParameters: <String, String>{
+                'code': credential.authorizationCode,
+                if (credential.givenName != null)
+                  'firstName': credential.givenName,
+                if (credential.familyName != null)
+                  'lastName': credential.familyName,
+                'useBundleId':
+                    Platform.isIOS || Platform.isMacOS ? 'true' : 'false',
+                if (credential.state != null) 'state': credential.state,
+              },
+            );
 
-              final signInWithAppleEndpoint = Uri(
-                scheme: 'https',
-                host: 'flutter-sign-in-with-apple-example.glitch.me',
-                path: '/sign_in_with_apple',
-                queryParameters: <String, String>{
-                  'code': credential.authorizationCode,
-                  if (credential.givenName != null)
-                    'firstName': credential.givenName,
-                  if (credential.familyName != null)
-                    'lastName': credential.familyName,
-                  'useBundleId':
-                  Platform.isIOS || Platform.isMacOS ? 'true' : 'false',
-                  if (credential.state != null) 'state': credential.state,
-                },
-              );
+            final session = await http.Client().post(
+              signInWithAppleEndpoint,
+            );
 
-              final session = await http.Client().post(
-                signInWithAppleEndpoint,
-              );
+            // If we got this far, a session based on the Apple ID credential has been created in your system,
+            // and you can now set this as the app's session
+            print("ses");
+            print(session);
 
-              // If we got this far, a session based on the Apple ID credential has been created in your system,
-              // and you can now set this as the app's session
-              print("ses");
-              print(session);
+            // Now send the credential (especially `credential.authorizationCode`) to your server to create a session
+            // after they have been validated with Apple (see `Integration` section for more information on how to do this)
+          },
+        ),
+      );
 
-              // Now send the credential (especially `credential.authorizationCode`) to your server to create a session
-              // after they have been validated with Apple (see `Integration` section for more information on how to do this)
-            },
-          ),
-        );
-
-
-        // return AppleSignInButton(
-        //   type: ButtonType.continueButton,
-        //   onPressed: () async {
-        //     if(await AppleSignIn.isAvailable()) {
-        //       if(await AppleSignIn.isAvailable()) {
-        //         final AuthorizationResult result = await AppleSignIn.performRequests([
-        //           AppleIdRequest(requestedScopes: [Scope.email, Scope.fullName])
-        //         ]);
-        //         switch (result.status) {
-        //           case AuthorizationStatus.authorized:
-        //             print(result.credential.user);
-        //             break;//All the required credentials
-        //           case AuthorizationStatus.error:
-        //             print("Sign in failed: ${result.error.localizedDescription}");
-        //             break;
-        //           case AuthorizationStatus.cancelled:
-        //             print('User cancelled');
-        //             break;
-        //         }
-        //       }
-        //     }else{
-        //     print('Apple SignIn is not available for your device');
-        //     }
-        //   },
-        // );
-      }
-    else{
+      // return AppleSignInButton(
+      //   type: ButtonType.continueButton,
+      //   onPressed: () async {
+      //     if(await AppleSignIn.isAvailable()) {
+      //       if(await AppleSignIn.isAvailable()) {
+      //         final AuthorizationResult result = await AppleSignIn.performRequests([
+      //           AppleIdRequest(requestedScopes: [Scope.email, Scope.fullName])
+      //         ]);
+      //         switch (result.status) {
+      //           case AuthorizationStatus.authorized:
+      //             print(result.credential.user);
+      //             break;//All the required credentials
+      //           case AuthorizationStatus.error:
+      //             print("Sign in failed: ${result.error.localizedDescription}");
+      //             break;
+      //           case AuthorizationStatus.cancelled:
+      //             print('User cancelled');
+      //             break;
+      //         }
+      //       }
+      //     }else{
+      //     print('Apple SignIn is not available for your device');
+      //     }
+      //   },
+      // );
+    } else {
       return Container();
     }
   }
