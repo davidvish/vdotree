@@ -35,7 +35,7 @@ dependencies:
   path_provider: ^2.0.2
   sticky_headers: ^0.2.0
   #flutter_facebook_login: ^3.0.0
-  flutter_facebook_auth: ^3.5.2
+#  flutter_facebook_auth: ^3.5.2
   fluttertoast: ^8.0.8
   flutter_html: ^2.0.0
   intro_slider: ^2.3.4
@@ -71,8 +71,8 @@ dependencies:
   flutter_inapp_purchase: ^4.0.2
   flutter_rating_bar: ^4.0.0
   get_ip: ^0.4.0
-  #connectivity: ^3.0.6
-  connectivity_plus: ^2.0.2
+  connectivity: ^3.0.6
+#  connectivity_plus: ^2.0.2
   onesignal_flutter: ^3.2.2
   flutterwave: ^0.0.2
   flutter_widget_from_html: ^0.6.0

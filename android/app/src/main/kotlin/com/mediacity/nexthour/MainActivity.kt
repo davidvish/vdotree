@@ -1,4 +1,4 @@
-package com.mediacity.IQRA
+package com.vdotree.vdotree
 
 import io.flutter.embedding.android.FlutterActivity
 import androidx.annotation.NonNull
