@@ -6,7 +6,7 @@ import 'package:IQRA/ui/screens/OtpLogin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:IQRA/common/apipath.dart';
 import 'package:IQRA/common/global.dart';
@@ -52,78 +52,78 @@ class _LoginScreenState extends State<LoginScreen> {
   LoginModel loginModel;
 
   // Initialize login with facebook
-  void initiateFacebookLogin() async {
-    var facebookLoginResult;
-    var facebookLoginResult2 = await FacebookAuth.instance.accessToken;
-    //await facebookLogin.isLoggedIn;
-    print(facebookLoginResult2);
-    if (facebookLoginResult2 != null) {
-      facebookLoginResult = await FacebookAuth.instance.accessToken;
-      print("ok");
-      print(facebookLoginResult.token);
-      var graphResponse = await http.get(Uri.parse(
-          'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.height(200)&access_token=${facebookLoginResult.token}'));
-
-      var profile = json.decode(graphResponse.body);
-      print(profile);
-      setState(() {
-        isShowing = true;
-      });
-      print('FAEBOOK LOGIN ${graphResponse.body}');
-      var name = profile['name'];
-      var email = profile['email'];
-      var code = profile['id'];
-      var password = "password";
-      print('EMAIL ${profile['email']}');
-      goToDialog();
-      socialLogin(APIData.fbLoginApi, email, password, code, name, "code");
-
-      onLoginStatusChanged(true, profileData: profile);
-    } else {
-      final LoginResult facebookLoginResult =
-          await FacebookAuth.instance.login();
-      //await facebookLogin.logIn(['email']);
-      print(facebookLoginResult.status);
-      if (facebookLoginResult.status == LoginStatus.success) {
-        var graphResponse = await http.get(Uri.parse(
-            'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.height(200)&access_token=${facebookLoginResult.accessToken.token}'));
-
-        var profile = json.decode(graphResponse.body);
-        var name = profile['name'];
-        var email = profile['email'];
-        var code = profile['id'];
-        var password = "password";
-        socialLogin(APIData.fbLoginApi, email, password, code, name, "code");
-        onLoginStatusChanged(true, profileData: profile);
-        // you are logged
-        final AccessToken accessToken = facebookLoginResult.accessToken;
-      } else {
-        print(facebookLoginResult.status);
-        print(facebookLoginResult.message);
-      }
-
-      // switch (facebookLoginResult.status) {
-      //   case FacebookLoginStatus.error:
-      //     onLoginStatusChanged(false);
-      //     break;
-      //   case FacebookLoginStatus.cancelledByUser:
-      //     onLoginStatusChanged(false);
-      //     break;
-      //   case FacebookLoginStatus.loggedIn:
-      //     var graphResponse = await http.get(
-      //         'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.height(200)&access_token=${facebookLoginResult.accessToken.token}');
-      //
-      //     var profile = json.decode(graphResponse.body);
-      //     var name = profile['name'];
-      //     var email = profile['email'];
-      //     var code = profile['id'];
-      //     var password = "password";
-      //     socialLogin(APIData.fbLoginApi, email, password, code, name, "code");
-      //     onLoginStatusChanged(true, profileData: profile);
-      //     break;
-      // }
-    }
-  }
+  // void initiateFacebookLogin() async {
+  //   var facebookLoginResult;
+  //   var facebookLoginResult2 = await FacebookAuth.instance.accessToken;
+  //   //await facebookLogin.isLoggedIn;
+  //   print(facebookLoginResult2);
+  //   if (facebookLoginResult2 != null) {
+  //     facebookLoginResult = await FacebookAuth.instance.accessToken;
+  //     print("ok");
+  //     print(facebookLoginResult.token);
+  //     var graphResponse = await http.get(Uri.parse(
+  //         'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.height(200)&access_token=${facebookLoginResult.token}'));
+  //
+  //     var profile = json.decode(graphResponse.body);
+  //     print(profile);
+  //     setState(() {
+  //       isShowing = true;
+  //     });
+  //     print('FAEBOOK LOGIN ${graphResponse.body}');
+  //     var name = profile['name'];
+  //     var email = profile['email'];
+  //     var code = profile['id'];
+  //     var password = "password";
+  //     print('EMAIL ${profile['email']}');
+  //     goToDialog();
+  //     socialLogin(APIData.fbLoginApi, email, password, code, name, "code");
+  //
+  //     onLoginStatusChanged(true, profileData: profile);
+  //   } else {
+  //     final LoginResult facebookLoginResult =
+  //         await FacebookAuth.instance.login();
+  //     //await facebookLogin.logIn(['email']);
+  //     print(facebookLoginResult.status);
+  //     if (facebookLoginResult.status == LoginStatus.success) {
+  //       var graphResponse = await http.get(Uri.parse(
+  //           'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.height(200)&access_token=${facebookLoginResult.accessToken.token}'));
+  //
+  //       var profile = json.decode(graphResponse.body);
+  //       var name = profile['name'];
+  //       var email = profile['email'];
+  //       var code = profile['id'];
+  //       var password = "password";
+  //       socialLogin(APIData.fbLoginApi, email, password, code, name, "code");
+  //       onLoginStatusChanged(true, profileData: profile);
+  //       // you are logged
+  //       final AccessToken accessToken = facebookLoginResult.accessToken;
+  //     } else {
+  //       print(facebookLoginResult.status);
+  //       print(facebookLoginResult.message);
+  //     }
+  //
+  //     // switch (facebookLoginResult.status) {
+  //     //   case FacebookLoginStatus.error:
+  //     //     onLoginStatusChanged(false);
+  //     //     break;
+  //     //   case FacebookLoginStatus.cancelledByUser:
+  //     //     onLoginStatusChanged(false);
+  //     //     break;
+  //     //   case FacebookLoginStatus.loggedIn:
+  //     //     var graphResponse = await http.get(
+  //     //         'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture.height(200)&access_token=${facebookLoginResult.accessToken.token}');
+  //     //
+  //     //     var profile = json.decode(graphResponse.body);
+  //     //     var name = profile['name'];
+  //     //     var email = profile['email'];
+  //     //     var code = profile['id'];
+  //     //     var password = "password";
+  //     //     socialLogin(APIData.fbLoginApi, email, password, code, name, "code");
+  //     //     onLoginStatusChanged(true, profileData: profile);
+  //     //     break;
+  //     // }
+  //   }
+  // }
 
   void onLoginStatusChanged(bool isLoggedIn, {profileData}) {
     setState(() {
